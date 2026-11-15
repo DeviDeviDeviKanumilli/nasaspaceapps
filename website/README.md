@@ -1,6 +1,6 @@
-# Analog Atlas — website
+# TERRA — website
 
-Interactive 3D globe of the computed Earth-analog records for lunar and Martian reference sites.
+Interactive 3D globe of Earth-analog records for lunar and Martian reference sites, from the global terrain run.
 Team Vancomycin, NASA Space Apps Challenge 2026. Drafted with AI assistance (Claude, Anthropic); disclosed in the
 team's submission, per the Space Apps AI policy.
 
@@ -32,14 +32,28 @@ On Vercel: import the repository, set **Root Directory** to `website`. No other 
 
 ## Data
 
+The site shows the **global terrain run** (commit `3cac280`): 19,295 one-degree tiles processed across every
+continent, 1,464,296 ten-kilometre windows evaluated, and the 50 closest windows nominated for each of the eight
+terrain references. With the rock-type screening boxes and the regional geology units, that is 600 records.
+
 | File | What it is |
 |---|---|
 | `public/data/app_bundle.json` | The engine's results bundle (schema 1.0 + `geology_v2`), copied unmodified from `web/app_bundle.json`. |
-| `public/data/derived_geometry.json` | Map outlines only. Made by `scripts/derive_geometry.py` from each record's centre and the engine's footprint rule (pyproj AEQD on the tile centre for terrain windows; 0.1° box for rock-type records). No scientific value is created. |
+| `public/data/derived_geometry.json` | Map outlines, made by `scripts/derive_geometry.py` from each record's centre and the engine's footprint rule (pyproj AEQD on the tile centre for terrain windows; 0.1° box for rock-type records). |
+
+Run details the site reports from the bundle:
+
+- Tiles: 9,572 with evaluated windows, 4,905 with no valid window, 4,818 skipped because land cover rules out
+  every window. 138 listed tiles have no result (the ones checked are ocean and island tiles with no land-cover file).
+- The tile list runs from 60° S to 84° N; Antarctica is not part of it.
+- The run's own statement is shown verbatim on the Data & methods page.
+- Cross-pathway values (rock classes under a terrain window, terrain of a rock-type box) are "not measured" in this
+  bundle, because that step has not been rerun on the global results.
 
 To load a newer run: replace `app_bundle.json`, then
 `python3 scripts/derive_geometry.py public/data/app_bundle.json public/data/derived_geometry.json` (needs `pyproj`), then rebuild.
 The adapter (`lib/adapter.ts`) validates the bundle at load time and lists anything missing on the Data & methods page.
+Tile counts, extent and the "global" label are read from the bundle, so an older regional bundle is labelled correctly too.
 
 ## What is implemented
 
@@ -59,8 +73,9 @@ The adapter (`lib/adapter.ts`) validates the bundle at load time and lists anyth
   (tile status, containing footprints, study areas). Nearest records are listed separately. No analysis is run.
 - Record inspector and full "Data for this site" workspace: comparison, Earth measurements, why found,
   dataset sources, stored record (JSON), limits; JSON and CSV export of the actual record.
-- Analysis-coverage layer from the run's tile list, with the manifest statement verbatim.
-- Data & methods page: run status, methods, dataset catalogue with licences and links, literature, limits.
+- Analysis-coverage layer for the global run's tile list, with the run statement verbatim.
+- Data & methods page: run status, methods, dataset catalogue with licences and links, the NASA LRO/LOLA provenance
+  block (PGDA Products 90 and 78, with links to the engine source), literature, limits.
 - Fallbacks: if satellite imagery cannot be reached the globe falls back to NASA GIBS Blue Marble, then to the
   bundled Natural Earth map; if 3D relief cannot be reached the globe stays smooth; if WebGL is unavailable the
   page says so. Software renderers get a lower-detail mode.

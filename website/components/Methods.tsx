@@ -20,6 +20,7 @@ export default function Methods() {
   const p = (run.parameters ?? {}) as Record<string, unknown>;
   const g2 = b.geology_v2;
   const ext = atlas.coverage.length ? { s: Math.min(...atlas.coverage.map((t) => t.south)), n: Math.max(...atlas.coverage.map((t) => t.south)) + 1, w: Math.min(...atlas.coverage.map((t) => t.west)), e: Math.max(...atlas.coverage.map((t) => t.west)) + 1 } : null;
+  const isGlobal = !!ext && ext.e - ext.w >= 300 && ext.n - ext.s >= 120;
   const missing = Object.entries(run.tiles ?? {}).filter(([k]) => /missing|failed/i.test(k)).reduce((a, [, v]) => a + v, 0);
   const list = (v: unknown) => (Array.isArray(v) ? v.join(", ") : String(v ?? "not recorded"));
   const classes = (v: unknown) => (Array.isArray(v) ? v.map((c) => `${c} ${WC[String(c)] ?? ""}`.trim()).join("; ") : "not recorded");
@@ -38,7 +39,7 @@ export default function Methods() {
 
       <section id="status">
         <h2>Run status and coverage</h2>
-        <p className="statement">Terrain run: <strong>{run.manifest_describe_as ?? "coverage statement missing from the bundle"}</strong></p>
+        <p className="statement">{isGlobal ? "Global terrain run" : "Terrain run"}. Run statement: <strong>{run.manifest_describe_as ?? "coverage statement missing from the bundle"}</strong></p>
         <table className="data"><tbody>
           <tr><td>Run created (UTC)</td><td>{run.created_utc ?? "not recorded"}</td></tr>
           <tr><td>1° tiles with evaluated windows</td><td className="num">{run.tiles?.windows ?? "not recorded"}</td></tr>
@@ -118,6 +119,14 @@ export default function Methods() {
       <section id="datasets">
         <h2>Datasets</h2>
         <p>Inputs to the analysis are listed separately from what is only drawn on the globe. The bundle's own dataset strings are: {Object.entries(run.datasets ?? {}).map(([k, v]) => `${k}: ${v}`).join(" · ") || "not recorded"}.</p>
+        <h3 id="nasa-lro">NASA challenge resource: Lunar Reconnaissance Orbiter</h3>
+        <table className="data"><tbody>
+          <tr><td>NASA Space Apps 2026 challenge-listed resource</td><td>Lunar Reconnaissance Orbiter (LRO)</td></tr>
+          <tr><td>Dataset actually used</td><td>Lunar Orbiter Laser Altimeter (LOLA), an instrument on LRO: south-pole elevation model <code>LDEM_80S_20MPP_ADJ</code>, <a href="https://pgda.gsfc.nasa.gov/products/90" target="_blank" rel="noreferrer">Product 90</a> of the NASA GSFC Planetary Geodesy Data Archive (PGDA), with lunar site boundaries from <a href="https://pgda.gsfc.nasa.gov/products/78" target="_blank" rel="noreferrer">Product 78</a></td></tr>
+          <tr><td>Where it was obtained</td><td>Read directly from NASA GSFC PGDA (<code>pgda.gsfc.nasa.gov</code>) by <a href={`${REPO_URL}/blob/main/engine/lolaread.py`} target="_blank" rel="noreferrer"><code>engine/lolaread.py</code></a></td></tr>
+          <tr><td>How it is used</td><td>The LOLA elevation values inside each site boundary are averaged to a 100 m grid and turned into slope and roughness distributions at 400, 800, 1600 and 3200 m, plus a connectivity curve (<a href={`${REPO_URL}/blob/main/engine/build_refs.py`} target="_blank" rel="noreferrer"><code>engine/build_refs.py</code></a>, <a href={`${REPO_URL}/blob/main/engine/terrain_engine.py`} target="_blank" rel="noreferrer"><code>engine/terrain_engine.py</code></a>; pooled zone classes in <a href={`${REPO_URL}/blob/main/engine/build_zone_refs.py`} target="_blank" rel="noreferrer"><code>engine/build_zone_refs.py</code></a>). These are the lunar references M-CR, M-SR, M-DG, M-MA, MZ-FLAT and MZ-STEEP. Every Earth window is compared with them, and the closest windows are nominated as candidates (<a href={`${REPO_URL}/blob/main/engine/compare.py`} target="_blank" rel="noreferrer"><code>engine/compare.py</code></a>).</td></tr>
+          <tr><td>What this does not mean</td><td>The candidates are this project's computed nominations. NASA has not reviewed, validated or endorsed any of them.</td></tr>
+        </tbody></table>
         {(["analysis input", "planetary reference", "corroboration", "field proxy", "independent cross-check", "display only", "software"] as const).map((role) => {
           const items = SOURCES.filter((s) => s.role === role);
           if (!items.length) return null;
@@ -143,7 +152,7 @@ export default function Methods() {
             </div>
           );
         })}
-        <p className="muted">NASA data used in the analysis: the LOLA south-pole elevation model and site outlines from NASA GSFC's Planetary Geodesy Data Archive, and NASA MGS MOLA elevations within the USGS blended Mars model. The Mars geology references rest on published results from NASA's Curiosity and Perseverance rovers, listed below.</p>
+        <p className="muted">Other NASA data in the analysis: NASA MGS MOLA elevations within the USGS blended Mars model. The Mars geology references rest on published results from NASA's Curiosity and Perseverance rovers, listed below.</p>
       </section>
 
       <section id="literature">
@@ -164,7 +173,7 @@ export default function Methods() {
 
       <section id="code">
         <h2>Code and reproducibility</h2>
-        <p>The analysis code, tests and result files are in the project repository: <a href={REPO_URL} target="_blank" rel="noreferrer">{REPO_URL.replace("https://", "")}</a>. The file this site reads is <code>web/app_bundle.json</code> (schema in <code>SCHEMA.md</code>). Map outlines are derived from each record's centre by <code>scripts/derive_geometry.py</code> using the engine's documented footprint rule; no scientific value is created by the website.</p>
+        <p>The analysis code, tests and result files are in the project repository: <a href={REPO_URL} target="_blank" rel="noreferrer">{REPO_URL.replace("https://", "")}</a>. The file this site reads is <code>web/app_bundle.json</code> (schema in <code>SCHEMA.md</code>). Map outlines are derived from each record's centre by <code>scripts/derive_geometry.py</code> using the engine's documented footprint rule.</p>
       </section>
     </main>
   );

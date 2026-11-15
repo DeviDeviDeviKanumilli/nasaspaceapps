@@ -128,7 +128,10 @@ export default function AtlasApp() {
   const tilesMissing = Object.entries(tileCounts).filter(([k]) => /missing|failed/i.test(k)).reduce((a, [, v]) => a + v, 0);
   const tilesListed = Object.values(tileCounts).reduce((a, b) => a + b, 0);
   const tilesDone = tilesListed - tilesMissing;
-  const runText = !run?.tiles ? "terrain run: tile counts not recorded" : tilesMissing > 0 ? `terrain run: ${tilesDone.toLocaleString("en-US")} of ${tilesListed.toLocaleString("en-US")} listed tiles processed` : `terrain run: ${tilesListed.toLocaleString("en-US")} listed tiles processed`;
+  const lons = atlas.coverage.map((t) => t.west), lats = atlas.coverage.map((t) => t.south);
+  const isGlobal = atlas.coverage.length > 0 && Math.max(...lons) - Math.min(...lons) >= 300 && Math.max(...lats) - Math.min(...lats) >= 120;
+  const runName = isGlobal ? "global terrain run" : "terrain run";
+  const runText = !run?.tiles ? `${runName}: tile counts not recorded` : `${runName}: ${tilesDone.toLocaleString("en-US")} tiles processed`;
 
   return (
     <div className={`app${railOpen ? " rail-open" : ""}${sideOpen ? " side-open" : ""}${drawMode ? " drawing" : ""}`}>
