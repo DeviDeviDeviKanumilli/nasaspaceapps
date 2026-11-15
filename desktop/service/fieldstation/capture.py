@@ -12,6 +12,7 @@ import io
 import multiprocessing as mp
 import os
 import queue
+import sys
 import threading
 import time
 import traceback
@@ -79,6 +80,13 @@ def _worker_loop(adapter_id: str, store_root: str | None, device_id: str, config
             out_q.put(("closed", {"dropped_in_transport": dropped}))
         except Exception:
             pass
+        if adapter_id == "realsense" and sys.platform == "darwin" and mp.current_process().name != "MainProcess":
+            # the camera was hardware-reset (RealSenseAdapter.close): leave without librealsense tearing down
+            try:
+                out_q.close()
+                out_q.join_thread()
+            finally:
+                os._exit(0)
 
 
 def _discover_worker(adapter_id: str, store_root: str | None, out_q) -> None:

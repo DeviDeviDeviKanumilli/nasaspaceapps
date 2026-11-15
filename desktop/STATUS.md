@@ -14,7 +14,7 @@ exercised. **PLANNED** = not built.
 | Check | State | Evidence |
 |---|---|---|
 | librealsense on this Mac | `pyrealsense2-macosx` 2.56.5 imports (arm64, Python 3.13) | `service/requirements.lock.txt` |
-| D435 enumerated / real depth frame | **PASS WITH SUDO** (2026-11-15 08:26 ET): Intel RealSense D435, serial 832112072809, firmware 5.11.1.100, **USB 2.1** link. `desktop/d435.sh`: as the normal user exit 3 (`failed to set power state`); with sudo exit 0, `usb2_fallback` 640x480, 30 frames at 14.97 fps measured, mean valid depth 0.327, median 1.08–1.83 m, fx 384.9 px, depth scale 1 mm. Field Station must run its service as root on this Mac (`desktop/d435.sh run`). Full-resolution profiles: UNTESTED (need a USB 3 link) | `hardware_smoke_20261115T132628Z.json` + depth/colour PNG (SHA-256 in the log) in `~/Library/Application Support/FieldStation/hardware_smoke/`; the colour PNG may show people: do not publish it |
+| D435 enumerated / real depth frame | **PASS WITH SUDO** (2026-11-15 08:26 ET): Intel RealSense D435, serial 832112072809, firmware 5.11.1.100, **USB 2.1** link. `desktop/d435.sh`: as the normal user exit 3 (`failed to set power state`); with sudo exit 0, `usb2_fallback` 640x480, 30 frames at 14.97 fps measured, mean valid depth 0.327, median 1.08–1.83 m, fx 384.9 px, depth scale 1 mm. Field Station must run its service as root on this Mac (`desktop/d435.sh run`); live capture there TESTED (scans 800a7322, c8c21460 COMPLETE; reopen 8/8). Full-resolution profiles: UNTESTED (need a USB 3 link) | `hardware_smoke_20261115T132628Z.json` + depth/colour PNG (SHA-256 in the log) in `~/Library/Application Support/FieldStation/hardware_smoke/`; the colour PNG may show people: do not publish it |
 
 Until the smoke test returns exit 0 with the real camera, **no live D435 capture may be claimed**. The
 fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC scene for rehearsal only
@@ -165,4 +165,13 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
   the first frame set and, if none, hardware-resets the camera and fails retryably (service waits 8 s, retries);
   open attempts get 30 s each. **Not yet verified live**: the camera is now wedged at USB level ("UVC device is already
   opened" with no process holding it) and needs a physical replug; then restart d435.sh run and re-test.
+- 09:06–09:16, **after replug + restart (service with all fixes):** 5 reopen cycles with release-on-close: 3/5
+  streamed (after retries, 5–38 s), 1 driver crash (exit 11, no dialog, reported in < 1 s), 1 no-frames → camera reset.
+  Changed close on macOS to **hardware-reset the camera instead of releasing it** (it reboots into the fresh-plug
+  state) and open to wait for it to drop off USB and come back (ioreg, no libusb). **8/8 reopen cycles streamed**
+  (6 in 8 s, 2 after an automatic retry in 26 s / 37 s), 0 crash reports. Devices-screen scan while streaming ×3:
+  stream unaffected (15.0 fps), open camera reported, not probed. Real scan `c8c21460` after the cycles: COMPLETE,
+  15 frames, valid depth 0.678, 34,657 points (title "D435 setup test 2 (desk)", not a field observation).
+  Still UNTESTED: USB 3 / full-resolution profiles (no USB 3 cable worked), the first open after quitting the app
+  mid-stream (camera not reset then; the retries and no-frames reset are meant to cover it).
 

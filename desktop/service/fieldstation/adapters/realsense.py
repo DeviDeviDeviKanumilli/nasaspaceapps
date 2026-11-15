@@ -14,7 +14,9 @@ import os
 import plistlib
 import subprocess
 import sys
+import tempfile
 import time
+from pathlib import Path
 
 import numpy as np
 
@@ -129,6 +131,39 @@ def usb_seen() -> list[dict]:
     return out
 
 
+_RESET_MARK = Path(tempfile.gettempdir()) / f"fieldstation-realsense-reset-{os.getuid() if hasattr(os, 'getuid') else 0}"
+
+
+def _wait_on_usb(timeout_s: float) -> None:
+    """macOS: after close() hardware-reset the camera, wait for it to drop off USB and come back (read from ioreg,
+    which does not touch it), plus a moment to settle. The camera stays listed for about a second after the reset
+    command, so "listed" alone is not enough. Returns quietly after timeout_s; the open that follows reports the rest."""
+    if sys.platform != "darwin":
+        return
+    try:
+        since = time.time() - float(_RESET_MARK.read_text())
+    except (OSError, ValueError):
+        since = 1e9
+    end = time.monotonic() + timeout_s
+
+    def listed() -> bool:
+        return any(d["product_id"].startswith("0b") for d in usb_seen())
+
+    if since < 20:
+        gone_by = time.monotonic() + max(0.0, 4.0 - since)  # it drops off within a few seconds of the reset
+        while time.monotonic() < gone_by and listed():
+            time.sleep(0.2)
+    seen_at = None
+    while time.monotonic() < end:
+        if listed():
+            seen_at = seen_at or time.monotonic()
+            if time.monotonic() - seen_at >= 1.5:
+                return
+        else:
+            seen_at = None
+        time.sleep(0.25)
+
+
 def sdk_status() -> dict:
     if rs is None:
         return {"available": False, "error": _IMPORT_ERROR}
@@ -211,6 +246,7 @@ class RealSenseAdapter:
         if prof is None:
             raise AdapterError(f"unknown profile {config.get('profile')!r}")
         serial = device_id.split(":", 1)[1] if ":" in device_id else device_id
+        _wait_on_usb(15.0)  # after a close (hardware reset) the camera is away from USB for a few seconds
         cfg = rs.config()
         cfg.enable_device(serial)
         dw, dh, dfps = prof["depth"]
@@ -312,6 +348,20 @@ class RealSenseAdapter:
         return {}
 
     def close(self) -> None:
+        if self.pipe is not None and sys.platform == "darwin" and self.profile is not None:
+            # macOS (root): releasing the camera leaves it half-claimed (the next open streams no frames, or fails with
+            # "already opened"). A hardware reset instead reboots it (~5 s) into the same state as a fresh plug-in,
+            # where opening works. open() waits for it to come back. The process must then exit without stopping.
+            try:
+                self.profile.get_device().hardware_reset()
+                try:
+                    _RESET_MARK.write_text(str(time.time()))
+                except OSError:
+                    pass
+                self.pipe = None
+                return
+            except Exception:
+                pass
         if self.pipe is not None:
             try:
                 self.pipe.stop()
