@@ -1,0 +1,14 @@
+{
+ "note": "HMAC-SHA256; key for proofs = UTF-8 bytes of the code; nonces and outputs are standard base64 with padding",
+ "code": "482913",
+ "nonce_desktop": "AAECAwQFBgcICQoLDA0ODw==",
+ "nonce_phone": "EBESExQVFhcYGRobHB0eHw==",
+ "phone_id": "3f2b8c1e-7a4d-4e5f-9b6a-0c1d2e3f4a5b",
+ "phone_proof": "dauGqYnLIxmUT8xPZsVg+b7Wpn7zIjW7gAeH33z8jbE=",
+ "desktop_proof": "uVtKLMjpL3fmZ8KMf+v4RiUj9ka/8TWmk66lDC4oE4k=",
+ "session_key_b64": "+4WDT42OyZHcPxer5wJqApIBiZstk76kWBiC6lt+tlA=",
+ "session_key_hex": "fb85834f8d8ec991dc3f17abe7026a029201899b2d93bea4581882ea5b7eb650",
+ "example_inner": "{\"v\":1,\"type\":\"start_capture\",\"target\":\"phone\",\"id\":\"11111111-2222-4333-8444-555555555555\",\"seq\":1}",
+ "example_mac": "CjXxP03g2up3PxtNaTTX2U4/WpfwadD3YMqGjLzsof4=",
+ "example_wire": "{\"m\": \"{\\\"v\\\":1,\\\"type\\\":\\\"start_capture\\\",\\\"target\\\":\\\"phone\\\",\\\"id\\\":\\\"11111111-2222-4333-8444-555555555555\\\",\\\"seq\\\":1}\", \"mac\": \"CjXxP03g2up3PxtNaTTX2U4/WpfwadD3YMqGjLzsof4=\"}"
+}

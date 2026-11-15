@@ -1,0 +1,13 @@
+# Desktop field-capture workstation. Python 3.13 (arm64) on macOS; tested 2026-11-15.
+numpy==2.5.4
+scipy==1.18.1
+pillow==13.0.0
+fastapi==0.163.0
+uvicorn[standard]==0.54.0
+pywebview==6.2.1
+cryptography==50.0.2
+pyrealsense2-macosx==2.56.5      # community macOS arm64 wheel of librealsense 2.56.5 (not an Intel build)
+pyobjc-framework-CoreBluetooth==13.0
+# tests
+pytest==9.2.0
+httpx==0.28.1

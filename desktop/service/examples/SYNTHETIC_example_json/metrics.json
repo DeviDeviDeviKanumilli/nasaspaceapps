@@ -1,0 +1,299 @@
+{
+  "schema_version": "1.0",
+  "scan_id": "cafec575-a1d4-42bf-b1ef-1dd7b70852a0",
+  "source": "synthetic_fixture",
+  "coordinate_frame": "camera_optical_m",
+  "pipeline_version": "fieldstation-pointcloud-1.0",
+  "computed_utc": "2026-11-15T07:43:42.290791Z",
+  "capture_quality": {
+    "frames": 10,
+    "pixels_per_frame": 407040,
+    "depth_valid_fraction_per_frame": [
+      0.9679,
+      0.9677,
+      0.9676,
+      0.9675,
+      0.9676,
+      0.9676,
+      0.9677,
+      0.9677,
+      0.9677,
+      0.9676
+    ],
+    "depth_valid_fraction_mean": 0.9676,
+    "pixels_valid_in_all_frames": 0.8837,
+    "range_m_percentiles": {
+      "5": 0.938,
+      "25": 1.036,
+      "50": 1.173,
+      "75": 1.421,
+      "95": 1.664
+    },
+    "filtered_points": 397004,
+    "filtered_valid_fraction": 0.9753,
+    "temporal_std_median_m": 0.004605,
+    "temporal_std_note": "per-pixel std across frames of a stationary capture: frame-to-frame noise, not accuracy",
+    "raw_point_cloud_points": 393854,
+    "filtered_point_cloud_points": 397004,
+    "frames_skipped_between_recorded": 0
+  },
+  "default_analysis": {
+    "roi": {
+      "kind": "pixel_rect",
+      "rect_px": [
+        212,
+        120,
+        636,
+        360
+      ],
+      "label": "default: central 50% of depth image"
+    },
+    "status": "measured",
+    "plane": {
+      "centroid_m": [
+        0.0018059359808090144,
+        -0.0146629663161107,
+        1.1852938110103637
+      ],
+      "normal": [
+        0.014779149554200502,
+        -0.5108344522386019,
+        -0.8595520572627013
+      ],
+      "axes_in_plane": [
+        [
+          0.9997475015570892,
+          -0.007003033060939745,
+          0.021351596153571184
+        ],
+        [
+          -0.016926602400138845,
+          -0.8596505801394164,
+          0.5106019684618859
+        ]
+      ],
+      "n_points": 100905,
+      "n_used": 100905,
+      "n_rejected": 0,
+      "rms_orthogonal_m": 0.04659607501597843,
+      "residual_p05_m": -0.028974318539234135,
+      "residual_p95_m": 0.12927016014418324,
+      "residual_max_abs_m": 0.1364821884650201,
+      "extent_major_m": 1.3469640372490215,
+      "extent_minor_m": 0.782571551043902
+    },
+    "measurements": [
+      {
+        "id": "182eb7b8-8828-443e-b1ce-202b5f8efdd0",
+        "label": "default: central 50% of depth image",
+        "name": "plane_fit_roughness",
+        "value": 0.046596,
+        "unit": "m",
+        "status": "measured",
+        "method": "total least squares plane (SVD/PCA) on ROI points; RMS of orthogonal residuals",
+        "source_artifact": "depth_filtered.png",
+        "frame": "camera_optical_m",
+        "roi": {
+          "kind": "pixel_rect",
+          "rect_px": [
+            212,
+            120,
+            636,
+            360
+          ],
+          "n_points": 100905
+        },
+        "extra": {
+          "baseline_m": 1.346964,
+          "n_used": 100905,
+          "residual_p05_m": -0.028974,
+          "residual_p95_m": 0.12927,
+          "residual_max_abs_m": 0.136482,
+          "expected_sensor_noise_rms_m": 0.00465
+        },
+        "uncertainty": {
+          "method": "per_frame_spread",
+          "n": 10,
+          "std_m": 1.3e-05,
+          "min_m": 0.047087,
+          "max_m": 0.047132,
+          "note": "spread of the same estimator on each raw frame of this stationary capture; precision, not accuracy",
+          "expected_sensor_noise_rms_m": 0.00465,
+          "noise_model": "Intel D400 RMS model z^2*subpixel/(fx*baseline), subpixel=0.08 (typical, not measured for this unit)"
+        },
+        "validity": [
+          "partial view: only surfaces visible to the sensor are measured",
+          "roughness depends on the region size (baseline_m); compare only at similar baselines",
+          "not comparable with 400-3200 m planetary/DEM roughness descriptors"
+        ],
+        "created_utc": "2026-11-15T07:43:42.224693Z",
+        "pipeline_version": "fieldstation-pointcloud-1.0"
+      },
+      {
+        "id": "65f36720-69c8-442d-ba29-c40ef86a55b2",
+        "label": "default: central 50% of depth image",
+        "name": "plane_tilt_from_optical_axis",
+        "value": 30.734,
+        "unit": "deg",
+        "status": "measured",
+        "method": "angle between fitted plane normal and the camera optical axis (+Z)",
+        "source_artifact": "depth_filtered.png",
+        "frame": "camera_optical_m",
+        "roi": {
+          "kind": "pixel_rect",
+          "rect_px": [
+            212,
+            120,
+            636,
+            360
+          ],
+          "n_points": 100905
+        },
+        "extra": {},
+        "uncertainty": {
+          "method": "none from a single scan; compare repeat scans with the same label",
+          "n": 1
+        },
+        "validity": [
+          "relative to the camera, NOT to horizontal"
+        ],
+        "created_utc": "2026-11-15T07:43:42.224736Z",
+        "pipeline_version": "fieldstation-pointcloud-1.0"
+      },
+      {
+        "id": "4c472d55-7182-4aa9-948f-0e90ed2018bb",
+        "label": "default: central 50% of depth image",
+        "name": "extent_in_plane_major",
+        "value": 1.346964,
+        "unit": "m",
+        "status": "measured",
+        "method": "extent of ROI points along the plane's first principal axis",
+        "source_artifact": "depth_filtered.png",
+        "frame": "camera_optical_m",
+        "roi": {
+          "kind": "pixel_rect",
+          "rect_px": [
+            212,
+            120,
+            636,
+            360
+          ],
+          "n_points": 100905
+        },
+        "extra": {},
+        "uncertainty": {
+          "method": "none from a single scan; compare repeat scans with the same label",
+          "n": 1
+        },
+        "validity": [
+          "visible extent only; the object may continue outside the ROI or behind occlusions"
+        ],
+        "created_utc": "2026-11-15T07:43:42.224748Z",
+        "pipeline_version": "fieldstation-pointcloud-1.0"
+      },
+      {
+        "id": "065117e7-7e46-4511-a36d-39168d7fa18d",
+        "label": "default: central 50% of depth image",
+        "name": "extent_in_plane_minor",
+        "value": 0.782572,
+        "unit": "m",
+        "status": "measured",
+        "method": "extent of ROI points along the plane's second principal axis",
+        "source_artifact": "depth_filtered.png",
+        "frame": "camera_optical_m",
+        "roi": {
+          "kind": "pixel_rect",
+          "rect_px": [
+            212,
+            120,
+            636,
+            360
+          ],
+          "n_points": 100905
+        },
+        "extra": {},
+        "uncertainty": {
+          "method": "none from a single scan; compare repeat scans with the same label",
+          "n": 1
+        },
+        "validity": [
+          "visible extent only"
+        ],
+        "created_utc": "2026-11-15T07:43:42.224758Z",
+        "pipeline_version": "fieldstation-pointcloud-1.0"
+      },
+      {
+        "id": "479a552e-53ee-4261-b2e2-2017b827f0ea",
+        "label": "default: central 50% of depth image",
+        "name": "median_range",
+        "value": 1.197656,
+        "unit": "m",
+        "status": "measured",
+        "method": "median distance of ROI points from the optical centre",
+        "source_artifact": "depth_filtered.png",
+        "frame": "camera_optical_m",
+        "roi": {
+          "kind": "pixel_rect",
+          "rect_px": [
+            212,
+            120,
+            636,
+            360
+          ],
+          "n_points": 100905
+        },
+        "extra": {},
+        "uncertainty": {
+          "method": "none from a single scan; compare repeat scans with the same label",
+          "n": 1
+        },
+        "validity": [],
+        "created_utc": "2026-11-15T07:43:42.225612Z",
+        "pipeline_version": "fieldstation-pointcloud-1.0"
+      },
+      {
+        "id": "ffafc02c-576a-434e-817c-067885820625",
+        "label": "default: central 50% of depth image",
+        "name": "plane_tilt_from_horizontal",
+        "value": null,
+        "unit": "deg",
+        "status": "not_measured",
+        "method": "not computed",
+        "source_artifact": "depth_filtered.png",
+        "frame": "camera_optical_m",
+        "roi": {
+          "kind": "pixel_rect",
+          "rect_px": [
+            212,
+            120,
+            636,
+            360
+          ],
+          "n_points": 100905
+        },
+        "extra": {},
+        "uncertainty": {
+          "method": "none from a single scan; compare repeat scans with the same label",
+          "n": 1
+        },
+        "validity": [
+          "no measured world-up: the D435 has no IMU and no levelling reference was recorded"
+        ],
+        "created_utc": "2026-11-15T07:43:42.225619Z",
+        "pipeline_version": "fieldstation-pointcloud-1.0"
+      }
+    ]
+  },
+  "analyses": [],
+  "gravity_referenced_slope": {
+    "status": "not_measured",
+    "reason": "no_measured_world_up"
+  },
+  "uncertainty": {
+    "method": "repeat_acquisition",
+    "n": 1,
+    "note": "compare scans in the same session (Library > Repeatability)"
+  },
+  "raw_capture_preserved": true,
+  "model_scope": "visible_sensors_only"
+}

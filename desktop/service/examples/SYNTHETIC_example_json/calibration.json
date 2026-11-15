@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "depth_scale_m": 0.001,
+  "depth_intrinsics": {
+    "width": 848,
+    "height": 480,
+    "fx": 446.8027731191281,
+    "fy": 446.8027731191281,
+    "ppx": 423.8,
+    "ppy": 239.3,
+    "model": "brown_conrady",
+    "coeffs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "color_intrinsics": {
+    "width": 848,
+    "height": 480,
+    "fx": 616.9238281571166,
+    "fy": 616.9238281571166,
+    "ppx": 423.8,
+    "ppy": 239.3,
+    "model": "inverse_brown_conrady",
+    "coeffs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "depth_to_color_extrinsics": {
+    "rotation_row_major": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "translation_m": [
+      0.015,
+      0.0,
+      0.0
+    ]
+  },
+  "depth_fps": 30,
+  "color_fps": 30,
+  "depth_format": "z16",
+  "color_format": "rgb8",
+  "alignment": "unaligned_native_streams",
+  "alignment_note": "depth and colour are stored as separate native streams; colour is attached to points by projection with the extrinsics above",
+  "stereo_baseline_m": 0.05,
+  "baseline_source": "synthetic_parameter",
+  "device": {
+    "name": "SYNTHETIC test scene",
+    "serial": null,
+    "firmware": null,
+    "usb_type": null,
+    "product_line": "synthetic"
+  },
+  "sensor_options": {
+    "noise_model": "Intel D400 RMS, subpixel 0.08",
+    "dropout_fraction": 0.01,
+    "seed": 7
+  },
+  "source": "synthetic"
+}
