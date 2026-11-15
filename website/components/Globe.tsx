@@ -366,7 +366,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
       }
       const cl = recordsDS.clustering;
       cl.enabled = true;
-      cl.pixelRange = 44;
+      cl.pixelRange = 58;
       cl.minimumClusterSize = 2;
       cl.clusterBillboards = true;
       cl.clusterLabels = false;
