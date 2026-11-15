@@ -76,10 +76,20 @@ Tile counts, extent and the "global" label are read from the bundle, so an older
 - Analysis-coverage layer for the global run's tile list, with the run statement verbatim.
 - Data & methods page: run status, methods, dataset catalogue with licences and links, the NASA LRO/LOLA provenance
   block (PGDA Products 90 and 78, with links to the engine source), literature, limits.
-- Fallbacks: if satellite imagery cannot be reached the globe falls back to NASA GIBS Blue Marble, then to the
-  bundled Natural Earth map; if 3D relief cannot be reached the globe stays smooth; if WebGL is unavailable the
-  page says so. Software renderers get a lower-detail mode.
+- Imagery stack, bottom to top: NASA GIBS Blue Marble (always drawn, so there is never a blank or tan globe while
+  detail loads), Esri World Imagery, Esri boundaries and places. The bundled Natural Earth map is used only when
+  neither online source can be reached. The layer panel names the stack actually on screen. The globe keeps
+  drawing until its tiles have loaded instead of stopping when the camera stops.
+- Fallbacks: if 3D relief cannot be reached the globe stays smooth; if WebGL is unavailable the page says so.
+  Software renderers get a lower-detail mode.
 - Deep links: `/?record=<id>`, `/?record=<id>&view=data`, `/?reference=<id>`.
+
+## Visual design
+
+One stylesheet (`app/globals.css`) with a small token set: paper surfaces and ink text for the top bar, drawers
+and the evidence workspace; charcoal only for the map controls; one action colour; a Moon blue and a Mars
+terracotta used for record symbols and reference labels. Record symbols, cluster badges and pins are drawn on a
+canvas at 2x in `components/Globe.tsx`. Screenshots of the current build are in `screenshots/`.
 
 ## Not implemented
 

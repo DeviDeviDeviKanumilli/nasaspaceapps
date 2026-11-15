@@ -181,7 +181,9 @@ a code { color: inherit; }
 .inspector .sub { color: var(--secondary); margin: 0 0 8px; font-size: 12.5px; font-family: var(--mono); }
 .inspector .sub.plainfont { font-family: var(--font); font-size: 13px; }
 .cmpline { margin: 0 0 6px; font-size: 13px; color: var(--secondary); }
-.cmpline button { color: var(--action); font-weight: 550; text-align: left; }
+.cmpline .cmplab { display: flex; align-items: baseline; gap: 8px; }
+.cmpline .cmplab .grouplab { display: inline; padding: 0; margin: 0; }
+.cmpline button { color: var(--action); font-weight: 550; text-align: left; display: block; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .cmpline button:hover { text-decoration: underline; }
 .state { display: flex; align-items: baseline; gap: 8px; margin: 0 0 14px; font-size: 12.5px; color: var(--ink); }
 .state::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--signal); flex: none; transform: translateY(-1px); }
@@ -360,6 +362,8 @@ table { border-collapse: collapse; width: 100%; }
   .rail, .side { left: 0; right: 0; width: auto; top: auto; bottom: 0; height: 46vh; border-radius: 12px 12px 0 0; border-width: 1px 0 0; z-index: 22; }
   .side { z-index: 23; }
   .side-open .rail, .railtab { display: none; }
+  /* Shrink the map to the part the sheet leaves visible, so a selected record is centred above the sheet. */
+  .rail-open .globe, .side-open .globe { bottom: calc(46vh - 12px); }
   .mapctl, .side-open .mapctl { right: 8px; bottom: 44px; }
   .rail-open .mapctl, .side-open .mapctl { bottom: calc(46vh + 8px); }
   .mapctl button { width: 40px; height: 40px; }

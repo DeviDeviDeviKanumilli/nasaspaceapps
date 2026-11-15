@@ -87,7 +87,7 @@ export function Inspector({ atlas, rec, onData, onReference, onFly }: { atlas: A
       <div className="path"><i className={`sym ${rec.kind === "terrain" ? "circle" : rec.kind === "rock" ? "square" : "diamond"} ${rec.body.toLowerCase()}`} />{rec.pathwayLabel}</div>
       <h2>{rec.title}</h2>
       {rec.kind === "geo2" ? <p className="sub plainfont">{rec.subtitle}{u?.unit_age ? ` · ${u.unit_age}` : ""}</p> : <p className="sub">{formatLatLon(rec.lat, rec.lon)}</p>}
-      <p className="cmpline">Compared with <button onClick={() => onReference(rec.referenceId)} title={`${rec.referenceId}: ${refName}`}>{rec.referenceId}{refShort ? ` · ${refShort}` : ""}</button> <span className={`grouplab ${rec.body.toLowerCase()}`} style={{ display: "inline", marginLeft: 4 }}>{rec.body}</span></p>
+      <p className="cmpline"><span className="cmplab">Compared with <span className={`grouplab ${rec.body.toLowerCase()}`}>{rec.body}</span></span><button onClick={() => onReference(rec.referenceId)} title={`${rec.referenceId}: ${refName}`}>{rec.referenceId}{refShort ? ` · ${refShort}` : ""}</button></p>
       <p className="state">{state}</p>
 
       <dl className="facts3">
@@ -182,7 +182,7 @@ export function LocationCard({ atlas, loc, onSelect, onUseAsCentre, onFly }: { a
       <h3>What the loaded run covers here</h3>
       <table className="kv"><tbody>
         <tr><th scope="row">Terrain run</th><td>
-          {t ? (t.status === "windows" ? `This 1° tile was processed: ${t.windows} windows were evaluated.` : t.status === "no_valid_windows" ? "This 1° tile was processed, but no 10 km window passed the validity test (too much masked or missing ground)." : t.status === "skipped_landcover" ? "This 1° tile was skipped: land cover (trees, crops, built-up, water) rules out every window, so its elevation data was not read." : `Tile status: ${String(t.rawStatus)}.`)
+          {t ? (t.status === "windows" ? `This 1° tile was processed: ${t.windows} window${t.windows === 1 ? " was" : "s were"} evaluated.` : t.status === "no_valid_windows" ? "This 1° tile was processed, but no 10 km window passed the validity test (too much masked or missing ground)." : t.status === "skipped_landcover" ? "This 1° tile was skipped: land cover (trees, crops, built-up, water) rules out every window, so its elevation data was not read." : `Tile status: ${String(t.rawStatus)}.`)
             : "There is no result for this 1° tile in the loaded run: it is ocean, outside the tile list, or it failed."}
         </td></tr>
         <tr><th scope="row">Footprints containing this point</th><td>

@@ -540,8 +540,8 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
       scene.globe.tileLoadProgressEvent.addEventListener(touch); // progress counts as activity
       scene.postRender.addEventListener(() => {
         // In request-render mode Cesium stops drawing when the camera stops, which can strand half-loaded tiles.
-        // Keep drawing while tiles are still arriving; give up after 20 s with no progress so an unreachable tile cannot spin forever.
-        if (!scene.globe.tilesLoaded && performance.now() - lastActivity < 20_000) scene.requestRender();
+        // Keep drawing while tiles are still arriving; give up after 60 s with no progress so an unreachable tile cannot spin forever.
+        if (!scene.globe.tilesLoaded && performance.now() - lastActivity < 60_000) scene.requestRender();
       });
       viewer.camera.percentageChanged = 0.005;
       viewer.camera.changed.addEventListener(report);

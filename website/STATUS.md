@@ -7,6 +7,26 @@ Tested in headless Chrome 153 with a software renderer (no GPU) at 1440×900, 12
 the local build and the live URL. **It has not been viewed on a real GPU or a physical phone**; imagery sharpness
 and frame rate there are expected to be better than in the test screenshots, but that is not verified.
 
+## Update: visual redesign
+
+The interface was restyled without changing any record, filter or comparison: paper top bar and drawers, a compact
+record inspector, a light evidence workspace, smaller map symbols, and a phone layout with one bottom sheet.
+
+Imagery defect ("beige patches"): no tile request was failing. The globe stopped drawing when the camera stopped,
+which left half-loaded tiles on screen above a flat tan fallback map. It now keeps drawing until tiles have loaded
+and uses NASA Blue Marble underneath Esri imagery. In the test browser (software renderer, two CPU cores, about
+one frame every three seconds when zoomed in on 3D relief) a close-up view still takes several minutes to sharpen
+fully; no request fails during that time. On a real GPU this should take seconds, but that is not verified here.
+
+Scripted checks on the redesigned build (headless Chrome, 1440x900 unless noted): pathway filters give
+600 / 400 / 150 / 50 records; a terrain record opens and the camera flies to it; JSON and CSV export download;
+the planetary reference page opens from the record; Escape closes the workspace, then the record; the 2D/3D
+toggle changes pitch; the Lockatong record opens and its five source links resolve; a base scenario filters the
+list; a coordinate search shows "No analysis for this exact location"; rectangle drawing starts and cancels;
+a 150 km circle filters the list; map attribution is visible; the layer panel names the imagery stack; a focus
+ring is drawn on keyboard focus; no horizontal overflow at 1440 or 390 px; no console errors.
+Screenshots: `screenshots/`.
+
 ## Update: global terrain run loaded
 
 The site now reads the bundle from commit `3cac280` (`web/app_bundle.json`): terrain run "partial: 19295 of 19433 tiles
@@ -43,6 +63,9 @@ The P0 table below was run on the earlier US test bundle; the filter counts quot
 - Country/state boundary filters; 3D Moon/Mars globes; geologic unit outlines; field-scan records.
 
 ## Known rough edges
+
+- The first keyboard Tab stop is the map attribution link, before the top bar.
+- In the record inspector a long reference name is cut with an ellipsis; the full name is in the tooltip and on the reference page.
 
 - Place-name labels come from a raster overlay and can look soft at some zoom levels.
 - On a software renderer the globe drops to a lower-detail mode automatically.
