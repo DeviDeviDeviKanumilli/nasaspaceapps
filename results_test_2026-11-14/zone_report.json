@@ -1,0 +1,131 @@
+{
+ "note": "team-defined terrain-context classes; not NASA landing/habitat classifications",
+ "rules": {
+  "MZ-FLAT": "share of 400 m slope <= 10 deg >= 0.6",
+  "MZ-STEEP": "share of 400 m slope in 15-30 deg >= 0.4 (and not MZ-FLAT)"
+ },
+ "zones": {
+  "MZ-FLAT": {
+   "n_windows": 69,
+   "windows_per_site": {
+    "Connecting ridge": 19,
+    "Shackleton rim": 13,
+    "de Gerlache rim": 25,
+    "Malapert": 12
+   },
+   "n_unique_cells": 164780,
+   "median_slope_by_baseline": {
+    "400": 8.72,
+    "800": 8.53,
+    "1600": 8.25,
+    "3200": 7.96
+   },
+   "yardstick_in_sample": {
+    "n": 69,
+    "p10": 0.86,
+    "median": 1.52,
+    "p90": 2.32
+   },
+   "yardstick_leave_one_site_out": {
+    "n": 69,
+    "p10": 0.91,
+    "median": 1.56,
+    "p90": 2.35
+   }
+  },
+  "MZ-STEEP": {
+   "n_windows": 257,
+   "windows_per_site": {
+    "Connecting ridge": 67,
+    "Shackleton rim": 33,
+    "de Gerlache rim": 37,
+    "Malapert": 120
+   },
+   "n_unique_cells": 360280,
+   "median_slope_by_baseline": {
+    "400": 15.63,
+    "800": 15.46,
+    "1600": 15.05,
+    "3200": 14.13
+   },
+   "yardstick_in_sample": {
+    "n": 257,
+    "p10": 1.79,
+    "median": 2.96,
+    "p90": 7.03
+   },
+   "yardstick_leave_one_site_out": {
+    "n": 257,
+    "p10": 1.93,
+    "median": 3.21,
+    "p90": 7.62
+   }
+  }
+ },
+ "sensitivity": {
+  "MZ-FLAT": {
+   "0.5": {
+    "n_windows": 145,
+    "median_slope_by_baseline": [
+     9.61,
+     9.37,
+     9.0,
+     8.55
+    ],
+    "w1_to_adopted_reference_deg": 0.83
+   },
+   "0.6": {
+    "n_windows": 69,
+    "median_slope_by_baseline": [
+     8.72,
+     8.53,
+     8.25,
+     7.96
+    ],
+    "w1_to_adopted_reference_deg": 0.0
+   },
+   "0.7": {
+    "n_windows": 22,
+    "median_slope_by_baseline": [
+     7.84,
+     7.71,
+     7.53,
+     7.42
+    ],
+    "w1_to_adopted_reference_deg": 1.38
+   }
+  },
+  "MZ-STEEP": {
+   "0.3": {
+    "n_windows": 398,
+    "median_slope_by_baseline": [
+     14.43,
+     14.2,
+     13.76,
+     12.91
+    ],
+    "w1_to_adopted_reference_deg": 0.91
+   },
+   "0.4": {
+    "n_windows": 257,
+    "median_slope_by_baseline": [
+     15.63,
+     15.46,
+     15.05,
+     14.13
+    ],
+    "w1_to_adopted_reference_deg": 0.0
+   },
+   "0.5": {
+    "n_windows": 151,
+    "median_slope_by_baseline": [
+     16.0,
+     15.86,
+     15.51,
+     14.76
+    ],
+    "w1_to_adopted_reference_deg": 1.08
+   }
+  }
+ }
+}

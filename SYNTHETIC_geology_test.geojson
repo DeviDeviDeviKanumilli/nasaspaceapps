@@ -1,0 +1,141 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": 1,
+        "xx_Description": "Siliciclastic sedimentary rocks"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.3,
+              40.3
+            ],
+            [
+              -74.2,
+              40.3
+            ],
+            [
+              -74.2,
+              40.4
+            ],
+            [
+              -74.3,
+              40.4
+            ],
+            [
+              -74.3,
+              40.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": 2,
+        "xx_Description": "Basic volcanic rocks"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -106.2,
+              38.1
+            ],
+            [
+              -106.10000000000001,
+              38.1
+            ],
+            [
+              -106.10000000000001,
+              38.2
+            ],
+            [
+              -106.2,
+              38.2
+            ],
+            [
+              -106.2,
+              38.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": 3,
+        "xx_Description": "Basic plutonic rocks"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.1,
+              -14.1
+            ],
+            [
+              21.200000000000003,
+              -14.1
+            ],
+            [
+              21.200000000000003,
+              -14.0
+            ],
+            [
+              21.1,
+              -14.0
+            ],
+            [
+              21.1,
+              -14.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OBJECTID": 4,
+        "xx_Description": "No Data"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28.4,
+              -11.7
+            ],
+            [
+              28.5,
+              -11.7
+            ],
+            [
+              28.5,
+              -11.6
+            ],
+            [
+              28.4,
+              -11.6
+            ],
+            [
+              28.4,
+              -11.7
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

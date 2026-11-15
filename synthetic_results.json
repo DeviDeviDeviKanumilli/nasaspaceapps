@@ -1,0 +1,4029 @@
+{
+  "experiment_type": "small-tile real-data comparison if user supplies real DEMs",
+  "warning": "Relative measurements only; NOT global search, proven scientific analog, landing suitability or NASA approval",
+  "planet": {
+    "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_planet_100m.tif",
+    "source_sha256": "8be6ed637c2ed994255000db4784fa22f0118961e3bdca273a35083c9425cbb3",
+    "source_crs": "None",
+    "source_res": [
+      100.0,
+      100.0
+    ],
+    "source_nodata": -9999.0,
+    "native_xy_center_m": [
+      500000.0,
+      4500000.0
+    ],
+    "read_method": "window, average downsampling in native metric planetary grid"
+  },
+  "planet_valid_fraction": 1.0,
+  "parameters": {
+    "baselines_m": [
+      400,
+      800,
+      1600
+    ],
+    "pixel_m": 100,
+    "reference_size_m": 4800,
+    "earth_crop_size_m": 8800,
+    "candidate_window_m": 4800,
+    "candidate_stride_m": 1600
+  },
+  "reference_summaries": {
+    "400": {
+      "status": "ok",
+      "n": 484,
+      "slope_summary": {
+        "median": 1.5214363890045783,
+        "p10": 0.6166762189285766,
+        "p90": 2.5529278965734368,
+        "mean": 1.5562849996540793
+      },
+      "roughness_summary": {
+        "median": 0.2764847538402826,
+        "p10": 0.15976683601082914,
+        "p90": 0.4100571643581568,
+        "mean": 0.27958578526205136
+      },
+      "connectivity": {
+        "5": 1.0,
+        "10": 1.0,
+        "15": 1.0,
+        "20": 1.0,
+        "25": 1.0
+      }
+    },
+    "800": {
+      "status": "ok",
+      "n": 400,
+      "slope_summary": {
+        "median": 1.447987220002812,
+        "p10": 0.6766044241264803,
+        "p90": 2.426789876434562,
+        "mean": 1.5091079892667354
+      },
+      "roughness_summary": {
+        "median": 0.9131521893361494,
+        "p10": 0.5900338221689597,
+        "p90": 1.2851322018254399,
+        "mean": 0.925139867049031
+      },
+      "connectivity": {
+        "5": 1.0,
+        "10": 1.0,
+        "15": 1.0,
+        "20": 1.0,
+        "25": 1.0
+      }
+    },
+    "1600": {
+      "status": "ok",
+      "n": 256,
+      "slope_summary": {
+        "median": 1.4282684831430088,
+        "p10": 0.953818289969254,
+        "p90": 2.214906793615832,
+        "mean": 1.5392823794356651
+      },
+      "roughness_summary": {
+        "median": 2.418401796238954,
+        "p10": 1.7881830733241457,
+        "p90": 3.224832185389613,
+        "mean": 2.4817550988736468
+      },
+      "connectivity": {
+        "5": 1.0,
+        "10": 1.0,
+        "15": 1.0,
+        "20": 1.0,
+        "25": 1.0
+      }
+    }
+  },
+  "n_total": 9,
+  "n_eligible": 9,
+  "pareto_candidate_ids": [
+    "SYNTHETIC_earth_100m:0:0"
+  ],
+  "top_by_slope": [
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 0,
+      "center_lonlat": [
+        -75.0236627539513,
+        40.66887163493218
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 5.456634871382037e-07,
+            "roughness_w1_m": 1.0401954529923925e-06,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 1.4628893730987684e-07,
+            "roughness_w1_m": 5.126624124236755e-07,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 3.42881603734857e-08,
+            "roughness_w1_m": 2.420130437033943e-07,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 2.4208019494052206e-07,
+        "mean_roughness_w1_m": 5.982903030398207e-07
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 1.5214355511782314,
+            "p10": 0.6166763559363405,
+            "p90": 2.5529271189149854,
+            "mean": 1.5562850081731994
+          },
+          "roughness_summary": {
+            "median": 0.2764847691793859,
+            "p10": 0.159765953525309,
+            "p90": 0.4100562810326805,
+            "mean": 0.27958574802363734
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 1.4479871804283895,
+            "p10": 0.6766043675835018,
+            "p90": 2.426789843930165,
+            "mean": 1.5091079807627739
+          },
+          "roughness_summary": {
+            "median": 0.9131519262324569,
+            "p10": 0.5900329275498363,
+            "p90": 1.2851325502787467,
+            "mean": 0.925139909313682
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 1.4282684739693903,
+            "p10": 0.9538183107058369,
+            "p90": 2.2149068162817116,
+            "mean": 1.5392823833542637
+          },
+          "roughness_summary": {
+            "median": 2.418401813423859,
+            "p10": 1.7881831347424275,
+            "p90": 3.224832020550217,
+            "mean": 2.4817550596522207
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 0,
+      "center_lonlat": [
+        -75.02365766088282,
+        40.65445760547408
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 4.18112656694279,
+            "roughness_w1_m": 5.933328699293766,
+            "connectivity_difference_by_threshold": {
+              "5": 0.07507507507507505,
+              "10": 0.22332506203473945,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 4.250929847434501,
+            "roughness_w1_m": 12.184853625526811,
+            "connectivity_difference_by_threshold": {
+              "5": 0.03007518796992481,
+              "10": 0.12727272727272732,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 4.266191518801584,
+            "roughness_w1_m": 26.591088864788844,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 4.232749311059625,
+        "mean_roughness_w1_m": 14.903090396536475
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 2.2407321185061413,
+            "p10": 0.8709427045607431,
+            "p90": 11.621730594730577,
+            "mean": 5.737411566596868
+          },
+          "roughness_summary": {
+            "median": 0.3539254056514894,
+            "p10": 0.18409061363008503,
+            "p90": 3.749953027324776,
+            "mean": 6.212914484555816
+          },
+          "connectivity": {
+            "5": 0.924924924924925,
+            "10": 0.7766749379652605,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 2.209074254591001,
+            "p10": 0.9336527010204112,
+            "p90": 14.351905961587807,
+            "mean": 5.760037835453971
+          },
+          "roughness_summary": {
+            "median": 1.1617088562356486,
+            "p10": 0.6876580470085111,
+            "p90": 53.07762481078371,
+            "mean": 13.109993492575846
+          },
+          "connectivity": {
+            "5": 0.9699248120300752,
+            "10": 0.8727272727272727,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 2.2395589088012375,
+            "p10": 1.148824217771895,
+            "p90": 14.793448138971385,
+            "mean": 5.805473898237249
+          },
+          "roughness_summary": {
+            "median": 4.816133911017711,
+            "p10": 1.9297275681007457,
+            "p90": 80.86723072589261,
+            "mean": 29.072843963662493
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 0,
+      "center_lonlat": [
+        -75.02365257149714,
+        40.64004353991846
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 6.351025584575667,
+            "roughness_w1_m": 6.6496415834089575,
+            "connectivity_difference_by_threshold": {
+              "5": 0.31958762886597936,
+              "10": 0.6074498567335244,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 6.61059709050825,
+            "roughness_w1_m": 14.312804788429968,
+            "connectivity_difference_by_threshold": {
+              "5": 0.26865671641791045,
+              "10": 0.4474576271186441,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 7.088641630494022,
+            "roughness_w1_m": 33.11996511113968,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 6.683421435192646,
+        "mean_roughness_w1_m": 18.0274704943262
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.428090788660835,
+            "p10": 1.1759202158762383,
+            "p90": 12.066760561379988,
+            "mean": 7.907310584229745
+          },
+          "roughness_summary": {
+            "median": 1.9395405955766694,
+            "p10": 0.23857656329834173,
+            "p90": 3.8947621247454314,
+            "mean": 6.929227368671008
+          },
+          "connectivity": {
+            "5": 0.6804123711340206,
+            "10": 0.39255014326647564,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.826397219106454,
+            "p10": 1.2597957950966365,
+            "p90": 14.351905961587807,
+            "mean": 8.119705078527721
+          },
+          "roughness_summary": {
+            "median": 6.182468253696738,
+            "p10": 0.9147898215809886,
+            "p90": 53.07762481078371,
+            "mean": 15.237944655479005
+          },
+          "connectivity": {
+            "5": 0.7313432835820896,
+            "10": 0.5525423728813559,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 7.742867850971601,
+            "p10": 5.648053768152601,
+            "p90": 14.793448138971385,
+            "mean": 8.627924009929687
+          },
+          "roughness_summary": {
+            "median": 18.608107284947337,
+            "p10": 13.810875282105837,
+            "p90": 80.86723072589261,
+            "mean": 35.60172021001333
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473255097455,
+        40.668873962581166
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 5.612309506159479,
+            "roughness_w1_m": 9.318053143083944,
+            "connectivity_difference_by_threshold": {
+              "5": 0.08333333333333337,
+              "10": 0.2222222222222222,
+              "15": 0.30000000000000004,
+              "20": 0.30000000000000004,
+              "25": 0.30000000000000004
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 6.740092842086121,
+            "roughness_w1_m": 19.14421626997053,
+            "connectivity_difference_by_threshold": {
+              "5": 0.04761904761904767,
+              "10": 0.15857605177993528,
+              "15": 0.23529411764705888,
+              "20": 0.23529411764705888,
+              "25": 0.23529411764705888
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 8.128931084849421,
+            "roughness_w1_m": 44.63844773539548,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.09090909090909094,
+              "20": 0.09278350515463918,
+              "25": 0.1552511415525114
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 6.827111144365008,
+        "mean_roughness_w1_m": 24.366905716149986
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 2.2795598739703955,
+            "p10": 0.8803710208975151,
+            "p90": 12.076067771892214,
+            "mean": 7.16859450581356
+          },
+          "roughness_summary": {
+            "median": 0.36537319716587857,
+            "p10": 0.18489290331236954,
+            "p90": 3.757886641784981,
+            "mean": 9.59763892769192
+          },
+          "connectivity": {
+            "5": 0.9166666666666666,
+            "10": 0.7777777777777778,
+            "15": 0.7,
+            "20": 0.7,
+            "25": 0.7
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 2.4241911636240596,
+            "p10": 0.9322118214113598,
+            "p90": 30.27432383439711,
+            "mean": 8.249200831352855
+          },
+          "roughness_summary": {
+            "median": 1.1576373837226335,
+            "p10": 0.6441028896244181,
+            "p90": 100.34541424716313,
+            "mean": 20.069356137019568
+          },
+          "connectivity": {
+            "5": 0.9523809523809523,
+            "10": 0.8414239482200647,
+            "15": 0.7647058823529411,
+            "20": 0.7647058823529411,
+            "25": 0.7647058823529411
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 2.239827164226683,
+            "p10": 1.1030757646549953,
+            "p90": 25.762029264733165,
+            "mean": 9.668213464285087
+          },
+          "roughness_summary": {
+            "median": 14.161904041834449,
+            "p10": 1.904793127979545,
+            "p90": 109.80256910918517,
+            "mean": 47.12020283199879
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 0.9090909090909091,
+            "20": 0.9072164948453608,
+            "25": 0.8447488584474886
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580845673374,
+        40.64004509011592
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.725301811565664,
+            "roughness_w1_m": 7.733404166979728,
+            "connectivity_difference_by_threshold": {
+              "5": 0.7096774193548387,
+              "10": 0.7029411764705882,
+              "15": 0.07894736842105265,
+              "20": 0.07894736842105265,
+              "25": 0.07894736842105265
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.271679148036446,
+            "roughness_w1_m": 16.444570792607013,
+            "connectivity_difference_by_threshold": {
+              "5": 0.7534246575342466,
+              "10": 0.6357142857142857,
+              "15": 0.06887052341597799,
+              "20": 0.06849315068493156,
+              "25": 0.06756756756756754
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 8.35168984416566,
+            "roughness_w1_m": 34.869482138589824,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.009803921568627416,
+              "15": 0.013953488372092981,
+              "20": 0.02212389380530977,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 8.116223601255923,
+        "mean_roughness_w1_m": 19.68248569939219
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 7.451032124695185,
+            "p10": 2.771938153504849,
+            "p90": 11.843661411843383,
+            "mean": 9.281586811219743
+          },
+          "roughness_summary": {
+            "median": 2.1328281938574527,
+            "p10": 0.8538976843129362,
+            "p90": 3.682317059736886,
+            "mean": 8.012989952241776
+          },
+          "connectivity": {
+            "5": 0.2903225806451613,
+            "10": 0.29705882352941176,
+            "15": 0.9210526315789473,
+            "20": 0.9210526315789473,
+            "25": 0.9210526315789473
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.8583525484322525,
+            "p10": 4.079282160291407,
+            "p90": 11.598800953895156,
+            "mean": 9.780787137303182
+          },
+          "roughness_summary": {
+            "median": 6.193646268374292,
+            "p10": 3.7899278389890685,
+            "p90": 59.684291712642406,
+            "mean": 17.369710659656043
+          },
+          "connectivity": {
+            "5": 0.2465753424657534,
+            "10": 0.36428571428571427,
+            "15": 0.931129476584022,
+            "20": 0.9315068493150684,
+            "25": 0.9324324324324325
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 7.738774410285368,
+            "p10": 6.2815572325205835,
+            "p90": 21.14903103668142,
+            "mean": 9.890972223601327
+          },
+          "roughness_summary": {
+            "median": 15.764583824893553,
+            "p10": 13.70461727883247,
+            "p90": 116.2888225677022,
+            "mean": 37.35123723746346
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.9901960784313726,
+            "15": 0.986046511627907,
+            "20": 0.9778761061946902,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473051448343,
+        40.64004586521468
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.8429980647760695,
+            "roughness_w1_m": 9.562337982788122,
+            "connectivity_difference_by_threshold": {
+              "5": 0.52,
+              "10": 0.7485029940119761,
+              "15": 0.19090909090909092,
+              "20": 0.19819819819819817,
+              "25": 0.20357941834451898
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.75022353995832,
+            "roughness_w1_m": 20.73029120269353,
+            "connectivity_difference_by_threshold": {
+              "5": 0.41414141414141414,
+              "10": 0.7592592592592593,
+              "15": 0.1900584795321637,
+              "20": 0.18624641833810884,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 9.688212360543824,
+            "roughness_w1_m": 48.960416550899815,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.11042944785276076,
+              "15": 0.13684210526315788,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 8.76047798842607,
+        "mean_roughness_w1_m": 26.417681912127154
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.924278881317061,
+            "p10": 1.69260754890582,
+            "p90": 12.396981495957093,
+            "mean": 9.399283064430147
+          },
+          "roughness_summary": {
+            "median": 2.009695533363107,
+            "p10": 0.3097977083782209,
+            "p90": 3.8850822353078476,
+            "mean": 9.841923768050176
+          },
+          "connectivity": {
+            "5": 0.48,
+            "10": 0.25149700598802394,
+            "15": 0.8090909090909091,
+            "20": 0.8018018018018018,
+            "25": 0.796420581655481
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.874088843084623,
+            "p10": 2.482243365885953,
+            "p90": 24.397441915995334,
+            "mean": 10.259331529225056
+          },
+          "roughness_summary": {
+            "median": 6.264421247591335,
+            "p10": 1.1919102798641346,
+            "p90": 87.1251697448042,
+            "mean": 21.65543106974256
+          },
+          "connectivity": {
+            "5": 0.5858585858585859,
+            "10": 0.24074074074074073,
+            "15": 0.8099415204678363,
+            "20": 0.8137535816618912,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.264288940459174,
+            "p10": 6.225909168653323,
+            "p90": 21.332920857080882,
+            "mean": 11.227494739979493
+          },
+          "roughness_summary": {
+            "median": 19.78696109134261,
+            "p10": 13.966859035607104,
+            "p90": 116.2888225677022,
+            "mean": 51.44217164977345
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8895705521472392,
+            "15": 0.8631578947368421,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580234726066,
+        40.668873186698136
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.672973083433896,
+            "roughness_w1_m": 10.040987130894518,
+            "connectivity_difference_by_threshold": {
+              "5": 0.2978723404255319,
+              "10": 0.6292134831460674,
+              "15": 0.30000000000000004,
+              "20": 0.30000000000000004,
+              "25": 0.30000000000000004
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.824409717761876,
+            "roughness_w1_m": 21.158573530256085,
+            "connectivity_difference_by_threshold": {
+              "5": 0.3846153846153846,
+              "10": 0.628158844765343,
+              "15": 0.2941176470588235,
+              "20": 0.2941176470588235,
+              "25": 0.2941176470588235
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 10.902688543472433,
+            "roughness_w1_m": 51.35569524588313,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.12925170068027214,
+              "15": 0.18181818181818177,
+              "20": 0.24742268041237114,
+              "25": 0.26027397260273977
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.133357114889401,
+        "mean_roughness_w1_m": 27.518418635677914
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.682893223723347,
+            "p10": 0.9330346554099104,
+            "p90": 12.395394082378779,
+            "mean": 9.229258083087977
+          },
+          "roughness_summary": {
+            "median": 1.9056354215413434,
+            "p10": 0.23605482681289108,
+            "p90": 3.8770511169412134,
+            "mean": 10.32057291550249
+          },
+          "connectivity": {
+            "5": 0.7021276595744681,
+            "10": 0.3707865168539326,
+            "15": 0.7,
+            "20": 0.7,
+            "25": 0.7
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.779204620654951,
+            "p10": 1.0480173078258264,
+            "p90": 30.27432383439711,
+            "mean": 10.333517707028614
+          },
+          "roughness_summary": {
+            "median": 5.889906360641657,
+            "p10": 0.9048759888435672,
+            "p90": 100.34541424716313,
+            "mean": 22.083713397305118
+          },
+          "connectivity": {
+            "5": 0.6153846153846154,
+            "10": 0.37184115523465705,
+            "15": 0.7058823529411765,
+            "20": 0.7058823529411765,
+            "25": 0.7058823529411765
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.16827507941986,
+            "p10": 5.980291245610526,
+            "p90": 25.762029264733165,
+            "mean": 12.441970922908094
+          },
+          "roughness_summary": {
+            "median": 22.595072577531084,
+            "p10": 14.301070671650137,
+            "p90": 109.80256910918517,
+            "mean": 53.83745034475679
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8707482993197279,
+            "15": 0.8181818181818182,
+            "20": 0.7525773195876289,
+            "25": 0.7397260273972602
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473153236071,
+        40.654459931946434
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.8118636753894695,
+            "roughness_w1_m": 12.301375004683827,
+            "connectivity_difference_by_threshold": {
+              "5": 0.21285140562248994,
+              "10": 0.4447592067988668,
+              "15": 0.46226415094339623,
+              "20": 0.4672897196261683,
+              "25": 0.4709976798143851
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 9.102573501325743,
+            "roughness_w1_m": 26.440698010659975,
+            "connectivity_difference_by_threshold": {
+              "5": 0.10465116279069764,
+              "10": 0.37174721189591076,
+              "15": 0.46855345911949686,
+              "20": 0.48,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 10.966245112789675,
+            "roughness_w1_m": 65.69462001679726,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.15887850467289721,
+              "15": 0.29333333333333333,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.293560763168296,
+        "mean_roughness_w1_m": 34.81223101071369
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 4.729026721164331,
+            "p10": 1.1652045566880231,
+            "p90": 27.499866633304286,
+            "mean": 9.36814867504355
+          },
+          "roughness_summary": {
+            "median": 1.5397020620540491,
+            "p10": 0.2196670584798147,
+            "p90": 70.82944874065625,
+            "mean": 12.58096078994588
+          },
+          "connectivity": {
+            "5": 0.7871485943775101,
+            "10": 0.5552407932011332,
+            "15": 0.5377358490566038,
+            "20": 0.5327102803738317,
+            "25": 0.5290023201856149
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.551038492064391,
+            "p10": 1.2331906278621052,
+            "p90": 32.484010900211594,
+            "mean": 10.611681490592481
+          },
+          "roughness_summary": {
+            "median": 5.590797293087887,
+            "p10": 0.7827627182843753,
+            "p90": 105.46224838865389,
+            "mean": 27.365837877709
+          },
+          "connectivity": {
+            "5": 0.8953488372093024,
+            "10": 0.6282527881040892,
+            "15": 0.5314465408805031,
+            "20": 0.52,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 12.125176061511178,
+            "p10": 1.384501903269273,
+            "p90": 25.854094481463207,
+            "mean": 12.505527492225342
+          },
+          "roughness_summary": {
+            "median": 78.00950632553624,
+            "p10": 2.1220612178440907,
+            "p90": 121.27234935609167,
+            "mean": 68.17637511567088
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8411214953271028,
+            "15": 0.7066666666666667,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580540310203,
+        40.654459156455616
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 8.362494075434375,
+            "roughness_w1_m": 10.720374885990736,
+            "connectivity_difference_by_threshold": {
+              "5": 0.4509803921568627,
+              "10": 0.7046783625730995,
+              "15": 0.19090909090909092,
+              "20": 0.19090909090909092,
+              "25": 0.19090909090909092
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 9.419491238277093,
+            "roughness_w1_m": 22.953794059096627,
+            "connectivity_difference_by_threshold": {
+              "5": 0.48453608247422686,
+              "10": 0.6156716417910448,
+              "15": 0.19174041297935107,
+              "20": 0.19061583577712615,
+              "25": 0.18786127167630062
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 11.041175346234379,
+            "roughness_w1_m": 54.94586019944838,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.06756756756756754,
+              "15": 0.10857142857142854,
+              "20": 0.14948453608247425,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.607720219981948,
+        "mean_roughness_w1_m": 29.54000971484525
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 7.241600381965673,
+            "p10": 1.3732511510164014,
+            "p90": 12.395394082378779,
+            "mean": 9.918779075088453
+          },
+          "roughness_summary": {
+            "median": 2.084108130082484,
+            "p10": 0.2812446863364354,
+            "p90": 3.8993428408593043,
+            "mean": 10.999960671252786
+          },
+          "connectivity": {
+            "5": 0.5490196078431373,
+            "10": 0.2953216374269006,
+            "15": 0.8090909090909091,
+            "20": 0.8090909090909091,
+            "25": 0.8090909090909091
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.464047540375027,
+            "p10": 1.6329820282312972,
+            "p90": 30.11102203228113,
+            "mean": 10.928599227543833
+          },
+          "roughness_summary": {
+            "median": 6.120495105176731,
+            "p10": 1.0593911708040769,
+            "p90": 105.46224838865389,
+            "mean": 23.87893392614566
+          },
+          "connectivity": {
+            "5": 0.5154639175257731,
+            "10": 0.3843283582089552,
+            "15": 0.8082595870206489,
+            "20": 0.8093841642228738,
+            "25": 0.8121387283236994
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.260116828027572,
+            "p10": 6.308892258610983,
+            "p90": 25.854094481463207,
+            "mean": 12.580457725670042
+          },
+          "roughness_summary": {
+            "median": 20.101259127708175,
+            "p10": 14.301070671650137,
+            "p90": 121.27234935609167,
+            "mean": 57.42761529832202
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.9324324324324325,
+            "15": 0.8914285714285715,
+            "20": 0.8505154639175257,
+            "25": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "top_by_roughness": [
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 0,
+      "center_lonlat": [
+        -75.0236627539513,
+        40.66887163493218
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 5.456634871382037e-07,
+            "roughness_w1_m": 1.0401954529923925e-06,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 1.4628893730987684e-07,
+            "roughness_w1_m": 5.126624124236755e-07,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 3.42881603734857e-08,
+            "roughness_w1_m": 2.420130437033943e-07,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 2.4208019494052206e-07,
+        "mean_roughness_w1_m": 5.982903030398207e-07
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 1.5214355511782314,
+            "p10": 0.6166763559363405,
+            "p90": 2.5529271189149854,
+            "mean": 1.5562850081731994
+          },
+          "roughness_summary": {
+            "median": 0.2764847691793859,
+            "p10": 0.159765953525309,
+            "p90": 0.4100562810326805,
+            "mean": 0.27958574802363734
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 1.4479871804283895,
+            "p10": 0.6766043675835018,
+            "p90": 2.426789843930165,
+            "mean": 1.5091079807627739
+          },
+          "roughness_summary": {
+            "median": 0.9131519262324569,
+            "p10": 0.5900329275498363,
+            "p90": 1.2851325502787467,
+            "mean": 0.925139909313682
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 1.4282684739693903,
+            "p10": 0.9538183107058369,
+            "p90": 2.2149068162817116,
+            "mean": 1.5392823833542637
+          },
+          "roughness_summary": {
+            "median": 2.418401813423859,
+            "p10": 1.7881831347424275,
+            "p90": 3.224832020550217,
+            "mean": 2.4817550596522207
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 0,
+      "center_lonlat": [
+        -75.02365766088282,
+        40.65445760547408
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 4.18112656694279,
+            "roughness_w1_m": 5.933328699293766,
+            "connectivity_difference_by_threshold": {
+              "5": 0.07507507507507505,
+              "10": 0.22332506203473945,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 4.250929847434501,
+            "roughness_w1_m": 12.184853625526811,
+            "connectivity_difference_by_threshold": {
+              "5": 0.03007518796992481,
+              "10": 0.12727272727272732,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 4.266191518801584,
+            "roughness_w1_m": 26.591088864788844,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 4.232749311059625,
+        "mean_roughness_w1_m": 14.903090396536475
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 2.2407321185061413,
+            "p10": 0.8709427045607431,
+            "p90": 11.621730594730577,
+            "mean": 5.737411566596868
+          },
+          "roughness_summary": {
+            "median": 0.3539254056514894,
+            "p10": 0.18409061363008503,
+            "p90": 3.749953027324776,
+            "mean": 6.212914484555816
+          },
+          "connectivity": {
+            "5": 0.924924924924925,
+            "10": 0.7766749379652605,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 2.209074254591001,
+            "p10": 0.9336527010204112,
+            "p90": 14.351905961587807,
+            "mean": 5.760037835453971
+          },
+          "roughness_summary": {
+            "median": 1.1617088562356486,
+            "p10": 0.6876580470085111,
+            "p90": 53.07762481078371,
+            "mean": 13.109993492575846
+          },
+          "connectivity": {
+            "5": 0.9699248120300752,
+            "10": 0.8727272727272727,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 2.2395589088012375,
+            "p10": 1.148824217771895,
+            "p90": 14.793448138971385,
+            "mean": 5.805473898237249
+          },
+          "roughness_summary": {
+            "median": 4.816133911017711,
+            "p10": 1.9297275681007457,
+            "p90": 80.86723072589261,
+            "mean": 29.072843963662493
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 0,
+      "center_lonlat": [
+        -75.02365257149714,
+        40.64004353991846
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 6.351025584575667,
+            "roughness_w1_m": 6.6496415834089575,
+            "connectivity_difference_by_threshold": {
+              "5": 0.31958762886597936,
+              "10": 0.6074498567335244,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 6.61059709050825,
+            "roughness_w1_m": 14.312804788429968,
+            "connectivity_difference_by_threshold": {
+              "5": 0.26865671641791045,
+              "10": 0.4474576271186441,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 7.088641630494022,
+            "roughness_w1_m": 33.11996511113968,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 6.683421435192646,
+        "mean_roughness_w1_m": 18.0274704943262
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.428090788660835,
+            "p10": 1.1759202158762383,
+            "p90": 12.066760561379988,
+            "mean": 7.907310584229745
+          },
+          "roughness_summary": {
+            "median": 1.9395405955766694,
+            "p10": 0.23857656329834173,
+            "p90": 3.8947621247454314,
+            "mean": 6.929227368671008
+          },
+          "connectivity": {
+            "5": 0.6804123711340206,
+            "10": 0.39255014326647564,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.826397219106454,
+            "p10": 1.2597957950966365,
+            "p90": 14.351905961587807,
+            "mean": 8.119705078527721
+          },
+          "roughness_summary": {
+            "median": 6.182468253696738,
+            "p10": 0.9147898215809886,
+            "p90": 53.07762481078371,
+            "mean": 15.237944655479005
+          },
+          "connectivity": {
+            "5": 0.7313432835820896,
+            "10": 0.5525423728813559,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 7.742867850971601,
+            "p10": 5.648053768152601,
+            "p90": 14.793448138971385,
+            "mean": 8.627924009929687
+          },
+          "roughness_summary": {
+            "median": 18.608107284947337,
+            "p10": 13.810875282105837,
+            "p90": 80.86723072589261,
+            "mean": 35.60172021001333
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580845673374,
+        40.64004509011592
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.725301811565664,
+            "roughness_w1_m": 7.733404166979728,
+            "connectivity_difference_by_threshold": {
+              "5": 0.7096774193548387,
+              "10": 0.7029411764705882,
+              "15": 0.07894736842105265,
+              "20": 0.07894736842105265,
+              "25": 0.07894736842105265
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.271679148036446,
+            "roughness_w1_m": 16.444570792607013,
+            "connectivity_difference_by_threshold": {
+              "5": 0.7534246575342466,
+              "10": 0.6357142857142857,
+              "15": 0.06887052341597799,
+              "20": 0.06849315068493156,
+              "25": 0.06756756756756754
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 8.35168984416566,
+            "roughness_w1_m": 34.869482138589824,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.009803921568627416,
+              "15": 0.013953488372092981,
+              "20": 0.02212389380530977,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 8.116223601255923,
+        "mean_roughness_w1_m": 19.68248569939219
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 7.451032124695185,
+            "p10": 2.771938153504849,
+            "p90": 11.843661411843383,
+            "mean": 9.281586811219743
+          },
+          "roughness_summary": {
+            "median": 2.1328281938574527,
+            "p10": 0.8538976843129362,
+            "p90": 3.682317059736886,
+            "mean": 8.012989952241776
+          },
+          "connectivity": {
+            "5": 0.2903225806451613,
+            "10": 0.29705882352941176,
+            "15": 0.9210526315789473,
+            "20": 0.9210526315789473,
+            "25": 0.9210526315789473
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.8583525484322525,
+            "p10": 4.079282160291407,
+            "p90": 11.598800953895156,
+            "mean": 9.780787137303182
+          },
+          "roughness_summary": {
+            "median": 6.193646268374292,
+            "p10": 3.7899278389890685,
+            "p90": 59.684291712642406,
+            "mean": 17.369710659656043
+          },
+          "connectivity": {
+            "5": 0.2465753424657534,
+            "10": 0.36428571428571427,
+            "15": 0.931129476584022,
+            "20": 0.9315068493150684,
+            "25": 0.9324324324324325
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 7.738774410285368,
+            "p10": 6.2815572325205835,
+            "p90": 21.14903103668142,
+            "mean": 9.890972223601327
+          },
+          "roughness_summary": {
+            "median": 15.764583824893553,
+            "p10": 13.70461727883247,
+            "p90": 116.2888225677022,
+            "mean": 37.35123723746346
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.9901960784313726,
+            "15": 0.986046511627907,
+            "20": 0.9778761061946902,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473255097455,
+        40.668873962581166
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 5.612309506159479,
+            "roughness_w1_m": 9.318053143083944,
+            "connectivity_difference_by_threshold": {
+              "5": 0.08333333333333337,
+              "10": 0.2222222222222222,
+              "15": 0.30000000000000004,
+              "20": 0.30000000000000004,
+              "25": 0.30000000000000004
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 6.740092842086121,
+            "roughness_w1_m": 19.14421626997053,
+            "connectivity_difference_by_threshold": {
+              "5": 0.04761904761904767,
+              "10": 0.15857605177993528,
+              "15": 0.23529411764705888,
+              "20": 0.23529411764705888,
+              "25": 0.23529411764705888
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 8.128931084849421,
+            "roughness_w1_m": 44.63844773539548,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.09090909090909094,
+              "20": 0.09278350515463918,
+              "25": 0.1552511415525114
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 6.827111144365008,
+        "mean_roughness_w1_m": 24.366905716149986
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 2.2795598739703955,
+            "p10": 0.8803710208975151,
+            "p90": 12.076067771892214,
+            "mean": 7.16859450581356
+          },
+          "roughness_summary": {
+            "median": 0.36537319716587857,
+            "p10": 0.18489290331236954,
+            "p90": 3.757886641784981,
+            "mean": 9.59763892769192
+          },
+          "connectivity": {
+            "5": 0.9166666666666666,
+            "10": 0.7777777777777778,
+            "15": 0.7,
+            "20": 0.7,
+            "25": 0.7
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 2.4241911636240596,
+            "p10": 0.9322118214113598,
+            "p90": 30.27432383439711,
+            "mean": 8.249200831352855
+          },
+          "roughness_summary": {
+            "median": 1.1576373837226335,
+            "p10": 0.6441028896244181,
+            "p90": 100.34541424716313,
+            "mean": 20.069356137019568
+          },
+          "connectivity": {
+            "5": 0.9523809523809523,
+            "10": 0.8414239482200647,
+            "15": 0.7647058823529411,
+            "20": 0.7647058823529411,
+            "25": 0.7647058823529411
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 2.239827164226683,
+            "p10": 1.1030757646549953,
+            "p90": 25.762029264733165,
+            "mean": 9.668213464285087
+          },
+          "roughness_summary": {
+            "median": 14.161904041834449,
+            "p10": 1.904793127979545,
+            "p90": 109.80256910918517,
+            "mean": 47.12020283199879
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 0.9090909090909091,
+            "20": 0.9072164948453608,
+            "25": 0.8447488584474886
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473051448343,
+        40.64004586521468
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.8429980647760695,
+            "roughness_w1_m": 9.562337982788122,
+            "connectivity_difference_by_threshold": {
+              "5": 0.52,
+              "10": 0.7485029940119761,
+              "15": 0.19090909090909092,
+              "20": 0.19819819819819817,
+              "25": 0.20357941834451898
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.75022353995832,
+            "roughness_w1_m": 20.73029120269353,
+            "connectivity_difference_by_threshold": {
+              "5": 0.41414141414141414,
+              "10": 0.7592592592592593,
+              "15": 0.1900584795321637,
+              "20": 0.18624641833810884,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 9.688212360543824,
+            "roughness_w1_m": 48.960416550899815,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.11042944785276076,
+              "15": 0.13684210526315788,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 8.76047798842607,
+        "mean_roughness_w1_m": 26.417681912127154
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.924278881317061,
+            "p10": 1.69260754890582,
+            "p90": 12.396981495957093,
+            "mean": 9.399283064430147
+          },
+          "roughness_summary": {
+            "median": 2.009695533363107,
+            "p10": 0.3097977083782209,
+            "p90": 3.8850822353078476,
+            "mean": 9.841923768050176
+          },
+          "connectivity": {
+            "5": 0.48,
+            "10": 0.25149700598802394,
+            "15": 0.8090909090909091,
+            "20": 0.8018018018018018,
+            "25": 0.796420581655481
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.874088843084623,
+            "p10": 2.482243365885953,
+            "p90": 24.397441915995334,
+            "mean": 10.259331529225056
+          },
+          "roughness_summary": {
+            "median": 6.264421247591335,
+            "p10": 1.1919102798641346,
+            "p90": 87.1251697448042,
+            "mean": 21.65543106974256
+          },
+          "connectivity": {
+            "5": 0.5858585858585859,
+            "10": 0.24074074074074073,
+            "15": 0.8099415204678363,
+            "20": 0.8137535816618912,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.264288940459174,
+            "p10": 6.225909168653323,
+            "p90": 21.332920857080882,
+            "mean": 11.227494739979493
+          },
+          "roughness_summary": {
+            "median": 19.78696109134261,
+            "p10": 13.966859035607104,
+            "p90": 116.2888225677022,
+            "mean": 51.44217164977345
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8895705521472392,
+            "15": 0.8631578947368421,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580234726066,
+        40.668873186698136
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.672973083433896,
+            "roughness_w1_m": 10.040987130894518,
+            "connectivity_difference_by_threshold": {
+              "5": 0.2978723404255319,
+              "10": 0.6292134831460674,
+              "15": 0.30000000000000004,
+              "20": 0.30000000000000004,
+              "25": 0.30000000000000004
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.824409717761876,
+            "roughness_w1_m": 21.158573530256085,
+            "connectivity_difference_by_threshold": {
+              "5": 0.3846153846153846,
+              "10": 0.628158844765343,
+              "15": 0.2941176470588235,
+              "20": 0.2941176470588235,
+              "25": 0.2941176470588235
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 10.902688543472433,
+            "roughness_w1_m": 51.35569524588313,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.12925170068027214,
+              "15": 0.18181818181818177,
+              "20": 0.24742268041237114,
+              "25": 0.26027397260273977
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.133357114889401,
+        "mean_roughness_w1_m": 27.518418635677914
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.682893223723347,
+            "p10": 0.9330346554099104,
+            "p90": 12.395394082378779,
+            "mean": 9.229258083087977
+          },
+          "roughness_summary": {
+            "median": 1.9056354215413434,
+            "p10": 0.23605482681289108,
+            "p90": 3.8770511169412134,
+            "mean": 10.32057291550249
+          },
+          "connectivity": {
+            "5": 0.7021276595744681,
+            "10": 0.3707865168539326,
+            "15": 0.7,
+            "20": 0.7,
+            "25": 0.7
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.779204620654951,
+            "p10": 1.0480173078258264,
+            "p90": 30.27432383439711,
+            "mean": 10.333517707028614
+          },
+          "roughness_summary": {
+            "median": 5.889906360641657,
+            "p10": 0.9048759888435672,
+            "p90": 100.34541424716313,
+            "mean": 22.083713397305118
+          },
+          "connectivity": {
+            "5": 0.6153846153846154,
+            "10": 0.37184115523465705,
+            "15": 0.7058823529411765,
+            "20": 0.7058823529411765,
+            "25": 0.7058823529411765
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.16827507941986,
+            "p10": 5.980291245610526,
+            "p90": 25.762029264733165,
+            "mean": 12.441970922908094
+          },
+          "roughness_summary": {
+            "median": 22.595072577531084,
+            "p10": 14.301070671650137,
+            "p90": 109.80256910918517,
+            "mean": 53.83745034475679
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8707482993197279,
+            "15": 0.8181818181818182,
+            "20": 0.7525773195876289,
+            "25": 0.7397260273972602
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580540310203,
+        40.654459156455616
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 8.362494075434375,
+            "roughness_w1_m": 10.720374885990736,
+            "connectivity_difference_by_threshold": {
+              "5": 0.4509803921568627,
+              "10": 0.7046783625730995,
+              "15": 0.19090909090909092,
+              "20": 0.19090909090909092,
+              "25": 0.19090909090909092
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 9.419491238277093,
+            "roughness_w1_m": 22.953794059096627,
+            "connectivity_difference_by_threshold": {
+              "5": 0.48453608247422686,
+              "10": 0.6156716417910448,
+              "15": 0.19174041297935107,
+              "20": 0.19061583577712615,
+              "25": 0.18786127167630062
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 11.041175346234379,
+            "roughness_w1_m": 54.94586019944838,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.06756756756756754,
+              "15": 0.10857142857142854,
+              "20": 0.14948453608247425,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.607720219981948,
+        "mean_roughness_w1_m": 29.54000971484525
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 7.241600381965673,
+            "p10": 1.3732511510164014,
+            "p90": 12.395394082378779,
+            "mean": 9.918779075088453
+          },
+          "roughness_summary": {
+            "median": 2.084108130082484,
+            "p10": 0.2812446863364354,
+            "p90": 3.8993428408593043,
+            "mean": 10.999960671252786
+          },
+          "connectivity": {
+            "5": 0.5490196078431373,
+            "10": 0.2953216374269006,
+            "15": 0.8090909090909091,
+            "20": 0.8090909090909091,
+            "25": 0.8090909090909091
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.464047540375027,
+            "p10": 1.6329820282312972,
+            "p90": 30.11102203228113,
+            "mean": 10.928599227543833
+          },
+          "roughness_summary": {
+            "median": 6.120495105176731,
+            "p10": 1.0593911708040769,
+            "p90": 105.46224838865389,
+            "mean": 23.87893392614566
+          },
+          "connectivity": {
+            "5": 0.5154639175257731,
+            "10": 0.3843283582089552,
+            "15": 0.8082595870206489,
+            "20": 0.8093841642228738,
+            "25": 0.8121387283236994
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.260116828027572,
+            "p10": 6.308892258610983,
+            "p90": 25.854094481463207,
+            "mean": 12.580457725670042
+          },
+          "roughness_summary": {
+            "median": 20.101259127708175,
+            "p10": 14.301070671650137,
+            "p90": 121.27234935609167,
+            "mean": 57.42761529832202
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.9324324324324325,
+            "15": 0.8914285714285715,
+            "20": 0.8505154639175257,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473153236071,
+        40.654459931946434
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.8118636753894695,
+            "roughness_w1_m": 12.301375004683827,
+            "connectivity_difference_by_threshold": {
+              "5": 0.21285140562248994,
+              "10": 0.4447592067988668,
+              "15": 0.46226415094339623,
+              "20": 0.4672897196261683,
+              "25": 0.4709976798143851
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 9.102573501325743,
+            "roughness_w1_m": 26.440698010659975,
+            "connectivity_difference_by_threshold": {
+              "5": 0.10465116279069764,
+              "10": 0.37174721189591076,
+              "15": 0.46855345911949686,
+              "20": 0.48,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 10.966245112789675,
+            "roughness_w1_m": 65.69462001679726,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.15887850467289721,
+              "15": 0.29333333333333333,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.293560763168296,
+        "mean_roughness_w1_m": 34.81223101071369
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 4.729026721164331,
+            "p10": 1.1652045566880231,
+            "p90": 27.499866633304286,
+            "mean": 9.36814867504355
+          },
+          "roughness_summary": {
+            "median": 1.5397020620540491,
+            "p10": 0.2196670584798147,
+            "p90": 70.82944874065625,
+            "mean": 12.58096078994588
+          },
+          "connectivity": {
+            "5": 0.7871485943775101,
+            "10": 0.5552407932011332,
+            "15": 0.5377358490566038,
+            "20": 0.5327102803738317,
+            "25": 0.5290023201856149
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.551038492064391,
+            "p10": 1.2331906278621052,
+            "p90": 32.484010900211594,
+            "mean": 10.611681490592481
+          },
+          "roughness_summary": {
+            "median": 5.590797293087887,
+            "p10": 0.7827627182843753,
+            "p90": 105.46224838865389,
+            "mean": 27.365837877709
+          },
+          "connectivity": {
+            "5": 0.8953488372093024,
+            "10": 0.6282527881040892,
+            "15": 0.5314465408805031,
+            "20": 0.52,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 12.125176061511178,
+            "p10": 1.384501903269273,
+            "p90": 25.854094481463207,
+            "mean": 12.505527492225342
+          },
+          "roughness_summary": {
+            "median": 78.00950632553624,
+            "p10": 2.1220612178440907,
+            "p90": 121.27234935609167,
+            "mean": 68.17637511567088
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8411214953271028,
+            "15": 0.7066666666666667,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "all_candidates": [
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 0,
+      "center_lonlat": [
+        -75.0236627539513,
+        40.66887163493218
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 5.456634871382037e-07,
+            "roughness_w1_m": 1.0401954529923925e-06,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 1.4628893730987684e-07,
+            "roughness_w1_m": 5.126624124236755e-07,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 3.42881603734857e-08,
+            "roughness_w1_m": 2.420130437033943e-07,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 2.4208019494052206e-07,
+        "mean_roughness_w1_m": 5.982903030398207e-07
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 1.5214355511782314,
+            "p10": 0.6166763559363405,
+            "p90": 2.5529271189149854,
+            "mean": 1.5562850081731994
+          },
+          "roughness_summary": {
+            "median": 0.2764847691793859,
+            "p10": 0.159765953525309,
+            "p90": 0.4100562810326805,
+            "mean": 0.27958574802363734
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 1.4479871804283895,
+            "p10": 0.6766043675835018,
+            "p90": 2.426789843930165,
+            "mean": 1.5091079807627739
+          },
+          "roughness_summary": {
+            "median": 0.9131519262324569,
+            "p10": 0.5900329275498363,
+            "p90": 1.2851325502787467,
+            "mean": 0.925139909313682
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 1.4282684739693903,
+            "p10": 0.9538183107058369,
+            "p90": 2.2149068162817116,
+            "mean": 1.5392823833542637
+          },
+          "roughness_summary": {
+            "median": 2.418401813423859,
+            "p10": 1.7881831347424275,
+            "p90": 3.224832020550217,
+            "mean": 2.4817550596522207
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473255097455,
+        40.668873962581166
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 5.612309506159479,
+            "roughness_w1_m": 9.318053143083944,
+            "connectivity_difference_by_threshold": {
+              "5": 0.08333333333333337,
+              "10": 0.2222222222222222,
+              "15": 0.30000000000000004,
+              "20": 0.30000000000000004,
+              "25": 0.30000000000000004
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 6.740092842086121,
+            "roughness_w1_m": 19.14421626997053,
+            "connectivity_difference_by_threshold": {
+              "5": 0.04761904761904767,
+              "10": 0.15857605177993528,
+              "15": 0.23529411764705888,
+              "20": 0.23529411764705888,
+              "25": 0.23529411764705888
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 8.128931084849421,
+            "roughness_w1_m": 44.63844773539548,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.09090909090909094,
+              "20": 0.09278350515463918,
+              "25": 0.1552511415525114
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 6.827111144365008,
+        "mean_roughness_w1_m": 24.366905716149986
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 2.2795598739703955,
+            "p10": 0.8803710208975151,
+            "p90": 12.076067771892214,
+            "mean": 7.16859450581356
+          },
+          "roughness_summary": {
+            "median": 0.36537319716587857,
+            "p10": 0.18489290331236954,
+            "p90": 3.757886641784981,
+            "mean": 9.59763892769192
+          },
+          "connectivity": {
+            "5": 0.9166666666666666,
+            "10": 0.7777777777777778,
+            "15": 0.7,
+            "20": 0.7,
+            "25": 0.7
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 2.4241911636240596,
+            "p10": 0.9322118214113598,
+            "p90": 30.27432383439711,
+            "mean": 8.249200831352855
+          },
+          "roughness_summary": {
+            "median": 1.1576373837226335,
+            "p10": 0.6441028896244181,
+            "p90": 100.34541424716313,
+            "mean": 20.069356137019568
+          },
+          "connectivity": {
+            "5": 0.9523809523809523,
+            "10": 0.8414239482200647,
+            "15": 0.7647058823529411,
+            "20": 0.7647058823529411,
+            "25": 0.7647058823529411
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 2.239827164226683,
+            "p10": 1.1030757646549953,
+            "p90": 25.762029264733165,
+            "mean": 9.668213464285087
+          },
+          "roughness_summary": {
+            "median": 14.161904041834449,
+            "p10": 1.904793127979545,
+            "p90": 109.80256910918517,
+            "mean": 47.12020283199879
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 0.9090909090909091,
+            "20": 0.9072164948453608,
+            "25": 0.8447488584474886
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:0:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 0,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580234726066,
+        40.668873186698136
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.672973083433896,
+            "roughness_w1_m": 10.040987130894518,
+            "connectivity_difference_by_threshold": {
+              "5": 0.2978723404255319,
+              "10": 0.6292134831460674,
+              "15": 0.30000000000000004,
+              "20": 0.30000000000000004,
+              "25": 0.30000000000000004
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.824409717761876,
+            "roughness_w1_m": 21.158573530256085,
+            "connectivity_difference_by_threshold": {
+              "5": 0.3846153846153846,
+              "10": 0.628158844765343,
+              "15": 0.2941176470588235,
+              "20": 0.2941176470588235,
+              "25": 0.2941176470588235
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 10.902688543472433,
+            "roughness_w1_m": 51.35569524588313,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.12925170068027214,
+              "15": 0.18181818181818177,
+              "20": 0.24742268041237114,
+              "25": 0.26027397260273977
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.133357114889401,
+        "mean_roughness_w1_m": 27.518418635677914
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.682893223723347,
+            "p10": 0.9330346554099104,
+            "p90": 12.395394082378779,
+            "mean": 9.229258083087977
+          },
+          "roughness_summary": {
+            "median": 1.9056354215413434,
+            "p10": 0.23605482681289108,
+            "p90": 3.8770511169412134,
+            "mean": 10.32057291550249
+          },
+          "connectivity": {
+            "5": 0.7021276595744681,
+            "10": 0.3707865168539326,
+            "15": 0.7,
+            "20": 0.7,
+            "25": 0.7
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.779204620654951,
+            "p10": 1.0480173078258264,
+            "p90": 30.27432383439711,
+            "mean": 10.333517707028614
+          },
+          "roughness_summary": {
+            "median": 5.889906360641657,
+            "p10": 0.9048759888435672,
+            "p90": 100.34541424716313,
+            "mean": 22.083713397305118
+          },
+          "connectivity": {
+            "5": 0.6153846153846154,
+            "10": 0.37184115523465705,
+            "15": 0.7058823529411765,
+            "20": 0.7058823529411765,
+            "25": 0.7058823529411765
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.16827507941986,
+            "p10": 5.980291245610526,
+            "p90": 25.762029264733165,
+            "mean": 12.441970922908094
+          },
+          "roughness_summary": {
+            "median": 22.595072577531084,
+            "p10": 14.301070671650137,
+            "p90": 109.80256910918517,
+            "mean": 53.83745034475679
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8707482993197279,
+            "15": 0.8181818181818182,
+            "20": 0.7525773195876289,
+            "25": 0.7397260273972602
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 0,
+      "center_lonlat": [
+        -75.02365766088282,
+        40.65445760547408
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 4.18112656694279,
+            "roughness_w1_m": 5.933328699293766,
+            "connectivity_difference_by_threshold": {
+              "5": 0.07507507507507505,
+              "10": 0.22332506203473945,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 4.250929847434501,
+            "roughness_w1_m": 12.184853625526811,
+            "connectivity_difference_by_threshold": {
+              "5": 0.03007518796992481,
+              "10": 0.12727272727272732,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 4.266191518801584,
+            "roughness_w1_m": 26.591088864788844,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 4.232749311059625,
+        "mean_roughness_w1_m": 14.903090396536475
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 2.2407321185061413,
+            "p10": 0.8709427045607431,
+            "p90": 11.621730594730577,
+            "mean": 5.737411566596868
+          },
+          "roughness_summary": {
+            "median": 0.3539254056514894,
+            "p10": 0.18409061363008503,
+            "p90": 3.749953027324776,
+            "mean": 6.212914484555816
+          },
+          "connectivity": {
+            "5": 0.924924924924925,
+            "10": 0.7766749379652605,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 2.209074254591001,
+            "p10": 0.9336527010204112,
+            "p90": 14.351905961587807,
+            "mean": 5.760037835453971
+          },
+          "roughness_summary": {
+            "median": 1.1617088562356486,
+            "p10": 0.6876580470085111,
+            "p90": 53.07762481078371,
+            "mean": 13.109993492575846
+          },
+          "connectivity": {
+            "5": 0.9699248120300752,
+            "10": 0.8727272727272727,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 2.2395589088012375,
+            "p10": 1.148824217771895,
+            "p90": 14.793448138971385,
+            "mean": 5.805473898237249
+          },
+          "roughness_summary": {
+            "median": 4.816133911017711,
+            "p10": 1.9297275681007457,
+            "p90": 80.86723072589261,
+            "mean": 29.072843963662493
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473153236071,
+        40.654459931946434
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.8118636753894695,
+            "roughness_w1_m": 12.301375004683827,
+            "connectivity_difference_by_threshold": {
+              "5": 0.21285140562248994,
+              "10": 0.4447592067988668,
+              "15": 0.46226415094339623,
+              "20": 0.4672897196261683,
+              "25": 0.4709976798143851
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 9.102573501325743,
+            "roughness_w1_m": 26.440698010659975,
+            "connectivity_difference_by_threshold": {
+              "5": 0.10465116279069764,
+              "10": 0.37174721189591076,
+              "15": 0.46855345911949686,
+              "20": 0.48,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 10.966245112789675,
+            "roughness_w1_m": 65.69462001679726,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.15887850467289721,
+              "15": 0.29333333333333333,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.293560763168296,
+        "mean_roughness_w1_m": 34.81223101071369
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 4.729026721164331,
+            "p10": 1.1652045566880231,
+            "p90": 27.499866633304286,
+            "mean": 9.36814867504355
+          },
+          "roughness_summary": {
+            "median": 1.5397020620540491,
+            "p10": 0.2196670584798147,
+            "p90": 70.82944874065625,
+            "mean": 12.58096078994588
+          },
+          "connectivity": {
+            "5": 0.7871485943775101,
+            "10": 0.5552407932011332,
+            "15": 0.5377358490566038,
+            "20": 0.5327102803738317,
+            "25": 0.5290023201856149
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.551038492064391,
+            "p10": 1.2331906278621052,
+            "p90": 32.484010900211594,
+            "mean": 10.611681490592481
+          },
+          "roughness_summary": {
+            "median": 5.590797293087887,
+            "p10": 0.7827627182843753,
+            "p90": 105.46224838865389,
+            "mean": 27.365837877709
+          },
+          "connectivity": {
+            "5": 0.8953488372093024,
+            "10": 0.6282527881040892,
+            "15": 0.5314465408805031,
+            "20": 0.52,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 12.125176061511178,
+            "p10": 1.384501903269273,
+            "p90": 25.854094481463207,
+            "mean": 12.505527492225342
+          },
+          "roughness_summary": {
+            "median": 78.00950632553624,
+            "p10": 2.1220612178440907,
+            "p90": 121.27234935609167,
+            "mean": 68.17637511567088
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8411214953271028,
+            "15": 0.7066666666666667,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:16:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 16,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580540310203,
+        40.654459156455616
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 8.362494075434375,
+            "roughness_w1_m": 10.720374885990736,
+            "connectivity_difference_by_threshold": {
+              "5": 0.4509803921568627,
+              "10": 0.7046783625730995,
+              "15": 0.19090909090909092,
+              "20": 0.19090909090909092,
+              "25": 0.19090909090909092
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 9.419491238277093,
+            "roughness_w1_m": 22.953794059096627,
+            "connectivity_difference_by_threshold": {
+              "5": 0.48453608247422686,
+              "10": 0.6156716417910448,
+              "15": 0.19174041297935107,
+              "20": 0.19061583577712615,
+              "25": 0.18786127167630062
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 11.041175346234379,
+            "roughness_w1_m": 54.94586019944838,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.06756756756756754,
+              "15": 0.10857142857142854,
+              "20": 0.14948453608247425,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 9.607720219981948,
+        "mean_roughness_w1_m": 29.54000971484525
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 7.241600381965673,
+            "p10": 1.3732511510164014,
+            "p90": 12.395394082378779,
+            "mean": 9.918779075088453
+          },
+          "roughness_summary": {
+            "median": 2.084108130082484,
+            "p10": 0.2812446863364354,
+            "p90": 3.8993428408593043,
+            "mean": 10.999960671252786
+          },
+          "connectivity": {
+            "5": 0.5490196078431373,
+            "10": 0.2953216374269006,
+            "15": 0.8090909090909091,
+            "20": 0.8090909090909091,
+            "25": 0.8090909090909091
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.464047540375027,
+            "p10": 1.6329820282312972,
+            "p90": 30.11102203228113,
+            "mean": 10.928599227543833
+          },
+          "roughness_summary": {
+            "median": 6.120495105176731,
+            "p10": 1.0593911708040769,
+            "p90": 105.46224838865389,
+            "mean": 23.87893392614566
+          },
+          "connectivity": {
+            "5": 0.5154639175257731,
+            "10": 0.3843283582089552,
+            "15": 0.8082595870206489,
+            "20": 0.8093841642228738,
+            "25": 0.8121387283236994
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.260116828027572,
+            "p10": 6.308892258610983,
+            "p90": 25.854094481463207,
+            "mean": 12.580457725670042
+          },
+          "roughness_summary": {
+            "median": 20.101259127708175,
+            "p10": 14.301070671650137,
+            "p90": 121.27234935609167,
+            "mean": 57.42761529832202
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.9324324324324325,
+            "15": 0.8914285714285715,
+            "20": 0.8505154639175257,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:0",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 0,
+      "center_lonlat": [
+        -75.02365257149714,
+        40.64004353991846
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 6.351025584575667,
+            "roughness_w1_m": 6.6496415834089575,
+            "connectivity_difference_by_threshold": {
+              "5": 0.31958762886597936,
+              "10": 0.6074498567335244,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 6.61059709050825,
+            "roughness_w1_m": 14.312804788429968,
+            "connectivity_difference_by_threshold": {
+              "5": 0.26865671641791045,
+              "10": 0.4474576271186441,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 7.088641630494022,
+            "roughness_w1_m": 33.11996511113968,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.0,
+              "15": 0.0,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 6.683421435192646,
+        "mean_roughness_w1_m": 18.0274704943262
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.428090788660835,
+            "p10": 1.1759202158762383,
+            "p90": 12.066760561379988,
+            "mean": 7.907310584229745
+          },
+          "roughness_summary": {
+            "median": 1.9395405955766694,
+            "p10": 0.23857656329834173,
+            "p90": 3.8947621247454314,
+            "mean": 6.929227368671008
+          },
+          "connectivity": {
+            "5": 0.6804123711340206,
+            "10": 0.39255014326647564,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 6.826397219106454,
+            "p10": 1.2597957950966365,
+            "p90": 14.351905961587807,
+            "mean": 8.119705078527721
+          },
+          "roughness_summary": {
+            "median": 6.182468253696738,
+            "p10": 0.9147898215809886,
+            "p90": 53.07762481078371,
+            "mean": 15.237944655479005
+          },
+          "connectivity": {
+            "5": 0.7313432835820896,
+            "10": 0.5525423728813559,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 7.742867850971601,
+            "p10": 5.648053768152601,
+            "p90": 14.793448138971385,
+            "mean": 8.627924009929687
+          },
+          "roughness_summary": {
+            "median": 18.608107284947337,
+            "p10": 13.810875282105837,
+            "p90": 80.86723072589261,
+            "mean": 35.60172021001333
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 1.0,
+            "15": 1.0,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:16",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 16,
+      "center_lonlat": [
+        -75.00473051448343,
+        40.64004586521468
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.8429980647760695,
+            "roughness_w1_m": 9.562337982788122,
+            "connectivity_difference_by_threshold": {
+              "5": 0.52,
+              "10": 0.7485029940119761,
+              "15": 0.19090909090909092,
+              "20": 0.19819819819819817,
+              "25": 0.20357941834451898
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.75022353995832,
+            "roughness_w1_m": 20.73029120269353,
+            "connectivity_difference_by_threshold": {
+              "5": 0.41414141414141414,
+              "10": 0.7592592592592593,
+              "15": 0.1900584795321637,
+              "20": 0.18624641833810884,
+              "25": 0.0
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 9.688212360543824,
+            "roughness_w1_m": 48.960416550899815,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.11042944785276076,
+              "15": 0.13684210526315788,
+              "20": 0.0,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 8.76047798842607,
+        "mean_roughness_w1_m": 26.417681912127154
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 6.924278881317061,
+            "p10": 1.69260754890582,
+            "p90": 12.396981495957093,
+            "mean": 9.399283064430147
+          },
+          "roughness_summary": {
+            "median": 2.009695533363107,
+            "p10": 0.3097977083782209,
+            "p90": 3.8850822353078476,
+            "mean": 9.841923768050176
+          },
+          "connectivity": {
+            "5": 0.48,
+            "10": 0.25149700598802394,
+            "15": 0.8090909090909091,
+            "20": 0.8018018018018018,
+            "25": 0.796420581655481
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.874088843084623,
+            "p10": 2.482243365885953,
+            "p90": 24.397441915995334,
+            "mean": 10.259331529225056
+          },
+          "roughness_summary": {
+            "median": 6.264421247591335,
+            "p10": 1.1919102798641346,
+            "p90": 87.1251697448042,
+            "mean": 21.65543106974256
+          },
+          "connectivity": {
+            "5": 0.5858585858585859,
+            "10": 0.24074074074074073,
+            "15": 0.8099415204678363,
+            "20": 0.8137535816618912,
+            "25": 1.0
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 8.264288940459174,
+            "p10": 6.225909168653323,
+            "p90": 21.332920857080882,
+            "mean": 11.227494739979493
+          },
+          "roughness_summary": {
+            "median": 19.78696109134261,
+            "p10": 13.966859035607104,
+            "p90": 116.2888225677022,
+            "mean": 51.44217164977345
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.8895705521472392,
+            "15": 0.8631578947368421,
+            "20": 1.0,
+            "25": 1.0
+          }
+        }
+      }
+    },
+    {
+      "candidate_id": "SYNTHETIC_earth_100m:32:32",
+      "source": {
+        "source": "/mnt/data/planetary_method_v2/terrain_analog_lab/SYNTHETIC_earth_100m.tif",
+        "source_sha256": "3b079882b99ff41e821d8a9d7100551a8fd184062dafbd6c115b457d28c7946e",
+        "source_crs": "EPSG:32618",
+        "source_res": [
+          100.0,
+          100.0
+        ],
+        "utm_epsg": 32618,
+        "center_latlon": [
+          40.65085651557158,
+          -75.0
+        ],
+        "crop_size_m": 8800,
+        "center_utm_xy": [
+          500000.0,
+          4500000.0
+        ],
+        "read_method": "local UTM reprojection; effective resolution not assessed"
+      },
+      "r0": 32,
+      "c0": 32,
+      "center_lonlat": [
+        -74.98580845673374,
+        40.64004509011592
+      ],
+      "footprint_estimate": "square in local UTM; center plus window_size_m",
+      "valid_fraction": 1.0,
+      "comparison": {
+        "status": "ok",
+        "by_baseline": [
+          {
+            "baseline_m": 400,
+            "slope_w1_deg": 7.725301811565664,
+            "roughness_w1_m": 7.733404166979728,
+            "connectivity_difference_by_threshold": {
+              "5": 0.7096774193548387,
+              "10": 0.7029411764705882,
+              "15": 0.07894736842105265,
+              "20": 0.07894736842105265,
+              "25": 0.07894736842105265
+            }
+          },
+          {
+            "baseline_m": 800,
+            "slope_w1_deg": 8.271679148036446,
+            "roughness_w1_m": 16.444570792607013,
+            "connectivity_difference_by_threshold": {
+              "5": 0.7534246575342466,
+              "10": 0.6357142857142857,
+              "15": 0.06887052341597799,
+              "20": 0.06849315068493156,
+              "25": 0.06756756756756754
+            }
+          },
+          {
+            "baseline_m": 1600,
+            "slope_w1_deg": 8.35168984416566,
+            "roughness_w1_m": 34.869482138589824,
+            "connectivity_difference_by_threshold": {
+              "5": 0.0,
+              "10": 0.009803921568627416,
+              "15": 0.013953488372092981,
+              "20": 0.02212389380530977,
+              "25": 0.0
+            }
+          }
+        ],
+        "mean_slope_w1_deg": 8.116223601255923,
+        "mean_roughness_w1_m": 19.68248569939219
+      },
+      "descriptor_summaries": {
+        "400": {
+          "status": "ok",
+          "n": 484,
+          "slope_summary": {
+            "median": 7.451032124695185,
+            "p10": 2.771938153504849,
+            "p90": 11.843661411843383,
+            "mean": 9.281586811219743
+          },
+          "roughness_summary": {
+            "median": 2.1328281938574527,
+            "p10": 0.8538976843129362,
+            "p90": 3.682317059736886,
+            "mean": 8.012989952241776
+          },
+          "connectivity": {
+            "5": 0.2903225806451613,
+            "10": 0.29705882352941176,
+            "15": 0.9210526315789473,
+            "20": 0.9210526315789473,
+            "25": 0.9210526315789473
+          }
+        },
+        "800": {
+          "status": "ok",
+          "n": 400,
+          "slope_summary": {
+            "median": 7.8583525484322525,
+            "p10": 4.079282160291407,
+            "p90": 11.598800953895156,
+            "mean": 9.780787137303182
+          },
+          "roughness_summary": {
+            "median": 6.193646268374292,
+            "p10": 3.7899278389890685,
+            "p90": 59.684291712642406,
+            "mean": 17.369710659656043
+          },
+          "connectivity": {
+            "5": 0.2465753424657534,
+            "10": 0.36428571428571427,
+            "15": 0.931129476584022,
+            "20": 0.9315068493150684,
+            "25": 0.9324324324324325
+          }
+        },
+        "1600": {
+          "status": "ok",
+          "n": 256,
+          "slope_summary": {
+            "median": 7.738774410285368,
+            "p10": 6.2815572325205835,
+            "p90": 21.14903103668142,
+            "mean": 9.890972223601327
+          },
+          "roughness_summary": {
+            "median": 15.764583824893553,
+            "p10": 13.70461727883247,
+            "p90": 116.2888225677022,
+            "mean": 37.35123723746346
+          },
+          "connectivity": {
+            "5": 1.0,
+            "10": 0.9901960784313726,
+            "15": 0.986046511627907,
+            "20": 0.9778761061946902,
+            "25": 1.0
+          }
+        }
+      }
+    }
+  ]
+}

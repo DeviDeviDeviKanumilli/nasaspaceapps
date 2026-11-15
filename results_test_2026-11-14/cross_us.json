@@ -1,0 +1,4726 @@
+{
+ "rules": {
+  "terrain_to_geology": "GLiM over the exact terrain square",
+  "geology_to_terrain": "best-overlap terrain window, attached if overlap >= 0.5"
+ },
+ "terrain_candidates": {
+  "M-CR": [
+   {
+    "lat": 33.1867,
+    "lon": -116.4105,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pi": 0.356,
+      "pa": 0.344,
+      "su": 0.289,
+      "ss": 0.011
+     },
+     "exposed_share": 0.368,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.289,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.7271,
+    "lon": -117.1745,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.354,
+      "ss": 0.283,
+      "pa": 0.273,
+      "su": 0.091
+     },
+     "exposed_share": 0.962,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.091,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9076,
+    "lon": -117.7244,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.465,
+      "sm": 0.313,
+      "su": 0.222
+     },
+     "exposed_share": 0.786,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.222,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.3669,
+    "lon": -117.2771,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.495,
+      "va": 0.263,
+      "sc": 0.121,
+      "su": 0.071,
+      "sm": 0.051
+     },
+     "exposed_share": 0.699,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.071,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.5019,
+    "lon": -116.7791,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sm": 0.439,
+      "ss": 0.357,
+      "su": 0.204
+     },
+     "exposed_share": 0.98,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.204,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.4569,
+    "lon": -117.7789,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.343,
+      "sc": 0.263,
+      "su": 0.182,
+      "sm": 0.141,
+      "va": 0.051,
+      "ss": 0.02
+     },
+     "exposed_share": 0.539,
+     "R-JZ_target_share": 0.343,
+     "R-JZ_partner_share": 0.182,
+     "R-IS_target_share": 0.343,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.343
+    }
+   },
+   {
+    "lat": 36.0959,
+    "lon": -116.9442,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.444,
+      "ss": 0.424,
+      "sm": 0.071,
+      "va": 0.061
+     },
+     "exposed_share": 0.864,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.444,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.9528,
+    "lon": -117.6169,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.449,
+      "su": 0.286,
+      "pa": 0.265
+     },
+     "exposed_share": 0.352,
+     "R-JZ_target_share": 0.449,
+     "R-JZ_partner_share": 0.286,
+     "R-IS_target_share": 0.449,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.449
+    }
+   },
+   {
+    "lat": 37.1418,
+    "lon": -110.5501,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.759,
+      "su": 0.241
+     },
+     "exposed_share": 0.752,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.4571,
+    "lon": -112.5966,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.533,
+      "py": 0.278,
+      "va": 0.178,
+      "su": 0.011
+     },
+     "exposed_share": 0.023,
+     "R-JZ_target_share": 0.533,
+     "R-JZ_partner_share": 0.011,
+     "R-IS_target_share": 0.533,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.533
+    }
+   },
+   {
+    "lat": 39.8171,
+    "lon": -119.1876,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.593,
+      "su": 0.407
+     },
+     "exposed_share": 0.031,
+     "R-JZ_target_share": 0.593,
+     "R-JZ_partner_share": 0.009,
+     "R-IS_target_share": 0.593,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.593
+    }
+   },
+   {
+    "lat": 41.2318,
+    "lon": -119.2257,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.509,
+      "vb": 0.278,
+      "py": 0.139,
+      "su": 0.074
+     },
+     "exposed_share": 0.038,
+     "R-JZ_target_share": 0.278,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.278,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.278
+    }
+   },
+   {
+    "lat": 40.5021,
+    "lon": -116.7076,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.463,
+      "ss": 0.352,
+      "su": 0.167,
+      "sm": 0.019
+     },
+     "exposed_share": 0.004,
+     "R-JZ_target_share": 0.463,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.463,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.463
+    }
+   },
+   {
+    "lat": 41.7717,
+    "lon": -118.8849,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 117,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.402,
+      "va": 0.376,
+      "sm": 0.222
+     },
+     "exposed_share": 0.044,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.009,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 42.3216,
+    "lon": -117.8803,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 107,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.477,
+      "su": 0.393,
+      "va": 0.131
+     },
+     "exposed_share": 0.0,
+     "R-JZ_target_share": 0.477,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.477,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.477
+    }
+   },
+   {
+    "lat": 40.4113,
+    "lon": -119.943,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.963,
+      "su": 0.037
+     },
+     "exposed_share": 0.008,
+     "R-JZ_target_share": 0.963,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.963,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.963
+    }
+   },
+   {
+    "lat": 42.8171,
+    "lon": -118.272,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.833,
+      "su": 0.157,
+      "ss": 0.009
+     },
+     "exposed_share": 0.029,
+     "R-JZ_target_share": 0.833,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.833,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.833
+    }
+   },
+   {
+    "lat": 42.3669,
+    "lon": -118.7592,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 106,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.868,
+      "su": 0.075,
+      "va": 0.057
+     },
+     "exposed_share": 0.0,
+     "R-JZ_target_share": 0.868,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.868,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.868
+    }
+   },
+   {
+    "lat": 35.4115,
+    "lon": -118.1207,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.869,
+      "su": 0.101,
+      "pi": 0.03
+     },
+     "exposed_share": 0.01,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.101,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 26.3217,
+    "lon": -112.3498,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.433,
+      "ss": 0.4,
+      "sm": 0.167
+     },
+     "exposed_share": 0.118,
+     "R-JZ_target_share": 0.433,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.433,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.433
+    }
+   }
+  ],
+  "M-SR": [
+   {
+    "lat": 33.4118,
+    "lon": -116.249,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pi": 0.433,
+      "pa": 0.311,
+      "su": 0.167,
+      "ss": 0.089
+     },
+     "exposed_share": 0.559,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.167,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.2317,
+    "lon": -116.7225,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.313,
+      "su": 0.303,
+      "ss": 0.212,
+      "pi": 0.101,
+      "pa": 0.071
+     },
+     "exposed_share": 0.944,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.303,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.412,
+    "lon": -117.3328,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.364,
+      "va": 0.232,
+      "su": 0.162,
+      "sm": 0.141,
+      "ss": 0.101
+     },
+     "exposed_share": 0.685,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.162,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.8628,
+    "lon": -113.5614,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.96,
+      "pa": 0.03,
+      "mt": 0.01
+     },
+     "exposed_share": 0.331,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9077,
+    "lon": -117.3878,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.495,
+      "su": 0.384,
+      "sm": 0.081,
+      "ss": 0.04
+     },
+     "exposed_share": 0.923,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.384,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9076,
+    "lon": -117.7244,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.465,
+      "sm": 0.313,
+      "su": 0.222
+     },
+     "exposed_share": 0.786,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.222,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 37.1418,
+    "lon": -110.5501,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.759,
+      "su": 0.241
+     },
+     "exposed_share": 0.752,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9077,
+    "lon": -111.6122,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.97,
+      "su": 0.03
+     },
+     "exposed_share": 0.924,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.2316,
+    "lon": -112.7781,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.535,
+      "sc": 0.465
+     },
+     "exposed_share": 0.397,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 25.5019,
+    "lon": -111.1558,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 85,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "py": 0.518,
+      "ss": 0.376,
+      "vb": 0.059,
+      "su": 0.047
+     },
+     "exposed_share": 0.063,
+     "R-JZ_target_share": 0.059,
+     "R-JZ_partner_share": 0.047,
+     "R-IS_target_share": 0.059,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.059
+    }
+   },
+   {
+    "lat": 36.8627,
+    "lon": -115.5561,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.414,
+      "su": 0.293,
+      "ss": 0.192,
+      "va": 0.101
+     },
+     "exposed_share": 0.79,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.091,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.5022,
+    "lon": -112.5461,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.7,
+      "su": 0.1,
+      "vb": 0.1,
+      "py": 0.056,
+      "ss": 0.044
+     },
+     "exposed_share": 0.007,
+     "R-JZ_target_share": 0.1,
+     "R-JZ_partner_share": 0.1,
+     "R-IS_target_share": 0.1,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.1
+    }
+   },
+   {
+    "lat": 27.0509,
+    "lon": -103.2939,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.533,
+      "sc": 0.411,
+      "su": 0.056
+     },
+     "exposed_share": 0.008,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.033,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 39.8171,
+    "lon": -119.1876,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.593,
+      "su": 0.407
+     },
+     "exposed_share": 0.031,
+     "R-JZ_target_share": 0.593,
+     "R-JZ_partner_share": 0.009,
+     "R-IS_target_share": 0.593,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.593
+    }
+   },
+   {
+    "lat": 29.3669,
+    "lon": -104.6406,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.889,
+      "sm": 0.067,
+      "su": 0.033,
+      "ss": 0.011
+     },
+     "exposed_share": 0.01,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.033,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.9534,
+    "lon": -105.5421,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 88,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.477,
+      "sc": 0.386,
+      "su": 0.136
+     },
+     "exposed_share": 0.028,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.136,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 42.3216,
+    "lon": -117.8803,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 107,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.477,
+      "su": 0.393,
+      "va": 0.131
+     },
+     "exposed_share": 0.0,
+     "R-JZ_target_share": 0.477,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.477,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.477
+    }
+   },
+   {
+    "lat": 28.096,
+    "lon": -102.2873,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.522,
+      "ss": 0.322,
+      "su": 0.156
+     },
+     "exposed_share": 0.0,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.156,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.6824,
+    "lon": -112.6119,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.566,
+      "ss": 0.434
+     },
+     "exposed_share": 0.266,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.4117,
+    "lon": -118.1758,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.727,
+      "su": 0.273
+     },
+     "exposed_share": 0.003,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.273,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   }
+  ],
+  "M-DG": [
+   {
+    "lat": 36.412,
+    "lon": -117.3328,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.364,
+      "va": 0.232,
+      "su": 0.162,
+      "sm": 0.141,
+      "ss": 0.101
+     },
+     "exposed_share": 0.685,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.162,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.9082,
+    "lon": -113.5933,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 86,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "mt": 0.57,
+      "su": 0.244,
+      "pa": 0.174,
+      "vb": 0.012
+     },
+     "exposed_share": 0.437,
+     "R-JZ_target_share": 0.012,
+     "R-JZ_partner_share": 0.244,
+     "R-IS_target_share": 0.012,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.012
+    }
+   },
+   {
+    "lat": 36.2768,
+    "lon": -116.7226,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.465,
+      "ss": 0.303,
+      "su": 0.212,
+      "pa": 0.02
+     },
+     "exposed_share": 0.971,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.212,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 33.1867,
+    "lon": -116.4105,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pi": 0.356,
+      "pa": 0.344,
+      "su": 0.289,
+      "ss": 0.011
+     },
+     "exposed_share": 0.368,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.289,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.8174,
+    "lon": -117.2294,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.707,
+      "su": 0.172,
+      "ss": 0.111,
+      "va": 0.01
+     },
+     "exposed_share": 0.994,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.172,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.3662,
+    "lon": -117.0543,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.5,
+      "sm": 0.337,
+      "pa": 0.092,
+      "su": 0.071
+     },
+     "exposed_share": 0.83,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.071,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9077,
+    "lon": -117.3878,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.495,
+      "su": 0.384,
+      "sm": 0.081,
+      "ss": 0.04
+     },
+     "exposed_share": 0.923,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.384,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.5474,
+    "lon": -112.5461,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 89,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.551,
+      "py": 0.337,
+      "ss": 0.079,
+      "su": 0.034
+     },
+     "exposed_share": 0.026,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.034,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 26.2311,
+    "lon": -102.8503,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 89,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.831,
+      "su": 0.124,
+      "sm": 0.034,
+      "pa": 0.011
+     },
+     "exposed_share": 0.002,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.124,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9076,
+    "lon": -117.7244,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.465,
+      "sm": 0.313,
+      "su": 0.222
+     },
+     "exposed_share": 0.786,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.222,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 25.0508,
+    "lon": -103.3553,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 80,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.475,
+      "su": 0.45,
+      "ss": 0.075
+     },
+     "exposed_share": 0.024,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.15,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 37.1418,
+    "lon": -110.5501,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.759,
+      "su": 0.241
+     },
+     "exposed_share": 0.752,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.6824,
+    "lon": -117.3881,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.909,
+      "sm": 0.081,
+      "su": 0.01
+     },
+     "exposed_share": 0.799,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.01,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 29.2308,
+    "lon": -103.949,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "py": 0.578,
+      "vi": 0.3,
+      "ss": 0.089,
+      "sc": 0.033
+     },
+     "exposed_share": 0.036,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.412,
+    "lon": -113.4398,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.567,
+      "pa": 0.311,
+      "py": 0.122
+     },
+     "exposed_share": 0.012,
+     "R-JZ_target_share": 0.567,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.567,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.567
+    }
+   },
+   {
+    "lat": 32.7273,
+    "lon": -116.2034,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pi": 0.586,
+      "pa": 0.374,
+      "mt": 0.04
+     },
+     "exposed_share": 0.267,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.6368,
+    "lon": -114.8914,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.673,
+      "su": 0.316,
+      "sm": 0.01
+     },
+     "exposed_share": 0.955,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 42.367,
+    "lon": -118.6985,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 107,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.692,
+      "va": 0.159,
+      "su": 0.131,
+      "ss": 0.019
+     },
+     "exposed_share": 0.003,
+     "R-JZ_target_share": 0.692,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.692,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.692
+    }
+   },
+   {
+    "lat": 41.3665,
+    "lon": -119.1056,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.5,
+      "va": 0.472,
+      "vb": 0.028
+     },
+     "exposed_share": 0.014,
+     "R-JZ_target_share": 0.028,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.028,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.028
+    }
+   },
+   {
+    "lat": 29.3669,
+    "lon": -104.6406,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.889,
+      "sm": 0.067,
+      "su": 0.033,
+      "ss": 0.011
+     },
+     "exposed_share": 0.01,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.033,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   }
+  ],
+  "M-MA": [
+   {
+    "lat": 33.4118,
+    "lon": -116.249,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pi": 0.433,
+      "pa": 0.311,
+      "su": 0.167,
+      "ss": 0.089
+     },
+     "exposed_share": 0.559,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.167,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.2317,
+    "lon": -116.7225,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.313,
+      "su": 0.303,
+      "ss": 0.212,
+      "pi": 0.101,
+      "pa": 0.071
+     },
+     "exposed_share": 0.944,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.303,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.412,
+    "lon": -117.3328,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.364,
+      "va": 0.232,
+      "su": 0.162,
+      "sm": 0.141,
+      "ss": 0.101
+     },
+     "exposed_share": 0.685,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.162,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.7729,
+    "lon": -113.5932,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.411,
+      "py": 0.256,
+      "su": 0.156,
+      "vb": 0.122,
+      "mt": 0.056
+     },
+     "exposed_share": 0.178,
+     "R-JZ_target_share": 0.122,
+     "R-JZ_partner_share": 0.156,
+     "R-IS_target_share": 0.122,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.122
+    }
+   },
+   {
+    "lat": 36.9077,
+    "lon": -117.3878,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.495,
+      "su": 0.384,
+      "sm": 0.081,
+      "ss": 0.04
+     },
+     "exposed_share": 0.923,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.384,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9076,
+    "lon": -117.7244,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.465,
+      "sm": 0.313,
+      "su": 0.222
+     },
+     "exposed_share": 0.786,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.222,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 25.0508,
+    "lon": -103.3553,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 80,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.475,
+      "su": 0.45,
+      "ss": 0.075
+     },
+     "exposed_share": 0.024,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.15,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 37.1418,
+    "lon": -110.5501,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.759,
+      "su": 0.241
+     },
+     "exposed_share": 0.752,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.8627,
+    "lon": -115.5561,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.414,
+      "su": 0.293,
+      "ss": 0.192,
+      "va": 0.101
+     },
+     "exposed_share": 0.79,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.091,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.4571,
+    "lon": -112.5966,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.533,
+      "py": 0.278,
+      "va": 0.178,
+      "su": 0.011
+     },
+     "exposed_share": 0.023,
+     "R-JZ_target_share": 0.533,
+     "R-JZ_partner_share": 0.011,
+     "R-IS_target_share": 0.533,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.533
+    }
+   },
+   {
+    "lat": 29.412,
+    "lon": -104.6406,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.544,
+      "sm": 0.456
+     },
+     "exposed_share": 0.151,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.0509,
+    "lon": -103.2939,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.533,
+      "sc": 0.411,
+      "su": 0.056
+     },
+     "exposed_share": 0.008,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.033,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.7725,
+    "lon": -111.612,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.636,
+      "sc": 0.364
+     },
+     "exposed_share": 0.911,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.9083,
+    "lon": -105.542,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 87,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.414,
+      "sc": 0.31,
+      "ss": 0.264,
+      "py": 0.011
+     },
+     "exposed_share": 0.105,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.414,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 40.4113,
+    "lon": -119.943,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.963,
+      "su": 0.037
+     },
+     "exposed_share": 0.008,
+     "R-JZ_target_share": 0.963,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.963,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.963
+    }
+   },
+   {
+    "lat": 41.5018,
+    "lon": -113.1646,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 107,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.43,
+      "sm": 0.299,
+      "sc": 0.262,
+      "vb": 0.009
+     },
+     "exposed_share": 0.037,
+     "R-JZ_target_share": 0.009,
+     "R-JZ_partner_share": 0.336,
+     "R-IS_target_share": 0.009,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.009
+    }
+   },
+   {
+    "lat": 28.096,
+    "lon": -102.2873,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.522,
+      "ss": 0.322,
+      "su": 0.156
+     },
+     "exposed_share": 0.0,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.156,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.6824,
+    "lon": -112.6119,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.566,
+      "ss": 0.434
+     },
+     "exposed_share": 0.266,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.4117,
+    "lon": -118.1758,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.727,
+      "su": 0.273
+     },
+     "exposed_share": 0.003,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.273,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 41.8167,
+    "lon": -118.8851,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 117,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.487,
+      "sm": 0.299,
+      "su": 0.214
+     },
+     "exposed_share": 0.018,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   }
+  ],
+  "R-JZ": [
+   {
+    "lat": 26.5925,
+    "lon": -103.3996,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.567,
+      "sc": 0.433
+     },
+     "exposed_share": 0.376,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.567,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 40.6823,
+    "lon": -117.3533,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.722,
+      "pa": 0.13,
+      "sc": 0.093,
+      "ss": 0.037,
+      "va": 0.019
+     },
+     "exposed_share": 0.019,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 33.7725,
+    "lon": -113.2479,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.475,
+      "su": 0.364,
+      "mt": 0.111,
+      "vb": 0.051
+     },
+     "exposed_share": 0.108,
+     "R-JZ_target_share": 0.051,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.051,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.051
+    }
+   },
+   {
+    "lat": 28.3667,
+    "lon": -102.2868,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.378,
+      "ss": 0.344,
+      "sc": 0.278
+     },
+     "exposed_share": 0.0,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.378,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 29.5923,
+    "lon": -104.6925,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sm": 0.733,
+      "sc": 0.189,
+      "ss": 0.056,
+      "su": 0.022
+     },
+     "exposed_share": 0.598,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.022,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 43.3672,
+    "lon": -117.5703,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.722,
+      "su": 0.269,
+      "py": 0.009
+     },
+     "exposed_share": 0.002,
+     "R-JZ_target_share": 0.722,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.722,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.722
+    }
+   },
+   {
+    "lat": 40.8624,
+    "lon": -115.5901,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sm": 0.787,
+      "pa": 0.093,
+      "su": 0.065,
+      "sc": 0.056
+     },
+     "exposed_share": 0.002,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.5465,
+    "lon": -119.9472,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.576,
+      "ss": 0.424
+     },
+     "exposed_share": 0.014,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.576,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.0962,
+    "lon": -117.177,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.616,
+      "vb": 0.374,
+      "va": 0.01
+     },
+     "exposed_share": 0.626,
+     "R-JZ_target_share": 0.374,
+     "R-JZ_partner_share": 0.596,
+     "R-IS_target_share": 0.374,
+     "R-IS_partner_share": 0.02,
+     "R-AE_target_share": 0.02,
+     "R-AE_partner_share": 0.374
+    }
+   },
+   {
+    "lat": 34.7274,
+    "lon": -114.7304,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 93,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "mt": 0.656,
+      "ss": 0.129,
+      "su": 0.108,
+      "pa": 0.097,
+      "va": 0.011
+     },
+     "exposed_share": 0.942,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.108,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.1866,
+    "lon": -110.2865,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.96,
+      "vb": 0.04
+     },
+     "exposed_share": 0.761,
+     "R-JZ_target_share": 0.04,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.04,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.04
+    }
+   },
+   {
+    "lat": 41.5016,
+    "lon": -109.1048,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 1.0
+     },
+     "exposed_share": 0.353,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 33.2765,
+    "lon": -116.1957,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.505,
+      "ss": 0.485,
+      "pi": 0.01
+     },
+     "exposed_share": 1.0,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.505,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 29.457,
+    "lon": -102.6923,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.667,
+      "sm": 0.156,
+      "ss": 0.144,
+      "va": 0.033
+     },
+     "exposed_share": 0.055,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.4119,
+    "lon": -112.6471,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "py": 0.678,
+      "vb": 0.2,
+      "su": 0.122
+     },
+     "exposed_share": 0.449,
+     "R-JZ_target_share": 0.2,
+     "R-JZ_partner_share": 0.122,
+     "R-IS_target_share": 0.2,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.2
+    }
+   },
+   {
+    "lat": 36.3214,
+    "lon": -113.8898,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.605,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 40.682,
+    "lon": -118.7673,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sm": 0.648,
+      "su": 0.222,
+      "ss": 0.13
+     },
+     "exposed_share": 0.209,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 39.7722,
+    "lon": -113.2461,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.816,
+      "sc": 0.163,
+      "va": 0.02
+     },
+     "exposed_share": 0.733,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 29.4114,
+    "lon": -103.0739,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.398,
+      "sc": 0.367,
+      "pa": 0.173,
+      "ss": 0.061
+     },
+     "exposed_share": 0.398,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.163,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 40.3217,
+    "lon": -118.8247,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.657,
+      "ss": 0.273,
+      "va": 0.04,
+      "py": 0.03
+     },
+     "exposed_share": 0.611,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   }
+  ],
+  "R-IS": [
+   {
+    "lat": 39.187,
+    "lon": -112.4797,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.583,
+      "vb": 0.417
+     },
+     "exposed_share": 0.731,
+     "R-JZ_target_share": 0.417,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.417,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.417
+    }
+   },
+   {
+    "lat": 39.6373,
+    "lon": -112.5961,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.527,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 40.7265,
+    "lon": -114.9451,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.96,
+      "sm": 0.04
+     },
+     "exposed_share": 0.192,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.141,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 33.367,
+    "lon": -103.5715,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.0,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 33.9077,
+    "lon": -114.2475,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.904,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 25.7276,
+    "lon": -101.8029,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.922,
+      "ss": 0.078
+     },
+     "exposed_share": 0.569,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.922,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.7274,
+    "lon": -117.7271,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.971,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 1.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.9078,
+    "lon": -103.9017,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.421,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.756,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 31.1414,
+    "lon": -106.6856,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.99,
+      "wb": 0.01
+     },
+     "exposed_share": 0.798,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 26.9077,
+    "lon": -103.047,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ev": 0.889,
+      "su": 0.1,
+      "sc": 0.011
+     },
+     "exposed_share": 0.738,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.1,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 30.4569,
+    "lon": -112.7416,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.989,
+      "vb": 0.011
+     },
+     "exposed_share": 0.943,
+     "R-JZ_target_share": 0.011,
+     "R-JZ_partner_share": 0.144,
+     "R-IS_target_share": 0.011,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.011
+    }
+   },
+   {
+    "lat": 40.9068,
+    "lon": -117.1154,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.98,
+      "vb": 0.01,
+      "ss": 0.01
+     },
+     "exposed_share": 0.089,
+     "R-JZ_target_share": 0.01,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.01,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.01
+    }
+   },
+   {
+    "lat": 30.0963,
+    "lon": -105.6369,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.739,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.578,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 38.0517,
+    "lon": -113.316,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.23,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 26.3667,
+    "lon": -102.7505,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ev": 0.856,
+      "su": 0.144
+     },
+     "exposed_share": 0.673,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.144,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 38.2317,
+    "lon": -116.2584,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.99,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.13,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.141,
+    "lon": -113.7962,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.989,
+      "pa": 0.011
+     },
+     "exposed_share": 0.071,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.611,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 33.6375,
+    "lon": -113.41,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 89,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.966,
+      "pa": 0.022,
+      "ss": 0.011
+     },
+     "exposed_share": 0.816,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 33.727,
+    "lon": -113.8954,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.949,
+      "va": 0.051
+     },
+     "exposed_share": 0.913,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.5473,
+    "lon": -104.3375,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 1.0
+     },
+     "exposed_share": 0.003,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 1.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   }
+  ],
+  "MZ-FLAT": [
+   {
+    "lat": 33.1867,
+    "lon": -116.4641,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.677,
+      "pi": 0.283,
+      "su": 0.04
+     },
+     "exposed_share": 0.048,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.04,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.4569,
+    "lon": -117.7789,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.343,
+      "sc": 0.263,
+      "su": 0.182,
+      "sm": 0.141,
+      "va": 0.051,
+      "ss": 0.02
+     },
+     "exposed_share": 0.539,
+     "R-JZ_target_share": 0.343,
+     "R-JZ_partner_share": 0.182,
+     "R-IS_target_share": 0.343,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.343
+    }
+   },
+   {
+    "lat": 35.6821,
+    "lon": -117.1747,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.485,
+      "va": 0.374,
+      "su": 0.121,
+      "pa": 0.02
+     },
+     "exposed_share": 0.896,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.121,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.547,
+    "lon": -116.7792,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.528,
+      "su": 0.315,
+      "sm": 0.157
+     },
+     "exposed_share": 0.983,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.315,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.1409,
+    "lon": -116.9444,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.455,
+      "ss": 0.313,
+      "sm": 0.172,
+      "va": 0.061
+     },
+     "exposed_share": 0.928,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.455,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.8625,
+    "lon": -117.7243,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.424,
+      "va": 0.293,
+      "sm": 0.263,
+      "pa": 0.02
+     },
+     "exposed_share": 0.843,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.424,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.2768,
+    "lon": -117.2774,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.545,
+      "ss": 0.424,
+      "sc": 0.02,
+      "va": 0.01
+     },
+     "exposed_share": 0.981,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.545,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9528,
+    "lon": -117.3877,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.556,
+      "ss": 0.242,
+      "sc": 0.172,
+      "va": 0.03
+     },
+     "exposed_share": 0.982,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.556,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.457,
+    "lon": -116.2857,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.485,
+      "pa": 0.313,
+      "su": 0.152,
+      "sm": 0.04,
+      "sc": 0.01
+     },
+     "exposed_share": 0.883,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.152,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.8177,
+    "lon": -116.3954,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.687,
+      "su": 0.283,
+      "va": 0.02,
+      "sm": 0.01
+     },
+     "exposed_share": 0.966,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.283,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 41.547,
+    "lon": -118.7637,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.481,
+      "vb": 0.306,
+      "pa": 0.111,
+      "pi": 0.046,
+      "va": 0.028,
+      "ss": 0.019
+     },
+     "exposed_share": 0.006,
+     "R-JZ_target_share": 0.306,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.306,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.306
+    }
+   },
+   {
+    "lat": 38.4568,
+    "lon": -118.2004,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 106,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.443,
+      "sc": 0.179,
+      "pa": 0.16,
+      "vb": 0.123,
+      "ss": 0.094
+     },
+     "exposed_share": 0.746,
+     "R-JZ_target_share": 0.123,
+     "R-JZ_partner_share": 0.094,
+     "R-IS_target_share": 0.123,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.123
+    }
+   },
+   {
+    "lat": 40.3215,
+    "lon": -120.1188,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.815,
+      "su": 0.157,
+      "va": 0.028
+     },
+     "exposed_share": 0.073,
+     "R-JZ_target_share": 0.815,
+     "R-JZ_partner_share": 0.157,
+     "R-IS_target_share": 0.815,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.815
+    }
+   },
+   {
+    "lat": 41.0518,
+    "lon": -119.2859,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.87,
+      "su": 0.12,
+      "pa": 0.009
+     },
+     "exposed_share": 0.061,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 34.5921,
+    "lon": -114.2395,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 95,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "mt": 0.716,
+      "su": 0.179,
+      "pa": 0.074,
+      "vb": 0.032
+     },
+     "exposed_share": 0.406,
+     "R-JZ_target_share": 0.032,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.032,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.032
+    }
+   },
+   {
+    "lat": 30.4564,
+    "lon": -104.9498,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.611,
+      "ss": 0.389
+     },
+     "exposed_share": 0.174,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.4113,
+    "lon": -115.054,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.765,
+      "su": 0.235
+     },
+     "exposed_share": 0.748,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.8177,
+    "lon": -115.4508,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.525,
+      "su": 0.354,
+      "vb": 0.081,
+      "sm": 0.04
+     },
+     "exposed_share": 0.654,
+     "R-JZ_target_share": 0.081,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.081,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.081
+    }
+   },
+   {
+    "lat": 29.818,
+    "lon": -103.3826,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.444,
+      "su": 0.222,
+      "sm": 0.156,
+      "py": 0.111,
+      "pa": 0.067
+     },
+     "exposed_share": 0.201,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.2,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 41.7717,
+    "lon": -118.8849,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 117,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.402,
+      "va": 0.376,
+      "sm": 0.222
+     },
+     "exposed_share": 0.044,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.009,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   }
+  ],
+  "MZ-STEEP": [
+   {
+    "lat": 33.4118,
+    "lon": -116.249,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pi": 0.433,
+      "pa": 0.311,
+      "su": 0.167,
+      "ss": 0.089
+     },
+     "exposed_share": 0.559,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.167,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.2317,
+    "lon": -116.7225,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.313,
+      "su": 0.303,
+      "ss": 0.212,
+      "pi": 0.101,
+      "pa": 0.071
+     },
+     "exposed_share": 0.944,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.303,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.5467,
+    "lon": -117.1091,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.323,
+      "ss": 0.313,
+      "sm": 0.253,
+      "su": 0.111
+     },
+     "exposed_share": 0.993,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.111,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.7729,
+    "lon": -113.5932,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.411,
+      "py": 0.256,
+      "su": 0.156,
+      "vb": 0.122,
+      "mt": 0.056
+     },
+     "exposed_share": 0.178,
+     "R-JZ_target_share": 0.122,
+     "R-JZ_partner_share": 0.156,
+     "R-IS_target_share": 0.122,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.122
+    }
+   },
+   {
+    "lat": 36.4571,
+    "lon": -117.3884,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "pa": 0.313,
+      "su": 0.303,
+      "va": 0.172,
+      "sc": 0.152,
+      "sm": 0.061
+     },
+     "exposed_share": 0.631,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.303,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9077,
+    "lon": -117.3878,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.495,
+      "su": 0.384,
+      "sm": 0.081,
+      "ss": 0.04
+     },
+     "exposed_share": 0.923,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.384,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.8168,
+    "lon": -117.0517,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 98,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sm": 0.816,
+      "ss": 0.133,
+      "va": 0.051
+     },
+     "exposed_share": 0.727,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 35.6821,
+    "lon": -117.1747,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.485,
+      "va": 0.374,
+      "su": 0.121,
+      "pa": 0.02
+     },
+     "exposed_share": 0.896,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.121,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.9076,
+    "lon": -117.7244,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "va": 0.465,
+      "sm": 0.313,
+      "su": 0.222
+     },
+     "exposed_share": 0.786,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.222,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 25.0508,
+    "lon": -103.3553,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 80,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.475,
+      "su": 0.45,
+      "ss": 0.075
+     },
+     "exposed_share": 0.024,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.15,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 37.1418,
+    "lon": -110.5501,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.759,
+      "su": 0.241
+     },
+     "exposed_share": 0.752,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.8627,
+    "lon": -115.5561,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.414,
+      "su": 0.293,
+      "ss": 0.192,
+      "va": 0.101
+     },
+     "exposed_share": 0.79,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.091,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 27.4571,
+    "lon": -112.5966,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.533,
+      "py": 0.278,
+      "va": 0.178,
+      "su": 0.011
+     },
+     "exposed_share": 0.023,
+     "R-JZ_target_share": 0.533,
+     "R-JZ_partner_share": 0.011,
+     "R-IS_target_share": 0.533,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.533
+    }
+   },
+   {
+    "lat": 28.3669,
+    "lon": -113.4398,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.644,
+      "pa": 0.311,
+      "py": 0.044
+     },
+     "exposed_share": 0.01,
+     "R-JZ_target_share": 0.644,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.644,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.644
+    }
+   },
+   {
+    "lat": 27.0509,
+    "lon": -103.2939,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.533,
+      "sc": 0.411,
+      "su": 0.056
+     },
+     "exposed_share": 0.008,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.033,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 29.3669,
+    "lon": -104.6406,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 90,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "sc": 0.889,
+      "sm": 0.067,
+      "su": 0.033,
+      "ss": 0.011
+     },
+     "exposed_share": 0.01,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.033,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 36.7725,
+    "lon": -111.612,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.636,
+      "sc": 0.364
+     },
+     "exposed_share": 0.911,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 28.9083,
+    "lon": -105.542,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 87,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "su": 0.414,
+      "sc": 0.31,
+      "ss": 0.264,
+      "py": 0.011
+     },
+     "exposed_share": 0.105,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.414,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   },
+   {
+    "lat": 40.4113,
+    "lon": -119.943,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 108,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "vb": 0.963,
+      "su": 0.037
+     },
+     "exposed_share": 0.008,
+     "R-JZ_target_share": 0.963,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.963,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.963
+    }
+   },
+   {
+    "lat": 37.7274,
+    "lon": -110.3236,
+    "geology": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square (local AEQD)",
+     "geology_cells": 99,
+     "cell_size": "0.01 deg (~1 km); GLiM source maps ~1:1M-1:5M",
+     "rock_class_shares": {
+      "ss": 0.879,
+      "su": 0.121
+     },
+     "exposed_share": 0.864,
+     "R-JZ_target_share": 0.0,
+     "R-JZ_partner_share": 0.0,
+     "R-IS_target_share": 0.0,
+     "R-IS_partner_share": 0.0,
+     "R-AE_target_share": 0.0,
+     "R-AE_partner_share": 0.0
+    }
+   }
+  ]
+ },
+ "geology_candidates": {
+  "R-JZ": [
+   {
+    "lat": -25.65,
+    "lon": -66.845,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.0,
+    "lon": 39.9,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 2.15,
+    "lon": 36.45,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 2.75,
+    "lon": 35.95,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 11.9,
+    "lon": 40.75,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 11.5,
+    "lon": 40.8,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 10.5,
+    "lon": 42.45,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 31.7,
+    "lon": -107.82,
+    "terrain": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square",
+     "overlap_with_geology_box": 0.7099999785423279,
+     "window_centre": [
+      31.6822,
+      -107.8449
+     ],
+     "median_slope_deg_by_baseline": {
+      "400": 0.88,
+      "800": 0.83,
+      "1600": 0.76,
+      "3200": 0.63
+     },
+     "worst_scale_slope_W1_deg": {
+      "M-CR": 9.88,
+      "M-SR": 20.93,
+      "M-DG": 13.13,
+      "M-MA": 16.17,
+      "R-JZ": 2.18,
+      "R-IS": 0.59,
+      "MZ-FLAT": 8.28,
+      "MZ-STEEP": 15.01
+     }
+    }
+   },
+   {
+    "lat": 33.2,
+    "lon": 78.54,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -27.2,
+    "lon": -68.395,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 10.75,
+    "lon": 42.5,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 11.15,
+    "lon": 40.8,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.5,
+    "lon": 41.25,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -25.35,
+    "lon": -68.145,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -26.85,
+    "lon": -68.145,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 12.2,
+    "lon": 40.6,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 1.9,
+    "lon": 36.4,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 10.65,
+    "lon": 42.25,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -25.45,
+    "lon": -67.345,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -25.9,
+    "lon": -67.245,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 31.3,
+    "lon": 66.18,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 34.65,
+    "lon": 75.18,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -25.95,
+    "lon": -66.895,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 68.1,
+    "lon": 152.935,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 31.75,
+    "lon": -113.34,
+    "terrain": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square",
+     "overlap_with_geology_box": 0.6899999976158142,
+     "window_centre": [
+      31.7276,
+      -113.3175
+     ],
+     "median_slope_deg_by_baseline": {
+      "400": 0.31,
+      "800": 0.32,
+      "1600": 0.33,
+      "3200": 0.34
+     },
+     "worst_scale_slope_W1_deg": {
+      "M-CR": 9.36,
+      "M-SR": 20.51,
+      "M-DG": 12.73,
+      "M-MA": 16.02,
+      "R-JZ": 2.09,
+      "R-IS": 0.68,
+      "MZ-FLAT": 7.92,
+      "MZ-STEEP": 14.71
+     }
+    }
+   },
+   {
+    "lat": 33.0,
+    "lon": 78.78,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 3.5,
+    "lon": 35.8,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -25.75,
+    "lon": -67.495,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 2.5,
+    "lon": 36.05,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -26.15,
+    "lon": -67.345,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 2.1,
+    "lon": 36.1,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 34.35,
+    "lon": 77.88,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 3.9,
+    "lon": 36.4,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -26.35,
+    "lon": -67.995,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 31.45,
+    "lon": 66.84,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -40.9,
+    "lon": -69.595,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.65,
+    "lon": 40.45,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -41.95,
+    "lon": -70.135,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 33.35,
+    "lon": -114.78,
+    "terrain": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square",
+     "overlap_with_geology_box": 0.8700000047683716,
+     "window_centre": [
+      33.3667,
+      -114.7864
+     ],
+     "median_slope_deg_by_baseline": {
+      "400": 2.04,
+      "800": 1.61,
+      "1600": 1.38,
+      "3200": 1.33
+     },
+     "worst_scale_slope_W1_deg": {
+      "M-CR": 8.57,
+      "M-SR": 19.73,
+      "M-DG": 11.96,
+      "M-MA": 15.26,
+      "R-JZ": 1.43,
+      "R-IS": 1.45,
+      "MZ-FLAT": 7.15,
+      "MZ-STEEP": 13.94
+     }
+    }
+   },
+   {
+    "lat": 11.7,
+    "lon": 40.95,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 4.05,
+    "lon": 35.8,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -31.9,
+    "lon": -70.5,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 31.85,
+    "lon": -113.7,
+    "terrain": {
+     "status": "measured",
+     "footprint": "terrain window: 10 x 10 km square",
+     "overlap_with_geology_box": 0.8600000143051147,
+     "window_centre": [
+      31.8629,
+      -113.687
+     ],
+     "median_slope_deg_by_baseline": {
+      "400": 0.84,
+      "800": 0.76,
+      "1600": 0.68,
+      "3200": 0.61
+     },
+     "worst_scale_slope_W1_deg": {
+      "M-CR": 9.7,
+      "M-SR": 20.76,
+      "M-DG": 12.98,
+      "M-MA": 16.11,
+      "R-JZ": 2.18,
+      "R-IS": 0.59,
+      "MZ-FLAT": 8.14,
+      "MZ-STEEP": 14.91
+     }
+    }
+   },
+   {
+    "lat": 11.1,
+    "lon": 40.35,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -46.7,
+    "lon": -71.915,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -42.45,
+    "lon": -68.63,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -42.2,
+    "lon": -69.835,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -26.45,
+    "lon": -67.445,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 11.95,
+    "lon": 40.5,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -45.25,
+    "lon": -69.89,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   }
+  ],
+  "R-IS": [
+   {
+    "lat": 23.9,
+    "lon": 19.005,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 25.55,
+    "lon": 17.755,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 18.4,
+    "lon": 32.655,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 25.9,
+    "lon": 17.805,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.3,
+    "lon": 17.905,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.2,
+    "lon": 41.4,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.45,
+    "lon": 41.05,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.1,
+    "lon": 26.8,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 31.95,
+    "lon": 36.78,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 12.85,
+    "lon": 41.6,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.6,
+    "lon": 40.8,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 12.95,
+    "lon": 41.85,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.85,
+    "lon": 18.105,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 24.4,
+    "lon": 19.205,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.3,
+    "lon": 26.1,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.3,
+    "lon": 40.55,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.6,
+    "lon": 17.955,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.1,
+    "lon": 26.45,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 25.55,
+    "lon": 17.455,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.5,
+    "lon": 26.25,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.45,
+    "lon": 41.3,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.7,
+    "lon": 40.5,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 32.1,
+    "lon": 36.54,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 12.9,
+    "lon": 41.35,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.85,
+    "lon": 40.75,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.5,
+    "lon": 26.55,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 24.9,
+    "lon": 17.705,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -20.05,
+    "lon": 13.155,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 17.7,
+    "lon": 32.35,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.5,
+    "lon": 18.255,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -20.3,
+    "lon": 13.355,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.65,
+    "lon": 40.1,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 16.75,
+    "lon": -7.65,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 27.0,
+    "lon": 18.405,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.35,
+    "lon": 26.75,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.95,
+    "lon": 40.45,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.55,
+    "lon": 25.8,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.7,
+    "lon": 26.1,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 16.7,
+    "lon": -7.35,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 16.9,
+    "lon": 36.6,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 33.3,
+    "lon": 68.94,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 32.75,
+    "lon": 67.86,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 18.35,
+    "lon": 41.605,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 19.65,
+    "lon": 18.605,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -19.55,
+    "lon": 13.655,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 19.8,
+    "lon": 18.305,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -19.75,
+    "lon": 13.405,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -19.8,
+    "lon": 13.705,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 30.45,
+    "lon": 39.06,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 19.9,
+    "lon": 18.605,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   }
+  ],
+  "R-AE": [
+   {
+    "lat": 25.1,
+    "lon": 17.905,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 22.45,
+    "lon": -4.195,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 25.5,
+    "lon": 17.555,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.3,
+    "lon": 18.005,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 24.0,
+    "lon": 18.955,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 24.8,
+    "lon": 17.805,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 25.2,
+    "lon": 17.655,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.7,
+    "lon": 40.85,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -19.95,
+    "lon": 13.105,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 18.25,
+    "lon": 32.605,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 25.9,
+    "lon": 17.955,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 25.45,
+    "lon": 17.905,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.8,
+    "lon": 18.205,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.4,
+    "lon": 18.255,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.0,
+    "lon": 26.5,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.3,
+    "lon": 27.0,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.45,
+    "lon": 26.0,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 12.9,
+    "lon": 41.45,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.4,
+    "lon": 41.25,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 28.9,
+    "lon": -5.895,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.4,
+    "lon": -2.895,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.6,
+    "lon": 26.4,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.45,
+    "lon": 40.55,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.95,
+    "lon": 26.25,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.5,
+    "lon": 26.65,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 24.45,
+    "lon": 19.155,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 29.35,
+    "lon": -6.395,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.0,
+    "lon": 26.85,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 29.15,
+    "lon": -6.245,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.85,
+    "lon": 26.0,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.95,
+    "lon": 59.405,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 28.85,
+    "lon": -6.345,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.0,
+    "lon": 40.65,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.15,
+    "lon": 41.35,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 29.5,
+    "lon": 54.155,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 15.1,
+    "lon": 26.05,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 13.8,
+    "lon": 40.4,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 18.1,
+    "lon": 31.905,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": -19.7,
+    "lon": 12.955,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.7,
+    "lon": 26.2,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 17.7,
+    "lon": 32.4,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 21.55,
+    "lon": 25.105,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.9,
+    "lon": 59.005,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 32.0,
+    "lon": 36.66,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 29.3,
+    "lon": 54.305,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 26.95,
+    "lon": 18.455,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 14.6,
+    "lon": 40.2,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 24.55,
+    "lon": 19.405,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 22.95,
+    "lon": 39.055,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   },
+   {
+    "lat": 24.6,
+    "lon": -4.795,
+    "terrain": {
+     "status": "not measured (no terrain window with >= 50% overlap; tile not processed, masked, or snow)"
+    }
+   }
+  ]
+ }
+}

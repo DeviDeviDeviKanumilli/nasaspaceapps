@@ -1,0 +1,112 @@
+{
+ "M-CR": {
+  "adopted_best_deg": 1.41,
+  "overlap_with_worst_slope_only": 0.42,
+  "overlap_with_mean_over_scales": 0.42,
+  "quarter_reference_overlap": [
+   0.8,
+   0.9,
+   0.88,
+   0.62
+  ],
+  "quarter_reference_best_deg": [
+   0.89,
+   1.94,
+   4.64,
+   1.21
+  ],
+  "quarter_reference_windows_inside_yardstick": [
+   1281,
+   90,
+   0,
+   2223
+  ],
+  "adopted_windows_inside_yardstick": 357
+ },
+ "M-SR": {
+  "adopted_best_deg": 8.86,
+  "overlap_with_worst_slope_only": 0.44,
+  "overlap_with_mean_over_scales": 0.34,
+  "quarter_reference_overlap": [
+   0.96,
+   0.9,
+   0.68,
+   0.9
+  ],
+  "quarter_reference_best_deg": [
+   3.6,
+   19.16,
+   0.95,
+   18.48
+  ],
+  "quarter_reference_windows_inside_yardstick": [
+   9,
+   0,
+   2887,
+   0
+  ],
+  "adopted_windows_inside_yardstick": 0
+ },
+ "M-DG": {
+  "adopted_best_deg": 2.81,
+  "overlap_with_worst_slope_only": 0.52,
+  "overlap_with_mean_over_scales": 0.44,
+  "quarter_reference_overlap": [
+   0.82,
+   0.92,
+   0.98,
+   0.92
+  ],
+  "quarter_reference_best_deg": [
+   2.04,
+   3.5,
+   3.39,
+   1.58
+  ],
+  "quarter_reference_windows_inside_yardstick": [
+   92,
+   1,
+   2,
+   115
+  ],
+  "adopted_windows_inside_yardstick": 6
+ },
+ "M-MA": {
+  "adopted_best_deg": 5.28,
+  "overlap_with_worst_slope_only": 0.48,
+  "overlap_with_mean_over_scales": 0.38,
+  "quarter_reference_overlap": [
+   1.0,
+   1.0,
+   1.0,
+   0.98
+  ],
+  "quarter_reference_best_deg": [
+   10.56,
+   6.48,
+   5.52,
+   4.85
+  ],
+  "quarter_reference_windows_inside_yardstick": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "adopted_windows_inside_yardstick": 0
+ },
+ "MZ-FLAT": {
+  "adopted_best_deg": 1.15,
+  "overlap_with_worst_slope_only": 0.48,
+  "overlap_with_mean_over_scales": 0.52,
+  "windows_inside_loso_median": 5,
+  "windows_inside_loso_p90": 90
+ },
+ "MZ-STEEP": {
+  "adopted_best_deg": 3.68,
+  "overlap_with_worst_slope_only": 0.48,
+  "overlap_with_mean_over_scales": 0.38,
+  "windows_inside_loso_median": 0,
+  "windows_inside_loso_p90": 92
+ }
+}

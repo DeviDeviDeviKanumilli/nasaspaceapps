@@ -1,0 +1,112 @@
+{
+ "created_utc": "2026-11-15T02:49:44Z",
+ "software": {
+  "python": "3.13.18",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "rasterio": "1.5.2",
+  "gdal": "3.12.2",
+  "pyproj": "3.8.0",
+  "platform": "Linux-6.18.44-fc-v470-x86_64-with-glibc2.39",
+  "machine": "x86_64"
+ },
+ "code_sha256": {
+  "global_run.py": "43f7f4a95dc4872c9d8b4cfe18f09ffa6940b68c0f6710849f39f6d8baba13a8",
+  "terrain_engine.py": "61a19cf74e1d2fd34c5324c37f3c6f07396c5b41e2a1b2d6aa28c1b333e07167",
+  "compare.py": "4844ea6ad5b81c5a8419f6c8c7fb2f8e448813b9367ce657b898b66826baa309",
+  "build_refs.py": "b4852460a3ee12f70f3c2071d19da0e9742df483c2f23f08eb834a18d5079fe2",
+  "build_zone_refs.py": "5713131f308a437d599cda079f11aa62c62f6c3a6de77d1612923fbad5992d76"
+ },
+ "parameters": {
+  "grid_m": 100.0,
+  "baselines_m": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "window_cells": 100,
+  "stride_cells": 50,
+  "quantile_levels": 50,
+  "connectivity_thresholds_deg": [
+   5,
+   7.5,
+   10,
+   12.5,
+   15,
+   20,
+   25
+  ],
+  "connectivity_baseline_m": 800,
+  "min_valid_fraction": 0.7,
+  "worldcover_masked_classes": [
+   10,
+   40,
+   50,
+   80,
+   90,
+   95
+  ],
+  "exposure_classes": [
+   60,
+   100
+  ],
+  "snow_classes": [
+   70
+  ],
+  "antarctic_rule": "no WorldCover south of 60S: cells <= 1 m treated as water; windows never nominated"
+ },
+ "datasets": {
+  "earth_dem": "Copernicus DEM GLO-90 COG, s3://copernicus-dem-90m (release as served on run date)",
+  "land_cover": "ESA WorldCover 2021 v200, s3://esa-worldcover/v200/2021/map (20 m overview)",
+  "moon": "NASA GSFC PGDA LOLA LDEM_80S_20MPP_ADJ (product 90) + PGDA product 78 site outlines",
+  "mars": "USGS Astrogeology Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2"
+ },
+ "tiles": {
+  "expected": 1181,
+  "processed": 1181,
+  "by_status": {
+   "windows": 411,
+   "no_valid_windows": 269,
+   "skipped_landcover": 501
+  },
+  "failed_or_missing": []
+ },
+ "windows": {
+  "evaluated": 45342,
+  "excluded_snow_ice_gt_half": 0,
+  "excluded_landcover_unknown": 0
+ },
+ "coverage_by_latitude_band": {
+  "+0 to +30": {
+   "expected": 158,
+   "processed": 158,
+   "with_windows": 112
+  },
+  "+30 to +60": {
+   "expected": 1023,
+   "processed": 1023,
+   "with_windows": 299
+  }
+ },
+ "runtime_seconds_from_log": 1010,
+ "errors_in_log": 0,
+ "first_errors": [],
+ "outputs_sha256": {
+  "us_terrain_candidates_v3.json": "807f0dcb7dfdd94b38300d12ec6dfda1b9ff0319ab56bbf25efe46e38a2ba6a1",
+  "refs.npz": "e38597effd35ba14f8e64c00c3f8f9dd4d6047ee5993d7a9f9702e73f3f6d150",
+  "refs_meta.json": "fb9151a538a70e91bedff7eb49cf8121ecd588f4925f36fbd34131c6374a4acc"
+ },
+ "known_coverage_limits": [
+  "windows never cross 1-degree tile seams; cells within ~1.6 km of a seam have no 3.2 km-baseline slope",
+  "tiles north/south of ~84.5 deg are narrower than a 10 km window",
+  "cells under trees, crops, buildings, water or wetland (WorldCover) are masked; a cell's 3.2 km disc must be fully unmasked",
+  "Antarctica: no land cover; recorded for coverage only"
+ ],
+ "acceptance": {
+  "all_tiles_processed": true,
+  "error_rate_below_0.5pct": true,
+  "every_latitude_band_processed": true
+ },
+ "describe_as": "complete for the supplied tile list only (1181 tiles); NOT global"
+}

@@ -1,0 +1,139 @@
+# Small-tile planetary terrain comparison experiment (v0.1)
+
+**Research prototype; not global discovery, a validated analog-selection engine, or a NASA flight-safety evaluation.**
+
+This package contains working, tested exploratory code for comparing physical terrain measurements from a **projected planetary elevation raster** with one or more **georeferenced Earth elevation rasters**. It implements the mathematical and measurement revisions identified in the research audit.
+
+## Evidence boundary
+
+The included `SYNTHETIC_*.tif` elevation files are artificial test fixtures. **No NASA elevation or Copernicus Earth elevation pixels were processed in the included results.** The execution environment could browse the NASA/Copernicus source listings but could not download TIFF bytes. The synthetic images carry fake Earth coordinates purely to exercise georeferencing and are not discovered Earth sites.
+
+## Improvements over Claude's proposal
+
+- Local plane-fit **absolute slope in degrees**, separate from **detrended RMS roughness in meters**.
+- Local circular physical neighborhoods, currently at 400/800/1600 m when sampled on a 100 m grid. Rejects feature scales with <4 grid samples across the diameter.
+- Comparison with separate **Wasserstein-1 distances in original physical units**. No unstable normalization by inter-reference variance, no synthetic analog percentage or unvalidated 95%-cutoff.
+- **Connectivity curves** for sampled slopes at thresholds 5°, 10°, 15°, 20°, 25°. These thresholds are *diagnostic sweeps*, not rover/lander engineering limits. Connectivity is not incorrectly inferred from slope histograms.
+- Cropping of planetary meter-based projected rasters in their native XY frame, **not Earth lat/lon coordinates**.
+- Earth cropped and reprojected to local WGS84 UTM for distance calculations. Both inputs are sampled to a target metric grid (coarse resampling is an approximation, not a guarantee of equal observational support).
+- Optional NASA co-registered effective-resolution image; flags unsupported neighborhoods. Outputs file SHA-256, source metadata, candidate centers, quality status, and raw comparison details.
+- Separate Pareto front for slopes vs roughness (not a physical suitability certificate).
+
+## Install and run synthetic tests
+
+```bash
+python -m pip install -r requirements.txt
+python test_experiment.py
+```
+
+You should see five passing test groups and a synthetic first-place match.
+
+## Run one actual NASA-vs-Earth sample after obtaining the rasters
+
+Sources:
+
+1. NASA Goddard **LRO/LOLA, Shackleton Rim Site04**: https://pgda.gsfc.nasa.gov/products/78 and https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/
+2. The Copernicus **GLO-90** dataset: https://registry.opendata.aws/copernicus-dem/
+
+Download both rasters. `fetch_real_data.sh` provides **unexecuted** suggested URLs for two files, to test on a computer with internet access. Confirm they are valid with Rasterio; do not assume every tile exists.
+
+Then:
+
+```bash
+python experiment.py \
+  --planet real_data/Site04_final_adj_5mpp_surf.tif \
+  --earth real_data/Copernicus_GLO90_N40_W075.tif \
+  --earth-center-lonlat -74.58 40.34 \
+  --baselines 400,800,1600 \
+  --pixel-m 100 --reference-size-m 4800 \
+  --earth-size-m 9000 --window-size-m 4800 --stride-m 1500 \
+  --output REAL_nj_experiment.json
+```
+
+This searches a ~9 km square **within one Earth tile**, NOT the globe. To compare multiple Earth raster tiles, repeat `--earth path/to/tile.tif`. Note that `--earth-center-lonlat` applies the same center to each tile; omit it for a tile-centered crop. **Earth images must have an identifiable CRS. Lunar images must already use a native planar XY coordinate system in meters.** Mars MOLA lat/lon archives require **Mars-specific georeferencing/preprocessing** before use; do not transform them with Earth's WGS84 UTM.
+
+The NASA Site04 5m grid is heavily interpolated in places. For serious science, use the associated source observation-count and uncertainty maps and consider NASA's more recent 20m south-pole product with an effective-resolution layer. The script currently has a gate for an *aligned effective-resolution raster* (`--planet-effres`) but **does not incorporate a complete uncertainty model or per-pixel counts**. Absence of these quality layers is a material limitation, not evidence of high quality.
+
+## Tests performed
+
+`test_experiment.py` executes:
+1. analytical plane fitting on flat and 15°/28° inclines and bumpy surfaces;
+2. identical slope histograms but disconnected vs connected terrain;
+3. the zero-reference-variation denominator failure in the discarded normalization;
+4. rejecting too-fine baselines, poor effective-resolution support, and entirely missing data;
+5. an end-to-end synthetic GeoTIFF import, local reference/candidate comparison, georeferenced output, and successful matching-region selection.
+
+## What's still scientifically or computationally missing
+
+- Real NASA and Earth raster results; current package DOES NOT satisfy NASA data usage by itself.
+- Global tiling, unbiased geographically comprehensive candidate enumeration, nonuniform coverage accounting, independent geology pathway.
+- Dependable observational validity flags for interpolated LOLA regions, Copernicus canopy/structure bias, stratified / spatially correlated uncertainty, cross-tile boundary handling.
+- Comparable smoothing/point-spread functions and validation of terrain estimators against instrument-scale data.
+- Independent reference selection, negative controls based on real geology, spatial block cross-validation, rank uncertainty and benchmarked worldwide processing.
+- Explicit planetary datum, polarity, geodetic frame verification for any new raster source; exact source footprint and reference selection must be logged.
+- D435 field validation and physical accessibility.
+
+**Do not market current synthetic results as a verified NASA/terrestrial analogy.**
+
+## v0.2: independent geological candidate pathway (November 14)
+
+**This is a second, separate discovery pathway—not geology applied only to terrain winners.**
+The new `geology_pathway.py` accepts an Earth geological polygon GeoJSON or
+queries the worldwide GLiM Level-I ArcGIS FeatureServer. For now it supports
+three narrow Jezero research questions motivated by NASA Perseverance science:
+
+- `jezero_maaz_volcanic` — query **Basic volcanic rocks** as broad potential mafic
+  volcanic-material candidates; this is NOT a demonstrated match to Máaz chemistry.
+- `jezero_seitah_plutonic` — query **Basic plutonic rocks** as preliminary igneous
+  candidates; this does NOT establish cumulate origin or olivine concentration.
+- `jezero_delta_siliciclastic` — query **Siliciclastic sedimentary rocks** as very
+  preliminary material candidates; this does NOT establish ancient river-delta
+  deposition or comparable biosignature preservation.
+
+The queries are based on exact source map labels, **not LLM classifications**.
+The discovery pipeline refuses to infer lunar anorthosite from GLiM broad classes,
+Martian dunes from unconsolidated sediment, or Martian buried-ice equivalence from
+terrestrial mapped ice. These require separate, validated evidence.
+
+Source dataset: [GLiM Level-I global polygon FeatureServer](https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1)
+(derived from Hartmann & Moosdorf 2012; include original source attribution).
+This endpoint is third-party-hosted and its live query performance, coverage, errors,
+and licensing/reuse limitations have **not** been verified inside this runtime.
+
+Run offline, on synthetic examples only:
+
+```bash
+python geology_pathway.py --geojson SYNTHETIC_geology_test.geojson \
+  --target jezero_maaz_volcanic --output SYNTHETIC_geology_results.json
+python geology_pathway.py --geojson SYNTHETIC_geology_test.geojson \
+  --target jezero_delta_siliciclastic --output SYNTHETIC_jezero_delta_results.json
+python test_geology.py
+```
+
+Run against **actual GLiM map polygons**, from a network-enabled machine:
+
+```bash
+# Small bounded test; coordinates below specify a test area, NOT a preselected analog
+python geology_pathway.py --arcgis \
+  --target jezero_maaz_volcanic --bbox -75 39 -73 41 \
+  --max-records 3000 --output GLiM_region_maaz.json
+
+# Independent global class search; likely many records and API pagination requests:
+python geology_pathway.py --arcgis \
+  --target jezero_maaz_volcanic --all-matches \
+  --output GLiM_world_maaz.json
+```
+
+When no bounding box is supplied and all matching IDs are downloaded, the query
+covers the provider's **global** dataset. Its *geographical distribution is a
+property of the source*, not a claim that every rock unit is mapped consistently.
+Limited runs explicitly say `INCOMPLETE` in the coverage_status field.
+The output includes a representative location inside each map polygon, the
+original feature ID/class, source link, and explicit scientific limitations.
+Map polygons should be cross-checked against higher-resolution original mapping
+before describing any location as a scientifically useful analog.
+
+**The v0.2 package still contains no processed real NASA or GLiM observation
+pixels/polygons. Its nine local tests are controlled synthetic tests, including a
+mocked ArcGIS query response.** Full-scale GLiM and planetary DEM ingestion remain
+unverified; the output is NOT an independently discovered analog.

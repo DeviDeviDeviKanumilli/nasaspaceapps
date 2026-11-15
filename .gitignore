@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.dart_tool/
+# large derived data and caches (regenerate with the engine scripts)
+*.npy
+*.npz
+results_test_2026-11-14/ms_region.geojson

@@ -1,0 +1,123 @@
+{
+ "rule": "Field preparation for Nottingham County Park: pre-registered station transect + lidar reference values.\n\nRule (fixed before the visit):\n  Transect T: the straight line through the park's main parking area toward the NEAREST point of the\n  mapped contact of the ultramafic/serpentinite unit (PA Geological Survey Map 1, 1:250,000, via\n  Macrostrat map_id 3748450). Stations every 100 m from 400 m on the unit side of the parking to 400 m\n  beyond the contact. A 1:250,000 boundary can be off by a few hundred metres, so only the stations far\n  from the line (>= 300 m) are treated as clearly \"on\" or \"off\" the unit; the middle ones are \"near contact\".\n  Exposure stations E (decided ON SITE, rule fixed now): walking the park's marked trails through the\n  barrens (Chrome Trail starts below the parking; Doe Trail runs along the barrens' eastern edge), the\n  first 4 places where bare rock or bare greenish soil is visible from the trail, at least 100 m apart.\n  (Satellite land cover cannot tell barrens grassland from mowed lawn, so E stations are not pre-computed.)\n  Skip any planned station that is outside the park or not reachable on a trail; record it as \"not accessible\". In the field, use the nearest safely accessible point to each planned station and\nrecord its actual GPS position. Stations on both sides of the mapped contact let the visit test\nwhether the map boundary corresponds to a visible change in rock, soil, vegetation or surface shape.\n\nFor each planned station this computes, from USGS 3DEP 1 m lidar (PA_17County_D24):\n  slope over 3 m and 6 m plane-fit discs, roughness (RMS residual) at 6 m, and ESA WorldCover class.\nThese are the reference values the D435 measurements will be compared with.",
+ "parking": [
+  39.739873,
+  -76.037153
+ ],
+ "contact_distance_m": 129,
+ "parking_inside_unit": true,
+ "lidar": "USGS 3DEP 1 m, project PA_17County_D24",
+ "geology": "PA Geological Survey Map 1 (1980, 1:250,000) via Macrostrat, CC-BY 4.0",
+ "stations": [
+  {
+   "station": "T1",
+   "planned_lat": 39.736472,
+   "planned_lon": -76.038697,
+   "distance_from_parking_m": -400,
+   "mapped_unit": "ultramafic/serpentinite",
+   "lidar_slope_3m_deg": 2.6,
+   "lidar_slope_6m_deg": 2.5,
+   "lidar_roughness_6m_m": 0.025,
+   "worldcover_class": "tree cover"
+  },
+  {
+   "station": "T2",
+   "planned_lat": 39.737322,
+   "planned_lon": -76.038311,
+   "distance_from_parking_m": -300,
+   "mapped_unit": "ultramafic/serpentinite",
+   "lidar_slope_3m_deg": 5.8,
+   "lidar_slope_6m_deg": 5.7,
+   "lidar_roughness_6m_m": 0.044,
+   "worldcover_class": "tree cover"
+  },
+  {
+   "station": "T3",
+   "planned_lat": 39.738173,
+   "planned_lon": -76.037925,
+   "distance_from_parking_m": -200,
+   "mapped_unit": "ultramafic/serpentinite",
+   "lidar_slope_3m_deg": 7.5,
+   "lidar_slope_6m_deg": 5.9,
+   "lidar_roughness_6m_m": 0.106,
+   "worldcover_class": "tree cover"
+  },
+  {
+   "station": "T4",
+   "planned_lat": 39.739023,
+   "planned_lon": -76.037539,
+   "distance_from_parking_m": -100,
+   "mapped_unit": "near mapped contact (ambiguous at 1:250k)",
+   "lidar_slope_3m_deg": 6.3,
+   "lidar_slope_6m_deg": 5.9,
+   "lidar_roughness_6m_m": 0.033,
+   "worldcover_class": "tree cover"
+  },
+  {
+   "station": "T5",
+   "planned_lat": 39.739873,
+   "planned_lon": -76.037153,
+   "distance_from_parking_m": 0,
+   "mapped_unit": "near mapped contact (ambiguous at 1:250k)",
+   "lidar_slope_3m_deg": 5.8,
+   "lidar_slope_6m_deg": 5.7,
+   "lidar_roughness_6m_m": 0.02,
+   "worldcover_class": "tree cover"
+  },
+  {
+   "station": "T6",
+   "planned_lat": 39.740723,
+   "planned_lon": -76.036767,
+   "distance_from_parking_m": 100,
+   "mapped_unit": "near mapped contact (ambiguous at 1:250k)",
+   "lidar_slope_3m_deg": 7.5,
+   "lidar_slope_6m_deg": 7.3,
+   "lidar_roughness_6m_m": 0.013,
+   "worldcover_class": "grassland"
+  },
+  {
+   "station": "T7",
+   "planned_lat": 39.741573,
+   "planned_lon": -76.036381,
+   "distance_from_parking_m": 200,
+   "mapped_unit": "near mapped contact (ambiguous at 1:250k)",
+   "lidar_slope_3m_deg": 5.5,
+   "lidar_slope_6m_deg": 5.6,
+   "lidar_roughness_6m_m": 0.009,
+   "worldcover_class": "tree cover"
+  },
+  {
+   "station": "T8",
+   "planned_lat": 39.742424,
+   "planned_lon": -76.035995,
+   "distance_from_parking_m": 300,
+   "mapped_unit": "near mapped contact (ambiguous at 1:250k)",
+   "lidar_slope_3m_deg": 6.4,
+   "lidar_slope_6m_deg": 6.4,
+   "lidar_roughness_6m_m": 0.011,
+   "worldcover_class": "tree cover"
+  },
+  {
+   "station": "T9",
+   "planned_lat": 39.743274,
+   "planned_lon": -76.035609,
+   "distance_from_parking_m": 400,
+   "mapped_unit": "near mapped contact (ambiguous at 1:250k)",
+   "lidar_slope_3m_deg": 2.9,
+   "lidar_slope_6m_deg": 2.9,
+   "lidar_roughness_6m_m": 0.009,
+   "worldcover_class": "cropland"
+  },
+  {
+   "station": "T10",
+   "planned_lat": 39.744124,
+   "planned_lon": -76.035223,
+   "distance_from_parking_m": 500,
+   "mapped_unit": "neighbouring unit (schist/gneiss)",
+   "lidar_slope_3m_deg": 5.0,
+   "lidar_slope_6m_deg": 4.9,
+   "lidar_roughness_6m_m": 0.011,
+   "worldcover_class": "cropland"
+  }
+ ]
+}

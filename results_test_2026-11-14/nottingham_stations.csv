@@ -1,0 +1,11 @@
+station,planned_lat,planned_lon,distance_from_parking_m,mapped_unit,lidar_slope_3m_deg,lidar_slope_6m_deg,lidar_roughness_6m_m,worldcover_class
+T1,39.736472,-76.038697,-400,ultramafic/serpentinite,2.6,2.5,0.025,tree cover
+T2,39.737322,-76.038311,-300,ultramafic/serpentinite,5.8,5.7,0.044,tree cover
+T3,39.738173,-76.037925,-200,ultramafic/serpentinite,7.5,5.9,0.106,tree cover
+T4,39.739023,-76.037539,-100,near mapped contact (ambiguous at 1:250k),6.3,5.9,0.033,tree cover
+T5,39.739873,-76.037153,0,near mapped contact (ambiguous at 1:250k),5.8,5.7,0.02,tree cover
+T6,39.740723,-76.036767,100,near mapped contact (ambiguous at 1:250k),7.5,7.3,0.013,grassland
+T7,39.741573,-76.036381,200,near mapped contact (ambiguous at 1:250k),5.5,5.6,0.009,tree cover
+T8,39.742424,-76.035995,300,near mapped contact (ambiguous at 1:250k),6.4,6.4,0.011,tree cover
+T9,39.743274,-76.035609,400,near mapped contact (ambiguous at 1:250k),2.9,2.9,0.009,cropland
+T10,39.744124,-76.035223,500,neighbouring unit (schist/gneiss),5.0,4.9,0.011,cropland

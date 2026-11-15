@@ -1,0 +1,64 @@
+{
+  "method": "independent_geology_discovery_v0.2",
+  "planetary_reference": {
+    "id": "jezero_delta_siliciclastic",
+    "world": "Mars",
+    "region": "Jezero western sedimentary fan",
+    "question": "Where are terrestrial map units broadly siliciclastic sedimentary rocks?",
+    "classes": [
+      "Siliciclastic sedimentary rocks"
+    ],
+    "scientific_basis": "Perseverance directly investigated sedimentary rocks at the Jezero delta. Sediment source, environment and stratigraphy require further evidence.",
+    "basis_url": "https://science.nasa.gov/resource/perseverance-explores-the-jezero-crater-delta/",
+    "limitations": [
+      "A siliciclastic map unit is NOT evidence of a delta",
+      "Does not establish identical depositional history, age, or habitability",
+      "Map scale may be far coarser than a sampled outcrop"
+    ]
+  },
+  "source": {
+    "kind": "GeoJSON",
+    "file": "SYNTHETIC_geology_test.geojson",
+    "sha256": "fac006b0b00ff454c22ef14fb6190879c243b876b1b0658c3641e2e366533e89"
+  },
+  "mapping_mode": "exact GLiM Level-1 class match; no inferred process or chemistry",
+  "processed_input_records": 4,
+  "filtered_wrong_class": 3,
+  "invalid_geometry_records": 0,
+  "candidate_count": 1,
+  "coverage_status": "input extent unknown; does not establish global coverage",
+  "candidates": [
+    {
+      "candidate_id": "glim:1",
+      "source_class": "Siliciclastic sedimentary rocks",
+      "source_record": {
+        "OBJECTID": 1,
+        "xx_Description": "Siliciclastic sedimentary rocks"
+      },
+      "geometry_locator": {
+        "point_lonlat": [
+          -74.25,
+          40.35
+        ],
+        "bounding_box_lonlat": [
+          -74.3,
+          40.3,
+          -74.2,
+          40.4
+        ],
+        "centroid_lonlat": [
+          -74.25,
+          40.35
+        ]
+      },
+      "evidence_status": "broad_mapped_lithology_only",
+      "matches": "Where are terrestrial map units broadly siliciclastic sedimentary rocks?",
+      "does_not_establish": [
+        "A siliciclastic map unit is NOT evidence of a delta",
+        "Does not establish identical depositional history, age, or habitability",
+        "Map scale may be far coarser than a sampled outcrop"
+      ],
+      "terrain_screen_required": false
+    }
+  ]
+}

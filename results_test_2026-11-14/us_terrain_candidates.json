@@ -1,0 +1,7110 @@
+{
+ "n_windows": 45342,
+ "n_tiles": 411,
+ "references": {
+  "M-CR": {
+   "meta": {
+    "body": "Moon",
+    "desc": "Connecting ridge (PGDA Site01)",
+    "grid_m": 100.0,
+    "baselines": [
+     400,
+     800,
+     1600,
+     3200
+    ],
+    "conn_baseline": 800,
+    "n_cells": 16384
+   },
+   "n_compared": 45342,
+   "candidates": [
+    {
+     "lat": 33.1867,
+     "lon": -116.4105,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.412,
+     "worst_scale_log10_roughness_W1": 0.44,
+     "connectivity_distance": 0.088,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.412,
+      "800": 0.668,
+      "1600": 0.862,
+      "3200": 1.033
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.36,
+      "800": 10.75,
+      "1600": 10.14,
+      "3200": 8.93
+     },
+     "valid_fraction": 0.825,
+     "bare_fraction": 0.387,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.7271,
+     "lon": -117.1745,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.579,
+     "worst_scale_log10_roughness_W1": 0.462,
+     "connectivity_distance": 0.035,
+     "slope_W1_deg_by_baseline": {
+      "400": 0.889,
+      "800": 0.57,
+      "1600": 1.305,
+      "3200": 1.579
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.27,
+      "800": 10.16,
+      "1600": 9.1,
+      "3200": 8.04
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.851,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9076,
+     "lon": -117.7244,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.627,
+     "worst_scale_log10_roughness_W1": 0.371,
+     "connectivity_distance": 0.05,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.371,
+      "800": 0.906,
+      "1600": 1.34,
+      "3200": 1.627
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.31,
+      "800": 9.42,
+      "1600": 8.52,
+      "3200": 7.29
+     },
+     "valid_fraction": 0.893,
+     "bare_fraction": 0.746,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.3669,
+     "lon": -117.2771,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.719,
+     "worst_scale_log10_roughness_W1": 0.491,
+     "connectivity_distance": 0.03,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.327,
+      "800": 0.517,
+      "1600": 1.08,
+      "3200": 1.719
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.34,
+      "800": 9.89,
+      "1600": 8.49,
+      "3200": 7.74
+     },
+     "valid_fraction": 0.81,
+     "bare_fraction": 0.663,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.5019,
+     "lon": -116.7791,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.837,
+     "worst_scale_log10_roughness_W1": 0.447,
+     "connectivity_distance": 0.047,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.093,
+      "800": 0.917,
+      "1600": 1.642,
+      "3200": 1.837
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.26,
+      "800": 8.88,
+      "1600": 7.71,
+      "3200": 6.79
+     },
+     "valid_fraction": 0.808,
+     "bare_fraction": 0.92,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.4569,
+     "lon": -117.7789,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.946,
+     "worst_scale_log10_roughness_W1": 0.367,
+     "connectivity_distance": 0.058,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.385,
+      "800": 1.55,
+      "1600": 1.946,
+      "3200": 1.869
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.77,
+      "800": 8.02,
+      "1600": 7.32,
+      "3200": 7.2
+     },
+     "valid_fraction": 0.957,
+     "bare_fraction": 0.554,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.0959,
+     "lon": -116.9442,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 2.205,
+     "worst_scale_log10_roughness_W1": 0.339,
+     "connectivity_distance": 0.142,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.889,
+      "800": 1.671,
+      "1600": 2.205,
+      "3200": 2.139
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.59,
+      "800": 6.89,
+      "1600": 6.43,
+      "3200": 6.44
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.797,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.9528,
+     "lon": -117.6169,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 2.977,
+     "worst_scale_log10_roughness_W1": 0.317,
+     "connectivity_distance": 0.149,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.977,
+      "800": 2.692,
+      "1600": 2.867,
+      "3200": 2.862
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.31,
+      "800": 6.21,
+      "1600": 6.48,
+      "3200": 6.55
+     },
+     "valid_fraction": 0.839,
+     "bare_fraction": 0.373,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.1418,
+     "lon": -110.5501,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 3.004,
+     "worst_scale_log10_roughness_W1": 0.328,
+     "connectivity_distance": 0.134,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.004,
+      "800": 2.1,
+      "1600": 1.518,
+      "3200": 2.018
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.68,
+      "800": 7.68,
+      "1600": 8.06,
+      "3200": 7.78
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.707,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.4571,
+     "lon": -112.5966,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 3.338,
+     "worst_scale_log10_roughness_W1": 0.236,
+     "connectivity_distance": 0.146,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.338,
+      "800": 3.213,
+      "1600": 2.869,
+      "3200": 2.362
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.0,
+      "800": 5.7,
+      "1600": 5.42,
+      "3200": 5.12
+     },
+     "valid_fraction": 0.701,
+     "bare_fraction": 0.051,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 39.8171,
+     "lon": -119.1876,
+     "tile": "Copernicus_DSM_COG_30_N39_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 3.431,
+     "worst_scale_log10_roughness_W1": 0.251,
+     "connectivity_distance": 0.082,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.397,
+      "800": 2.794,
+      "1600": 3.21,
+      "3200": 3.431
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.91,
+      "800": 6.5,
+      "1600": 6.14,
+      "3200": 5.58
+     },
+     "valid_fraction": 0.885,
+     "bare_fraction": 0.041,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.2318,
+     "lon": -119.2257,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 3.645,
+     "worst_scale_log10_roughness_W1": 0.363,
+     "connectivity_distance": 0.058,
+     "slope_W1_deg_by_baseline": {
+      "400": 0.792,
+      "800": 1.894,
+      "1600": 3.09,
+      "3200": 3.645
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.71,
+      "800": 8.43,
+      "1600": 6.71,
+      "3200": 5.68
+     },
+     "valid_fraction": 0.814,
+     "bare_fraction": 0.069,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.5021,
+     "lon": -116.7076,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.219,
+     "worst_scale_log10_roughness_W1": 0.341,
+     "connectivity_distance": 0.078,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.053,
+      "800": 3.046,
+      "1600": 3.809,
+      "3200": 4.219
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.93,
+      "800": 6.87,
+      "1600": 5.87,
+      "3200": 4.76
+     },
+     "valid_fraction": 0.805,
+     "bare_fraction": 0.007,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.7717,
+     "lon": -118.8849,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.433,
+     "worst_scale_log10_roughness_W1": 0.206,
+     "connectivity_distance": 0.193,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.113,
+      "800": 4.259,
+      "1600": 4.433,
+      "3200": 4.354
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.71,
+      "800": 4.48,
+      "1600": 4.2,
+      "3200": 4.43
+     },
+     "valid_fraction": 0.796,
+     "bare_fraction": 0.063,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.3216,
+     "lon": -117.8803,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.507,
+     "worst_scale_log10_roughness_W1": 0.204,
+     "connectivity_distance": 0.147,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.708,
+      "800": 3.137,
+      "1600": 3.799,
+      "3200": 4.507
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.56,
+      "800": 6.14,
+      "1600": 5.43,
+      "3200": 4.38
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.001,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.4113,
+     "lon": -119.943,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.59,
+     "worst_scale_log10_roughness_W1": 0.171,
+     "connectivity_distance": 0.197,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.267,
+      "800": 4.481,
+      "1600": 4.59,
+      "3200": 4.547
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.18,
+      "800": 4.68,
+      "1600": 4.16,
+      "3200": 3.56
+     },
+     "valid_fraction": 0.831,
+     "bare_fraction": 0.033,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.8171,
+     "lon": -118.272,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.665,
+     "worst_scale_log10_roughness_W1": 0.329,
+     "connectivity_distance": 0.079,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.803,
+      "800": 2.843,
+      "1600": 3.679,
+      "3200": 4.665
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.89,
+      "800": 6.48,
+      "1600": 5.8,
+      "3200": 4.18
+     },
+     "valid_fraction": 0.944,
+     "bare_fraction": 0.038,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.3669,
+     "lon": -118.7592,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.722,
+     "worst_scale_log10_roughness_W1": 0.35,
+     "connectivity_distance": 0.049,
+     "slope_W1_deg_by_baseline": {
+      "400": 0.941,
+      "800": 1.907,
+      "1600": 3.384,
+      "3200": 4.722
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.45,
+      "800": 8.01,
+      "1600": 6.04,
+      "3200": 4.2
+     },
+     "valid_fraction": 0.803,
+     "bare_fraction": 0.003,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.4115,
+     "lon": -118.1207,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.158,
+     "worst_scale_log10_roughness_W1": 0.157,
+     "connectivity_distance": 0.219,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.308,
+      "800": 3.915,
+      "1600": 4.614,
+      "3200": 5.158
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.61,
+      "800": 5.97,
+      "1600": 4.98,
+      "3200": 3.84
+     },
+     "valid_fraction": 0.944,
+     "bare_fraction": 0.023,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.3217,
+     "lon": -112.3498,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.202,
+     "worst_scale_log10_roughness_W1": 0.241,
+     "connectivity_distance": 0.139,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.167,
+      "800": 3.876,
+      "1600": 4.69,
+      "3200": 5.202
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.41,
+      "800": 4.21,
+      "1600": 4.29,
+      "3200": 3.74
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.189,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.9073,
+     "lon": -120.5165,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W121_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.447,
+     "worst_scale_log10_roughness_W1": 0.169,
+     "connectivity_distance": 0.185,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.904,
+      "800": 5.07,
+      "1600": 5.119,
+      "3200": 5.447
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.87,
+      "800": 4.25,
+      "1600": 3.6,
+      "3200": 3.1
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.309,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.7275,
+     "lon": -112.7997,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.594,
+     "worst_scale_log10_roughness_W1": 0.645,
+     "connectivity_distance": 0.02,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.341,
+      "800": 0.693,
+      "1600": 3.61,
+      "3200": 5.594
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 12.67,
+      "800": 9.48,
+      "1600": 6.23,
+      "3200": 3.38
+     },
+     "valid_fraction": 0.915,
+     "bare_fraction": 0.252,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.5925,
+     "lon": -111.4044,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.657,
+     "worst_scale_log10_roughness_W1": 0.408,
+     "connectivity_distance": 0.044,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.04,
+      "800": 2.164,
+      "1600": 4.082,
+      "3200": 5.657
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.66,
+      "800": 7.57,
+      "1600": 5.41,
+      "3200": 3.33
+     },
+     "valid_fraction": 0.866,
+     "bare_fraction": 0.039,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 24.6373,
+     "lon": -110.8536,
+     "tile": "Copernicus_DSM_COG_30_N24_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.677,
+     "worst_scale_log10_roughness_W1": 0.563,
+     "connectivity_distance": 0.02,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.624,
+      "800": 0.748,
+      "1600": 3.428,
+      "3200": 5.677
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 12.47,
+      "800": 9.75,
+      "1600": 6.2,
+      "3200": 3.09
+     },
+     "valid_fraction": 0.976,
+     "bare_fraction": 0.108,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.0516,
+     "lon": -113.3252,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.0,
+     "worst_scale_log10_roughness_W1": 0.168,
+     "connectivity_distance": 0.218,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.0,
+      "800": 5.802,
+      "1600": 5.581,
+      "3200": 5.559
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.47,
+      "800": 3.38,
+      "1600": 3.1,
+      "3200": 2.67
+     },
+     "valid_fraction": 0.773,
+     "bare_fraction": 0.373,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.727,
+     "lon": -119.2236,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.468,
+     "worst_scale_log10_roughness_W1": 0.122,
+     "connectivity_distance": 0.295,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.182,
+      "800": 5.562,
+      "1600": 6.081,
+      "3200": 6.468
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.92,
+      "800": 4.62,
+      "1600": 3.69,
+      "3200": 2.56
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.005,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.097,
+     "lon": -117.3453,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 2.369,
+     "worst_scale_log10_roughness_W1": 0.391,
+     "connectivity_distance": 0.109,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.471,
+      "800": 1.165,
+      "1600": 1.973,
+      "3200": 2.369
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.05,
+      "800": 8.47,
+      "1600": 7.22,
+      "3200": 6.35
+     },
+     "valid_fraction": 0.792,
+     "bare_fraction": 0.023,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9077,
+     "lon": -117.3878,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 2.528,
+     "worst_scale_log10_roughness_W1": 0.363,
+     "connectivity_distance": 0.133,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.528,
+      "800": 1.589,
+      "1600": 0.962,
+      "3200": 1.249
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.22,
+      "800": 7.94,
+      "1600": 8.02,
+      "3200": 8.58
+     },
+     "valid_fraction": 0.802,
+     "bare_fraction": 0.837,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.6825,
+     "lon": -115.4508,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 2.907,
+     "worst_scale_log10_roughness_W1": 0.48,
+     "connectivity_distance": 0.048,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.257,
+      "800": 0.858,
+      "1600": 2.026,
+      "3200": 2.907
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.73,
+      "800": 9.15,
+      "1600": 8.02,
+      "3200": 6.31
+     },
+     "valid_fraction": 0.988,
+     "bare_fraction": 0.842,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.4571,
+     "lon": -116.4102,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.041,
+     "worst_scale_log10_roughness_W1": 0.459,
+     "connectivity_distance": 0.049,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.268,
+      "800": 0.74,
+      "1600": 1.852,
+      "3200": 3.041
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.17,
+      "800": 8.95,
+      "1600": 7.18,
+      "3200": 5.46
+     },
+     "valid_fraction": 0.739,
+     "bare_fraction": 0.207,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.2771,
+     "lon": -119.413,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W120_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.088,
+     "worst_scale_log10_roughness_W1": 0.368,
+     "connectivity_distance": 0.077,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.779,
+      "800": 1.621,
+      "1600": 2.228,
+      "3200": 3.088
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.06,
+      "800": 8.32,
+      "1600": 7.53,
+      "3200": 5.99
+     },
+     "valid_fraction": 0.984,
+     "bare_fraction": 0.148,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.8176,
+     "lon": -116.2565,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.117,
+     "worst_scale_log10_roughness_W1": 0.482,
+     "connectivity_distance": 0.045,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.767,
+      "800": 1.5,
+      "1600": 2.679,
+      "3200": 3.117
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.41,
+      "800": 8.08,
+      "1600": 6.56,
+      "3200": 5.33
+     },
+     "valid_fraction": 0.984,
+     "bare_fraction": 0.515,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.8177,
+     "lon": -116.3954,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.169,
+     "worst_scale_log10_roughness_W1": 0.337,
+     "connectivity_distance": 0.164,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.269,
+      "800": 2.721,
+      "1600": 3.083,
+      "3200": 3.169
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.95,
+      "800": 6.44,
+      "1600": 6.19,
+      "3200": 5.8
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.862,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.3669,
+     "lon": -104.6406,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W105_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.316,
+     "worst_scale_log10_roughness_W1": 0.327,
+     "connectivity_distance": 0.174,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.932,
+      "800": 3.257,
+      "1600": 3.266,
+      "3200": 3.316
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.3,
+      "800": 5.39,
+      "1600": 5.25,
+      "3200": 4.86
+     },
+     "valid_fraction": 0.783,
+     "bare_fraction": 0.03,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.4117,
+     "lon": -117.8363,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.404,
+     "worst_scale_log10_roughness_W1": 0.366,
+     "connectivity_distance": 0.116,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.085,
+      "800": 2.785,
+      "1600": 3.201,
+      "3200": 3.404
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.07,
+      "800": 7.31,
+      "1600": 6.55,
+      "3200": 5.3
+     },
+     "valid_fraction": 0.934,
+     "bare_fraction": 0.508,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.6823,
+     "lon": -117.5899,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.498,
+     "worst_scale_log10_roughness_W1": 0.408,
+     "connectivity_distance": 0.054,
+     "slope_W1_deg_by_baseline": {
+      "400": 0.491,
+      "800": 1.519,
+      "1600": 2.728,
+      "3200": 3.498
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.06,
+      "800": 8.57,
+      "1600": 7.04,
+      "3200": 5.9
+     },
+     "valid_fraction": 0.825,
+     "bare_fraction": 0.019,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.818,
+     "lon": -113.6445,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.519,
+     "worst_scale_log10_roughness_W1": 0.495,
+     "connectivity_distance": 0.033,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.045,
+      "800": 1.303,
+      "1600": 2.572,
+      "3200": 3.519
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.31,
+      "800": 8.99,
+      "1600": 7.09,
+      "3200": 5.46
+     },
+     "valid_fraction": 0.888,
+     "bare_fraction": 0.078,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 43.2769,
+     "lon": -116.755,
+     "tile": "Copernicus_DSM_COG_30_N43_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.677,
+     "worst_scale_log10_roughness_W1": 0.472,
+     "connectivity_distance": 0.045,
+     "slope_W1_deg_by_baseline": {
+      "400": 0.341,
+      "800": 1.004,
+      "1600": 2.353,
+      "3200": 3.677
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.59,
+      "800": 9.21,
+      "1600": 7.37,
+      "3200": 5.15
+     },
+     "valid_fraction": 0.792,
+     "bare_fraction": 0.02,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.5019,
+     "lon": -115.1853,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.697,
+     "worst_scale_log10_roughness_W1": 0.464,
+     "connectivity_distance": 0.046,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.93,
+      "800": 0.956,
+      "1600": 2.577,
+      "3200": 3.697
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.74,
+      "800": 8.97,
+      "1600": 6.93,
+      "3200": 5.44
+     },
+     "valid_fraction": 0.86,
+     "bare_fraction": 0.745,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.7728,
+     "lon": -113.4757,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 4.081,
+     "worst_scale_log10_roughness_W1": 0.241,
+     "connectivity_distance": 0.241,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.492,
+      "800": 3.977,
+      "1600": 4.081,
+      "3200": 3.758
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.61,
+      "800": 6.21,
+      "1600": 5.87,
+      "3200": 5.58
+     },
+     "valid_fraction": 0.844,
+     "bare_fraction": 0.134,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.5017,
+     "lon": -113.8994,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 4.197,
+     "worst_scale_log10_roughness_W1": 0.309,
+     "connectivity_distance": 0.094,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.504,
+      "800": 2.907,
+      "1600": 3.696,
+      "3200": 4.197
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.47,
+      "800": 6.06,
+      "1600": 5.57,
+      "3200": 4.8
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.035,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 30.2767,
+     "lon": -104.5852,
+     "tile": "Copernicus_DSM_COG_30_N30_00_W105_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 4.664,
+     "worst_scale_log10_roughness_W1": 0.27,
+     "connectivity_distance": 0.12,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.981,
+      "800": 4.127,
+      "1600": 4.411,
+      "3200": 4.664
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.73,
+      "800": 5.3,
+      "1600": 4.67,
+      "3200": 3.79
+     },
+     "valid_fraction": 0.911,
+     "bare_fraction": 0.173,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.637,
+     "lon": -116.8373,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 4.69,
+     "worst_scale_log10_roughness_W1": 0.217,
+     "connectivity_distance": 0.29,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.307,
+      "800": 4.656,
+      "1600": 4.69,
+      "3200": 4.607
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.86,
+      "800": 5.33,
+      "1600": 4.68,
+      "3200": 4.28
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.877,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9077,
+     "lon": -113.6122,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 4.694,
+     "worst_scale_log10_roughness_W1": 0.216,
+     "connectivity_distance": 0.208,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.471,
+      "800": 4.694,
+      "1600": 4.639,
+      "3200": 4.291
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.56,
+      "800": 3.91,
+      "1600": 3.66,
+      "3200": 3.99
+     },
+     "valid_fraction": 0.85,
+     "bare_fraction": 0.121,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.4566,
+     "lon": -102.8984,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 4.729,
+     "worst_scale_log10_roughness_W1": 0.382,
+     "connectivity_distance": 0.061,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.812,
+      "800": 2.525,
+      "1600": 3.431,
+      "3200": 4.729
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.33,
+      "800": 6.74,
+      "1600": 5.51,
+      "3200": 4.07
+     },
+     "valid_fraction": 0.906,
+     "bare_fraction": 0.132,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.0964,
+     "lon": -119.0932,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W120_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.817,
+     "worst_scale_log10_roughness_W1": 0.182,
+     "connectivity_distance": 0.22,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.393,
+      "800": 5.71,
+      "1600": 5.817,
+      "3200": 5.77
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.22,
+      "800": 3.84,
+      "1600": 3.63,
+      "3200": 3.08
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.002,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.0968,
+     "lon": -116.7619,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.918,
+     "worst_scale_log10_roughness_W1": 0.187,
+     "connectivity_distance": 0.187,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.063,
+      "800": 5.446,
+      "1600": 5.811,
+      "3200": 5.918
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.48,
+      "800": 4.09,
+      "1600": 3.52,
+      "3200": 2.98
+     },
+     "valid_fraction": 0.805,
+     "bare_fraction": 0.004,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.5464,
+     "lon": -109.9456,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W110_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.105,
+     "worst_scale_log10_roughness_W1": 0.237,
+     "connectivity_distance": 0.15,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.983,
+      "800": 4.808,
+      "1600": 5.44,
+      "3200": 6.105
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.02,
+      "800": 2.87,
+      "1600": 2.77,
+      "3200": 2.66
+     },
+     "valid_fraction": 0.77,
+     "bare_fraction": 0.664,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.7721,
+     "lon": -111.164,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W112_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.525,
+     "worst_scale_log10_roughness_W1": 0.224,
+     "connectivity_distance": 0.156,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.191,
+      "800": 5.035,
+      "1600": 6.126,
+      "3200": 6.525
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.53,
+      "800": 3.13,
+      "1600": 2.73,
+      "3200": 2.33
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.931,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.9078,
+     "lon": -116.3016,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 3,
+     "worst_scale_slope_W1_deg": 2.249,
+     "worst_scale_log10_roughness_W1": 0.552,
+     "connectivity_distance": 0.067,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.249,
+      "800": 0.604,
+      "1600": 1.581,
+      "3200": 2.099
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 12.09,
+      "800": 10.02,
+      "1600": 8.43,
+      "3200": 7.21
+     },
+     "valid_fraction": 0.781,
+     "bare_fraction": 0.946,
+     "snow_ice_fraction": 0.0
+    }
+   ]
+  },
+  "M-SR": {
+   "meta": {
+    "body": "Moon",
+    "desc": "Shackleton rim (PGDA Site04)",
+    "grid_m": 100.0,
+    "baselines": [
+     400,
+     800,
+     1600,
+     3200
+    ],
+    "conn_baseline": 800,
+    "n_cells": 16384
+   },
+   "n_compared": 45342,
+   "candidates": [
+    {
+     "lat": 33.4118,
+     "lon": -116.249,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.863,
+     "worst_scale_log10_roughness_W1": 0.63,
+     "connectivity_distance": 0.109,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.619,
+      "800": 6.024,
+      "1600": 7.855,
+      "3200": 8.863
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 17.88,
+      "800": 15.77,
+      "1600": 13.23,
+      "3200": 11.38
+     },
+     "valid_fraction": 0.705,
+     "bare_fraction": 0.569,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.2317,
+     "lon": -116.7225,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.46,
+     "worst_scale_log10_roughness_W1": 0.508,
+     "connectivity_distance": 0.239,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.477,
+      "800": 8.199,
+      "1600": 9.047,
+      "3200": 9.46
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 12.27,
+      "800": 11.24,
+      "1600": 9.74,
+      "3200": 7.98
+     },
+     "valid_fraction": 0.92,
+     "bare_fraction": 0.836,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.412,
+     "lon": -117.3328,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.116,
+     "worst_scale_log10_roughness_W1": 0.566,
+     "connectivity_distance": 0.126,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.683,
+      "800": 8.82,
+      "1600": 9.92,
+      "3200": 10.116
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.2,
+      "800": 11.62,
+      "1600": 10.4,
+      "3200": 9.18
+     },
+     "valid_fraction": 0.817,
+     "bare_fraction": 0.662,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.8628,
+     "lon": -113.5614,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.699,
+     "worst_scale_log10_roughness_W1": 0.86,
+     "connectivity_distance": 0.106,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.186,
+      "800": 6.181,
+      "1600": 8.099,
+      "3200": 11.699
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 17.74,
+      "800": 14.55,
+      "1600": 11.63,
+      "3200": 7.47
+     },
+     "valid_fraction": 0.714,
+     "bare_fraction": 0.343,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9077,
+     "lon": -117.3878,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.19,
+     "worst_scale_log10_roughness_W1": 0.41,
+     "connectivity_distance": 0.408,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.559,
+      "800": 11.458,
+      "1600": 12.19,
+      "3200": 11.73
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.22,
+      "800": 7.94,
+      "1600": 8.02,
+      "3200": 8.58
+     },
+     "valid_fraction": 0.802,
+     "bare_fraction": 0.837,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9076,
+     "lon": -117.7244,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.603,
+     "worst_scale_log10_roughness_W1": 0.445,
+     "connectivity_distance": 0.361,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.845,
+      "800": 11.846,
+      "1600": 12.603,
+      "3200": 12.578
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.31,
+      "800": 9.42,
+      "1600": 8.52,
+      "3200": 7.29
+     },
+     "valid_fraction": 0.893,
+     "bare_fraction": 0.746,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.1418,
+     "lon": -110.5501,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.937,
+     "worst_scale_log10_roughness_W1": 0.433,
+     "connectivity_distance": 0.228,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.312,
+      "800": 12.496,
+      "1600": 12.782,
+      "3200": 12.937
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.68,
+      "800": 7.68,
+      "1600": 8.06,
+      "3200": 7.78
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.707,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9077,
+     "lon": -111.6122,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.971,
+     "worst_scale_log10_roughness_W1": 0.433,
+     "connectivity_distance": 0.289,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.341,
+      "800": 12.192,
+      "1600": 12.45,
+      "3200": 12.971
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.5,
+      "800": 6.8,
+      "1600": 5.93,
+      "3200": 4.86
+     },
+     "valid_fraction": 0.873,
+     "bare_fraction": 0.886,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.2316,
+     "lon": -112.7781,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.05,
+     "worst_scale_log10_roughness_W1": 0.554,
+     "connectivity_distance": 0.154,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.632,
+      "800": 9.813,
+      "1600": 11.139,
+      "3200": 13.05
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.12,
+      "800": 8.03,
+      "1600": 9.57,
+      "3200": 7.41
+     },
+     "valid_fraction": 0.852,
+     "bare_fraction": 0.335,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.5019,
+     "lon": -111.1558,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.089,
+     "worst_scale_log10_roughness_W1": 0.796,
+     "connectivity_distance": 0.105,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.045,
+      "800": 7.296,
+      "1600": 10.581,
+      "3200": 13.089
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 17.14,
+      "800": 14.46,
+      "1600": 10.55,
+      "3200": 6.93
+     },
+     "valid_fraction": 0.843,
+     "bare_fraction": 0.127,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.8627,
+     "lon": -115.5561,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.419,
+     "worst_scale_log10_roughness_W1": 0.405,
+     "connectivity_distance": 0.323,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.292,
+      "800": 13.059,
+      "1600": 13.419,
+      "3200": 13.138
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.73,
+      "800": 5.64,
+      "1600": 5.71,
+      "3200": 5.5
+     },
+     "valid_fraction": 0.997,
+     "bare_fraction": 0.715,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.5022,
+     "lon": -112.5461,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.701,
+     "worst_scale_log10_roughness_W1": 0.4,
+     "connectivity_distance": 0.441,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.674,
+      "800": 12.5,
+      "1600": 13.317,
+      "3200": 13.701
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.11,
+      "800": 6.71,
+      "1600": 6.1,
+      "3200": 5.68
+     },
+     "valid_fraction": 0.868,
+     "bare_fraction": 0.028,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.0509,
+     "lon": -103.2939,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.099,
+     "worst_scale_log10_roughness_W1": 0.35,
+     "connectivity_distance": 0.348,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.785,
+      "800": 13.582,
+      "1600": 14.099,
+      "3200": 14.084
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.58,
+      "800": 4.32,
+      "1600": 4.35,
+      "3200": 4.91
+     },
+     "valid_fraction": 0.877,
+     "bare_fraction": 0.026,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 39.8171,
+     "lon": -119.1876,
+     "tile": "Copernicus_DSM_COG_30_N39_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.474,
+     "worst_scale_log10_roughness_W1": 0.293,
+     "connectivity_distance": 0.416,
+     "slope_W1_deg_by_baseline": {
+      "400": 13.133,
+      "800": 13.95,
+      "1600": 14.474,
+      "3200": 14.382
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.91,
+      "800": 6.5,
+      "1600": 6.14,
+      "3200": 5.58
+     },
+     "valid_fraction": 0.885,
+     "bare_fraction": 0.041,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.3669,
+     "lon": -104.6406,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W105_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.53,
+     "worst_scale_log10_roughness_W1": 0.428,
+     "connectivity_distance": 0.253,
+     "slope_W1_deg_by_baseline": {
+      "400": 13.383,
+      "800": 14.244,
+      "1600": 14.53,
+      "3200": 14.267
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.3,
+      "800": 5.39,
+      "1600": 5.25,
+      "3200": 4.86
+     },
+     "valid_fraction": 0.783,
+     "bare_fraction": 0.03,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.9534,
+     "lon": -105.5421,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W106_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.428,
+     "worst_scale_log10_roughness_W1": 0.343,
+     "connectivity_distance": 0.323,
+     "slope_W1_deg_by_baseline": {
+      "400": 14.225,
+      "800": 14.845,
+      "1600": 15.322,
+      "3200": 15.428
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.76,
+      "800": 3.1,
+      "1600": 2.85,
+      "3200": 2.93
+     },
+     "valid_fraction": 0.839,
+     "bare_fraction": 0.067,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.3216,
+     "lon": -117.8803,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.458,
+     "worst_scale_log10_roughness_W1": 0.259,
+     "connectivity_distance": 0.481,
+     "slope_W1_deg_by_baseline": {
+      "400": 13.66,
+      "800": 14.293,
+      "1600": 15.063,
+      "3200": 15.458
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.56,
+      "800": 6.14,
+      "1600": 5.43,
+      "3200": 4.38
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.001,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.096,
+     "lon": -102.2873,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W103_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.779,
+     "worst_scale_log10_roughness_W1": 0.397,
+     "connectivity_distance": 0.234,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.537,
+      "800": 13.395,
+      "1600": 14.527,
+      "3200": 15.779
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.54,
+      "800": 5.35,
+      "1600": 5.13,
+      "3200": 3.66
+     },
+     "valid_fraction": 0.806,
+     "bare_fraction": 0.003,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.6824,
+     "lon": -112.6119,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.792,
+     "worst_scale_log10_roughness_W1": 0.418,
+     "connectivity_distance": 0.229,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.495,
+      "800": 12.931,
+      "1600": 14.381,
+      "3200": 15.792
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.87,
+      "800": 3.86,
+      "1600": 4.42,
+      "3200": 3.92
+     },
+     "valid_fraction": 0.737,
+     "bare_fraction": 0.246,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.4117,
+     "lon": -118.1758,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.839,
+     "worst_scale_log10_roughness_W1": 0.212,
+     "connectivity_distance": 0.534,
+     "slope_W1_deg_by_baseline": {
+      "400": 14.355,
+      "800": 14.968,
+      "1600": 15.65,
+      "3200": 15.839
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.29,
+      "800": 5.86,
+      "1600": 5.27,
+      "3200": 4.2
+     },
+     "valid_fraction": 0.773,
+     "bare_fraction": 0.009,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.4113,
+     "lon": -119.943,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.854,
+     "worst_scale_log10_roughness_W1": 0.239,
+     "connectivity_distance": 0.531,
+     "slope_W1_deg_by_baseline": {
+      "400": 15.144,
+      "800": 15.587,
+      "1600": 15.854,
+      "3200": 15.498
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.18,
+      "800": 4.68,
+      "1600": 4.16,
+      "3200": 3.56
+     },
+     "valid_fraction": 0.831,
+     "bare_fraction": 0.033,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.8167,
+     "lon": -118.8851,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 16.286,
+     "worst_scale_log10_roughness_W1": 0.241,
+     "connectivity_distance": 0.501,
+     "slope_W1_deg_by_baseline": {
+      "400": 15.577,
+      "800": 15.991,
+      "1600": 16.286,
+      "3200": 15.865
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.5,
+      "800": 4.24,
+      "1600": 3.81,
+      "3200": 3.68
+     },
+     "valid_fraction": 0.995,
+     "bare_fraction": 0.031,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.9523,
+     "lon": -120.5165,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W121_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 16.55,
+     "worst_scale_log10_roughness_W1": 0.23,
+     "connectivity_distance": 0.47,
+     "slope_W1_deg_by_baseline": {
+      "400": 15.173,
+      "800": 15.722,
+      "1600": 16.366,
+      "3200": 16.55
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.0,
+      "800": 4.39,
+      "1600": 3.66,
+      "3200": 3.3
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.133,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.7274,
+     "lon": -118.5308,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 16.795,
+     "worst_scale_log10_roughness_W1": 0.211,
+     "connectivity_distance": 0.613,
+     "slope_W1_deg_by_baseline": {
+      "400": 15.785,
+      "800": 16.271,
+      "1600": 16.766,
+      "3200": 16.795
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.9,
+      "800": 4.72,
+      "1600": 4.15,
+      "3200": 3.28
+     },
+     "valid_fraction": 0.794,
+     "bare_fraction": 0.09,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.0516,
+     "lon": -113.3252,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 16.845,
+     "worst_scale_log10_roughness_W1": 0.18,
+     "connectivity_distance": 0.534,
+     "slope_W1_deg_by_baseline": {
+      "400": 16.405,
+      "800": 16.662,
+      "1600": 16.845,
+      "3200": 16.51
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.47,
+      "800": 3.38,
+      "1600": 3.1,
+      "3200": 2.67
+     },
+     "valid_fraction": 0.773,
+     "bare_fraction": 0.373,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.8631,
+     "lon": -113.5933,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 10.552,
+     "worst_scale_log10_roughness_W1": 0.572,
+     "connectivity_distance": 0.206,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.116,
+      "800": 9.344,
+      "1600": 10.552,
+      "3200": 10.248
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.54,
+      "800": 10.61,
+      "1600": 9.84,
+      "3200": 9.45
+     },
+     "valid_fraction": 0.9,
+     "bare_fraction": 0.413,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.8623,
+     "lon": -117.1739,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 11.009,
+     "worst_scale_log10_roughness_W1": 0.514,
+     "connectivity_distance": 0.336,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.64,
+      "800": 9.699,
+      "1600": 10.871,
+      "3200": 11.009
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.82,
+      "800": 11.14,
+      "1600": 10.41,
+      "3200": 9.18
+     },
+     "valid_fraction": 0.993,
+     "bare_fraction": 0.916,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.1867,
+     "lon": -116.4105,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 11.231,
+     "worst_scale_log10_roughness_W1": 0.531,
+     "connectivity_distance": 0.269,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.087,
+      "800": 10.831,
+      "1600": 11.231,
+      "3200": 11.184
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.36,
+      "800": 10.75,
+      "1600": 10.14,
+      "3200": 8.93
+     },
+     "valid_fraction": 0.825,
+     "bare_fraction": 0.387,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.1865,
+     "lon": -117.2221,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 12.259,
+     "worst_scale_log10_roughness_W1": 0.416,
+     "connectivity_distance": 0.421,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.903,
+      "800": 11.709,
+      "1600": 12.259,
+      "3200": 12.162
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.48,
+      "800": 7.22,
+      "1600": 7.36,
+      "3200": 7.64
+     },
+     "valid_fraction": 0.948,
+     "bare_fraction": 0.94,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.0508,
+     "lon": -103.3553,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W104_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 12.616,
+     "worst_scale_log10_roughness_W1": 0.556,
+     "connectivity_distance": 0.178,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.419,
+      "800": 9.535,
+      "1600": 10.934,
+      "3200": 12.616
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.3,
+      "800": 11.8,
+      "1600": 9.66,
+      "3200": 7.27
+     },
+     "valid_fraction": 0.706,
+     "bare_fraction": 0.038,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.637,
+     "lon": -117.1749,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 13.108,
+     "worst_scale_log10_roughness_W1": 0.488,
+     "connectivity_distance": 0.392,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.654,
+      "800": 12.641,
+      "1600": 13.108,
+      "3200": 12.793
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.89,
+      "800": 8.91,
+      "1600": 8.29,
+      "3200": 7.52
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.649,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.232,
+     "lon": -119.413,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W120_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 13.159,
+     "worst_scale_log10_roughness_W1": 0.486,
+     "connectivity_distance": 0.352,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.709,
+      "800": 11.878,
+      "1600": 12.672,
+      "3200": 13.159
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.4,
+      "800": 9.39,
+      "1600": 8.4,
+      "3200": 6.83
+     },
+     "valid_fraction": 0.827,
+     "bare_fraction": 0.194,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.4569,
+     "lon": -117.7789,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 13.209,
+     "worst_scale_log10_roughness_W1": 0.449,
+     "connectivity_distance": 0.39,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.641,
+      "800": 12.616,
+      "1600": 13.209,
+      "3200": 12.82
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.77,
+      "800": 8.02,
+      "1600": 7.32,
+      "3200": 7.2
+     },
+     "valid_fraction": 0.957,
+     "bare_fraction": 0.554,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.051,
+     "lon": -116.1116,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 13.473,
+     "worst_scale_log10_roughness_W1": 0.483,
+     "connectivity_distance": 0.309,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.436,
+      "800": 12.647,
+      "1600": 13.473,
+      "3200": 13.315
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.0,
+      "800": 6.12,
+      "1600": 6.38,
+      "3200": 6.41
+     },
+     "valid_fraction": 0.72,
+     "bare_fraction": 0.827,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.7267,
+     "lon": -117.0522,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 13.841,
+     "worst_scale_log10_roughness_W1": 0.407,
+     "connectivity_distance": 0.511,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.403,
+      "800": 13.057,
+      "1600": 13.776,
+      "3200": 13.841
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.9,
+      "800": 4.82,
+      "1600": 4.85,
+      "3200": 5.31
+     },
+     "valid_fraction": 0.752,
+     "bare_fraction": 0.934,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.6825,
+     "lon": -104.7443,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W105_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.045,
+     "worst_scale_log10_roughness_W1": 0.548,
+     "connectivity_distance": 0.179,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.664,
+      "800": 12.403,
+      "1600": 14.037,
+      "3200": 14.045
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.69,
+      "800": 7.73,
+      "1600": 5.76,
+      "3200": 4.67
+     },
+     "valid_fraction": 0.934,
+     "bare_fraction": 0.117,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.9528,
+     "lon": -117.6169,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.131,
+     "worst_scale_log10_roughness_W1": 0.371,
+     "connectivity_distance": 0.475,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.9,
+      "800": 13.635,
+      "1600": 14.131,
+      "3200": 13.813
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.31,
+      "800": 6.21,
+      "1600": 6.48,
+      "3200": 6.55
+     },
+     "valid_fraction": 0.839,
+     "bare_fraction": 0.373,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.6818,
+     "lon": -114.8916,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W115_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.167,
+     "worst_scale_log10_roughness_W1": 0.538,
+     "connectivity_distance": 0.186,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.589,
+      "800": 11.954,
+      "1600": 13.414,
+      "3200": 14.167
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.53,
+      "800": 7.67,
+      "1600": 6.75,
+      "3200": 5.26
+     },
+     "valid_fraction": 0.794,
+     "bare_fraction": 0.857,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.1411,
+     "lon": -102.7477,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.174,
+     "worst_scale_log10_roughness_W1": 0.479,
+     "connectivity_distance": 0.296,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.673,
+      "800": 13.338,
+      "1600": 14.174,
+      "3200": 13.784
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.71,
+      "800": 6.54,
+      "1600": 5.86,
+      "3200": 5.79
+     },
+     "valid_fraction": 0.821,
+     "bare_fraction": 0.004,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.6827,
+     "lon": -102.3885,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.194,
+     "worst_scale_log10_roughness_W1": 0.475,
+     "connectivity_distance": 0.247,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.787,
+      "800": 13.569,
+      "1600": 14.194,
+      "3200": 14.123
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.53,
+      "800": 5.17,
+      "1600": 4.73,
+      "3200": 4.24
+     },
+     "valid_fraction": 0.812,
+     "bare_fraction": 0.028,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.3665,
+     "lon": -119.1056,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W120_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.29,
+     "worst_scale_log10_roughness_W1": 0.432,
+     "connectivity_distance": 0.294,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.563,
+      "800": 13.484,
+      "1600": 14.29,
+      "3200": 14.222
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.04,
+      "800": 7.11,
+      "1600": 6.03,
+      "3200": 5.52
+     },
+     "valid_fraction": 0.811,
+     "bare_fraction": 0.021,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.141,
+     "lon": -100.75,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W101_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.593,
+     "worst_scale_log10_roughness_W1": 0.373,
+     "connectivity_distance": 0.346,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.468,
+      "800": 13.08,
+      "1600": 14.009,
+      "3200": 14.593
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.36,
+      "800": 6.74,
+      "1600": 5.47,
+      "3200": 4.67
+     },
+     "valid_fraction": 0.719,
+     "bare_fraction": 0.031,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.5017,
+     "lon": -115.1309,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.737,
+     "worst_scale_log10_roughness_W1": 0.467,
+     "connectivity_distance": 0.265,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.914,
+      "800": 12.489,
+      "1600": 14.202,
+      "3200": 14.737
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.59,
+      "800": 7.53,
+      "1600": 6.39,
+      "3200": 5.24
+     },
+     "valid_fraction": 0.863,
+     "bare_fraction": 0.722,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.7271,
+     "lon": -102.9514,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 14.765,
+     "worst_scale_log10_roughness_W1": 0.297,
+     "connectivity_distance": 0.508,
+     "slope_W1_deg_by_baseline": {
+      "400": 13.632,
+      "800": 14.144,
+      "1600": 14.534,
+      "3200": 14.765
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.07,
+      "800": 3.4,
+      "1600": 3.15,
+      "3200": 3.55
+     },
+     "valid_fraction": 0.775,
+     "bare_fraction": 0.043,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.1863,
+     "lon": -111.6501,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W112_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 15.189,
+     "worst_scale_log10_roughness_W1": 0.713,
+     "connectivity_distance": 0.13,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.429,
+      "800": 8.782,
+      "1600": 12.415,
+      "3200": 15.189
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 15.19,
+      "800": 12.47,
+      "1600": 8.49,
+      "3200": 4.65
+     },
+     "valid_fraction": 0.785,
+     "bare_fraction": 0.009,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.1869,
+     "lon": -118.7584,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W119_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 15.496,
+     "worst_scale_log10_roughness_W1": 0.337,
+     "connectivity_distance": 0.456,
+     "slope_W1_deg_by_baseline": {
+      "400": 14.152,
+      "800": 14.899,
+      "1600": 15.496,
+      "3200": 15.312
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.18,
+      "800": 5.81,
+      "1600": 5.21,
+      "3200": 4.25
+     },
+     "valid_fraction": 0.887,
+     "bare_fraction": 0.008,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.7274,
+     "lon": -110.3236,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W111_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 15.59,
+     "worst_scale_log10_roughness_W1": 0.623,
+     "connectivity_distance": 0.16,
+     "slope_W1_deg_by_baseline": {
+      "400": 9.394,
+      "800": 10.831,
+      "1600": 13.055,
+      "3200": 15.59
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.32,
+      "800": 8.91,
+      "1600": 7.97,
+      "3200": 4.46
+     },
+     "valid_fraction": 0.917,
+     "bare_fraction": 0.767,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.1869,
+     "lon": -115.5501,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 15.84,
+     "worst_scale_log10_roughness_W1": 0.339,
+     "connectivity_distance": 0.414,
+     "slope_W1_deg_by_baseline": {
+      "400": 15.184,
+      "800": 15.658,
+      "1600": 15.84,
+      "3200": 15.531
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.06,
+      "800": 3.93,
+      "1600": 3.86,
+      "3200": 3.92
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.28,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 24.5922,
+     "lon": -110.8041,
+     "tile": "Copernicus_DSM_COG_30_N24_00_W111_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 15.871,
+     "worst_scale_log10_roughness_W1": 0.538,
+     "connectivity_distance": 0.24,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.492,
+      "800": 13.841,
+      "1600": 15.335,
+      "3200": 15.871
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.28,
+      "800": 6.18,
+      "1600": 5.03,
+      "3200": 3.49
+     },
+     "valid_fraction": 0.908,
+     "bare_fraction": 0.357,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.5921,
+     "lon": -116.7819,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 16.08,
+     "worst_scale_log10_roughness_W1": 0.255,
+     "connectivity_distance": 0.609,
+     "slope_W1_deg_by_baseline": {
+      "400": 15.471,
+      "800": 15.858,
+      "1600": 16.08,
+      "3200": 15.724
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.4,
+      "800": 5.12,
+      "1600": 4.64,
+      "3200": 4.19
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.99,
+     "snow_ice_fraction": 0.0
+    }
+   ]
+  },
+  "M-DG": {
+   "meta": {
+    "body": "Moon",
+    "desc": "de Gerlache rim (PGDA Site11)",
+    "grid_m": 100.0,
+    "baselines": [
+     400,
+     800,
+     1600,
+     3200
+    ],
+    "conn_baseline": 800,
+    "n_cells": 16384
+   },
+   "n_compared": 45342,
+   "candidates": [
+    {
+     "lat": 36.412,
+     "lon": -117.3328,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 2.809,
+     "worst_scale_log10_roughness_W1": 0.538,
+     "connectivity_distance": 0.139,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.782,
+      "800": 2.358,
+      "1600": 2.356,
+      "3200": 2.809
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.2,
+      "800": 11.62,
+      "1600": 10.4,
+      "3200": 9.18
+     },
+     "valid_fraction": 0.817,
+     "bare_fraction": 0.662,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.9082,
+     "lon": -113.5933,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 3.602,
+     "worst_scale_log10_roughness_W1": 0.664,
+     "connectivity_distance": 0.098,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.557,
+      "800": 3.129,
+      "1600": 3.298,
+      "3200": 3.602
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.53,
+      "800": 10.89,
+      "1600": 9.05,
+      "3200": 8.13
+     },
+     "valid_fraction": 0.793,
+     "bare_fraction": 0.416,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.2768,
+     "lon": -116.7226,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 3.657,
+     "worst_scale_log10_roughness_W1": 0.507,
+     "connectivity_distance": 0.211,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.657,
+      "800": 3.379,
+      "1600": 3.233,
+      "3200": 3.55
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.08,
+      "800": 9.88,
+      "1600": 8.75,
+      "3200": 7.47
+     },
+     "valid_fraction": 0.842,
+     "bare_fraction": 0.875,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.1867,
+     "lon": -116.4105,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 3.877,
+     "worst_scale_log10_roughness_W1": 0.499,
+     "connectivity_distance": 0.116,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.441,
+      "800": 3.051,
+      "1600": 3.549,
+      "3200": 3.877
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.36,
+      "800": 10.75,
+      "1600": 10.14,
+      "3200": 8.93
+     },
+     "valid_fraction": 0.825,
+     "bare_fraction": 0.387,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.8174,
+     "lon": -117.2294,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.037,
+     "worst_scale_log10_roughness_W1": 0.547,
+     "connectivity_distance": 0.109,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.329,
+      "800": 2.597,
+      "1600": 3.635,
+      "3200": 4.037
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 12.02,
+      "800": 10.47,
+      "1600": 8.86,
+      "3200": 8.11
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.893,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.3662,
+     "lon": -117.0543,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.402,
+     "worst_scale_log10_roughness_W1": 0.661,
+     "connectivity_distance": 0.103,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.194,
+      "800": 1.458,
+      "1600": 3.031,
+      "3200": 4.402
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 14.91,
+      "800": 13.01,
+      "1600": 10.31,
+      "3200": 8.54
+     },
+     "valid_fraction": 0.7,
+     "bare_fraction": 0.732,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9077,
+     "lon": -117.3878,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.509,
+     "worst_scale_log10_roughness_W1": 0.399,
+     "connectivity_distance": 0.263,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.163,
+      "800": 4.107,
+      "1600": 4.509,
+      "3200": 4.423
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.22,
+      "800": 7.94,
+      "1600": 8.02,
+      "3200": 8.58
+     },
+     "valid_fraction": 0.802,
+     "bare_fraction": 0.837,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.5474,
+     "lon": -112.5461,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.771,
+     "worst_scale_log10_roughness_W1": 0.64,
+     "connectivity_distance": 0.088,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.149,
+      "800": 1.952,
+      "1600": 3.202,
+      "3200": 4.771
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 15.21,
+      "800": 12.88,
+      "1600": 10.54,
+      "3200": 8.38
+     },
+     "valid_fraction": 0.895,
+     "bare_fraction": 0.064,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.2311,
+     "lon": -102.8503,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W103_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.78,
+     "worst_scale_log10_roughness_W1": 0.699,
+     "connectivity_distance": 0.079,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.723,
+      "800": 2.606,
+      "1600": 3.656,
+      "3200": 4.78
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 14.71,
+      "800": 11.64,
+      "1600": 8.77,
+      "3200": 7.21
+     },
+     "valid_fraction": 0.754,
+     "bare_fraction": 0.019,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9076,
+     "lon": -117.7244,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.27,
+     "worst_scale_log10_roughness_W1": 0.42,
+     "connectivity_distance": 0.208,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.298,
+      "800": 4.102,
+      "1600": 4.922,
+      "3200": 5.27
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.31,
+      "800": 9.42,
+      "1600": 8.52,
+      "3200": 7.29
+     },
+     "valid_fraction": 0.893,
+     "bare_fraction": 0.746,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.0508,
+     "lon": -103.3553,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.308,
+     "worst_scale_log10_roughness_W1": 0.527,
+     "connectivity_distance": 0.107,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.669,
+      "800": 3.006,
+      "1600": 3.252,
+      "3200": 5.308
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.3,
+      "800": 11.8,
+      "1600": 9.66,
+      "3200": 7.27
+     },
+     "valid_fraction": 0.706,
+     "bare_fraction": 0.038,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.1418,
+     "lon": -110.5501,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.629,
+     "worst_scale_log10_roughness_W1": 0.393,
+     "connectivity_distance": 0.147,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.553,
+      "800": 4.786,
+      "1600": 5.1,
+      "3200": 5.629
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.68,
+      "800": 7.68,
+      "1600": 8.06,
+      "3200": 7.78
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.707,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.6824,
+     "lon": -117.3881,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.67,
+     "worst_scale_log10_roughness_W1": 0.654,
+     "connectivity_distance": 0.065,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.116,
+      "800": 2.424,
+      "1600": 4.321,
+      "3200": 5.67
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.27,
+      "800": 11.25,
+      "1600": 9.27,
+      "3200": 7.5
+     },
+     "valid_fraction": 0.913,
+     "bare_fraction": 0.686,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.2308,
+     "lon": -103.949,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.714,
+     "worst_scale_log10_roughness_W1": 0.59,
+     "connectivity_distance": 0.066,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.391,
+      "800": 4.0,
+      "1600": 5.078,
+      "3200": 5.714
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.27,
+      "800": 8.75,
+      "1600": 7.78,
+      "3200": 6.96
+     },
+     "valid_fraction": 0.82,
+     "bare_fraction": 0.085,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.412,
+     "lon": -113.4398,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.82,
+     "worst_scale_log10_roughness_W1": 0.65,
+     "connectivity_distance": 0.049,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.626,
+      "800": 1.198,
+      "1600": 2.801,
+      "3200": 5.82
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 15.59,
+      "800": 13.74,
+      "1600": 10.62,
+      "3200": 6.58
+     },
+     "valid_fraction": 0.883,
+     "bare_fraction": 0.043,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.7273,
+     "lon": -116.2034,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.954,
+     "worst_scale_log10_roughness_W1": 0.701,
+     "connectivity_distance": 0.04,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.367,
+      "800": 2.083,
+      "1600": 4.29,
+      "3200": 5.954
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.79,
+      "800": 11.53,
+      "1600": 9.29,
+      "3200": 7.0
+     },
+     "valid_fraction": 0.932,
+     "bare_fraction": 0.277,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.6368,
+     "lon": -114.8914,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W115_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.5,
+     "worst_scale_log10_roughness_W1": 0.569,
+     "connectivity_distance": 0.067,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.232,
+      "800": 2.763,
+      "1600": 4.657,
+      "3200": 6.5
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.16,
+      "800": 10.88,
+      "1600": 8.5,
+      "3200": 5.99
+     },
+     "valid_fraction": 0.82,
+     "bare_fraction": 0.841,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.367,
+     "lon": -118.6985,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.912,
+     "worst_scale_log10_roughness_W1": 0.456,
+     "connectivity_distance": 0.139,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.616,
+      "800": 4.696,
+      "1600": 6.068,
+      "3200": 6.912
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.73,
+      "800": 8.34,
+      "1600": 6.94,
+      "3200": 5.83
+     },
+     "valid_fraction": 0.895,
+     "bare_fraction": 0.01,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.3665,
+     "lon": -119.1056,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.915,
+     "worst_scale_log10_roughness_W1": 0.402,
+     "connectivity_distance": 0.141,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.771,
+      "800": 5.704,
+      "1600": 6.608,
+      "3200": 6.915
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.04,
+      "800": 7.11,
+      "1600": 6.03,
+      "3200": 5.52
+     },
+     "valid_fraction": 0.811,
+     "bare_fraction": 0.021,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.3669,
+     "lon": -104.6406,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W105_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.96,
+     "worst_scale_log10_roughness_W1": 0.389,
+     "connectivity_distance": 0.136,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.741,
+      "800": 6.464,
+      "1600": 6.849,
+      "3200": 6.96
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.3,
+      "800": 5.39,
+      "1600": 5.25,
+      "3200": 4.86
+     },
+     "valid_fraction": 0.783,
+     "bare_fraction": 0.03,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 39.8171,
+     "lon": -119.1876,
+     "tile": "Copernicus_DSM_COG_30_N39_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.075,
+     "worst_scale_log10_roughness_W1": 0.284,
+     "connectivity_distance": 0.263,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.352,
+      "800": 6.17,
+      "1600": 6.792,
+      "3200": 7.075
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.91,
+      "800": 6.5,
+      "1600": 6.14,
+      "3200": 5.58
+     },
+     "valid_fraction": 0.885,
+     "bare_fraction": 0.041,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.2759,
+     "lon": -111.0572,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.252,
+     "worst_scale_log10_roughness_W1": 0.563,
+     "connectivity_distance": 0.065,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.097,
+      "800": 3.929,
+      "1600": 5.817,
+      "3200": 7.252
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.6,
+      "800": 8.49,
+      "1600": 6.98,
+      "3200": 5.33
+     },
+     "valid_fraction": 0.87,
+     "bare_fraction": 0.12,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.4117,
+     "lon": -112.1993,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.283,
+     "worst_scale_log10_roughness_W1": 0.594,
+     "connectivity_distance": 0.051,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.594,
+      "800": 2.406,
+      "1600": 4.946,
+      "3200": 7.283
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 12.26,
+      "800": 11.22,
+      "1600": 8.14,
+      "3200": 4.83
+     },
+     "valid_fraction": 0.79,
+     "bare_fraction": 0.025,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.5017,
+     "lon": -115.1309,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.43,
+     "worst_scale_log10_roughness_W1": 0.458,
+     "connectivity_distance": 0.114,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.909,
+      "800": 4.709,
+      "1600": 6.521,
+      "3200": 7.43
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.59,
+      "800": 7.53,
+      "1600": 6.39,
+      "3200": 5.24
+     },
+     "valid_fraction": 0.863,
+     "bare_fraction": 0.722,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.7717,
+     "lon": -118.8849,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.015,
+     "worst_scale_log10_roughness_W1": 0.245,
+     "connectivity_distance": 0.375,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.182,
+      "800": 7.635,
+      "1600": 8.015,
+      "3200": 7.998
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.71,
+      "800": 4.48,
+      "1600": 4.2,
+      "3200": 4.43
+     },
+     "valid_fraction": 0.796,
+     "bare_fraction": 0.063,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.9083,
+     "lon": -105.542,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W106_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.149,
+     "worst_scale_log10_roughness_W1": 0.312,
+     "connectivity_distance": 0.223,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.536,
+      "800": 7.555,
+      "1600": 7.614,
+      "3200": 8.149
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.97,
+      "800": 2.75,
+      "1600": 2.76,
+      "3200": 3.13
+     },
+     "valid_fraction": 0.919,
+     "bare_fraction": 0.145,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.3216,
+     "lon": -117.8803,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.151,
+     "worst_scale_log10_roughness_W1": 0.244,
+     "connectivity_distance": 0.328,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.858,
+      "800": 6.513,
+      "1600": 7.382,
+      "3200": 8.151
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.56,
+      "800": 6.14,
+      "1600": 5.43,
+      "3200": 4.38
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.001,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.4113,
+     "lon": -119.943,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.191,
+     "worst_scale_log10_roughness_W1": 0.205,
+     "connectivity_distance": 0.378,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.359,
+      "800": 7.808,
+      "1600": 8.172,
+      "3200": 8.191
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.18,
+      "800": 4.68,
+      "1600": 4.16,
+      "3200": 3.56
+     },
+     "valid_fraction": 0.831,
+     "bare_fraction": 0.033,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.7275,
+     "lon": -113.1912,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.66,
+     "worst_scale_log10_roughness_W1": 0.484,
+     "connectivity_distance": 0.11,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.358,
+      "800": 4.804,
+      "1600": 6.838,
+      "3200": 8.66
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.18,
+      "800": 7.7,
+      "1600": 6.15,
+      "3200": 4.07
+     },
+     "valid_fraction": 0.92,
+     "bare_fraction": 0.02,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.9523,
+     "lon": -120.5778,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W121_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.685,
+     "worst_scale_log10_roughness_W1": 0.265,
+     "connectivity_distance": 0.321,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.614,
+      "800": 7.864,
+      "1600": 8.336,
+      "3200": 8.685
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.12,
+      "800": 4.53,
+      "1600": 4.06,
+      "3200": 3.68
+     },
+     "valid_fraction": 0.77,
+     "bare_fraction": 0.567,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.7725,
+     "lon": -111.612,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.82,
+     "worst_scale_log10_roughness_W1": 0.24,
+     "connectivity_distance": 0.331,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.82,
+      "800": 8.597,
+      "1600": 8.212,
+      "3200": 8.085
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.44,
+      "800": 3.24,
+      "1600": 3.08,
+      "3200": 2.94
+     },
+     "valid_fraction": 0.744,
+     "bare_fraction": 0.83,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.4566,
+     "lon": -118.1205,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.941,
+     "worst_scale_log10_roughness_W1": 0.187,
+     "connectivity_distance": 0.467,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.838,
+      "800": 8.325,
+      "1600": 8.829,
+      "3200": 8.941
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.48,
+      "800": 5.04,
+      "1600": 4.56,
+      "3200": 3.79
+     },
+     "valid_fraction": 0.79,
+     "bare_fraction": 0.022,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9527,
+     "lon": -113.3316,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.981,
+     "worst_scale_log10_roughness_W1": 0.232,
+     "connectivity_distance": 0.305,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.615,
+      "800": 8.375,
+      "1600": 8.57,
+      "3200": 8.981
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.88,
+      "800": 2.52,
+      "1600": 2.3,
+      "3200": 2.33
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.289,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.5915,
+     "lon": -109.9459,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W110_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.587,
+     "worst_scale_log10_roughness_W1": 0.276,
+     "connectivity_distance": 0.234,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.585,
+      "800": 7.46,
+      "1600": 8.728,
+      "3200": 9.587
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.32,
+      "800": 3.28,
+      "1600": 3.16,
+      "3200": 2.81
+     },
+     "valid_fraction": 0.769,
+     "bare_fraction": 0.647,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.727,
+     "lon": -119.2236,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.112,
+     "worst_scale_log10_roughness_W1": 0.167,
+     "connectivity_distance": 0.476,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.426,
+      "800": 8.938,
+      "1600": 9.663,
+      "3200": 10.112
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.92,
+      "800": 4.62,
+      "1600": 3.69,
+      "3200": 2.56
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.005,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.7718,
+     "lon": -117.052,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 3.825,
+     "worst_scale_log10_roughness_W1": 0.669,
+     "connectivity_distance": 0.092,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.765,
+      "800": 1.871,
+      "1600": 1.739,
+      "3200": 3.825
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 17.12,
+      "800": 14.84,
+      "1600": 12.29,
+      "3200": 9.31
+     },
+     "valid_fraction": 0.711,
+     "bare_fraction": 0.814,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.1865,
+     "lon": -117.2221,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 4.855,
+     "worst_scale_log10_roughness_W1": 0.407,
+     "connectivity_distance": 0.273,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.264,
+      "800": 4.149,
+      "1600": 4.577,
+      "3200": 4.855
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.48,
+      "800": 7.22,
+      "1600": 7.36,
+      "3200": 7.64
+     },
+     "valid_fraction": 0.948,
+     "bare_fraction": 0.94,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.773,
+     "lon": -102.5,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.237,
+     "worst_scale_log10_roughness_W1": 0.696,
+     "connectivity_distance": 0.084,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.156,
+      "800": 2.928,
+      "1600": 3.862,
+      "3200": 5.237
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 14.05,
+      "800": 10.94,
+      "1600": 8.21,
+      "3200": 7.07
+     },
+     "valid_fraction": 0.763,
+     "bare_fraction": 0.012,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.4569,
+     "lon": -117.7789,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.528,
+     "worst_scale_log10_roughness_W1": 0.421,
+     "connectivity_distance": 0.237,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.027,
+      "800": 4.836,
+      "1600": 5.528,
+      "3200": 5.513
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.77,
+      "800": 8.02,
+      "1600": 7.32,
+      "3200": 7.2
+     },
+     "valid_fraction": 0.957,
+     "bare_fraction": 0.554,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.0959,
+     "lon": -116.9442,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.769,
+     "worst_scale_log10_roughness_W1": 0.397,
+     "connectivity_distance": 0.322,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.999,
+      "800": 4.871,
+      "1600": 5.656,
+      "3200": 5.769
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.59,
+      "800": 6.89,
+      "1600": 6.43,
+      "3200": 6.44
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.797,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.8627,
+     "lon": -115.5561,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.83,
+     "worst_scale_log10_roughness_W1": 0.404,
+     "connectivity_distance": 0.251,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.456,
+      "800": 5.498,
+      "1600": 5.738,
+      "3200": 5.83
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.73,
+      "800": 5.64,
+      "1600": 5.71,
+      "3200": 5.5
+     },
+     "valid_fraction": 0.997,
+     "bare_fraction": 0.715,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.232,
+     "lon": -119.413,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W120_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.852,
+     "worst_scale_log10_roughness_W1": 0.468,
+     "connectivity_distance": 0.199,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.203,
+      "800": 4.099,
+      "1600": 4.991,
+      "3200": 5.852
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.4,
+      "800": 9.39,
+      "1600": 8.4,
+      "3200": 6.83
+     },
+     "valid_fraction": 0.827,
+     "bare_fraction": 0.194,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.0515,
+     "lon": -113.4036,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.0,
+     "worst_scale_log10_roughness_W1": 0.509,
+     "connectivity_distance": 0.158,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.559,
+      "800": 4.89,
+      "1600": 5.769,
+      "3200": 6.0
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.42,
+      "800": 8.88,
+      "1600": 7.78,
+      "3200": 7.06
+     },
+     "valid_fraction": 0.725,
+     "bare_fraction": 0.177,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.051,
+     "lon": -116.1116,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.008,
+     "worst_scale_log10_roughness_W1": 0.494,
+     "connectivity_distance": 0.164,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.724,
+      "800": 4.884,
+      "1600": 5.792,
+      "3200": 6.008
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.0,
+      "800": 6.12,
+      "1600": 6.38,
+      "3200": 6.41
+     },
+     "valid_fraction": 0.72,
+     "bare_fraction": 0.827,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.3662,
+     "lon": -114.0741,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W115_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.132,
+     "worst_scale_log10_roughness_W1": 0.717,
+     "connectivity_distance": 0.055,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.733,
+      "800": 2.293,
+      "1600": 4.486,
+      "3200": 6.132
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.45,
+      "800": 11.15,
+      "1600": 8.6,
+      "3200": 6.4
+     },
+     "valid_fraction": 0.715,
+     "bare_fraction": 0.217,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.9528,
+     "lon": -117.6169,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.506,
+     "worst_scale_log10_roughness_W1": 0.357,
+     "connectivity_distance": 0.322,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.408,
+      "800": 5.862,
+      "1600": 6.45,
+      "3200": 6.506
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.31,
+      "800": 6.21,
+      "1600": 6.48,
+      "3200": 6.55
+     },
+     "valid_fraction": 0.839,
+     "bare_fraction": 0.373,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.5921,
+     "lon": -117.2302,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.668,
+     "worst_scale_log10_roughness_W1": 0.337,
+     "connectivity_distance": 0.355,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.948,
+      "800": 6.496,
+      "1600": 6.668,
+      "3200": 6.471
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.46,
+      "800": 6.3,
+      "1600": 6.25,
+      "3200": 5.85
+     },
+     "valid_fraction": 0.977,
+     "bare_fraction": 0.843,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.0509,
+     "lon": -103.2939,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W104_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.776,
+     "worst_scale_log10_roughness_W1": 0.35,
+     "connectivity_distance": 0.199,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.904,
+      "800": 5.918,
+      "1600": 6.418,
+      "3200": 6.776
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.58,
+      "800": 4.32,
+      "1600": 4.35,
+      "3200": 4.91
+     },
+     "valid_fraction": 0.877,
+     "bare_fraction": 0.026,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.1418,
+     "lon": -110.3158,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W111_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 7.199,
+     "worst_scale_log10_roughness_W1": 0.582,
+     "connectivity_distance": 0.09,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.42,
+      "800": 4.195,
+      "1600": 5.43,
+      "3200": 7.199
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.08,
+      "800": 8.15,
+      "1600": 7.81,
+      "3200": 5.97
+     },
+     "valid_fraction": 0.779,
+     "bare_fraction": 0.67,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.7271,
+     "lon": -102.9514,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 7.457,
+     "worst_scale_log10_roughness_W1": 0.276,
+     "connectivity_distance": 0.358,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.523,
+      "800": 6.45,
+      "1600": 6.852,
+      "3200": 7.457
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.07,
+      "800": 3.4,
+      "1600": 3.15,
+      "3200": 3.55
+     },
+     "valid_fraction": 0.775,
+     "bare_fraction": 0.043,
+     "snow_ice_fraction": 0.0
+    }
+   ]
+  },
+  "M-MA": {
+   "meta": {
+    "body": "Moon",
+    "desc": "Malapert massif (PGDA Site23)",
+    "grid_m": 100.0,
+    "baselines": [
+     400,
+     800,
+     1600,
+     3200
+    ],
+    "conn_baseline": 800,
+    "n_cells": 31684
+   },
+   "n_compared": 45342,
+   "candidates": [
+    {
+     "lat": 33.4118,
+     "lon": -116.249,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.278,
+     "worst_scale_log10_roughness_W1": 0.651,
+     "connectivity_distance": 0.139,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.176,
+      "800": 2.366,
+      "1600": 3.469,
+      "3200": 5.278
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 17.88,
+      "800": 15.77,
+      "1600": 13.23,
+      "3200": 11.38
+     },
+     "valid_fraction": 0.705,
+     "bare_fraction": 0.569,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.2317,
+     "lon": -116.7225,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.875,
+     "worst_scale_log10_roughness_W1": 0.529,
+     "connectivity_distance": 0.167,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.826,
+      "800": 4.555,
+      "1600": 4.878,
+      "3200": 5.875
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 12.27,
+      "800": 11.24,
+      "1600": 9.74,
+      "3200": 7.98
+     },
+     "valid_fraction": 0.92,
+     "bare_fraction": 0.836,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.412,
+     "lon": -117.3328,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.531,
+     "worst_scale_log10_roughness_W1": 0.588,
+     "connectivity_distance": 0.104,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.747,
+      "800": 4.388,
+      "1600": 5.535,
+      "3200": 6.531
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.2,
+      "800": 11.62,
+      "1600": 10.4,
+      "3200": 9.18
+     },
+     "valid_fraction": 0.817,
+     "bare_fraction": 0.662,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.7729,
+     "lon": -113.5932,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.491,
+     "worst_scale_log10_roughness_W1": 0.646,
+     "connectivity_distance": 0.094,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.249,
+      "800": 4.604,
+      "1600": 6.586,
+      "3200": 7.491
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 14.12,
+      "800": 11.71,
+      "1600": 8.93,
+      "3200": 7.7
+     },
+     "valid_fraction": 0.706,
+     "bare_fraction": 0.192,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9077,
+     "lon": -117.3878,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.145,
+     "worst_scale_log10_roughness_W1": 0.432,
+     "connectivity_distance": 0.336,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.235,
+      "800": 6.937,
+      "1600": 7.805,
+      "3200": 8.145
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.22,
+      "800": 7.94,
+      "1600": 8.02,
+      "3200": 8.58
+     },
+     "valid_fraction": 0.802,
+     "bare_fraction": 0.837,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9076,
+     "lon": -117.7244,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.992,
+     "worst_scale_log10_roughness_W1": 0.467,
+     "connectivity_distance": 0.29,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.128,
+      "800": 7.183,
+      "1600": 8.217,
+      "3200": 8.992
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 10.31,
+      "800": 9.42,
+      "1600": 8.52,
+      "3200": 7.29
+     },
+     "valid_fraction": 0.893,
+     "bare_fraction": 0.746,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.0508,
+     "lon": -103.3553,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.03,
+     "worst_scale_log10_roughness_W1": 0.578,
+     "connectivity_distance": 0.087,
+     "slope_W1_deg_by_baseline": {
+      "400": 4.162,
+      "800": 4.937,
+      "1600": 6.548,
+      "3200": 9.03
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 13.3,
+      "800": 11.8,
+      "1600": 9.66,
+      "3200": 7.27
+     },
+     "valid_fraction": 0.706,
+     "bare_fraction": 0.038,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.1418,
+     "lon": -110.5501,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.351,
+     "worst_scale_log10_roughness_W1": 0.455,
+     "connectivity_distance": 0.157,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.067,
+      "800": 7.833,
+      "1600": 8.396,
+      "3200": 9.351
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.68,
+      "800": 7.68,
+      "1600": 8.06,
+      "3200": 7.78
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.707,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.8627,
+     "lon": -115.5561,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.552,
+     "worst_scale_log10_roughness_W1": 0.427,
+     "connectivity_distance": 0.257,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.86,
+      "800": 8.41,
+      "1600": 9.033,
+      "3200": 9.552
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.73,
+      "800": 5.64,
+      "1600": 5.71,
+      "3200": 5.5
+     },
+     "valid_fraction": 0.997,
+     "bare_fraction": 0.715,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.4571,
+     "lon": -112.5966,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.728,
+     "worst_scale_log10_roughness_W1": 0.312,
+     "connectivity_distance": 0.351,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.819,
+      "800": 9.203,
+      "1600": 9.632,
+      "3200": 9.728
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.0,
+      "800": 5.7,
+      "1600": 5.42,
+      "3200": 5.12
+     },
+     "valid_fraction": 0.701,
+     "bare_fraction": 0.051,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.412,
+     "lon": -104.6406,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W105_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.407,
+     "worst_scale_log10_roughness_W1": 0.28,
+     "connectivity_distance": 0.313,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.039,
+      "800": 10.407,
+      "1600": 10.342,
+      "3200": 10.305
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.53,
+      "800": 3.07,
+      "1600": 3.11,
+      "3200": 4.19
+     },
+     "valid_fraction": 0.862,
+     "bare_fraction": 0.169,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.0509,
+     "lon": -103.2939,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.498,
+     "worst_scale_log10_roughness_W1": 0.372,
+     "connectivity_distance": 0.277,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.271,
+      "800": 8.919,
+      "1600": 9.713,
+      "3200": 10.498
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.58,
+      "800": 4.32,
+      "1600": 4.35,
+      "3200": 4.91
+     },
+     "valid_fraction": 0.877,
+     "bare_fraction": 0.026,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.7725,
+     "lon": -111.612,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.807,
+     "worst_scale_log10_roughness_W1": 0.263,
+     "connectivity_distance": 0.289,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.545,
+      "800": 11.359,
+      "1600": 11.507,
+      "3200": 11.807
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.44,
+      "800": 3.24,
+      "1600": 3.08,
+      "3200": 2.94
+     },
+     "valid_fraction": 0.744,
+     "bare_fraction": 0.83,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.9083,
+     "lon": -105.542,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W106_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.871,
+     "worst_scale_log10_roughness_W1": 0.328,
+     "connectivity_distance": 0.22,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.113,
+      "800": 10.413,
+      "1600": 10.909,
+      "3200": 11.871
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.97,
+      "800": 2.75,
+      "1600": 2.76,
+      "3200": 3.13
+     },
+     "valid_fraction": 0.919,
+     "bare_fraction": 0.145,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.4113,
+     "lon": -119.943,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.913,
+     "worst_scale_log10_roughness_W1": 0.261,
+     "connectivity_distance": 0.46,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.386,
+      "800": 10.924,
+      "1600": 11.468,
+      "3200": 11.913
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.18,
+      "800": 4.68,
+      "1600": 4.16,
+      "3200": 3.56
+     },
+     "valid_fraction": 0.831,
+     "bare_fraction": 0.033,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.5018,
+     "lon": -113.1646,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.928,
+     "worst_scale_log10_roughness_W1": 0.224,
+     "connectivity_distance": 0.551,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.31,
+      "800": 11.458,
+      "1600": 11.644,
+      "3200": 11.928
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.2,
+      "800": 5.11,
+      "1600": 4.85,
+      "3200": 4.42
+     },
+     "valid_fraction": 0.759,
+     "bare_fraction": 0.073,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.096,
+     "lon": -102.2873,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W103_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.194,
+     "worst_scale_log10_roughness_W1": 0.419,
+     "connectivity_distance": 0.194,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.063,
+      "800": 8.755,
+      "1600": 10.141,
+      "3200": 12.194
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.54,
+      "800": 5.35,
+      "1600": 5.13,
+      "3200": 3.66
+     },
+     "valid_fraction": 0.806,
+     "bare_fraction": 0.003,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.6824,
+     "lon": -112.6119,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.206,
+     "worst_scale_log10_roughness_W1": 0.448,
+     "connectivity_distance": 0.157,
+     "slope_W1_deg_by_baseline": {
+      "400": 9.077,
+      "800": 8.679,
+      "1600": 9.995,
+      "3200": 12.206
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.87,
+      "800": 3.86,
+      "1600": 4.42,
+      "3200": 3.92
+     },
+     "valid_fraction": 0.737,
+     "bare_fraction": 0.246,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.4117,
+     "lon": -118.1758,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.254,
+     "worst_scale_log10_roughness_W1": 0.242,
+     "connectivity_distance": 0.463,
+     "slope_W1_deg_by_baseline": {
+      "400": 9.597,
+      "800": 10.305,
+      "1600": 11.264,
+      "3200": 12.254
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.29,
+      "800": 5.86,
+      "1600": 5.27,
+      "3200": 4.2
+     },
+     "valid_fraction": 0.773,
+     "bare_fraction": 0.009,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.8167,
+     "lon": -118.8851,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.279,
+     "worst_scale_log10_roughness_W1": 0.243,
+     "connectivity_distance": 0.429,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.818,
+      "800": 11.328,
+      "1600": 11.9,
+      "3200": 12.279
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 4.5,
+      "800": 4.24,
+      "1600": 3.81,
+      "3200": 3.68
+     },
+     "valid_fraction": 0.995,
+     "bare_fraction": 0.031,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9076,
+     "lon": -113.3317,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.897,
+     "worst_scale_log10_roughness_W1": 0.238,
+     "connectivity_distance": 0.473,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.558,
+      "800": 11.737,
+      "1600": 12.258,
+      "3200": 12.897
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.91,
+      "800": 2.58,
+      "1600": 2.28,
+      "3200": 2.08
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.14,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.7271,
+     "lon": -118.7675,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.344,
+     "worst_scale_log10_roughness_W1": 0.148,
+     "connectivity_distance": 0.621,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.369,
+      "800": 12.671,
+      "1600": 13.0,
+      "3200": 13.344
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.66,
+      "800": 3.31,
+      "1600": 2.9,
+      "3200": 2.53
+     },
+     "valid_fraction": 0.92,
+     "bare_fraction": 0.436,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.3672,
+     "lon": -119.395,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.447,
+     "worst_scale_log10_roughness_W1": 0.174,
+     "connectivity_distance": 0.596,
+     "slope_W1_deg_by_baseline": {
+      "400": 11.993,
+      "800": 12.48,
+      "1600": 13.034,
+      "3200": 13.447
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.57,
+      "800": 3.13,
+      "1600": 2.49,
+      "3200": 2.37
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.001,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.2771,
+     "lon": -108.6432,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W109_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.621,
+     "worst_scale_log10_roughness_W1": 0.175,
+     "connectivity_distance": 0.535,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.593,
+      "800": 13.016,
+      "1600": 13.402,
+      "3200": 13.621
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.53,
+      "800": 3.26,
+      "1600": 3.0,
+      "3200": 2.77
+     },
+     "valid_fraction": 0.891,
+     "bare_fraction": 0.241,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.0966,
+     "lon": -119.1537,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.73,
+     "worst_scale_log10_roughness_W1": 0.149,
+     "connectivity_distance": 0.587,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.58,
+      "800": 12.996,
+      "1600": 13.453,
+      "3200": 13.73
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.32,
+      "800": 2.96,
+      "1600": 2.65,
+      "3200": 2.32
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.001,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 43.1872,
+     "lon": -115.5701,
+     "tile": "Copernicus_DSM_COG_30_N43_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 13.867,
+     "worst_scale_log10_roughness_W1": 0.15,
+     "connectivity_distance": 0.557,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.5,
+      "800": 12.937,
+      "1600": 13.508,
+      "3200": 13.867
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.91,
+      "800": 2.58,
+      "1600": 2.18,
+      "3200": 1.98
+     },
+     "valid_fraction": 0.723,
+     "bare_fraction": 0.001,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.9523,
+     "lon": -109.8368,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W110_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.228,
+     "worst_scale_log10_roughness_W1": 0.19,
+     "connectivity_distance": 0.406,
+     "slope_W1_deg_by_baseline": {
+      "400": 13.393,
+      "800": 13.751,
+      "1600": 14.052,
+      "3200": 14.228
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.64,
+      "800": 2.44,
+      "1600": 2.18,
+      "3200": 1.85
+     },
+     "valid_fraction": 0.753,
+     "bare_fraction": 0.976,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.502,
+     "lon": -111.2575,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.26,
+     "worst_scale_log10_roughness_W1": 0.188,
+     "connectivity_distance": 0.446,
+     "slope_W1_deg_by_baseline": {
+      "400": 12.533,
+      "800": 13.02,
+      "1600": 13.613,
+      "3200": 14.26
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.4,
+      "800": 2.2,
+      "1600": 2.11,
+      "3200": 1.82
+     },
+     "valid_fraction": 0.72,
+     "bare_fraction": 0.709,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.5014,
+     "lon": -117.0535,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 5.75,
+     "worst_scale_log10_roughness_W1": 0.87,
+     "connectivity_distance": 0.055,
+     "slope_W1_deg_by_baseline": {
+      "400": 1.841,
+      "800": 1.704,
+      "1600": 4.132,
+      "3200": 5.75
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 18.38,
+      "800": 15.37,
+      "1600": 12.66,
+      "3200": 10.96
+     },
+     "valid_fraction": 0.82,
+     "bare_fraction": 0.888,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.9072,
+     "lon": -117.1184,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 6.849,
+     "worst_scale_log10_roughness_W1": 0.691,
+     "connectivity_distance": 0.111,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.544,
+      "800": 2.557,
+      "1600": 4.578,
+      "3200": 6.849
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 18.06,
+      "800": 15.26,
+      "1600": 11.5,
+      "3200": 8.39
+     },
+     "valid_fraction": 0.831,
+     "bare_fraction": 0.547,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.7718,
+     "lon": -117.052,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 7.54,
+     "worst_scale_log10_roughness_W1": 0.717,
+     "connectivity_distance": 0.11,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.234,
+      "800": 2.62,
+      "1600": 5.064,
+      "3200": 7.54
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 17.12,
+      "800": 14.84,
+      "1600": 12.29,
+      "3200": 9.31
+     },
+     "valid_fraction": 0.711,
+     "bare_fraction": 0.814,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.1867,
+     "lon": -116.4105,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 7.594,
+     "worst_scale_log10_roughness_W1": 0.553,
+     "connectivity_distance": 0.198,
+     "slope_W1_deg_by_baseline": {
+      "400": 5.328,
+      "800": 6.168,
+      "1600": 6.845,
+      "3200": 7.594
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 11.36,
+      "800": 10.75,
+      "1600": 10.14,
+      "3200": 8.93
+     },
+     "valid_fraction": 0.825,
+     "bare_fraction": 0.387,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.2311,
+     "lon": -102.8503,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 8.502,
+     "worst_scale_log10_roughness_W1": 0.754,
+     "connectivity_distance": 0.106,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.278,
+      "800": 4.358,
+      "1600": 6.942,
+      "3200": 8.502
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 14.71,
+      "800": 11.64,
+      "1600": 8.77,
+      "3200": 7.21
+     },
+     "valid_fraction": 0.754,
+     "bare_fraction": 0.019,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.1865,
+     "lon": -117.2221,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 8.577,
+     "worst_scale_log10_roughness_W1": 0.437,
+     "connectivity_distance": 0.35,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.446,
+      "800": 7.089,
+      "1600": 7.873,
+      "3200": 8.577
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.48,
+      "800": 7.22,
+      "1600": 7.36,
+      "3200": 7.64
+     },
+     "valid_fraction": 0.948,
+     "bare_fraction": 0.94,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.6821,
+     "lon": -117.1747,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 8.946,
+     "worst_scale_log10_roughness_W1": 0.481,
+     "connectivity_distance": 0.333,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.796,
+      "800": 7.837,
+      "1600": 8.575,
+      "3200": 8.946
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.71,
+      "800": 8.79,
+      "1600": 8.22,
+      "3200": 7.67
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.776,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.773,
+     "lon": -102.5,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 8.959,
+     "worst_scale_log10_roughness_W1": 0.758,
+     "connectivity_distance": 0.089,
+     "slope_W1_deg_by_baseline": {
+      "400": 3.485,
+      "800": 4.716,
+      "1600": 7.138,
+      "3200": 8.959
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 14.05,
+      "800": 10.94,
+      "1600": 8.21,
+      "3200": 7.07
+     },
+     "valid_fraction": 0.763,
+     "bare_fraction": 0.012,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.4569,
+     "lon": -117.7789,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 9.235,
+     "worst_scale_log10_roughness_W1": 0.471,
+     "connectivity_distance": 0.319,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.911,
+      "800": 7.953,
+      "1600": 8.824,
+      "3200": 9.235
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.77,
+      "800": 8.02,
+      "1600": 7.32,
+      "3200": 7.2
+     },
+     "valid_fraction": 0.957,
+     "bare_fraction": 0.554,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.2316,
+     "lon": -112.7781,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W113_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 9.464,
+     "worst_scale_log10_roughness_W1": 0.587,
+     "connectivity_distance": 0.163,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.618,
+      "800": 7.052,
+      "1600": 6.753,
+      "3200": 9.464
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.12,
+      "800": 8.03,
+      "1600": 9.57,
+      "3200": 7.41
+     },
+     "valid_fraction": 0.852,
+     "bare_fraction": 0.335,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.5019,
+     "lon": -111.1558,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W112_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 9.503,
+     "worst_scale_log10_roughness_W1": 0.817,
+     "connectivity_distance": 0.067,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.031,
+      "800": 2.878,
+      "1600": 6.195,
+      "3200": 9.503
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 17.14,
+      "800": 14.46,
+      "1600": 10.55,
+      "3200": 6.93
+     },
+     "valid_fraction": 0.843,
+     "bare_fraction": 0.127,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.412,
+     "lon": -113.4398,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 9.542,
+     "worst_scale_log10_roughness_W1": 0.732,
+     "connectivity_distance": 0.099,
+     "slope_W1_deg_by_baseline": {
+      "400": 2.098,
+      "800": 3.255,
+      "1600": 6.097,
+      "3200": 9.542
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 15.59,
+      "800": 13.74,
+      "1600": 10.62,
+      "3200": 6.58
+     },
+     "valid_fraction": 0.883,
+     "bare_fraction": 0.043,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.051,
+     "lon": -116.1116,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 9.73,
+     "worst_scale_log10_roughness_W1": 0.504,
+     "connectivity_distance": 0.237,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.803,
+      "800": 7.984,
+      "1600": 9.087,
+      "3200": 9.73
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.0,
+      "800": 6.12,
+      "1600": 6.38,
+      "3200": 6.41
+     },
+     "valid_fraction": 0.72,
+     "bare_fraction": 0.827,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.9528,
+     "lon": -117.6169,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 10.228,
+     "worst_scale_log10_roughness_W1": 0.392,
+     "connectivity_distance": 0.404,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.199,
+      "800": 8.972,
+      "1600": 9.745,
+      "3200": 10.228
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.31,
+      "800": 6.21,
+      "1600": 6.48,
+      "3200": 6.55
+     },
+     "valid_fraction": 0.839,
+     "bare_fraction": 0.373,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.6827,
+     "lon": -102.3885,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 10.538,
+     "worst_scale_log10_roughness_W1": 0.497,
+     "connectivity_distance": 0.22,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.705,
+      "800": 9.206,
+      "1600": 9.808,
+      "3200": 10.538
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.53,
+      "800": 5.17,
+      "1600": 4.73,
+      "3200": 4.24
+     },
+     "valid_fraction": 0.812,
+     "bare_fraction": 0.028,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.6818,
+     "lon": -114.8916,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W115_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 10.582,
+     "worst_scale_log10_roughness_W1": 0.56,
+     "connectivity_distance": 0.157,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.123,
+      "800": 7.291,
+      "1600": 9.028,
+      "3200": 10.582
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.53,
+      "800": 7.67,
+      "1600": 6.75,
+      "3200": 5.26
+     },
+     "valid_fraction": 0.794,
+     "bare_fraction": 0.857,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.3665,
+     "lon": -119.1056,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W120_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 10.637,
+     "worst_scale_log10_roughness_W1": 0.454,
+     "connectivity_distance": 0.223,
+     "slope_W1_deg_by_baseline": {
+      "400": 7.805,
+      "800": 8.821,
+      "1600": 9.904,
+      "3200": 10.637
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.04,
+      "800": 7.11,
+      "1600": 6.03,
+      "3200": 5.52
+     },
+     "valid_fraction": 0.811,
+     "bare_fraction": 0.021,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 39.8171,
+     "lon": -119.1876,
+     "tile": "Copernicus_DSM_COG_30_N39_00_W120_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 10.797,
+     "worst_scale_log10_roughness_W1": 0.314,
+     "connectivity_distance": 0.345,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.375,
+      "800": 9.287,
+      "1600": 10.088,
+      "3200": 10.797
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 6.91,
+      "800": 6.5,
+      "1600": 6.14,
+      "3200": 5.58
+     },
+     "valid_fraction": 0.885,
+     "bare_fraction": 0.041,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.1418,
+     "lon": -110.3158,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W111_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 10.921,
+     "worst_scale_log10_roughness_W1": 0.678,
+     "connectivity_distance": 0.093,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.719,
+      "800": 6.331,
+      "1600": 8.726,
+      "3200": 10.921
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 9.08,
+      "800": 8.15,
+      "1600": 7.81,
+      "3200": 5.97
+     },
+     "valid_fraction": 0.779,
+     "bare_fraction": 0.67,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.141,
+     "lon": -100.75,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W101_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 11.007,
+     "worst_scale_log10_roughness_W1": 0.399,
+     "connectivity_distance": 0.275,
+     "slope_W1_deg_by_baseline": {
+      "400": 8.151,
+      "800": 8.808,
+      "1600": 9.623,
+      "3200": 11.007
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 7.36,
+      "800": 6.74,
+      "1600": 5.47,
+      "3200": 4.67
+     },
+     "valid_fraction": 0.719,
+     "bare_fraction": 0.031,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.5017,
+     "lon": -115.1309,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 11.151,
+     "worst_scale_log10_roughness_W1": 0.492,
+     "connectivity_distance": 0.193,
+     "slope_W1_deg_by_baseline": {
+      "400": 6.264,
+      "800": 7.834,
+      "1600": 9.816,
+      "3200": 11.151
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 8.59,
+      "800": 7.53,
+      "1600": 6.39,
+      "3200": 5.24
+     },
+     "valid_fraction": 0.863,
+     "bare_fraction": 0.722,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.7728,
+     "lon": -113.5285,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 11.518,
+     "worst_scale_log10_roughness_W1": 0.295,
+     "connectivity_distance": 0.545,
+     "slope_W1_deg_by_baseline": {
+      "400": 10.462,
+      "800": 11.056,
+      "1600": 11.468,
+      "3200": 11.518
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 5.6,
+      "800": 5.34,
+      "1600": 5.3,
+      "3200": 5.02
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.156,
+     "snow_ice_fraction": 0.0
+    }
+   ]
+  },
+  "R-JZ": {
+   "meta": {
+    "body": "Mars",
+    "desc": "Jezero crater, 1 degree box",
+    "grid_m": 199.999991643332,
+    "baselines": [
+     1600,
+     3200
+    ],
+    "conn_baseline": 1600,
+    "n_cells": 74200
+   },
+   "n_compared": 45342,
+   "candidates": [
+    {
+     "lat": 26.5925,
+     "lon": -103.3996,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.276,
+     "worst_scale_log10_roughness_W1": 0.373,
+     "connectivity_distance": 0.04,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.276,
+      "3200": 0.242
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.25,
+      "800": 2.12,
+      "1600": 1.87,
+      "3200": 1.6
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.36,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.6823,
+     "lon": -117.3533,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.297,
+     "worst_scale_log10_roughness_W1": 0.225,
+     "connectivity_distance": 0.018,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.144,
+      "3200": 0.297
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.17,
+      "800": 2.1,
+      "1600": 2.03,
+      "3200": 1.74
+     },
+     "valid_fraction": 0.958,
+     "bare_fraction": 0.036,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.7725,
+     "lon": -113.2479,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.299,
+     "worst_scale_log10_roughness_W1": 0.188,
+     "connectivity_distance": 0.026,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.289,
+      "3200": 0.299
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.25,
+      "800": 1.95,
+      "1600": 1.73,
+      "3200": 1.38
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.171,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.3667,
+     "lon": -102.2868,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W103_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.303,
+     "worst_scale_log10_roughness_W1": 0.25,
+     "connectivity_distance": 0.013,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.303,
+      "3200": 0.294
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.08,
+      "800": 2.04,
+      "1600": 1.87,
+      "3200": 1.42
+     },
+     "valid_fraction": 0.842,
+     "bare_fraction": 0.003,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.5923,
+     "lon": -104.6925,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W105_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.317,
+     "worst_scale_log10_roughness_W1": 0.136,
+     "connectivity_distance": 0.024,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.317,
+      "3200": 0.277
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.01,
+      "800": 1.68,
+      "1600": 1.51,
+      "3200": 1.45
+     },
+     "valid_fraction": 0.828,
+     "bare_fraction": 0.574,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 43.3672,
+     "lon": -117.5703,
+     "tile": "Copernicus_DSM_COG_30_N43_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.351,
+     "worst_scale_log10_roughness_W1": 0.142,
+     "connectivity_distance": 0.022,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.345,
+      "3200": 0.351
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.39,
+      "800": 2.21,
+      "1600": 1.8,
+      "3200": 1.33
+     },
+     "valid_fraction": 0.971,
+     "bare_fraction": 0.01,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.8624,
+     "lon": -115.5901,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.357,
+     "worst_scale_log10_roughness_W1": 0.136,
+     "connectivity_distance": 0.024,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.357,
+      "3200": 0.345
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.31,
+      "800": 1.9,
+      "1600": 1.53,
+      "3200": 1.47
+     },
+     "valid_fraction": 0.977,
+     "bare_fraction": 0.016,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.5465,
+     "lon": -119.9472,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.372,
+     "worst_scale_log10_roughness_W1": 0.376,
+     "connectivity_distance": 0.012,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.31,
+      "3200": 0.372
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.65,
+      "800": 1.63,
+      "1600": 1.62,
+      "3200": 1.64
+     },
+     "valid_fraction": 0.721,
+     "bare_fraction": 0.041,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.0962,
+     "lon": -117.177,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.375,
+     "worst_scale_log10_roughness_W1": 0.242,
+     "connectivity_distance": 0.004,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.305,
+      "3200": 0.375
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.82,
+      "800": 1.77,
+      "1600": 1.72,
+      "3200": 1.75
+     },
+     "valid_fraction": 0.9,
+     "bare_fraction": 0.596,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.7274,
+     "lon": -114.7304,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W115_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.379,
+     "worst_scale_log10_roughness_W1": 0.202,
+     "connectivity_distance": 0.015,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.278,
+      "3200": 0.379
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.42,
+      "800": 2.12,
+      "1600": 1.92,
+      "3200": 1.68
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.851,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.1866,
+     "lon": -110.2865,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.391,
+     "worst_scale_log10_roughness_W1": 0.13,
+     "connectivity_distance": 0.01,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.391,
+      "3200": 0.378
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.32,
+      "800": 2.12,
+      "1600": 1.76,
+      "3200": 1.65
+     },
+     "valid_fraction": 0.927,
+     "bare_fraction": 0.707,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.5016,
+     "lon": -109.1048,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W110_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.408,
+     "worst_scale_log10_roughness_W1": 0.05,
+     "connectivity_distance": 0.025,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.408,
+      "3200": 0.388
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.2,
+      "800": 1.92,
+      "1600": 1.61,
+      "3200": 1.28
+     },
+     "valid_fraction": 0.812,
+     "bare_fraction": 0.299,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.2765,
+     "lon": -116.1957,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.408,
+     "worst_scale_log10_roughness_W1": 0.074,
+     "connectivity_distance": 0.008,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.408,
+      "3200": 0.352
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.65,
+      "800": 2.26,
+      "1600": 1.9,
+      "3200": 1.67
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.994,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.457,
+     "lon": -102.6923,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W103_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.427,
+     "worst_scale_log10_roughness_W1": 0.067,
+     "connectivity_distance": 0.006,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.427,
+      "3200": 0.351
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.27,
+      "800": 1.78,
+      "1600": 1.45,
+      "3200": 1.5
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.123,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.4119,
+     "lon": -112.6471,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.473,
+     "worst_scale_log10_roughness_W1": 0.183,
+     "connectivity_distance": 0.005,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.473,
+      "3200": 0.248
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.76,
+      "800": 1.62,
+      "1600": 1.49,
+      "3200": 1.46
+     },
+     "valid_fraction": 0.99,
+     "bare_fraction": 0.475,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.3214,
+     "lon": -113.8898,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.513,
+     "worst_scale_log10_roughness_W1": 0.124,
+     "connectivity_distance": 0.006,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.513,
+      "3200": 0.412
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.05,
+      "800": 2.53,
+      "1600": 2.08,
+      "3200": 1.77
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.51,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.682,
+     "lon": -118.7673,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.517,
+     "worst_scale_log10_roughness_W1": 0.074,
+     "connectivity_distance": 0.005,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.517,
+      "3200": 0.448
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.93,
+      "800": 2.6,
+      "1600": 2.28,
+      "3200": 1.84
+     },
+     "valid_fraction": 0.968,
+     "bare_fraction": 0.223,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 39.7722,
+     "lon": -113.2461,
+     "tile": "Copernicus_DSM_COG_30_N39_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.526,
+     "worst_scale_log10_roughness_W1": 0.372,
+     "connectivity_distance": 0.004,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.526,
+      "3200": 0.5
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.84,
+      "800": 1.83,
+      "1600": 1.81,
+      "3200": 1.79
+     },
+     "valid_fraction": 0.942,
+     "bare_fraction": 0.685,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.4114,
+     "lon": -103.0739,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.536,
+     "worst_scale_log10_roughness_W1": 0.147,
+     "connectivity_distance": 0.004,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.533,
+      "3200": 0.536
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.58,
+      "800": 2.22,
+      "1600": 1.9,
+      "3200": 1.63
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.377,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.3217,
+     "lon": -118.8247,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.564,
+     "worst_scale_log10_roughness_W1": 0.174,
+     "connectivity_distance": 0.004,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.435,
+      "3200": 0.564
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.69,
+      "800": 2.46,
+      "1600": 2.23,
+      "3200": 2.11
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.6,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.4566,
+     "lon": -115.8929,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.585,
+     "worst_scale_log10_roughness_W1": 0.371,
+     "connectivity_distance": 0.003,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.423,
+      "3200": 0.585
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.26,
+      "800": 2.21,
+      "1600": 2.15,
+      "3200": 2.03
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.975,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.7275,
+     "lon": -118.4868,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W119_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.602,
+     "worst_scale_log10_roughness_W1": 0.117,
+     "connectivity_distance": 0.005,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.545,
+      "3200": 0.602
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.54,
+      "800": 2.32,
+      "1600": 2.17,
+      "3200": 2.21
+     },
+     "valid_fraction": 0.826,
+     "bare_fraction": 0.601,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.7729,
+     "lon": -103.6476,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.616,
+     "worst_scale_log10_roughness_W1": 0.231,
+     "connectivity_distance": 0.002,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.547,
+      "3200": 0.616
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.97,
+      "800": 1.92,
+      "1600": 1.85,
+      "3200": 1.62
+     },
+     "valid_fraction": 0.824,
+     "bare_fraction": 0.047,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.2319,
+     "lon": -108.7028,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W109_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.632,
+     "worst_scale_log10_roughness_W1": 0.04,
+     "connectivity_distance": 0.017,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.632,
+      "3200": 0.606
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.55,
+      "800": 2.29,
+      "1600": 2.05,
+      "3200": 1.68
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.283,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.9073,
+     "lon": -108.0528,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W109_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.687,
+     "worst_scale_log10_roughness_W1": 0.123,
+     "connectivity_distance": 0.004,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.674,
+      "3200": 0.687
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.83,
+      "800": 2.17,
+      "1600": 1.83,
+      "3200": 1.73
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.225,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.8173,
+     "lon": -110.2198,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.7,
+     "worst_scale_log10_roughness_W1": 0.136,
+     "connectivity_distance": 0.004,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.607,
+      "3200": 0.7
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.41,
+      "800": 2.1,
+      "1600": 1.85,
+      "3200": 1.62
+     },
+     "valid_fraction": 0.769,
+     "bare_fraction": 0.941,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 24.5921,
+     "lon": -101.8535,
+     "tile": "Copernicus_DSM_COG_30_N24_00_W102_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.739,
+     "worst_scale_log10_roughness_W1": 0.637,
+     "connectivity_distance": 0.002,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.739,
+      "3200": 0.421
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.28,
+      "800": 1.25,
+      "1600": 1.24,
+      "3200": 1.29
+     },
+     "valid_fraction": 0.813,
+     "bare_fraction": 0.014,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.7723,
+     "lon": -104.8997,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W105_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.749,
+     "worst_scale_log10_roughness_W1": 0.148,
+     "connectivity_distance": 0.003,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.749,
+      "3200": 0.618
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.79,
+      "800": 2.04,
+      "1600": 1.58,
+      "3200": 1.43
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.209,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.096,
+     "lon": -103.7429,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.83,
+     "worst_scale_log10_roughness_W1": 0.089,
+     "connectivity_distance": 0.003,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.83,
+      "3200": 0.727
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.93,
+      "800": 1.61,
+      "1600": 1.25,
+      "3200": 0.98
+     },
+     "valid_fraction": 0.77,
+     "bare_fraction": 0.678,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 43.0966,
+     "lon": -119.8771,
+     "tile": "Copernicus_DSM_COG_30_N43_00_W120_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.861,
+     "worst_scale_log10_roughness_W1": 0.043,
+     "connectivity_distance": 0.009,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.861,
+      "3200": 0.772
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.95,
+      "800": 1.77,
+      "1600": 1.43,
+      "3200": 1.04
+     },
+     "valid_fraction": 0.858,
+     "bare_fraction": 0.012,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 36.7718,
+     "lon": -110.948,
+     "tile": "Copernicus_DSM_COG_30_N36_00_W111_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.868,
+     "worst_scale_log10_roughness_W1": 0.04,
+     "connectivity_distance": 0.017,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.868,
+      "3200": 0.855
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.44,
+      "800": 2.13,
+      "1600": 1.85,
+      "3200": 1.61
+     },
+     "valid_fraction": 0.81,
+     "bare_fraction": 0.789,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.7719,
+     "lon": -115.0965,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.903,
+     "worst_scale_log10_roughness_W1": 0.041,
+     "connectivity_distance": 0.015,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.898,
+      "3200": 0.903
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.97,
+      "800": 2.66,
+      "1600": 2.44,
+      "3200": 2.3
+     },
+     "valid_fraction": 0.971,
+     "bare_fraction": 0.453,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.5473,
+     "lon": -112.3313,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.908,
+     "worst_scale_log10_roughness_W1": 0.209,
+     "connectivity_distance": 0.002,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.785,
+      "3200": 0.908
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.7,
+      "800": 2.41,
+      "1600": 2.09,
+      "3200": 1.79
+     },
+     "valid_fraction": 0.991,
+     "bare_fraction": 0.136,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.6816,
+     "lon": -109.9465,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W110_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.931,
+     "worst_scale_log10_roughness_W1": 0.21,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.79,
+      "3200": 0.931
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.74,
+      "800": 2.38,
+      "1600": 1.98,
+      "3200": 1.75
+     },
+     "valid_fraction": 0.814,
+     "bare_fraction": 0.91,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.5022,
+     "lon": -103.5461,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.968,
+     "worst_scale_log10_roughness_W1": 0.199,
+     "connectivity_distance": 0.003,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.882,
+      "3200": 0.968
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.69,
+      "800": 2.12,
+      "1600": 1.69,
+      "3200": 1.46
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.017,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.2766,
+     "lon": -104.5928,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W105_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.004,
+     "worst_scale_log10_roughness_W1": 0.209,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.81,
+      "3200": 1.004
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.83,
+      "800": 2.22,
+      "1600": 1.77,
+      "3200": 1.39
+     },
+     "valid_fraction": 0.872,
+     "bare_fraction": 0.039,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 43.3666,
+     "lon": -107.8788,
+     "tile": "Copernicus_DSM_COG_30_N43_00_W108_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.021,
+     "worst_scale_log10_roughness_W1": 0.033,
+     "connectivity_distance": 0.028,
+     "slope_W1_deg_by_baseline": {
+      "1600": 1.021,
+      "3200": 1.015
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.56,
+      "800": 2.27,
+      "1600": 1.99,
+      "3200": 1.67
+     },
+     "valid_fraction": 0.72,
+     "bare_fraction": 0.422,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.3217,
+     "lon": -107.2657,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W108_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 1.071,
+     "worst_scale_log10_roughness_W1": 0.175,
+     "connectivity_distance": 0.003,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.946,
+      "3200": 1.071
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.77,
+      "800": 1.6,
+      "1600": 1.43,
+      "3200": 1.21
+     },
+     "valid_fraction": 0.92,
+     "bare_fraction": 0.284,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.1411,
+     "lon": -105.7944,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W106_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.295,
+     "worst_scale_log10_roughness_W1": 0.423,
+     "connectivity_distance": 0.046,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.238,
+      "3200": 0.295
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.63,
+      "800": 1.57,
+      "1600": 1.52,
+      "3200": 1.57
+     },
+     "valid_fraction": 0.877,
+     "bare_fraction": 0.094,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 42.8623,
+     "lon": -120.4553,
+     "tile": "Copernicus_DSM_COG_30_N42_00_W121_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.334,
+     "worst_scale_log10_roughness_W1": 0.274,
+     "connectivity_distance": 0.072,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.334,
+      "3200": 0.231
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.07,
+      "800": 2.72,
+      "1600": 2.15,
+      "3200": 1.44
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.094,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.2314,
+     "lon": -114.1958,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W115_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.334,
+     "worst_scale_log10_roughness_W1": 0.314,
+     "connectivity_distance": 0.047,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.27,
+      "3200": 0.334
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 3.33,
+      "800": 2.69,
+      "1600": 2.08,
+      "3200": 1.76
+     },
+     "valid_fraction": 0.949,
+     "bare_fraction": 0.543,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.5918,
+     "lon": -113.8948,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.338,
+     "worst_scale_log10_roughness_W1": 0.395,
+     "connectivity_distance": 0.03,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.233,
+      "3200": 0.338
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.5,
+      "800": 2.09,
+      "1600": 1.73,
+      "3200": 1.49
+     },
+     "valid_fraction": 0.943,
+     "bare_fraction": 0.513,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.7729,
+     "lon": -105.5932,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W106_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.353,
+     "worst_scale_log10_roughness_W1": 0.203,
+     "connectivity_distance": 0.074,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.341,
+      "3200": 0.353
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.92,
+      "800": 2.54,
+      "1600": 2.19,
+      "3200": 1.6
+     },
+     "valid_fraction": 0.937,
+     "bare_fraction": 0.182,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.2318,
+     "lon": -117.4511,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.353,
+     "worst_scale_log10_roughness_W1": 0.374,
+     "connectivity_distance": 0.028,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.274,
+      "3200": 0.353
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.1,
+      "800": 2.05,
+      "1600": 1.91,
+      "3200": 1.65
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.922,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.9532,
+     "lon": -103.6414,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W104_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.355,
+     "worst_scale_log10_roughness_W1": 0.196,
+     "connectivity_distance": 0.046,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.355,
+      "3200": 0.353
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.02,
+      "800": 1.77,
+      "1600": 1.58,
+      "3200": 1.49
+     },
+     "valid_fraction": 0.715,
+     "bare_fraction": 0.125,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.5473,
+     "lon": -114.3313,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W115_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.355,
+     "worst_scale_log10_roughness_W1": 0.159,
+     "connectivity_distance": 0.034,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.254,
+      "3200": 0.355
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 2.4,
+      "800": 2.14,
+      "1600": 2.03,
+      "3200": 1.75
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.86,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.9533,
+     "lon": -103.8035,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W104_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.363,
+     "worst_scale_log10_roughness_W1": 0.297,
+     "connectivity_distance": 0.022,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.325,
+      "3200": 0.363
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.78,
+      "800": 1.69,
+      "1600": 1.64,
+      "3200": 1.58
+     },
+     "valid_fraction": 0.775,
+     "bare_fraction": 0.078,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.592,
+     "lon": -105.133,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W106_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.372,
+     "worst_scale_log10_roughness_W1": 0.19,
+     "connectivity_distance": 0.027,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.372,
+      "3200": 0.317
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.9,
+      "800": 1.83,
+      "1600": 1.76,
+      "3200": 1.69
+     },
+     "valid_fraction": 0.891,
+     "bare_fraction": 0.132,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.5472,
+     "lon": -116.3806,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W117_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.374,
+     "worst_scale_log10_roughness_W1": 0.568,
+     "connectivity_distance": 0.014,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.374,
+      "3200": 0.341
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.81,
+      "800": 1.79,
+      "1600": 1.81,
+      "3200": 1.82
+     },
+     "valid_fraction": 0.862,
+     "bare_fraction": 0.568,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.367,
+     "lon": -117.3809,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W118_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.392,
+     "worst_scale_log10_roughness_W1": 0.4,
+     "connectivity_distance": 0.012,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.373,
+      "3200": 0.392
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.94,
+      "800": 1.92,
+      "1600": 1.84,
+      "3200": 1.67
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.884,
+     "snow_ice_fraction": 0.0
+    }
+   ]
+  },
+  "R-IS": {
+   "meta": {
+    "body": "Mars",
+    "desc": "InSight landing site, Elysium Planitia, 1 degree box",
+    "grid_m": 199.999991643332,
+    "baselines": [
+     1600,
+     3200
+    ],
+    "conn_baseline": 1600,
+    "n_cells": 78120
+   },
+   "n_compared": 45342,
+   "candidates": [
+    {
+     "lat": 39.187,
+     "lon": -112.4797,
+     "tile": "Copernicus_DSM_COG_30_N39_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.017,
+     "worst_scale_log10_roughness_W1": 0.205,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.017,
+      "3200": 0.014
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.24,
+      "800": 0.22,
+      "1600": 0.21,
+      "3200": 0.2
+     },
+     "valid_fraction": 0.88,
+     "bare_fraction": 0.708,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 39.6373,
+     "lon": -112.5961,
+     "tile": "Copernicus_DSM_COG_30_N39_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.024,
+     "worst_scale_log10_roughness_W1": 0.157,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.019,
+      "3200": 0.024
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.25,
+      "800": 0.23,
+      "1600": 0.22,
+      "3200": 0.22
+     },
+     "valid_fraction": 0.968,
+     "bare_fraction": 0.525,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.7265,
+     "lon": -114.9451,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W115_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.029,
+     "worst_scale_log10_roughness_W1": 0.141,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.029,
+      "3200": 0.026
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.21,
+      "800": 0.21,
+      "1600": 0.2,
+      "3200": 0.21
+     },
+     "valid_fraction": 0.811,
+     "bare_fraction": 0.213,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.367,
+     "lon": -103.5715,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.03,
+     "worst_scale_log10_roughness_W1": 0.111,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.03,
+      "3200": 0.026
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.21,
+      "800": 0.2,
+      "1600": 0.2,
+      "3200": 0.19
+     },
+     "valid_fraction": 0.826,
+     "bare_fraction": 0.004,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.9077,
+     "lon": -114.2475,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W115_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.038,
+     "worst_scale_log10_roughness_W1": 0.087,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.038,
+      "3200": 0.028
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.18,
+      "800": 0.17,
+      "1600": 0.16,
+      "3200": 0.16
+     },
+     "valid_fraction": 0.81,
+     "bare_fraction": 0.827,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 25.7276,
+     "lon": -101.8029,
+     "tile": "Copernicus_DSM_COG_30_N25_00_W102_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.043,
+     "worst_scale_log10_roughness_W1": 0.242,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.043,
+      "3200": 0.043
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.22,
+      "800": 0.22,
+      "1600": 0.21,
+      "3200": 0.21
+     },
+     "valid_fraction": 0.724,
+     "bare_fraction": 0.536,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.7274,
+     "lon": -117.7271,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.044,
+     "worst_scale_log10_roughness_W1": 0.084,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.044,
+      "3200": 0.041
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.19,
+      "800": 0.17,
+      "1600": 0.16,
+      "3200": 0.15
+     },
+     "valid_fraction": 0.864,
+     "bare_fraction": 0.918,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.9078,
+     "lon": -103.9017,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.045,
+     "worst_scale_log10_roughness_W1": 0.075,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.045,
+      "3200": 0.036
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.29,
+      "800": 0.27,
+      "1600": 0.25,
+      "3200": 0.24
+     },
+     "valid_fraction": 0.752,
+     "bare_fraction": 0.465,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.1414,
+     "lon": -106.6856,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W107_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.05,
+     "worst_scale_log10_roughness_W1": 0.074,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.05,
+      "3200": 0.049
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.23,
+      "800": 0.22,
+      "1600": 0.2,
+      "3200": 0.17
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.674,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.9077,
+     "lon": -103.047,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.07,
+     "worst_scale_log10_roughness_W1": 0.17,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.03,
+      "3200": 0.07
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.27,
+      "800": 0.24,
+      "1600": 0.19,
+      "3200": 0.18
+     },
+     "valid_fraction": 0.81,
+     "bare_fraction": 0.674,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 30.4569,
+     "lon": -112.7416,
+     "tile": "Copernicus_DSM_COG_30_N30_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.072,
+     "worst_scale_log10_roughness_W1": 0.117,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.06,
+      "3200": 0.072
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.26,
+      "800": 0.26,
+      "1600": 0.26,
+      "3200": 0.25
+     },
+     "valid_fraction": 0.946,
+     "bare_fraction": 0.893,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.9068,
+     "lon": -117.1154,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W118_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.077,
+     "worst_scale_log10_roughness_W1": 0.313,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.045,
+      "3200": 0.077
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.22,
+      "800": 0.19,
+      "1600": 0.16,
+      "3200": 0.12
+     },
+     "valid_fraction": 0.866,
+     "bare_fraction": 0.11,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 30.0963,
+     "lon": -105.6369,
+     "tile": "Copernicus_DSM_COG_30_N30_00_W106_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.079,
+     "worst_scale_log10_roughness_W1": 0.28,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.079,
+      "3200": 0.074
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.33,
+      "800": 0.31,
+      "1600": 0.28,
+      "3200": 0.26
+     },
+     "valid_fraction": 0.991,
+     "bare_fraction": 0.657,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.0517,
+     "lon": -113.316,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.09,
+     "worst_scale_log10_roughness_W1": 0.117,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.09,
+      "3200": 0.078
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.15,
+      "800": 0.13,
+      "1600": 0.12,
+      "3200": 0.12
+     },
+     "valid_fraction": 0.806,
+     "bare_fraction": 0.241,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.3667,
+     "lon": -102.7505,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W103_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.101,
+     "worst_scale_log10_roughness_W1": 0.262,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.101,
+      "3200": 0.101
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.14,
+      "800": 0.13,
+      "1600": 0.13,
+      "3200": 0.14
+     },
+     "valid_fraction": 0.93,
+     "bare_fraction": 0.639,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 38.2317,
+     "lon": -116.2584,
+     "tile": "Copernicus_DSM_COG_30_N38_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.103,
+     "worst_scale_log10_roughness_W1": 0.048,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.088,
+      "3200": 0.103
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.31,
+      "800": 0.31,
+      "1600": 0.3,
+      "3200": 0.29
+     },
+     "valid_fraction": 0.792,
+     "bare_fraction": 0.967,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.141,
+     "lon": -113.7962,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.119,
+     "worst_scale_log10_roughness_W1": 0.19,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.119,
+      "3200": 0.119
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.32,
+      "800": 0.3,
+      "1600": 0.29,
+      "3200": 0.29
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.097,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.6375,
+     "lon": -113.41,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.12,
+     "worst_scale_log10_roughness_W1": 0.184,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.115,
+      "3200": 0.12
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.31,
+      "800": 0.3,
+      "1600": 0.29,
+      "3200": 0.29
+     },
+     "valid_fraction": 0.772,
+     "bare_fraction": 0.693,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.727,
+     "lon": -113.8954,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.131,
+     "worst_scale_log10_roughness_W1": 0.157,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.1,
+      "3200": 0.131
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.34,
+      "800": 0.34,
+      "1600": 0.34,
+      "3200": 0.34
+     },
+     "valid_fraction": 0.783,
+     "bare_fraction": 0.809,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.5473,
+     "lon": -104.3375,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W105_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.151,
+     "worst_scale_log10_roughness_W1": 0.045,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.151,
+      "3200": 0.148
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.37,
+      "800": 0.36,
+      "1600": 0.35,
+      "3200": 0.34
+     },
+     "valid_fraction": 0.92,
+     "bare_fraction": 0.032,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 29.8179,
+     "lon": -105.6412,
+     "tile": "Copernicus_DSM_COG_30_N29_00_W106_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.191,
+     "worst_scale_log10_roughness_W1": 0.083,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.184,
+      "3200": 0.191
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.43,
+      "800": 0.42,
+      "1600": 0.42,
+      "3200": 0.41
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.336,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 30.8631,
+     "lon": -106.5335,
+     "tile": "Copernicus_DSM_COG_30_N30_00_W107_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.211,
+     "worst_scale_log10_roughness_W1": 0.041,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.173,
+      "3200": 0.211
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.41,
+      "800": 0.4,
+      "1600": 0.38,
+      "3200": 0.36
+     },
+     "valid_fraction": 0.736,
+     "bare_fraction": 0.495,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 35.6367,
+     "lon": -114.0645,
+     "tile": "Copernicus_DSM_COG_30_N35_00_W115_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.261,
+     "worst_scale_log10_roughness_W1": 0.375,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.256,
+      "3200": 0.261
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.09,
+      "800": 0.09,
+      "1600": 0.1,
+      "3200": 0.12
+     },
+     "valid_fraction": 0.835,
+     "bare_fraction": 0.756,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.3212,
+     "lon": -115.9451,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W116_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.347,
+     "worst_scale_log10_roughness_W1": 0.126,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.321,
+      "3200": 0.347
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.49,
+      "800": 0.48,
+      "1600": 0.48,
+      "3200": 0.48
+     },
+     "valid_fraction": 0.836,
+     "bare_fraction": 0.146,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 33.8173,
+     "lon": -113.1398,
+     "tile": "Copernicus_DSM_COG_30_N33_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.348,
+     "worst_scale_log10_roughness_W1": 0.563,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.348,
+      "3200": 0.336
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.67,
+      "800": 0.59,
+      "1600": 0.51,
+      "3200": 0.46
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.323,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 30.6824,
+     "lon": -112.7421,
+     "tile": "Copernicus_DSM_COG_30_N30_00_W113_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.417,
+     "worst_scale_log10_roughness_W1": 0.024,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.391,
+      "3200": 0.417
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.61,
+      "800": 0.59,
+      "1600": 0.58,
+      "3200": 0.59
+     },
+     "valid_fraction": 0.867,
+     "bare_fraction": 0.773,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 37.0509,
+     "lon": -116.9435,
+     "tile": "Copernicus_DSM_COG_30_N37_00_W117_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.493,
+     "worst_scale_log10_roughness_W1": 0.113,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.484,
+      "3200": 0.493
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.71,
+      "800": 0.71,
+      "1600": 0.71,
+      "3200": 0.72
+     },
+     "valid_fraction": 0.748,
+     "bare_fraction": 0.904,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 28.2313,
+     "lon": -103.7455,
+     "tile": "Copernicus_DSM_COG_30_N28_00_W104_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.518,
+     "worst_scale_log10_roughness_W1": 0.353,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.518,
+      "3200": 0.486
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.69,
+      "800": 0.68,
+      "1600": 0.69,
+      "3200": 0.66
+     },
+     "valid_fraction": 0.955,
+     "bare_fraction": 0.198,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.3663,
+     "lon": -114.0911,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W115_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.524,
+     "worst_scale_log10_roughness_W1": 0.064,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.507,
+      "3200": 0.524
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.68,
+      "800": 0.67,
+      "1600": 0.66,
+      "3200": 0.66
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.72,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.547,
+     "lon": -111.204,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.734,
+     "worst_scale_log10_roughness_W1": 0.171,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.727,
+      "3200": 0.734
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.98,
+      "800": 0.98,
+      "1600": 0.97,
+      "3200": 0.96
+     },
+     "valid_fraction": 0.759,
+     "bare_fraction": 0.023,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.9081,
+     "lon": -111.4757,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W112_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.879,
+     "worst_scale_log10_roughness_W1": 0.431,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.841,
+      "3200": 0.879
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.07,
+      "800": 1.05,
+      "1600": 1.03,
+      "3200": 1.05
+     },
+     "valid_fraction": 0.92,
+     "bare_fraction": 0.028,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.5467,
+     "lon": -113.8933,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W114_00_DEM",
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 0.903,
+     "worst_scale_log10_roughness_W1": 0.053,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.897,
+      "3200": 0.903
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 1.13,
+      "800": 1.13,
+      "1600": 1.13,
+      "3200": 1.13
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.19,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.4568,
+     "lon": -106.2043,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W107_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.021,
+     "worst_scale_log10_roughness_W1": 0.347,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.021,
+      "3200": 0.016
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.31,
+      "800": 0.24,
+      "1600": 0.19,
+      "3200": 0.19
+     },
+     "valid_fraction": 0.815,
+     "bare_fraction": 0.446,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.4568,
+     "lon": -115.177,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.028,
+     "worst_scale_log10_roughness_W1": 0.168,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.028,
+      "3200": 0.019
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.25,
+      "800": 0.25,
+      "1600": 0.24,
+      "3200": 0.22
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.117,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.5924,
+     "lon": -102.4231,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.035,
+     "worst_scale_log10_roughness_W1": 0.147,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.035,
+      "3200": 0.031
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.26,
+      "800": 0.23,
+      "1600": 0.2,
+      "3200": 0.19
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.119,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.1408,
+     "lon": -102.9473,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.036,
+     "worst_scale_log10_roughness_W1": 0.14,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.036,
+      "3200": 0.035
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.23,
+      "800": 0.21,
+      "1600": 0.19,
+      "3200": 0.17
+     },
+     "valid_fraction": 0.84,
+     "bare_fraction": 0.03,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 26.8633,
+     "lon": -103.5503,
+     "tile": "Copernicus_DSM_COG_30_N26_00_W104_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.041,
+     "worst_scale_log10_roughness_W1": 0.126,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.041,
+      "3200": 0.039
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.26,
+      "800": 0.23,
+      "1600": 0.21,
+      "3200": 0.21
+     },
+     "valid_fraction": 0.836,
+     "bare_fraction": 0.369,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.5018,
+     "lon": -102.8442,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.043,
+     "worst_scale_log10_roughness_W1": 0.115,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.041,
+      "3200": 0.043
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.24,
+      "800": 0.22,
+      "1600": 0.2,
+      "3200": 0.2
+     },
+     "valid_fraction": 0.733,
+     "bare_fraction": 0.05,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.3665,
+     "lon": -108.8421,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W109_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.044,
+     "worst_scale_log10_roughness_W1": 0.39,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.044,
+      "3200": 0.041
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.26,
+      "800": 0.22,
+      "1600": 0.2,
+      "3200": 0.18
+     },
+     "valid_fraction": 0.907,
+     "bare_fraction": 0.625,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 40.907,
+     "lon": -118.8276,
+     "tile": "Copernicus_DSM_COG_30_N40_00_W119_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.054,
+     "worst_scale_log10_roughness_W1": 0.099,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.052,
+      "3200": 0.054
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.26,
+      "800": 0.26,
+      "1600": 0.25,
+      "3200": 0.25
+     },
+     "valid_fraction": 0.842,
+     "bare_fraction": 0.687,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.7274,
+     "lon": -100.8504,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W101_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.058,
+     "worst_scale_log10_roughness_W1": 0.089,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.055,
+      "3200": 0.058
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.27,
+      "800": 0.26,
+      "1600": 0.24,
+      "3200": 0.23
+     },
+     "valid_fraction": 0.873,
+     "bare_fraction": 0.018,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.1414,
+     "lon": -104.6332,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W105_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.061,
+     "worst_scale_log10_roughness_W1": 0.114,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.061,
+      "3200": 0.036
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.25,
+      "800": 0.23,
+      "1600": 0.21,
+      "3200": 0.19
+     },
+     "valid_fraction": 0.978,
+     "bare_fraction": 0.124,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.9528,
+     "lon": -103.7909,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W104_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.083,
+     "worst_scale_log10_roughness_W1": 0.469,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.064,
+      "3200": 0.083
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.3,
+      "800": 0.27,
+      "1600": 0.24,
+      "3200": 0.21
+     },
+     "valid_fraction": 0.793,
+     "bare_fraction": 0.011,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.7274,
+     "lon": -104.8504,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W105_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.091,
+     "worst_scale_log10_roughness_W1": 0.067,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.087,
+      "3200": 0.091
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.25,
+      "800": 0.23,
+      "1600": 0.21,
+      "3200": 0.19
+     },
+     "valid_fraction": 0.773,
+     "bare_fraction": 0.366,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 32.6824,
+     "lon": -113.2569,
+     "tile": "Copernicus_DSM_COG_30_N32_00_W114_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.092,
+     "worst_scale_log10_roughness_W1": 0.247,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.092,
+      "3200": 0.072
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.23,
+      "800": 0.23,
+      "1600": 0.22,
+      "3200": 0.22
+     },
+     "valid_fraction": 1.0,
+     "bare_fraction": 0.864,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.2316,
+     "lon": -102.3709,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W103_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.098,
+     "worst_scale_log10_roughness_W1": 0.065,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.096,
+      "3200": 0.098
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.36,
+      "800": 0.34,
+      "1600": 0.33,
+      "3200": 0.32
+     },
+     "valid_fraction": 0.81,
+     "bare_fraction": 0.248,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 34.5022,
+     "lon": -115.5664,
+     "tile": "Copernicus_DSM_COG_30_N34_00_W116_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.115,
+     "worst_scale_log10_roughness_W1": 0.065,
+     "connectivity_distance": 0.001,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.097,
+      "3200": 0.115
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.32,
+      "800": 0.32,
+      "1600": 0.31,
+      "3200": 0.31
+     },
+     "valid_fraction": 0.895,
+     "bare_fraction": 0.988,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 27.7724,
+     "lon": -103.0896,
+     "tile": "Copernicus_DSM_COG_30_N27_00_W104_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.118,
+     "worst_scale_log10_roughness_W1": 0.316,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.117,
+      "3200": 0.118
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.3,
+      "800": 0.31,
+      "1600": 0.31,
+      "3200": 0.3
+     },
+     "valid_fraction": 0.996,
+     "bare_fraction": 0.721,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 31.6375,
+     "lon": -107.423,
+     "tile": "Copernicus_DSM_COG_30_N31_00_W108_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.135,
+     "worst_scale_log10_roughness_W1": 0.22,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.135,
+      "3200": 0.129
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.08,
+      "800": 0.06,
+      "1600": 0.04,
+      "3200": 0.04
+     },
+     "valid_fraction": 0.934,
+     "bare_fraction": 0.798,
+     "snow_ice_fraction": 0.0
+    },
+    {
+     "lat": 41.4569,
+     "lon": -118.2247,
+     "tile": "Copernicus_DSM_COG_30_N41_00_W119_00_DEM",
+     "pareto_front": 2,
+     "worst_scale_slope_W1_deg": 0.178,
+     "worst_scale_log10_roughness_W1": 0.411,
+     "connectivity_distance": 0.0,
+     "slope_W1_deg_by_baseline": {
+      "1600": 0.178,
+      "3200": 0.172
+     },
+     "median_slope_deg_by_baseline": {
+      "400": 0.05,
+      "800": 0.04,
+      "1600": 0.03,
+      "3200": 0.03
+     },
+     "valid_fraction": 0.98,
+     "bare_fraction": 0.195,
+     "snow_ice_fraction": 0.0
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,3755 @@
+{
+ "source": "Macrostrat large-scale geologic maps (state surveys), CC-BY 4.0; land cover ESA WorldCover 2021 v200 (20 m overview)",
+ "centre": [
+  40.33,
+  -74.6
+ ],
+ "n_polygons": 2927,
+ "rules": {
+  "ultramafic / serpentinite": "serpentin|ultramafic|peridotite|dunite|harzburgite",
+  "basalt (incl. pillow lava)": "^[^|]*basalt[^|]*\\|",
+  "lake sediments": "lacustrine|\\blake[- ]?(bed|deposit|sediment)",
+  "evaporite / salt-crystal casts": "evaporit|gypsum|halite|glauberite|salt[- ]crystal",
+  "wind-blown sand": "eolian|aeolian|\\bdunes?\\b|wind-blown",
+  "glacial deposits": "glacial|\\btill\\b|moraine|outwash|glaciolacustrine"
+ },
+ "targets": {
+  "ultramafic / serpentinite": {
+   "why": "Jezero science region: olivine-rich rock altered by water to serpentine and carbonate",
+   "n_polygons": 23,
+   "total_area_km2": 109.4,
+   "polygons": [
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3748450,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 19.95,
+     "distance_km": 134.4,
+     "representative_point": [
+      39.7319,
+      -75.9969
+     ],
+     "landcover": {
+      "tree": 0.612,
+      "open": 0.231,
+      "bare": 0.0267,
+      "built": 0.023,
+      "crop": 0.129
+     },
+     "open_area_km2": 4.609
+    },
+    {
+     "name": "Serpentinite",
+     "map_id": 3733208,
+     "source_id": 451,
+     "lith": "serpentinite",
+     "description": "Serpentinite",
+     "area_km2": 39.03,
+     "distance_km": 44.5,
+     "representative_point": [
+      40.6088,
+      -74.122
+     ],
+     "landcover": {
+      "tree": 0.471,
+      "open": 0.085,
+      "bare": 0.0016,
+      "built": 0.414,
+      "crop": 0.004
+     },
+     "open_area_km2": 3.317
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3748502,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 5.47,
+     "distance_km": 130.5,
+     "representative_point": [
+      39.7373,
+      -75.9456
+     ],
+     "landcover": {
+      "tree": 0.55,
+      "open": 0.26,
+      "bare": 0.0085,
+      "built": 0.009,
+      "crop": 0.179
+     },
+     "open_area_km2": 1.423
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3750766,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 5.29,
+     "distance_km": 80.6,
+     "representative_point": [
+      40.015,
+      -75.5136
+     ],
+     "landcover": {
+      "tree": 0.663,
+      "open": 0.263,
+      "bare": 0.0002,
+      "built": 0.057,
+      "crop": 0.016
+     },
+     "open_area_km2": 1.392
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 4486124,
+     "source_id": 547,
+     "lith": "dunite, peridotite, pyroxenite, serpentinite, minor carbonate, minor gabbro",
+     "description": "Chiefly serpentinite with partly to completely altered dunite, peridotite, pyroxenite, and massive to schistose soapstone; talc-carbonate rock and altered gabbro are common in some bodies",
+     "area_km2": 8.75,
+     "distance_km": 146.5,
+     "representative_point": [
+      39.7084,
+      -76.1822
+     ],
+     "landcover": {
+      "tree": 0.761,
+      "open": 0.145,
+      "bare": 0.0101,
+      "built": 0.028,
+      "crop": 0.061
+     },
+     "open_area_km2": 1.269
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3750256,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 7.73,
+     "distance_km": 81.8,
+     "representative_point": [
+      39.9178,
+      -75.4199
+     ],
+     "landcover": {
+      "tree": 0.745,
+      "open": 0.123,
+      "bare": 0.0019,
+      "built": 0.122,
+      "crop": 0.01
+     },
+     "open_area_km2": 0.95
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3748423,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 3.62,
+     "distance_km": 145.6,
+     "representative_point": [
+      39.7451,
+      -76.1825
+     ],
+     "landcover": {
+      "tree": 0.519,
+      "open": 0.25,
+      "bare": 0.0002,
+      "built": 0.012,
+      "crop": 0.22
+     },
+     "open_area_km2": 0.905
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3750727,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 6.35,
+     "distance_km": 73.7,
+     "representative_point": [
+      39.9787,
+      -75.3866
+     ],
+     "landcover": {
+      "tree": 0.782,
+      "open": 0.084,
+      "bare": 0.0009,
+      "built": 0.13,
+      "crop": 0.004
+     },
+     "open_area_km2": 0.533
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 4486128,
+     "source_id": 547,
+     "lith": "dunite, peridotite, pyroxenite, serpentinite, minor carbonate, minor gabbro",
+     "description": "Chiefly serpentinite with partly to completely altered dunite, peridotite, pyroxenite, and massive to schistose soapstone; talc-carbonate rock and altered gabbro are common in some bodies",
+     "area_km2": 1.39,
+     "distance_km": 133.7,
+     "representative_point": [
+      39.7156,
+      -75.9699
+     ],
+     "landcover": {
+      "tree": 0.324,
+      "open": 0.281,
+      "bare": 0.0,
+      "built": 0.017,
+      "crop": 0.378
+     },
+     "open_area_km2": 0.391
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3749766,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 1.04,
+     "distance_km": 104.3,
+     "representative_point": [
+      39.9096,
+      -75.7172
+     ],
+     "landcover": {
+      "tree": 0.66,
+      "open": 0.158,
+      "bare": 0.0,
+      "built": 0.022,
+      "crop": 0.16
+     },
+     "open_area_km2": 0.165
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3748406,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.86,
+     "distance_km": 133.7,
+     "representative_point": [
+      39.7274,
+      -75.9729
+     ],
+     "landcover": {
+      "tree": 0.449,
+      "open": 0.162,
+      "bare": 0.0,
+      "built": 0.005,
+      "crop": 0.381
+     },
+     "open_area_km2": 0.139
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3748404,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.49,
+     "distance_km": 130.6,
+     "representative_point": [
+      39.7236,
+      -75.9276
+     ],
+     "landcover": {
+      "tree": 0.539,
+      "open": 0.263,
+      "bare": 0.0,
+      "built": 0.004,
+      "crop": 0.19
+     },
+     "open_area_km2": 0.128
+    },
+    {
+     "name": "Olivine pyroxenite",
+     "map_id": 3733461,
+     "source_id": 451,
+     "lith": "pyroxenite, peridotite",
+     "description": "Olivine pyroxenite - in part with poikilitic hornblende; local peridotite.",
+     "area_km2": 6.98,
+     "distance_km": 119.4,
+     "representative_point": [
+      41.2577,
+      -73.8656
+     ],
+     "landcover": {
+      "tree": 0.92,
+      "open": 0.012,
+      "bare": 0.0,
+      "built": 0.007,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.084
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3745613,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.52,
+     "distance_km": 62.9,
+     "representative_point": [
+      40.0526,
+      -75.2659
+     ],
+     "landcover": {
+      "tree": 0.767,
+      "open": 0.151,
+      "bare": 0.0,
+      "built": 0.02,
+      "crop": 0.001
+     },
+     "open_area_km2": 0.079
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3745788,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.08,
+     "distance_km": 88.3,
+     "representative_point": [
+      40.1134,
+      -75.6098
+     ],
+     "landcover": {
+      "tree": 0.102,
+      "open": 0.817,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.081
+     },
+     "open_area_km2": 0.069
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3751099,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.1,
+     "distance_km": 102.7,
+     "representative_point": [
+      40.1299,
+      -75.7923
+     ],
+     "landcover": {
+      "tree": 0.197,
+      "open": 0.598,
+      "bare": 0.0,
+      "built": 0.102,
+      "crop": 0.102
+     },
+     "open_area_km2": 0.06
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 4486132,
+     "source_id": 547,
+     "lith": "dunite, peridotite, pyroxenite, serpentinite, minor carbonate, minor gabbro",
+     "description": "Chiefly serpentinite with partly to completely altered dunite, peridotite, pyroxenite, and massive to schistose soapstone; talc-carbonate rock and altered gabbro are common in some bodies",
+     "area_km2": 0.09,
+     "distance_km": 143.1,
+     "representative_point": [
+      39.7158,
+      -76.0858
+     ],
+     "landcover": {
+      "tree": 0.497,
+      "open": 0.291,
+      "bare": 0.0,
+      "built": 0.003,
+      "crop": 0.209
+     },
+     "open_area_km2": 0.025
+    },
+    {
+     "name": "Serpentinite",
+     "map_id": 3731716,
+     "source_id": 450,
+     "lith": "serpentinite",
+     "description": "Serpentinite, light yellowish-green to dark-green, fine-grained, massive",
+     "area_km2": 1.11,
+     "distance_km": 65.7,
+     "representative_point": [
+      40.7421,
+      -74.0286
+     ],
+     "landcover": {
+      "tree": 0.11,
+      "open": 0.016,
+      "bare": 0.0052,
+      "built": 0.817,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.018
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3751083,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.4,
+     "distance_km": 66.3,
+     "representative_point": [
+      40.0341,
+      -75.2903
+     ],
+     "landcover": {
+      "tree": 0.967,
+      "open": 0.029,
+      "bare": 0.0,
+      "built": 0.005,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.012
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3749277,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.02,
+     "distance_km": 112.2,
+     "representative_point": [
+      39.8508,
+      -75.7674
+     ],
+     "landcover": {
+      "tree": 0.359,
+      "open": 0.59,
+      "bare": 0.0,
+      "built": 0.051,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.012
+    },
+    {
+     "name": "Olivine pyroxenite",
+     "map_id": 3733398,
+     "source_id": 451,
+     "lith": "pyroxenite, peridotite",
+     "description": "Olivine pyroxenite - in part with poikilitic hornblende; local peridotite.",
+     "area_km2": 0.08,
+     "distance_km": 114.7,
+     "representative_point": [
+      41.2423,
+      -73.9732
+     ],
+     "landcover": {
+      "tree": 0.762,
+      "open": 0.103,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.009
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3749748,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.05,
+     "distance_km": 87.0,
+     "representative_point": [
+      39.8865,
+      -75.4487
+     ],
+     "landcover": {
+      "tree": 0.949,
+      "open": 0.0,
+      "bare": 0.0,
+      "built": 0.051,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    },
+    {
+     "name": "Ultramafic rocks",
+     "map_id": 3749959,
+     "source_id": 454,
+     "lith": "",
+     "description": "Includes serpentine, steatite, and other products of alteration of peridotites and pyroxenites",
+     "area_km2": 0.01,
+     "distance_km": 88.0,
+     "representative_point": [
+      39.9141,
+      -75.4845
+     ],
+     "landcover": {
+      "tree": 1.0,
+      "open": 0.0,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    }
+   ]
+  },
+  "basalt (incl. pillow lava)": {
+   "why": "InSight plains / Jezero floor: basaltic lava; pillows = lava that met water",
+   "n_polygons": 49,
+   "total_area_km2": 375.7,
+   "polygons": [
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3732024,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 133.67,
+     "distance_km": 32.5,
+     "representative_point": [
+      40.8006,
+      -74.2829
+     ],
+     "landcover": {
+      "tree": 0.769,
+      "open": 0.081,
+      "bare": 0.0039,
+      "built": 0.146,
+      "crop": 0.001
+     },
+     "open_area_km2": 10.827
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731890,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 31.12,
+     "distance_km": 41.8,
+     "representative_point": [
+      40.7662,
+      -74.2735
+     ],
+     "landcover": {
+      "tree": 0.754,
+      "open": 0.096,
+      "bare": 0.0016,
+      "built": 0.145,
+      "crop": 0.002
+     },
+     "open_area_km2": 2.988
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731378,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 25.32,
+     "distance_km": 28.0,
+     "representative_point": [
+      40.6088,
+      -74.4883
+     ],
+     "landcover": {
+      "tree": 0.887,
+      "open": 0.083,
+      "bare": 0.0246,
+      "built": 0.024,
+      "crop": 0.001
+     },
+     "open_area_km2": 2.102
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3731483,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 22.47,
+     "distance_km": 30.5,
+     "representative_point": [
+      40.6414,
+      -74.4694
+     ],
+     "landcover": {
+      "tree": 0.879,
+      "open": 0.082,
+      "bare": 0.0002,
+      "built": 0.038,
+      "crop": 0.001
+     },
+     "open_area_km2": 1.842
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3731391,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 6.29,
+     "distance_km": 35.2,
+     "representative_point": [
+      40.6604,
+      -74.6115
+     ],
+     "landcover": {
+      "tree": 0.749,
+      "open": 0.191,
+      "bare": 0.0,
+      "built": 0.057,
+      "crop": 0.002
+     },
+     "open_area_km2": 1.201
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731937,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 10.82,
+     "distance_km": 61.6,
+     "representative_point": [
+      40.8838,
+      -74.3517
+     ],
+     "landcover": {
+      "tree": 0.771,
+      "open": 0.103,
+      "bare": 0.0029,
+      "built": 0.124,
+      "crop": 0.001
+     },
+     "open_area_km2": 1.114
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3731448,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 5.83,
+     "distance_km": 38.4,
+     "representative_point": [
+      40.6877,
+      -74.6034
+     ],
+     "landcover": {
+      "tree": 0.813,
+      "open": 0.167,
+      "bare": 0.0,
+      "built": 0.017,
+      "crop": 0.002
+     },
+     "open_area_km2": 0.974
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731495,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 6.35,
+     "distance_km": 38.7,
+     "representative_point": [
+      40.6934,
+      -74.5472
+     ],
+     "landcover": {
+      "tree": 0.805,
+      "open": 0.118,
+      "bare": 0.0013,
+      "built": 0.046,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.75
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731620,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 5.17,
+     "distance_km": 45.4,
+     "representative_point": [
+      40.7469,
+      -74.4535
+     ],
+     "landcover": {
+      "tree": 0.841,
+      "open": 0.144,
+      "bare": 0.0,
+      "built": 0.008,
+      "crop": 0.005
+     },
+     "open_area_km2": 0.744
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731557,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 4.21,
+     "distance_km": 44.8,
+     "representative_point": [
+      40.7341,
+      -74.5058
+     ],
+     "landcover": {
+      "tree": 0.813,
+      "open": 0.16,
+      "bare": 0.0,
+      "built": 0.009,
+      "crop": 0.018
+     },
+     "open_area_km2": 0.674
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731709,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 16.73,
+     "distance_km": 40.1,
+     "representative_point": [
+      40.7334,
+      -74.3944
+     ],
+     "landcover": {
+      "tree": 0.899,
+      "open": 0.04,
+      "bare": 0.0014,
+      "built": 0.058,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.669
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731782,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 7.55,
+     "distance_km": 55.4,
+     "representative_point": [
+      40.8172,
+      -74.3355
+     ],
+     "landcover": {
+      "tree": 0.787,
+      "open": 0.068,
+      "bare": 0.0026,
+      "built": 0.138,
+      "crop": 0.001
+     },
+     "open_area_km2": 0.513
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3732016,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 15.6,
+     "distance_km": 63.5,
+     "representative_point": [
+      40.879,
+      -74.203
+     ],
+     "landcover": {
+      "tree": 0.61,
+      "open": 0.031,
+      "bare": 0.0012,
+      "built": 0.32,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.484
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731351,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 1.32,
+     "distance_km": 39.5,
+     "representative_point": [
+      40.6712,
+      -74.7595
+     ],
+     "landcover": {
+      "tree": 0.536,
+      "open": 0.364,
+      "bare": 0.0743,
+      "built": 0.015,
+      "crop": 0.075
+     },
+     "open_area_km2": 0.482
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3732087,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 5.13,
+     "distance_km": 77.9,
+     "representative_point": [
+      40.9767,
+      -74.1776
+     ],
+     "landcover": {
+      "tree": 0.835,
+      "open": 0.087,
+      "bare": 0.0021,
+      "built": 0.077,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.446
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3732143,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 7.82,
+     "distance_km": 80.8,
+     "representative_point": [
+      41.0101,
+      -74.2306
+     ],
+     "landcover": {
+      "tree": 0.846,
+      "open": 0.048,
+      "bare": 0.0011,
+      "built": 0.094,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.375
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3732083,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 6.11,
+     "distance_km": 76.8,
+     "representative_point": [
+      40.9812,
+      -74.2399
+     ],
+     "landcover": {
+      "tree": 0.727,
+      "open": 0.056,
+      "bare": 0.0003,
+      "built": 0.104,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.342
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3731496,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 3.06,
+     "distance_km": 40.9,
+     "representative_point": [
+      40.7072,
+      -74.5683
+     ],
+     "landcover": {
+      "tree": 0.808,
+      "open": 0.104,
+      "bare": 0.0076,
+      "built": 0.07,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.319
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731897,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 2.97,
+     "distance_km": 75.3,
+     "representative_point": [
+      40.9452,
+      -74.1745
+     ],
+     "landcover": {
+      "tree": 0.579,
+      "open": 0.099,
+      "bare": 0.0305,
+      "built": 0.298,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.294
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731091,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 1.05,
+     "distance_km": 28.4,
+     "representative_point": [
+      40.4621,
+      -74.8932
+     ],
+     "landcover": {
+      "tree": 0.662,
+      "open": 0.273,
+      "bare": 0.0005,
+      "built": 0.007,
+      "crop": 0.058
+     },
+     "open_area_km2": 0.285
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3732096,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 7.07,
+     "distance_km": 71.2,
+     "representative_point": [
+      40.9538,
+      -74.2506
+     ],
+     "landcover": {
+      "tree": 0.842,
+      "open": 0.037,
+      "bare": 0.0003,
+      "built": 0.117,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.262
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731572,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 2.45,
+     "distance_km": 45.2,
+     "representative_point": [
+      40.742,
+      -74.5221
+     ],
+     "landcover": {
+      "tree": 0.883,
+      "open": 0.083,
+      "bare": 0.0,
+      "built": 0.017,
+      "crop": 0.002
+     },
+     "open_area_km2": 0.203
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731469,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 2.85,
+     "distance_km": 38.2,
+     "representative_point": [
+      40.6863,
+      -74.5654
+     ],
+     "landcover": {
+      "tree": 0.922,
+      "open": 0.067,
+      "bare": 0.0,
+      "built": 0.011,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.191
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731443,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 0.58,
+     "distance_km": 39.4,
+     "representative_point": [
+      40.6582,
+      -74.4103
+     ],
+     "landcover": {
+      "tree": 0.539,
+      "open": 0.322,
+      "bare": 0.2633,
+      "built": 0.053,
+      "crop": 0.009
+     },
+     "open_area_km2": 0.188
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3732174,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 2.84,
+     "distance_km": 81.3,
+     "representative_point": [
+      41.0169,
+      -74.2049
+     ],
+     "landcover": {
+      "tree": 0.804,
+      "open": 0.062,
+      "bare": 0.001,
+      "built": 0.119,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.176
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3732195,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 2.92,
+     "distance_km": 83.7,
+     "representative_point": [
+      41.04,
+      -74.1862
+     ],
+     "landcover": {
+      "tree": 0.868,
+      "open": 0.06,
+      "bare": 0.0004,
+      "built": 0.047,
+      "crop": 0.007
+     },
+     "open_area_km2": 0.175
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731882,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 2.1,
+     "distance_km": 69.8,
+     "representative_point": [
+      40.9247,
+      -74.3243
+     ],
+     "landcover": {
+      "tree": 0.851,
+      "open": 0.075,
+      "bare": 0.0016,
+      "built": 0.072,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.157
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731956,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 2.07,
+     "distance_km": 70.0,
+     "representative_point": [
+      40.9167,
+      -74.2876
+     ],
+     "landcover": {
+      "tree": 0.77,
+      "open": 0.076,
+      "bare": 0.0008,
+      "built": 0.137,
+      "crop": 0.008
+     },
+     "open_area_km2": 0.157
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731542,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 1.46,
+     "distance_km": 49.7,
+     "representative_point": [
+      40.7681,
+      -74.463
+     ],
+     "landcover": {
+      "tree": 0.853,
+      "open": 0.098,
+      "bare": 0.0016,
+      "built": 0.038,
+      "crop": 0.006
+     },
+     "open_area_km2": 0.143
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731089,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 0.3,
+     "distance_km": 30.2,
+     "representative_point": [
+      40.5124,
+      -74.8698
+     ],
+     "landcover": {
+      "tree": 0.574,
+      "open": 0.417,
+      "bare": 0.0,
+      "built": 0.009,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.126
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731984,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 2.65,
+     "distance_km": 69.7,
+     "representative_point": [
+      40.8904,
+      -74.1829
+     ],
+     "landcover": {
+      "tree": 0.79,
+      "open": 0.047,
+      "bare": 0.0026,
+      "built": 0.12,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.125
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3730800,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 0.66,
+     "distance_km": 88.0,
+     "representative_point": [
+      41.0686,
+      -74.2062
+     ],
+     "landcover": {
+      "tree": 0.757,
+      "open": 0.183,
+      "bare": 0.0,
+      "built": 0.009,
+      "crop": 0.017
+     },
+     "open_area_km2": 0.12
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3732202,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 5.93,
+     "distance_km": 84.6,
+     "representative_point": [
+      41.0496,
+      -74.2064
+     ],
+     "landcover": {
+      "tree": 0.961,
+      "open": 0.015,
+      "bare": 0.0005,
+      "built": 0.023,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.089
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3732075,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 0.55,
+     "distance_km": 78.6,
+     "representative_point": [
+      40.9973,
+      -74.2827
+     ],
+     "landcover": {
+      "tree": 0.451,
+      "open": 0.154,
+      "bare": 0.0052,
+      "built": 0.384,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.085
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3732231,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 1.77,
+     "distance_km": 87.6,
+     "representative_point": [
+      41.0671,
+      -74.1894
+     ],
+     "landcover": {
+      "tree": 0.877,
+      "open": 0.044,
+      "bare": 0.0,
+      "built": 0.059,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.078
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731431,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 4.33,
+     "distance_km": 35.2,
+     "representative_point": [
+      40.6432,
+      -74.433
+     ],
+     "landcover": {
+      "tree": 0.951,
+      "open": 0.018,
+      "bare": 0.0027,
+      "built": 0.031,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.078
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731966,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 2.19,
+     "distance_km": 68.5,
+     "representative_point": [
+      40.92,
+      -74.3426
+     ],
+     "landcover": {
+      "tree": 0.892,
+      "open": 0.034,
+      "bare": 0.0,
+      "built": 0.075,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.075
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3731360,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 2.43,
+     "distance_km": 34.6,
+     "representative_point": [
+      40.6543,
+      -74.6284
+     ],
+     "landcover": {
+      "tree": 0.887,
+      "open": 0.026,
+      "bare": 0.0004,
+      "built": 0.087,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.063
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731315,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 1.69,
+     "distance_km": 32.9,
+     "representative_point": [
+      40.634,
+      -74.6259
+     ],
+     "landcover": {
+      "tree": 0.965,
+      "open": 0.03,
+      "bare": 0.0,
+      "built": 0.002,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.051
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3730663,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 0.56,
+     "distance_km": 70.1,
+     "representative_point": [
+      40.9207,
+      -74.3092
+     ],
+     "landcover": {
+      "tree": 0.79,
+      "open": 0.063,
+      "bare": 0.0,
+      "built": 0.146,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.035
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731895,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 0.36,
+     "distance_km": 68.3,
+     "representative_point": [
+      40.8669,
+      -74.1961
+     ],
+     "landcover": {
+      "tree": 0.354,
+      "open": 0.087,
+      "bare": 0.0,
+      "built": 0.559,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.031
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3732181,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 2.63,
+     "distance_km": 84.0,
+     "representative_point": [
+      41.0422,
+      -74.2226
+     ],
+     "landcover": {
+      "tree": 0.921,
+      "open": 0.01,
+      "bare": 0.0009,
+      "built": 0.061,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.026
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731999,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 0.49,
+     "distance_km": 71.9,
+     "representative_point": [
+      40.9493,
+      -74.3356
+     ],
+     "landcover": {
+      "tree": 0.911,
+      "open": 0.047,
+      "bare": 0.0,
+      "built": 0.042,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.023
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3732118,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 2.71,
+     "distance_km": 78.6,
+     "representative_point": [
+      41.0006,
+      -74.2589
+     ],
+     "landcover": {
+      "tree": 0.919,
+      "open": 0.006,
+      "bare": 0.0003,
+      "built": 0.039,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.016
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3732099,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 0.57,
+     "distance_km": 81.1,
+     "representative_point": [
+      40.9967,
+      -74.1994
+     ],
+     "landcover": {
+      "tree": 0.92,
+      "open": 0.026,
+      "bare": 0.0,
+      "built": 0.054,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.015
+    },
+    {
+     "name": "Orange Mountain Basalt",
+     "map_id": 3731464,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine-grained; massive to columnar jointed. Upper flow of three major flows locally pillowed",
+     "area_km2": 1.75,
+     "distance_km": 40.4,
+     "representative_point": [
+      40.6682,
+      -74.395
+     ],
+     "landcover": {
+      "tree": 0.99,
+      "open": 0.008,
+      "bare": 0.0033,
+      "built": 0.002,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.014
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3731633,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 0.51,
+     "distance_km": 50.5,
+     "representative_point": [
+      40.7747,
+      -74.4821
+     ],
+     "landcover": {
+      "tree": 0.896,
+      "open": 0.012,
+      "bare": 0.0,
+      "built": 0.092,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.006
+    },
+    {
+     "name": "Hook Mountain Basalt",
+     "map_id": 3730720,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse- grained; massive to columnar jointed. Possibly three major flows",
+     "area_km2": 0.11,
+     "distance_km": 69.1,
+     "representative_point": [
+      40.926,
+      -74.367
+     ],
+     "landcover": {
+      "tree": 0.949,
+      "open": 0.032,
+      "bare": 0.0,
+      "built": 0.02,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.003
+    },
+    {
+     "name": "Preakness Basalt",
+     "map_id": 3730723,
+     "source_id": 450,
+     "lith": "basalt",
+     "description": "Basalt, fine- to locally coarse-grained; massive to columnar jointed",
+     "area_km2": 0.6,
+     "distance_km": 79.4,
+     "representative_point": [
+      41.0036,
+      -74.2678
+     ],
+     "landcover": {
+      "tree": 0.589,
+      "open": 0.004,
+      "bare": 0.0,
+      "built": 0.009,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.002
+    }
+   ]
+  },
+  "lake sediments": {
+   "why": "Jezero science region: sediments laid down in a lake",
+   "n_polygons": 12,
+   "total_area_km2": 49.0,
+   "polygons": [
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4095171,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 18.76,
+     "distance_km": 126.3,
+     "representative_point": [
+      41.5469,
+      -74.506
+     ],
+     "landcover": {
+      "tree": 0.72,
+      "open": 0.095,
+      "bare": 0.0,
+      "built": 0.031,
+      "crop": 0.012
+     },
+     "open_area_km2": 1.782
+    },
+    {
+     "name": "Lacustrine silt and clay",
+     "map_id": 4093999,
+     "source_id": 526,
+     "lith": "clay, silt",
+     "description": "Generally laminated silt and clay, deposited in proglacial lakes, generally calcareous, low permeability, potential land instability, thickness variable (up to 50 meters on the Finger Lakes and Adirondack sheets; up to 100 meters on the Niagara, Hudson-Mohawk, and Lower Hudson sheets), (stipple over",
+     "area_km2": 6.39,
+     "distance_km": 97.6,
+     "representative_point": [
+      41.0947,
+      -73.9613
+     ],
+     "landcover": {
+      "tree": 0.662,
+      "open": 0.11,
+      "bare": 0.0047,
+      "built": 0.134,
+      "crop": 0.017
+     },
+     "open_area_km2": 0.703
+    },
+    {
+     "name": "Lacustrine delta",
+     "map_id": 4094901,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Coarse to fine gravel and sand, stratified, generally well sorted, deposited at a lake shoreline, thickness variable (3-15 meters)",
+     "area_km2": 4.09,
+     "distance_km": 133.4,
+     "representative_point": [
+      41.4471,
+      -74.0271
+     ],
+     "landcover": {
+      "tree": 0.768,
+      "open": 0.109,
+      "bare": 0.0011,
+      "built": 0.075,
+      "crop": 0.006
+     },
+     "open_area_km2": 0.446
+    },
+    {
+     "name": "Lacustrine silt and clay",
+     "map_id": 4094494,
+     "source_id": 526,
+     "lith": "clay, silt",
+     "description": "Generally laminated silt and clay, deposited in proglacial lakes, generally calcareous, low permeability, potential land instability, thickness variable (up to 50 meters on the Finger Lakes and Adirondack sheets; up to 100 meters on the Niagara, Hudson-Mohawk, and Lower Hudson sheets), (stipple over",
+     "area_km2": 2.43,
+     "distance_km": 110.8,
+     "representative_point": [
+      41.2186,
+      -73.979
+     ],
+     "landcover": {
+      "tree": 0.484,
+      "open": 0.15,
+      "bare": 0.0208,
+      "built": 0.248,
+      "crop": 0.012
+     },
+     "open_area_km2": 0.365
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094346,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 6.03,
+     "distance_km": 83.7,
+     "representative_point": [
+      40.9554,
+      -73.8956
+     ],
+     "landcover": {
+      "tree": 0.444,
+      "open": 0.055,
+      "bare": 0.0072,
+      "built": 0.311,
+      "crop": 0.001
+     },
+     "open_area_km2": 0.332
+    },
+    {
+     "name": "Lacustrine delta",
+     "map_id": 4094933,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Coarse to fine gravel and sand, stratified, generally well sorted, deposited at a lake shoreline, thickness variable (3-15 meters)",
+     "area_km2": 2.21,
+     "distance_km": 133.5,
+     "representative_point": [
+      41.458,
+      -74.0416
+     ],
+     "landcover": {
+      "tree": 0.732,
+      "open": 0.14,
+      "bare": 0.0007,
+      "built": 0.125,
+      "crop": 0.002
+     },
+     "open_area_km2": 0.31
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094574,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 2.13,
+     "distance_km": 115.9,
+     "representative_point": [
+      41.2619,
+      -73.9556
+     ],
+     "landcover": {
+      "tree": 0.545,
+      "open": 0.14,
+      "bare": 0.0166,
+      "built": 0.205,
+      "crop": 0.004
+     },
+     "open_area_km2": 0.298
+    },
+    {
+     "name": "Lacustrine delta",
+     "map_id": 4093934,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Coarse to fine gravel and sand, stratified, generally well sorted, deposited at a lake shoreline, thickness variable (3-15 meters)",
+     "area_km2": 2.38,
+     "distance_km": 132.7,
+     "representative_point": [
+      41.4163,
+      -73.9468
+     ],
+     "landcover": {
+      "tree": 0.757,
+      "open": 0.112,
+      "bare": 0.0016,
+      "built": 0.117,
+      "crop": 0.013
+     },
+     "open_area_km2": 0.266
+    },
+    {
+     "name": "Lacustrine silt and clay",
+     "map_id": 4095158,
+     "source_id": 526,
+     "lith": "clay, silt",
+     "description": "Generally laminated silt and clay, deposited in proglacial lakes, generally calcareous, low permeability, potential land instability, thickness variable (up to 50 meters on the Finger Lakes and Adirondack sheets; up to 100 meters on the Niagara, Hudson-Mohawk, and Lower Hudson sheets), (stipple over",
+     "area_km2": 1.05,
+     "distance_km": 143.9,
+     "representative_point": [
+      41.5955,
+      -74.2568
+     ],
+     "landcover": {
+      "tree": 0.735,
+      "open": 0.207,
+      "bare": 0.0,
+      "built": 0.002,
+      "crop": 0.056
+     },
+     "open_area_km2": 0.217
+    },
+    {
+     "name": "Lacustrine delta",
+     "map_id": 4094272,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Coarse to fine gravel and sand, stratified, generally well sorted, deposited at a lake shoreline, thickness variable (3-15 meters)",
+     "area_km2": 1.29,
+     "distance_km": 79.9,
+     "representative_point": [
+      40.7728,
+      -73.839
+     ],
+     "landcover": {
+      "tree": 0.187,
+      "open": 0.125,
+      "bare": 0.0211,
+      "built": 0.614,
+      "crop": 0.01
+     },
+     "open_area_km2": 0.162
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094128,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 1.38,
+     "distance_km": 49.1,
+     "representative_point": [
+      40.6332,
+      -74.1681
+     ],
+     "landcover": {
+      "tree": 0.461,
+      "open": 0.079,
+      "bare": 0.0051,
+      "built": 0.449,
+      "crop": 0.001
+     },
+     "open_area_km2": 0.109
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094203,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 0.82,
+     "distance_km": 66.0,
+     "representative_point": [
+      40.7198,
+      -73.9965
+     ],
+     "landcover": {
+      "tree": 0.057,
+      "open": 0.0,
+      "bare": 0.0003,
+      "built": 0.942,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    }
+   ]
+  },
+  "evaporite / salt-crystal casts": {
+   "why": "Mars sulfate/chloride deposits: minerals left by evaporating water",
+   "n_polygons": 0,
+   "total_area_km2": 0,
+   "polygons": []
+  },
+  "wind-blown sand": {
+   "why": "Mars dune-crossing zone: wind-blown sand",
+   "n_polygons": 5,
+   "total_area_km2": 24.8,
+   "polygons": [
+    {
+     "name": "Barrier Island",
+     "map_id": 4093166,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Sand and gravel deposit as barrier island,  south shore of Long Island, may have associated dunes, thickness variable. Barrier islands are found on the southern coast of Long Island on the Lower Hudson sheet",
+     "area_km2": 22.57,
+     "distance_km": 113.5,
+     "representative_point": [
+      40.6951,
+      -72.9776
+     ],
+     "landcover": {
+      "tree": 0.093,
+      "open": 0.426,
+      "bare": 0.1988,
+      "built": 0.134,
+      "crop": 0.0
+     },
+     "open_area_km2": 9.613
+    },
+    {
+     "name": "Barrier Island",
+     "map_id": 4094270,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Sand and gravel deposit as barrier island,  south shore of Long Island, may have associated dunes, thickness variable. Barrier islands are found on the southern coast of Long Island on the Lower Hudson sheet",
+     "area_km2": 0.59,
+     "distance_km": 123.9,
+     "representative_point": [
+      40.6557,
+      -73.1821
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.051,
+      "bare": 0.0013,
+      "built": 0.002,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.03
+    },
+    {
+     "name": "Barrier Island",
+     "map_id": 4094263,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Sand and gravel deposit as barrier island,  south shore of Long Island, may have associated dunes, thickness variable. Barrier islands are found on the southern coast of Long Island on the Lower Hudson sheet",
+     "area_km2": 1.09,
+     "distance_km": 104.9,
+     "representative_point": [
+      40.6295,
+      -73.4075
+     ],
+     "landcover": {
+      "tree": 0.009,
+      "open": 0.007,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.008
+    },
+    {
+     "name": "Barrier Island",
+     "map_id": 4094266,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Sand and gravel deposit as barrier island,  south shore of Long Island, may have associated dunes, thickness variable. Barrier islands are found on the southern coast of Long Island on the Lower Hudson sheet",
+     "area_km2": 0.36,
+     "distance_km": 122.8,
+     "representative_point": [
+      40.6564,
+      -73.1993
+     ],
+     "landcover": {
+      "tree": 0.284,
+      "open": 0.005,
+      "bare": 0.0,
+      "built": 0.007,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.002
+    },
+    {
+     "name": "Barrier Island",
+     "map_id": 4094223,
+     "source_id": 526,
+     "lith": "gravel, sand",
+     "description": "Sand and gravel deposit as barrier island,  south shore of Long Island, may have associated dunes, thickness variable. Barrier islands are found on the southern coast of Long Island on the Lower Hudson sheet",
+     "area_km2": 0.21,
+     "distance_km": 98.8,
+     "representative_point": [
+      40.6098,
+      -73.4809
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.0,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    }
+   ]
+  },
+  "glacial deposits": {
+   "why": "Mars mid-latitude glaciers: landforms and debris left by ice (no ice today)",
+   "n_polygons": 87,
+   "total_area_km2": 9163.6,
+   "polygons": [
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4093750,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 2090.88,
+     "distance_km": 56.9,
+     "representative_point": [
+      40.869,
+      -72.8839
+     ],
+     "landcover": {
+      "tree": 0.478,
+      "open": 0.181,
+      "bare": 0.0044,
+      "built": 0.295,
+      "crop": 0.019
+     },
+     "open_area_km2": 378.448
+    },
+    {
+     "name": "Till",
+     "map_id": 4092765,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 2452.66,
+     "distance_km": 117.9,
+     "representative_point": [
+      41.6778,
+      -74.9028
+     ],
+     "landcover": {
+      "tree": 0.865,
+      "open": 0.101,
+      "bare": 0.0005,
+      "built": 0.008,
+      "crop": 0.006
+     },
+     "open_area_km2": 247.719
+    },
+    {
+     "name": "Till",
+     "map_id": 4096320,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 1078.93,
+     "distance_km": 95.3,
+     "representative_point": [
+      41.5138,
+      -74.0703
+     ],
+     "landcover": {
+      "tree": 0.767,
+      "open": 0.15,
+      "bare": 0.0018,
+      "built": 0.041,
+      "crop": 0.021
+     },
+     "open_area_km2": 161.839
+    },
+    {
+     "name": "Till",
+     "map_id": 4095366,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 1549.03,
+     "distance_km": 77.4,
+     "representative_point": [
+      41.1848,
+      -73.8065
+     ],
+     "landcover": {
+      "tree": 0.779,
+      "open": 0.076,
+      "bare": 0.0011,
+      "built": 0.101,
+      "crop": 0.002
+     },
+     "open_area_km2": 117.726
+    },
+    {
+     "name": "Till",
+     "map_id": 4095961,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 605.18,
+     "distance_km": 107.2,
+     "representative_point": [
+      41.5529,
+      -74.3439
+     ],
+     "landcover": {
+      "tree": 0.778,
+      "open": 0.163,
+      "bare": 0.001,
+      "built": 0.028,
+      "crop": 0.023
+     },
+     "open_area_km2": 98.645
+    },
+    {
+     "name": "Till",
+     "map_id": 4094848,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 524.65,
+     "distance_km": 94.1,
+     "representative_point": [
+      41.2333,
+      -74.1163
+     ],
+     "landcover": {
+      "tree": 0.858,
+      "open": 0.05,
+      "bare": 0.0025,
+      "built": 0.058,
+      "crop": 0.001
+     },
+     "open_area_km2": 26.233
+    },
+    {
+     "name": "Till",
+     "map_id": 4096065,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 131.48,
+     "distance_km": 136.8,
+     "representative_point": [
+      41.6243,
+      -73.8398
+     ],
+     "landcover": {
+      "tree": 0.793,
+      "open": 0.139,
+      "bare": 0.0012,
+      "built": 0.05,
+      "crop": 0.011
+     },
+     "open_area_km2": 18.276
+    },
+    {
+     "name": "Till",
+     "map_id": 4094208,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 204.49,
+     "distance_km": 58.8,
+     "representative_point": [
+      40.7561,
+      -73.8951
+     ],
+     "landcover": {
+      "tree": 0.289,
+      "open": 0.07,
+      "bare": 0.0052,
+      "built": 0.62,
+      "crop": 0.001
+     },
+     "open_area_km2": 14.314
+    },
+    {
+     "name": "Till",
+     "map_id": 4093164,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 97.52,
+     "distance_km": 95.7,
+     "representative_point": [
+      40.8589,
+      -73.5987
+     ],
+     "landcover": {
+      "tree": 0.729,
+      "open": 0.145,
+      "bare": 0.0033,
+      "built": 0.095,
+      "crop": 0.004
+     },
+     "open_area_km2": 14.141
+    },
+    {
+     "name": "Till moraine",
+     "map_id": 4092713,
+     "source_id": 526,
+     "lith": "ice",
+     "description": "Adirondack sheet: Variable texture (size and sorting), generally low permeability, deposition adjacent to ice, thickness variable (10-30 meters). Niagara, Finger Lakes, Hudson-Mohawk, and Lower Hudson sheets: More variably sorted than till, generally more permeable than till, deposition adjacent to ",
+     "area_km2": 99.33,
+     "distance_km": 56.8,
+     "representative_point": [
+      40.7328,
+      -73.7522
+     ],
+     "landcover": {
+      "tree": 0.495,
+      "open": 0.092,
+      "bare": 0.0009,
+      "built": 0.409,
+      "crop": 0.001
+     },
+     "open_area_km2": 9.138
+    },
+    {
+     "name": "Till",
+     "map_id": 4094688,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 28.63,
+     "distance_km": 113.4,
+     "representative_point": [
+      41.3808,
+      -74.4447
+     ],
+     "landcover": {
+      "tree": 0.695,
+      "open": 0.224,
+      "bare": 0.0014,
+      "built": 0.023,
+      "crop": 0.054
+     },
+     "open_area_km2": 6.413
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4092772,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 13.0,
+     "distance_km": 76.5,
+     "representative_point": [
+      40.5898,
+      -73.607
+     ],
+     "landcover": {
+      "tree": 0.026,
+      "open": 0.265,
+      "bare": 0.099,
+      "built": 0.642,
+      "crop": 0.002
+     },
+     "open_area_km2": 3.446
+    },
+    {
+     "name": "Till moraine",
+     "map_id": 4092905,
+     "source_id": 526,
+     "lith": "ice",
+     "description": "Adirondack sheet: Variable texture (size and sorting), generally low permeability, deposition adjacent to ice, thickness variable (10-30 meters). Niagara, Finger Lakes, Hudson-Mohawk, and Lower Hudson sheets: More variably sorted than till, generally more permeable than till, deposition adjacent to ",
+     "area_km2": 52.83,
+     "distance_km": 34.8,
+     "representative_point": [
+      40.5587,
+      -74.1535
+     ],
+     "landcover": {
+      "tree": 0.437,
+      "open": 0.062,
+      "bare": 0.0028,
+      "built": 0.489,
+      "crop": 0.001
+     },
+     "open_area_km2": 3.275
+    },
+    {
+     "name": "Till",
+     "map_id": 4094034,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 41.31,
+     "distance_km": 45.2,
+     "representative_point": [
+      40.6107,
+      -74.1432
+     ],
+     "landcover": {
+      "tree": 0.371,
+      "open": 0.048,
+      "bare": 0.0031,
+      "built": 0.563,
+      "crop": 0.001
+     },
+     "open_area_km2": 1.983
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4095171,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 18.76,
+     "distance_km": 126.3,
+     "representative_point": [
+      41.5469,
+      -74.506
+     ],
+     "landcover": {
+      "tree": 0.72,
+      "open": 0.095,
+      "bare": 0.0,
+      "built": 0.031,
+      "crop": 0.012
+     },
+     "open_area_km2": 1.782
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4093374,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 2.09,
+     "distance_km": 117.0,
+     "representative_point": [
+      41.3737,
+      -74.3957
+     ],
+     "landcover": {
+      "tree": 0.288,
+      "open": 0.487,
+      "bare": 0.0032,
+      "built": 0.053,
+      "crop": 0.171
+     },
+     "open_area_km2": 1.018
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4095155,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 5.09,
+     "distance_km": 145.4,
+     "representative_point": [
+      41.5218,
+      -73.8619
+     ],
+     "landcover": {
+      "tree": 0.748,
+      "open": 0.196,
+      "bare": 0.0154,
+      "built": 0.027,
+      "crop": 0.011
+     },
+     "open_area_km2": 0.997
+    },
+    {
+     "name": "Till",
+     "map_id": 4094460,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 6.94,
+     "distance_km": 104.3,
+     "representative_point": [
+      41.2784,
+      -74.5018
+     ],
+     "landcover": {
+      "tree": 0.787,
+      "open": 0.138,
+      "bare": 0.0002,
+      "built": 0.012,
+      "crop": 0.063
+     },
+     "open_area_km2": 0.958
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4095276,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 4.53,
+     "distance_km": 144.4,
+     "representative_point": [
+      41.6592,
+      -74.6094
+     ],
+     "landcover": {
+      "tree": 0.739,
+      "open": 0.192,
+      "bare": 0.022,
+      "built": 0.029,
+      "crop": 0.025
+     },
+     "open_area_km2": 0.869
+    },
+    {
+     "name": "Lacustrine silt and clay",
+     "map_id": 4093999,
+     "source_id": 526,
+     "lith": "clay, silt",
+     "description": "Generally laminated silt and clay, deposited in proglacial lakes, generally calcareous, low permeability, potential land instability, thickness variable (up to 50 meters on the Finger Lakes and Adirondack sheets; up to 100 meters on the Niagara, Hudson-Mohawk, and Lower Hudson sheets), (stipple over",
+     "area_km2": 6.39,
+     "distance_km": 97.6,
+     "representative_point": [
+      41.0947,
+      -73.9613
+     ],
+     "landcover": {
+      "tree": 0.662,
+      "open": 0.11,
+      "bare": 0.0047,
+      "built": 0.134,
+      "crop": 0.017
+     },
+     "open_area_km2": 0.703
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094488,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 2.32,
+     "distance_km": 111.7,
+     "representative_point": [
+      41.1919,
+      -73.8863
+     ],
+     "landcover": {
+      "tree": 0.255,
+      "open": 0.265,
+      "bare": 0.0131,
+      "built": 0.313,
+      "crop": 0.007
+     },
+     "open_area_km2": 0.614
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094637,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 2.73,
+     "distance_km": 117.4,
+     "representative_point": [
+      41.3532,
+      -74.2247
+     ],
+     "landcover": {
+      "tree": 0.718,
+      "open": 0.197,
+      "bare": 0.0007,
+      "built": 0.061,
+      "crop": 0.023
+     },
+     "open_area_km2": 0.537
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094418,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 2.36,
+     "distance_km": 103.2,
+     "representative_point": [
+      41.2582,
+      -74.4421
+     ],
+     "landcover": {
+      "tree": 0.721,
+      "open": 0.226,
+      "bare": 0.0003,
+      "built": 0.007,
+      "crop": 0.024
+     },
+     "open_area_km2": 0.534
+    },
+    {
+     "name": "Till",
+     "map_id": 4092775,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 48.34,
+     "distance_km": 64.3,
+     "representative_point": [
+      40.783,
+      -73.9545
+     ],
+     "landcover": {
+      "tree": 0.163,
+      "open": 0.01,
+      "bare": 0.0027,
+      "built": 0.808,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.483
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4104993,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 2.04,
+     "distance_km": 94.2,
+     "representative_point": [
+      41.0544,
+      -73.9908
+     ],
+     "landcover": {
+      "tree": 0.663,
+      "open": 0.207,
+      "bare": 0.001,
+      "built": 0.045,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.422
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094158,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 4.21,
+     "distance_km": 71.5,
+     "representative_point": [
+      40.6173,
+      -73.8264
+     ],
+     "landcover": {
+      "tree": 0.271,
+      "open": 0.098,
+      "bare": 0.0086,
+      "built": 0.157,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.413
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094453,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 3.87,
+     "distance_km": 106.5,
+     "representative_point": [
+      41.2,
+      -74.0368
+     ],
+     "landcover": {
+      "tree": 0.752,
+      "open": 0.106,
+      "bare": 0.002,
+      "built": 0.141,
+      "crop": 0.001
+     },
+     "open_area_km2": 0.41
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4093467,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 3.14,
+     "distance_km": 144.1,
+     "representative_point": [
+      41.5282,
+      -73.9144
+     ],
+     "landcover": {
+      "tree": 0.666,
+      "open": 0.127,
+      "bare": 0.008,
+      "built": 0.206,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.398
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4095042,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 6.3,
+     "distance_km": 135.6,
+     "representative_point": [
+      41.462,
+      -73.919
+     ],
+     "landcover": {
+      "tree": 0.873,
+      "open": 0.063,
+      "bare": 0.0021,
+      "built": 0.053,
+      "crop": 0.003
+     },
+     "open_area_km2": 0.397
+    },
+    {
+     "name": "Lacustrine silt and clay",
+     "map_id": 4094494,
+     "source_id": 526,
+     "lith": "clay, silt",
+     "description": "Generally laminated silt and clay, deposited in proglacial lakes, generally calcareous, low permeability, potential land instability, thickness variable (up to 50 meters on the Finger Lakes and Adirondack sheets; up to 100 meters on the Niagara, Hudson-Mohawk, and Lower Hudson sheets), (stipple over",
+     "area_km2": 2.43,
+     "distance_km": 110.8,
+     "representative_point": [
+      41.2186,
+      -73.979
+     ],
+     "landcover": {
+      "tree": 0.484,
+      "open": 0.15,
+      "bare": 0.0208,
+      "built": 0.248,
+      "crop": 0.012
+     },
+     "open_area_km2": 0.365
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4093512,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 1.14,
+     "distance_km": 129.1,
+     "representative_point": [
+      41.4231,
+      -74.0714
+     ],
+     "landcover": {
+      "tree": 0.594,
+      "open": 0.305,
+      "bare": 0.0007,
+      "built": 0.059,
+      "crop": 0.042
+     },
+     "open_area_km2": 0.348
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4105234,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.18,
+     "distance_km": 136.3,
+     "representative_point": [
+      41.4792,
+      -74.0329
+     ],
+     "landcover": {
+      "tree": 0.526,
+      "open": 0.286,
+      "bare": 0.0166,
+      "built": 0.172,
+      "crop": 0.015
+     },
+     "open_area_km2": 0.337
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094346,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 6.03,
+     "distance_km": 83.7,
+     "representative_point": [
+      40.9554,
+      -73.8956
+     ],
+     "landcover": {
+      "tree": 0.444,
+      "open": 0.055,
+      "bare": 0.0072,
+      "built": 0.311,
+      "crop": 0.001
+     },
+     "open_area_km2": 0.332
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094523,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 2.88,
+     "distance_km": 119.8,
+     "representative_point": [
+      41.1955,
+      -73.725
+     ],
+     "landcover": {
+      "tree": 0.666,
+      "open": 0.108,
+      "bare": 0.0013,
+      "built": 0.223,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.311
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094653,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 4.14,
+     "distance_km": 115.4,
+     "representative_point": [
+      41.3273,
+      -74.1184
+     ],
+     "landcover": {
+      "tree": 0.688,
+      "open": 0.075,
+      "bare": 0.0035,
+      "built": 0.204,
+      "crop": 0.005
+     },
+     "open_area_km2": 0.31
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094574,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 2.13,
+     "distance_km": 115.9,
+     "representative_point": [
+      41.2619,
+      -73.9556
+     ],
+     "landcover": {
+      "tree": 0.545,
+      "open": 0.14,
+      "bare": 0.0166,
+      "built": 0.205,
+      "crop": 0.004
+     },
+     "open_area_km2": 0.298
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094485,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.93,
+     "distance_km": 110.2,
+     "representative_point": [
+      41.2192,
+      -73.996
+     ],
+     "landcover": {
+      "tree": 0.676,
+      "open": 0.129,
+      "bare": 0.0005,
+      "built": 0.151,
+      "crop": 0.044
+     },
+     "open_area_km2": 0.249
+    },
+    {
+     "name": "Till",
+     "map_id": 4104978,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 2.32,
+     "distance_km": 144.7,
+     "representative_point": [
+      41.5121,
+      -73.8621
+     ],
+     "landcover": {
+      "tree": 0.802,
+      "open": 0.103,
+      "bare": 0.0044,
+      "built": 0.004,
+      "crop": 0.003
+     },
+     "open_area_km2": 0.239
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094201,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.21,
+     "distance_km": 92.0,
+     "representative_point": [
+      40.6045,
+      -73.5606
+     ],
+     "landcover": {
+      "tree": 0.155,
+      "open": 0.197,
+      "bare": 0.0462,
+      "built": 0.044,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.238
+    },
+    {
+     "name": "Lacustrine silt and clay",
+     "map_id": 4095158,
+     "source_id": 526,
+     "lith": "clay, silt",
+     "description": "Generally laminated silt and clay, deposited in proglacial lakes, generally calcareous, low permeability, potential land instability, thickness variable (up to 50 meters on the Finger Lakes and Adirondack sheets; up to 100 meters on the Niagara, Hudson-Mohawk, and Lower Hudson sheets), (stipple over",
+     "area_km2": 1.05,
+     "distance_km": 143.9,
+     "representative_point": [
+      41.5955,
+      -74.2568
+     ],
+     "landcover": {
+      "tree": 0.735,
+      "open": 0.207,
+      "bare": 0.0,
+      "built": 0.002,
+      "crop": 0.056
+     },
+     "open_area_km2": 0.217
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094680,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.02,
+     "distance_km": 133.8,
+     "representative_point": [
+      41.2775,
+      -73.6079
+     ],
+     "landcover": {
+      "tree": 0.684,
+      "open": 0.19,
+      "bare": 0.0005,
+      "built": 0.125,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.194
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4093863,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 1.71,
+     "distance_km": 97.6,
+     "representative_point": [
+      41.1476,
+      -74.1551
+     ],
+     "landcover": {
+      "tree": 0.809,
+      "open": 0.113,
+      "bare": 0.0009,
+      "built": 0.067,
+      "crop": 0.011
+     },
+     "open_area_km2": 0.193
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094441,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.74,
+     "distance_km": 105.5,
+     "representative_point": [
+      41.2528,
+      -74.3163
+     ],
+     "landcover": {
+      "tree": 0.7,
+      "open": 0.253,
+      "bare": 0.0,
+      "built": 0.022,
+      "crop": 0.025
+     },
+     "open_area_km2": 0.187
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094429,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 2.3,
+     "distance_km": 114.1,
+     "representative_point": [
+      41.1237,
+      -73.7069
+     ],
+     "landcover": {
+      "tree": 0.76,
+      "open": 0.073,
+      "bare": 0.0001,
+      "built": 0.162,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.168
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094139,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.61,
+     "distance_km": 69.0,
+     "representative_point": [
+      40.599,
+      -73.8566
+     ],
+     "landcover": {
+      "tree": 0.211,
+      "open": 0.27,
+      "bare": 0.0073,
+      "built": 0.006,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.165
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4093906,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.01,
+     "distance_km": 68.7,
+     "representative_point": [
+      40.6228,
+      -73.8709
+     ],
+     "landcover": {
+      "tree": 0.6,
+      "open": 0.154,
+      "bare": 0.0034,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.155
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094874,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 3.87,
+     "distance_km": 127.2,
+     "representative_point": [
+      41.3792,
+      -73.872
+     ],
+     "landcover": {
+      "tree": 0.959,
+      "open": 0.038,
+      "bare": 0.0,
+      "built": 0.003,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.147
+    },
+    {
+     "name": "Till",
+     "map_id": 4093377,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 0.47,
+     "distance_km": 120.6,
+     "representative_point": [
+      41.3042,
+      -73.9749
+     ],
+     "landcover": {
+      "tree": 0.409,
+      "open": 0.292,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.007
+     },
+     "open_area_km2": 0.137
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4092907,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 2.18,
+     "distance_km": 93.4,
+     "representative_point": [
+      40.609,
+      -73.5463
+     ],
+     "landcover": {
+      "tree": 0.058,
+      "open": 0.059,
+      "bare": 0.0,
+      "built": 0.04,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.129
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094371,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.72,
+     "distance_km": 96.7,
+     "representative_point": [
+      41.1564,
+      -74.2288
+     ],
+     "landcover": {
+      "tree": 0.78,
+      "open": 0.161,
+      "bare": 0.0,
+      "built": 0.029,
+      "crop": 0.011
+     },
+     "open_area_km2": 0.116
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094128,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 1.38,
+     "distance_km": 49.1,
+     "representative_point": [
+      40.6332,
+      -74.1681
+     ],
+     "landcover": {
+      "tree": 0.461,
+      "open": 0.079,
+      "bare": 0.0051,
+      "built": 0.449,
+      "crop": 0.001
+     },
+     "open_area_km2": 0.109
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094126,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.54,
+     "distance_km": 70.0,
+     "representative_point": [
+      40.5934,
+      -73.8355
+     ],
+     "landcover": {
+      "tree": 0.002,
+      "open": 0.203,
+      "bare": 0.0233,
+      "built": 0.0,
+      "crop": 0.008
+     },
+     "open_area_km2": 0.109
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094435,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 2.71,
+     "distance_km": 102.5,
+     "representative_point": [
+      41.2319,
+      -74.2798
+     ],
+     "landcover": {
+      "tree": 0.818,
+      "open": 0.039,
+      "bare": 0.0008,
+      "built": 0.124,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.106
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4095312,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.55,
+     "distance_km": 149.5,
+     "representative_point": [
+      41.5848,
+      -73.9456
+     ],
+     "landcover": {
+      "tree": 0.663,
+      "open": 0.067,
+      "bare": 0.0,
+      "built": 0.075,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.104
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094449,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.35,
+     "distance_km": 106.0,
+     "representative_point": [
+      41.2566,
+      -74.305
+     ],
+     "landcover": {
+      "tree": 0.295,
+      "open": 0.296,
+      "bare": 0.0,
+      "built": 0.036,
+      "crop": 0.373
+     },
+     "open_area_km2": 0.103
+    },
+    {
+     "name": "Till",
+     "map_id": 4093605,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 2.2,
+     "distance_km": 114.2,
+     "representative_point": [
+      41.3614,
+      -74.6609
+     ],
+     "landcover": {
+      "tree": 0.879,
+      "open": 0.043,
+      "bare": 0.0018,
+      "built": 0.077,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.094
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4105053,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.33,
+     "distance_km": 96.8,
+     "representative_point": [
+      41.0973,
+      -74.0337
+     ],
+     "landcover": {
+      "tree": 0.66,
+      "open": 0.06,
+      "bare": 0.0115,
+      "built": 0.281,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.08
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094955,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.63,
+     "distance_km": 145.9,
+     "representative_point": [
+      41.3896,
+      -73.5562
+     ],
+     "landcover": {
+      "tree": 0.705,
+      "open": 0.047,
+      "bare": 0.0054,
+      "built": 0.084,
+      "crop": 0.005
+     },
+     "open_area_km2": 0.077
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094596,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 1.46,
+     "distance_km": 117.8,
+     "representative_point": [
+      41.3944,
+      -74.6425
+     ],
+     "landcover": {
+      "tree": 0.944,
+      "open": 0.047,
+      "bare": 0.0,
+      "built": 0.009,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.069
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094454,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.46,
+     "distance_km": 113.1,
+     "representative_point": [
+      41.1795,
+      -73.856
+     ],
+     "landcover": {
+      "tree": 0.791,
+      "open": 0.131,
+      "bare": 0.0,
+      "built": 0.078,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.06
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094647,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.8,
+     "distance_km": 119.0,
+     "representative_point": [
+      41.3577,
+      -74.1976
+     ],
+     "landcover": {
+      "tree": 0.906,
+      "open": 0.074,
+      "bare": 0.0,
+      "built": 0.004,
+      "crop": 0.004
+     },
+     "open_area_km2": 0.059
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4105109,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 2.29,
+     "distance_km": 123.7,
+     "representative_point": [
+      41.2333,
+      -73.7037
+     ],
+     "landcover": {
+      "tree": 0.684,
+      "open": 0.025,
+      "bare": 0.0049,
+      "built": 0.29,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.057
+    },
+    {
+     "name": "Till",
+     "map_id": 4094296,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 1.11,
+     "distance_km": 88.9,
+     "representative_point": [
+      40.8476,
+      -73.7867
+     ],
+     "landcover": {
+      "tree": 0.165,
+      "open": 0.05,
+      "bare": 0.0038,
+      "built": 0.727,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.055
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094841,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.38,
+     "distance_km": 131.0,
+     "representative_point": [
+      41.4317,
+      -74.0622
+     ],
+     "landcover": {
+      "tree": 0.855,
+      "open": 0.115,
+      "bare": 0.0,
+      "built": 0.03,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.044
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094707,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.55,
+     "distance_km": 132.2,
+     "representative_point": [
+      41.3055,
+      -73.6925
+     ],
+     "landcover": {
+      "tree": 0.686,
+      "open": 0.078,
+      "bare": 0.0185,
+      "built": 0.176,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.043
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094359,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.46,
+     "distance_km": 105.1,
+     "representative_point": [
+      41.0096,
+      -73.726
+     ],
+     "landcover": {
+      "tree": 0.63,
+      "open": 0.092,
+      "bare": 0.0301,
+      "built": 0.278,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.042
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4093393,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.87,
+     "distance_km": 125.7,
+     "representative_point": [
+      41.2786,
+      -73.7793
+     ],
+     "landcover": {
+      "tree": 0.671,
+      "open": 0.047,
+      "bare": 0.0018,
+      "built": 0.282,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.041
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094459,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.4,
+     "distance_km": 110.0,
+     "representative_point": [
+      41.2127,
+      -74.0112
+     ],
+     "landcover": {
+      "tree": 0.842,
+      "open": 0.091,
+      "bare": 0.0,
+      "built": 0.061,
+      "crop": 0.005
+     },
+     "open_area_km2": 0.037
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094910,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.14,
+     "distance_km": 137.2,
+     "representative_point": [
+      41.4304,
+      -73.8681
+     ],
+     "landcover": {
+      "tree": 0.697,
+      "open": 0.234,
+      "bare": 0.0,
+      "built": 0.069,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.032
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4093955,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.57,
+     "distance_km": 110.8,
+     "representative_point": [
+      41.1109,
+      -73.7722
+     ],
+     "landcover": {
+      "tree": 0.761,
+      "open": 0.046,
+      "bare": 0.0036,
+      "built": 0.193,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.026
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094419,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 2.82,
+     "distance_km": 99.1,
+     "representative_point": [
+      41.2154,
+      -74.3334
+     ],
+     "landcover": {
+      "tree": 0.989,
+      "open": 0.008,
+      "bare": 0.0,
+      "built": 0.001,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.023
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094214,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.66,
+     "distance_km": 95.5,
+     "representative_point": [
+      40.6093,
+      -73.5164
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.034,
+      "bare": 0.0004,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.022
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4093423,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.24,
+     "distance_km": 106.1,
+     "representative_point": [
+      41.2796,
+      -74.5166
+     ],
+     "landcover": {
+      "tree": 0.831,
+      "open": 0.087,
+      "bare": 0.0,
+      "built": 0.029,
+      "crop": 0.05
+     },
+     "open_area_km2": 0.021
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4092883,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.8,
+     "distance_km": 102.8,
+     "representative_point": [
+      41.0596,
+      -73.8452
+     ],
+     "landcover": {
+      "tree": 0.711,
+      "open": 0.022,
+      "bare": 0.0,
+      "built": 0.266,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.018
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4105226,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.62,
+     "distance_km": 112.2,
+     "representative_point": [
+      41.1528,
+      -73.8226
+     ],
+     "landcover": {
+      "tree": 0.917,
+      "open": 0.029,
+      "bare": 0.0,
+      "built": 0.054,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.018
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094526,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.44,
+     "distance_km": 119.2,
+     "representative_point": [
+      41.2107,
+      -73.7825
+     ],
+     "landcover": {
+      "tree": 0.947,
+      "open": 0.027,
+      "bare": 0.0006,
+      "built": 0.026,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.012
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4094777,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.37,
+     "distance_km": 136.1,
+     "representative_point": [
+      41.3376,
+      -73.6769
+     ],
+     "landcover": {
+      "tree": 0.965,
+      "open": 0.03,
+      "bare": 0.0,
+      "built": 0.004,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.011
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094140,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.0,
+     "distance_km": 74.2,
+     "representative_point": [
+      40.6168,
+      -73.7918
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.006,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.006
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4095062,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.47,
+     "distance_km": 144.4,
+     "representative_point": [
+      41.4843,
+      -73.8139
+     ],
+     "landcover": {
+      "tree": 0.924,
+      "open": 0.013,
+      "bare": 0.0,
+      "built": 0.061,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.006
+    },
+    {
+     "name": "Till",
+     "map_id": 4094748,
+     "source_id": 526,
+     "lith": "boulders, ice, sand, silt, minor clay, minor gneiss, minor metamorphic, minor sandstone, minor sedimentary",
+     "description": "Adirondack sheet: Till in a sheet showing little or no morainal topography, variable texture (boulders to silt), usually poorly sorted sand-rich diamict, deposition beneath glacier ice, permeability varies with compaction, thickness variable (1-50 meters). Adirondack tills:  generally sand-rich diam",
+     "area_km2": 0.06,
+     "distance_km": 130.7,
+     "representative_point": [
+      41.3699,
+      -73.8802
+     ],
+     "landcover": {
+      "tree": 0.907,
+      "open": 0.085,
+      "bare": 0.0,
+      "built": 0.008,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.005
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4093157,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.54,
+     "distance_km": 139.4,
+     "representative_point": [
+      41.4276,
+      -73.8004
+     ],
+     "landcover": {
+      "tree": 0.957,
+      "open": 0.008,
+      "bare": 0.0,
+      "built": 0.02,
+      "crop": 0.003
+     },
+     "open_area_km2": 0.004
+    },
+    {
+     "name": "Kame deposits",
+     "map_id": 4093845,
+     "source_id": 526,
+     "lith": "gravel, ice, sand",
+     "description": "Coarse to fine gravel and/or sand, includes kames, eskers, kame terraces, kame deltas, ice contact, or ice cored deposition (if at ice margin, relief is below elevation of associated outwash on the Niagara sheet), lateral variability in sorting, texture and permeability, may be firmly cemented with ",
+     "area_km2": 0.25,
+     "distance_km": 99.6,
+     "representative_point": [
+      41.1796,
+      -74.225
+     ],
+     "landcover": {
+      "tree": 0.988,
+      "open": 0.009,
+      "bare": 0.0,
+      "built": 0.003,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.002
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094257,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.97,
+     "distance_km": 99.1,
+     "representative_point": [
+      40.6328,
+      -73.4805
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.002,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.002
+    },
+    {
+     "name": "Lacustrine sand",
+     "map_id": 4094203,
+     "source_id": 526,
+     "lith": "sand, ice",
+     "description": "Adironack sheet: Generally quartz sand, well sorted, stratified, usually deposited in proglacial lakes, but may have been deposited on remnant ice and/or may be gradational with outwash, generally a near-shore deposit or near a sand source, permeable, thickness variable (2-20 meters). Niagara, Finge",
+     "area_km2": 0.82,
+     "distance_km": 66.0,
+     "representative_point": [
+      40.7198,
+      -73.9965
+     ],
+     "landcover": {
+      "tree": 0.057,
+      "open": 0.0,
+      "bare": 0.0003,
+      "built": 0.942,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094178,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.25,
+     "distance_km": 88.3,
+     "representative_point": [
+      40.608,
+      -73.6101
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.0,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094253,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 1.47,
+     "distance_km": 98.1,
+     "representative_point": [
+      40.6196,
+      -73.4866
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.0,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    },
+    {
+     "name": "Outwash sand and gravel",
+     "map_id": 4094186,
+     "source_id": 526,
+     "lith": "gravel, sand, ice",
+     "description": "Coarse to fine gravel with sand, proglacial fluvial deposition, well rounded and stratified, generally finer texture away from ice border, (may be calcreted beyond Wisconsinan glacial limit on the Niagara sheet) permeable, thickness variable (2-20 meters)",
+     "area_km2": 0.54,
+     "distance_km": 87.8,
+     "representative_point": [
+      40.6103,
+      -73.6187
+     ],
+     "landcover": {
+      "tree": 0.0,
+      "open": 0.0,
+      "bare": 0.0,
+      "built": 0.0,
+      "crop": 0.0
+     },
+     "open_area_km2": 0.0
+    }
+   ]
+  }
+ }
+}

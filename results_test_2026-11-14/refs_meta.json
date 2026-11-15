@@ -1,0 +1,76 @@
+{
+ "M-CR": {
+  "body": "Moon",
+  "desc": "Connecting ridge (PGDA Site01)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 16384
+ },
+ "M-SR": {
+  "body": "Moon",
+  "desc": "Shackleton rim (PGDA Site04)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 16384
+ },
+ "M-DG": {
+  "body": "Moon",
+  "desc": "de Gerlache rim (PGDA Site11)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 16384
+ },
+ "M-MA": {
+  "body": "Moon",
+  "desc": "Malapert massif (PGDA Site23)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 31684
+ },
+ "R-JZ": {
+  "body": "Mars",
+  "desc": "Jezero crater, 1 degree box",
+  "grid_m": 199.999991643332,
+  "baselines": [
+   1600,
+   3200
+  ],
+  "conn_baseline": 1600,
+  "n_cells": 74200
+ },
+ "R-IS": {
+  "body": "Mars",
+  "desc": "InSight landing site, Elysium Planitia, 1 degree box",
+  "grid_m": 199.999991643332,
+  "baselines": [
+   1600,
+   3200
+  ],
+  "conn_baseline": 1600,
+  "n_cells": 78120
+ }
+}

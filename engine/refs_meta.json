@@ -1,0 +1,123 @@
+{
+ "M-CR": {
+  "body": "Moon",
+  "desc": "Connecting ridge (PGDA Site01)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 16384,
+  "ref_type": "site box (whole PGDA site outline)"
+ },
+ "M-SR": {
+  "body": "Moon",
+  "desc": "Shackleton rim (PGDA Site04)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 16384,
+  "ref_type": "site box (whole PGDA site outline)",
+  "warning": "heterogeneous: box mixes rim and steep crater wall; quarter-to-whole distances 7.7-13 deg; do not use as a headline reference"
+ },
+ "M-DG": {
+  "body": "Moon",
+  "desc": "de Gerlache rim (PGDA Site11)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 16384,
+  "ref_type": "site box (whole PGDA site outline)"
+ },
+ "M-MA": {
+  "body": "Moon",
+  "desc": "Malapert massif (PGDA Site23)",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_cells": 31684,
+  "ref_type": "site box (whole PGDA site outline)"
+ },
+ "R-JZ": {
+  "body": "Mars",
+  "desc": "Jezero crater, 1 degree box",
+  "grid_m": 199.999991643332,
+  "baselines": [
+   1600,
+   3200
+  ],
+  "conn_baseline": 1600,
+  "n_cells": 74200
+ },
+ "R-IS": {
+  "body": "Mars",
+  "desc": "InSight landing site, Elysium Planitia, 1 degree box",
+  "grid_m": 199.999991643332,
+  "baselines": [
+   1600,
+   3200
+  ],
+  "conn_baseline": 1600,
+  "n_cells": 78120
+ },
+ "MZ-FLAT": {
+  "body": "Moon",
+  "ref_type": "zone (team-defined terrain context)",
+  "desc": "Moon flat-terrain context, pooled from 4 south-pole sites",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_windows": 69,
+  "rule": "share of 400 m slope <= 10 deg >= 0.6",
+  "yardstick_leave_one_site_out": {
+   "n": 69,
+   "p10": 0.91,
+   "median": 1.56,
+   "p90": 2.35
+  }
+ },
+ "MZ-STEEP": {
+  "body": "Moon",
+  "ref_type": "zone (team-defined terrain context)",
+  "desc": "Moon steep-terrain context, pooled from 4 south-pole sites",
+  "grid_m": 100.0,
+  "baselines": [
+   400,
+   800,
+   1600,
+   3200
+  ],
+  "conn_baseline": 800,
+  "n_windows": 257,
+  "rule": "share of 400 m slope in 15-30 deg >= 0.4 (and not MZ-FLAT)",
+  "yardstick_leave_one_site_out": {
+   "n": 257,
+   "p10": 1.93,
+   "median": 3.21,
+   "p90": 7.62
+  }
+ }
+}

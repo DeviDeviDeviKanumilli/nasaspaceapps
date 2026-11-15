@@ -1,0 +1,348 @@
+{
+ "adopted": {
+  "g1": 0.5,
+  "g2": 0.25,
+  "p": 0.1
+ },
+ "references": {
+  "R-JZ": {
+   "n_windows": 4856398,
+   "adopted": {
+    "G1_or_better": 182053,
+    "G2_or_better": 27836,
+    "G4": 362,
+    "top_tier_counts": {
+     "G4": 50,
+     "G2": 0,
+     "G1": 0
+    }
+   },
+   "overlap_adopted_vs_exposed_lithology_only": 0.0,
+   "median_partner_share_in_adopted_G4_top50": 0.182,
+   "variants": [
+    {
+     "params": {
+      "g1": 0.3,
+      "g2": 0.25,
+      "p": 0.1
+     },
+     "G1_or_better": 245963,
+     "G2_or_better": 34508,
+     "G4": 594,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 1.0
+    },
+    {
+     "params": {
+      "g1": 0.7,
+      "g2": 0.25,
+      "p": 0.1
+     },
+     "G1_or_better": 137967,
+     "G2_or_better": 22455,
+     "G4": 152,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.72
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.1,
+      "p": 0.1
+     },
+     "G1_or_better": 182053,
+     "G2_or_better": 34811,
+     "G4": 573,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 1.0
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.5,
+      "p": 0.1
+     },
+     "G1_or_better": 182053,
+     "G2_or_better": 20991,
+     "G4": 188,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 1.0
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.25,
+      "p": 0.05
+     },
+     "G1_or_better": 182053,
+     "G2_or_better": 27836,
+     "G4": 476,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.88
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.25,
+      "p": 0.2
+     },
+     "G1_or_better": 182053,
+     "G2_or_better": 27836,
+     "G4": 221,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.84
+    }
+   ]
+  },
+  "R-IS": {
+   "n_windows": 4856398,
+   "adopted": {
+    "G1_or_better": 157042,
+    "G2_or_better": 23945,
+    "G4": 243,
+    "top_tier_counts": {
+     "G4": 41,
+     "G2": 9,
+     "G1": 0
+    }
+   },
+   "overlap_adopted_vs_exposed_lithology_only": 0.22,
+   "median_partner_share_in_adopted_G4_top50": 0.138,
+   "variants": [
+    {
+     "params": {
+      "g1": 0.3,
+      "g2": 0.25,
+      "p": 0.1
+     },
+     "G1_or_better": 205488,
+     "G2_or_better": 28712,
+     "G4": 399,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.82
+    },
+    {
+     "params": {
+      "g1": 0.7,
+      "g2": 0.25,
+      "p": 0.1
+     },
+     "G1_or_better": 121814,
+     "G2_or_better": 19891,
+     "G4": 129,
+     "top_tier_counts": {
+      "G4": 35,
+      "G2": 15,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.88
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.1,
+      "p": 0.1
+     },
+     "G1_or_better": 157042,
+     "G2_or_better": 29673,
+     "G4": 265,
+     "top_tier_counts": {
+      "G4": 47,
+      "G2": 3,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.88
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.5,
+      "p": 0.1
+     },
+     "G1_or_better": 157042,
+     "G2_or_better": 18297,
+     "G4": 221,
+     "top_tier_counts": {
+      "G4": 39,
+      "G2": 11,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.96
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.25,
+      "p": 0.05
+     },
+     "G1_or_better": 157042,
+     "G2_or_better": 23945,
+     "G4": 297,
+     "top_tier_counts": {
+      "G4": 46,
+      "G2": 4,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.9
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.25,
+      "p": 0.2
+     },
+     "G1_or_better": 157042,
+     "G2_or_better": 23945,
+     "G4": 158,
+     "top_tier_counts": {
+      "G4": 38,
+      "G2": 12,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.98
+    }
+   ]
+  },
+  "R-AE": {
+   "n_windows": 4856398,
+   "adopted": {
+    "G1_or_better": 255436,
+    "G2_or_better": 124744,
+    "G4": 394,
+    "top_tier_counts": {
+     "G4": 50,
+     "G2": 0,
+     "G1": 0
+    }
+   },
+   "overlap_adopted_vs_exposed_lithology_only": 0.0,
+   "median_partner_share_in_adopted_G4_top50": 0.129,
+   "variants": [
+    {
+     "params": {
+      "g1": 0.3,
+      "g2": 0.25,
+      "p": 0.1
+     },
+     "G1_or_better": 289075,
+     "G2_or_better": 137737,
+     "G4": 576,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 1.0
+    },
+    {
+     "params": {
+      "g1": 0.7,
+      "g2": 0.25,
+      "p": 0.1
+     },
+     "G1_or_better": 220452,
+     "G2_or_better": 111400,
+     "G4": 196,
+     "top_tier_counts": {
+      "G4": 46,
+      "G2": 4,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.8
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.1,
+      "p": 0.1
+     },
+     "G1_or_better": 255436,
+     "G2_or_better": 128520,
+     "G4": 411,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 1.0
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.5,
+      "p": 0.1
+     },
+     "G1_or_better": 255436,
+     "G2_or_better": 120949,
+     "G4": 362,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 1.0
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.25,
+      "p": 0.05
+     },
+     "G1_or_better": 255436,
+     "G2_or_better": 124744,
+     "G4": 525,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.88
+    },
+    {
+     "params": {
+      "g1": 0.5,
+      "g2": 0.25,
+      "p": 0.2
+     },
+     "G1_or_better": 255436,
+     "G2_or_better": 124744,
+     "G4": 244,
+     "top_tier_counts": {
+      "G4": 50,
+      "G2": 0,
+      "G1": 0
+     },
+     "overlap_with_adopted_top50": 0.9
+    }
+   ]
+  }
+ }
+}

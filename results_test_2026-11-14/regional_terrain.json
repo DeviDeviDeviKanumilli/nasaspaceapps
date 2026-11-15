@@ -1,0 +1,762 @@
+{
+ "area": {
+  "centre": [
+   40.33,
+   -74.6
+  ],
+  "radius_km": 150.0
+ },
+ "dem": "USGS 3DEP 1/3 arc-second (bare earth), ~20 m overview averaged to 60 m",
+ "baselines_m": [
+  240,
+  480,
+  960
+ ],
+ "n_windows": 1325,
+ "references": {
+  "M-CR": {
+   "best_worst_scale_slope_W1_deg": 4.71,
+   "median_over_all_windows": 9.43,
+   "candidates": [
+    {
+     "lat": 40.6378,
+     "lon": -75.9373,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.71,
+     "worst_scale_log10_roughness_W1": 0.221,
+     "connectivity_distance": 0.245,
+     "median_slope_deg_by_baseline": {
+      "240": 7.73,
+      "480": 7.09,
+      "960": 5.78
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 41.3688,
+     "lon": -74.1009,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.79,
+     "worst_scale_log10_roughness_W1": 0.334,
+     "connectivity_distance": 0.141,
+     "median_slope_deg_by_baseline": {
+      "240": 7.39,
+      "480": 6.74,
+      "960": 5.45
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 41.6386,
+     "lon": -74.4579,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 4.93,
+     "worst_scale_log10_roughness_W1": 0.265,
+     "connectivity_distance": 0.208,
+     "median_slope_deg_by_baseline": {
+      "240": 7.16,
+      "480": 6.39,
+      "960": 5.44
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 40.8625,
+     "lon": -75.7615,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.33,
+     "worst_scale_log10_roughness_W1": 0.22,
+     "connectivity_distance": 0.131,
+     "median_slope_deg_by_baseline": {
+      "240": 6.29,
+      "480": 5.86,
+      "960": 4.94
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 40.9073,
+     "lon": -75.2297,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 5.44,
+     "worst_scale_log10_roughness_W1": 0.144,
+     "connectivity_distance": 0.231,
+     "median_slope_deg_by_baseline": {
+      "240": 4.89,
+      "480": 4.57,
+      "960": 4.05
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 40.6384,
+     "lon": -76.2897,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.26,
+     "worst_scale_log10_roughness_W1": 0.267,
+     "connectivity_distance": 0.119,
+     "median_slope_deg_by_baseline": {
+      "240": 6.11,
+      "480": 5.01,
+      "960": 3.45
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 41.0548,
+     "lon": -75.9322,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.39,
+     "worst_scale_log10_roughness_W1": 0.071,
+     "connectivity_distance": 0.215,
+     "median_slope_deg_by_baseline": {
+      "240": 4.41,
+      "480": 4.06,
+      "960": 3.53
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 41.4592,
+     "lon": -75.5176,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.88,
+     "worst_scale_log10_roughness_W1": 0.053,
+     "connectivity_distance": 0.381,
+     "median_slope_deg_by_baseline": {
+      "240": 4.71,
+      "480": 4.35,
+      "960": 4.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 40.504,
+     "lon": -76.3489,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 6.99,
+     "worst_scale_log10_roughness_W1": 0.111,
+     "connectivity_distance": 0.199,
+     "median_slope_deg_by_baseline": {
+      "240": 4.46,
+      "480": 3.73,
+      "960": 3.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    },
+    {
+     "lat": 40.9068,
+     "lon": -75.939,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.41,
+     "worst_scale_log10_roughness_W1": 0.119,
+     "connectivity_distance": 0.171,
+     "median_slope_deg_by_baseline": {
+      "240": 3.34,
+      "480": 2.98,
+      "960": 2.48
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 11.46,
+      "480": 11.1,
+      "960": 10.42
+     }
+    }
+   ]
+  },
+  "M-SR": {
+   "best_worst_scale_slope_W1_deg": 14.0,
+   "median_over_all_windows": 18.71,
+   "candidates": [
+    {
+     "lat": 40.6378,
+     "lon": -75.9373,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.0,
+     "worst_scale_log10_roughness_W1": 0.311,
+     "connectivity_distance": 0.493,
+     "median_slope_deg_by_baseline": {
+      "240": 7.73,
+      "480": 7.09,
+      "960": 5.78
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 41.3688,
+     "lon": -74.1009,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.07,
+     "worst_scale_log10_roughness_W1": 0.432,
+     "connectivity_distance": 0.389,
+     "median_slope_deg_by_baseline": {
+      "240": 7.39,
+      "480": 6.74,
+      "960": 5.45
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 41.6386,
+     "lon": -74.4579,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.21,
+     "worst_scale_log10_roughness_W1": 0.36,
+     "connectivity_distance": 0.456,
+     "median_slope_deg_by_baseline": {
+      "240": 7.16,
+      "480": 6.39,
+      "960": 5.44
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 40.8625,
+     "lon": -75.7615,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.62,
+     "worst_scale_log10_roughness_W1": 0.302,
+     "connectivity_distance": 0.205,
+     "median_slope_deg_by_baseline": {
+      "240": 6.29,
+      "480": 5.86,
+      "960": 4.94
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 40.9073,
+     "lon": -75.2297,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 14.73,
+     "worst_scale_log10_roughness_W1": 0.22,
+     "connectivity_distance": 0.48,
+     "median_slope_deg_by_baseline": {
+      "240": 4.89,
+      "480": 4.57,
+      "960": 4.05
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 40.8179,
+     "lon": -75.4072,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.45,
+     "worst_scale_log10_roughness_W1": 0.221,
+     "connectivity_distance": 0.429,
+     "median_slope_deg_by_baseline": {
+      "240": 4.54,
+      "480": 3.99,
+      "960": 3.0
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 40.7731,
+     "lon": -75.5842,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.51,
+     "worst_scale_log10_roughness_W1": 0.241,
+     "connectivity_distance": 0.306,
+     "median_slope_deg_by_baseline": {
+      "240": 4.49,
+      "480": 3.93,
+      "960": 3.1
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 41.0548,
+     "lon": -75.9322,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 15.67,
+     "worst_scale_log10_roughness_W1": 0.162,
+     "connectivity_distance": 0.463,
+     "median_slope_deg_by_baseline": {
+      "240": 4.41,
+      "480": 4.06,
+      "960": 3.53
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 41.4592,
+     "lon": -75.5176,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 16.16,
+     "worst_scale_log10_roughness_W1": 0.145,
+     "connectivity_distance": 0.63,
+     "median_slope_deg_by_baseline": {
+      "240": 4.71,
+      "480": 4.35,
+      "960": 4.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    },
+    {
+     "lat": 40.504,
+     "lon": -76.3489,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 16.28,
+     "worst_scale_log10_roughness_W1": 0.177,
+     "connectivity_distance": 0.448,
+     "median_slope_deg_by_baseline": {
+      "240": 4.46,
+      "480": 3.73,
+      "960": 3.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 21.17,
+      "480": 20.89,
+      "960": 20.27
+     }
+    }
+   ]
+  },
+  "M-DG": {
+   "best_worst_scale_slope_W1_deg": 7.34,
+   "median_over_all_windows": 12.06,
+   "candidates": [
+    {
+     "lat": 40.6378,
+     "lon": -75.9373,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.34,
+     "worst_scale_log10_roughness_W1": 0.28,
+     "connectivity_distance": 0.359,
+     "median_slope_deg_by_baseline": {
+      "240": 7.73,
+      "480": 7.09,
+      "960": 5.78
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 41.3688,
+     "lon": -74.1009,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.41,
+     "worst_scale_log10_roughness_W1": 0.4,
+     "connectivity_distance": 0.255,
+     "median_slope_deg_by_baseline": {
+      "240": 7.39,
+      "480": 6.74,
+      "960": 5.45
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 41.6386,
+     "lon": -74.4579,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.56,
+     "worst_scale_log10_roughness_W1": 0.329,
+     "connectivity_distance": 0.322,
+     "median_slope_deg_by_baseline": {
+      "240": 7.16,
+      "480": 6.39,
+      "960": 5.44
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 40.8625,
+     "lon": -75.7615,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 7.96,
+     "worst_scale_log10_roughness_W1": 0.276,
+     "connectivity_distance": 0.143,
+     "median_slope_deg_by_baseline": {
+      "240": 6.29,
+      "480": 5.86,
+      "960": 4.94
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 40.9073,
+     "lon": -75.2297,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.07,
+     "worst_scale_log10_roughness_W1": 0.195,
+     "connectivity_distance": 0.346,
+     "median_slope_deg_by_baseline": {
+      "240": 4.89,
+      "480": 4.57,
+      "960": 4.05
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 40.8179,
+     "lon": -75.4072,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 8.8,
+     "worst_scale_log10_roughness_W1": 0.21,
+     "connectivity_distance": 0.295,
+     "median_slope_deg_by_baseline": {
+      "240": 4.54,
+      "480": 3.99,
+      "960": 3.0
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 41.0548,
+     "lon": -75.9322,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.01,
+     "worst_scale_log10_roughness_W1": 0.131,
+     "connectivity_distance": 0.329,
+     "median_slope_deg_by_baseline": {
+      "240": 4.41,
+      "480": 4.06,
+      "960": 3.53
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 41.4592,
+     "lon": -75.5176,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.51,
+     "worst_scale_log10_roughness_W1": 0.114,
+     "connectivity_distance": 0.495,
+     "median_slope_deg_by_baseline": {
+      "240": 4.71,
+      "480": 4.35,
+      "960": 4.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 40.504,
+     "lon": -76.3489,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 9.62,
+     "worst_scale_log10_roughness_W1": 0.149,
+     "connectivity_distance": 0.314,
+     "median_slope_deg_by_baseline": {
+      "240": 4.46,
+      "480": 3.73,
+      "960": 3.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    },
+    {
+     "lat": 40.9068,
+     "lon": -75.939,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.03,
+     "worst_scale_log10_roughness_W1": 0.138,
+     "connectivity_distance": 0.285,
+     "median_slope_deg_by_baseline": {
+      "240": 3.34,
+      "480": 2.98,
+      "960": 2.48
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 14.28,
+      "480": 14.12,
+      "960": 13.87
+     }
+    }
+   ]
+  },
+  "M-MA": {
+   "best_worst_scale_slope_W1_deg": 10.39,
+   "median_over_all_windows": 15.11,
+   "candidates": [
+    {
+     "lat": 40.6378,
+     "lon": -75.9373,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.39,
+     "worst_scale_log10_roughness_W1": 0.361,
+     "connectivity_distance": 0.44,
+     "median_slope_deg_by_baseline": {
+      "240": 7.73,
+      "480": 7.09,
+      "960": 5.78
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 41.3688,
+     "lon": -74.1009,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.46,
+     "worst_scale_log10_roughness_W1": 0.46,
+     "connectivity_distance": 0.336,
+     "median_slope_deg_by_baseline": {
+      "240": 7.39,
+      "480": 6.74,
+      "960": 5.45
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 41.6386,
+     "lon": -74.4579,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 10.6,
+     "worst_scale_log10_roughness_W1": 0.386,
+     "connectivity_distance": 0.403,
+     "median_slope_deg_by_baseline": {
+      "240": 7.16,
+      "480": 6.39,
+      "960": 5.44
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 40.8625,
+     "lon": -75.7615,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.01,
+     "worst_scale_log10_roughness_W1": 0.35,
+     "connectivity_distance": 0.169,
+     "median_slope_deg_by_baseline": {
+      "240": 6.29,
+      "480": 5.86,
+      "960": 4.94
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 40.9073,
+     "lon": -75.2297,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.12,
+     "worst_scale_log10_roughness_W1": 0.267,
+     "connectivity_distance": 0.426,
+     "median_slope_deg_by_baseline": {
+      "240": 4.89,
+      "480": 4.57,
+      "960": 4.05
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 40.8179,
+     "lon": -75.4072,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.84,
+     "worst_scale_log10_roughness_W1": 0.24,
+     "connectivity_distance": 0.375,
+     "median_slope_deg_by_baseline": {
+      "240": 4.54,
+      "480": 3.99,
+      "960": 3.0
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 40.7731,
+     "lon": -75.5842,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 11.9,
+     "worst_scale_log10_roughness_W1": 0.262,
+     "connectivity_distance": 0.28,
+     "median_slope_deg_by_baseline": {
+      "240": 4.49,
+      "480": 3.93,
+      "960": 3.1
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 41.0548,
+     "lon": -75.9322,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.06,
+     "worst_scale_log10_roughness_W1": 0.202,
+     "connectivity_distance": 0.41,
+     "median_slope_deg_by_baseline": {
+      "240": 4.41,
+      "480": 4.06,
+      "960": 3.53
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 41.4592,
+     "lon": -75.5176,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.55,
+     "worst_scale_log10_roughness_W1": 0.172,
+     "connectivity_distance": 0.576,
+     "median_slope_deg_by_baseline": {
+      "240": 4.71,
+      "480": 4.35,
+      "960": 4.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    },
+    {
+     "lat": 40.504,
+     "lon": -76.3489,
+     "pareto_front": 1,
+     "worst_scale_slope_W1_deg": 12.67,
+     "worst_scale_log10_roughness_W1": 0.203,
+     "connectivity_distance": 0.394,
+     "median_slope_deg_by_baseline": {
+      "240": 4.46,
+      "480": 3.73,
+      "960": 3.03
+     },
+     "reference_median_slope_deg_by_baseline": {
+      "240": 17.65,
+      "480": 17.51,
+      "960": 17.37
+     }
+    }
+   ]
+  }
+ }
+}

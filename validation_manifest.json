@@ -1,0 +1,29 @@
+{
+  "version": "0.2",
+  "date": "2026-11-14",
+  "status": "methodology prototype, not validated real Earth analog discovery",
+  "terrain": {
+    "input": "synthetic georeferenced GeoTIFFs",
+    "test_groups_passed": 5,
+    "math": ["plane-fit absolute slope", "plane-fit residual roughness", "multiscale physical baseline", "W1 difference in physical units", "connectivity check", "resolution/missing-data guards"],
+    "real_nasa_terrain_processed": false,
+    "earth_dem_real_observations_processed": false,
+    "global_search_executed": false
+  },
+  "geology": {
+    "input": "synthetic GeoJSON and mocked ArcGIS FeatureServer responses",
+    "test_groups_passed": 4,
+    "independent_of_terrain": true,
+    "global_source_discovered": "GLiM Level-I ArcGIS FeatureServer: https://services8.arcgis.com/4KhTMTZ1x0f76DSg/ArcGIS/rest/services/GLiM_Niveau_I/FeatureServer/1",
+    "planetary_lithological_motivations": ["NASA Mars 2020 Maaz igneous rocks", "NASA Mars 2020 Seitah cumulates", "NASA Mars 2020 Jezero delta sedimentary rocks"],
+    "real_glim_polygons_processed": false,
+    "global_geology_query_executed": false,
+    "scientific_claim_limit": "broad mapped lithological correspondence only; not composition, process, analog fitness or base-site suitability"
+  },
+  "nasa_2026_compliance": {
+    "qualifying_source_identified": true,
+    "source": "LRO/LOLA via official challenge Resources",
+    "actual_source_data_used_in_generated_results": false,
+    "eligible_nasa_data_requirement_satisfied_by_this_package": false
+  }
+}

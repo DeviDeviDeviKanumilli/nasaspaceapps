@@ -1,0 +1,938 @@
+{
+ "glim_codes": 437,
+ "window": "0.1 deg latitude x 0.1/cos(lat) deg longitude, half-window step",
+ "thresholds": {
+  "G1_min_mapped": 0.5,
+  "G2_min_exposed": 0.25,
+  "min_mapped_land": 0.7
+ },
+ "emit": "not evaluated in this run",
+ "references": {
+  "R-JZ": {
+   "target": "basic volcanic or basic plutonic rock, in a window that also contains alluvial sediment",
+   "partner": "unconsolidated or siliciclastic sediment with alluvial-deposit subclass",
+   "n_windows": 4856398,
+   "n_G1_or_better": 182053,
+   "windows_by_tier": {
+    "G4 (process partner present; G3 spectral not evaluated)": 658,
+    "G2": 27178,
+    "G1": 154217
+   },
+   "candidates": [
+    {
+     "lat": -26.8,
+     "lon": -68.045,
+     "mapped_target_fraction": 0.982,
+     "exposed_target_fraction": 0.975,
+     "exposed_target_area_km2": 118.6,
+     "partner_fraction": 0.018,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -25.95,
+     "lon": -66.945,
+     "mapped_target_fraction": 0.964,
+     "exposed_target_fraction": 0.963,
+     "exposed_target_area_km2": 118.0,
+     "partner_fraction": 0.036,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 10.75,
+     "lon": 42.45,
+     "mapped_target_fraction": 0.97,
+     "exposed_target_fraction": 0.952,
+     "exposed_target_area_km2": 115.8,
+     "partner_fraction": 0.03,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -25.7,
+     "lon": -66.845,
+     "mapped_target_fraction": 0.945,
+     "exposed_target_fraction": 0.939,
+     "exposed_target_area_km2": 115.4,
+     "partner_fraction": 0.018,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 2.75,
+     "lon": 36.0,
+     "mapped_target_fraction": 0.94,
+     "exposed_target_fraction": 0.932,
+     "exposed_target_area_km2": 115.4,
+     "partner_fraction": 0.06,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 12.25,
+     "lon": 40.6,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.942,
+     "exposed_target_area_km2": 114.1,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 12.0,
+     "lon": 40.75,
+     "mapped_target_fraction": 0.97,
+     "exposed_target_fraction": 0.939,
+     "exposed_target_area_km2": 113.8,
+     "partner_fraction": 0.03,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 11.65,
+     "lon": 40.85,
+     "mapped_target_fraction": 0.97,
+     "exposed_target_fraction": 0.937,
+     "exposed_target_area_km2": 113.8,
+     "partner_fraction": 0.03,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -27.05,
+     "lon": -68.195,
+     "mapped_target_fraction": 0.936,
+     "exposed_target_fraction": 0.932,
+     "exposed_target_area_km2": 113.1,
+     "partner_fraction": 0.064,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -25.45,
+     "lon": -68.195,
+     "mapped_target_fraction": 0.918,
+     "exposed_target_fraction": 0.918,
+     "exposed_target_area_km2": 113.0,
+     "partner_fraction": 0.018,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 10.65,
+     "lon": 42.2,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.921,
+     "exposed_target_area_km2": 112.2,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -25.7,
+     "lon": -67.995,
+     "mapped_target_fraction": 0.909,
+     "exposed_target_fraction": 0.909,
+     "exposed_target_area_km2": 111.7,
+     "partner_fraction": 0.064,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -25.75,
+     "lon": -67.145,
+     "mapped_target_fraction": 0.9,
+     "exposed_target_fraction": 0.896,
+     "exposed_target_area_km2": 110.0,
+     "partner_fraction": 0.036,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 14.95,
+     "lon": 39.95,
+     "mapped_target_fraction": 0.91,
+     "exposed_target_fraction": 0.909,
+     "exposed_target_area_km2": 108.9,
+     "partner_fraction": 0.09,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 31.7,
+     "lon": -107.76,
+     "mapped_target_fraction": 0.917,
+     "exposed_target_fraction": 0.842,
+     "exposed_target_area_km2": 106.6,
+     "partner_fraction": 0.083,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 31.9,
+     "lon": -113.64,
+     "mapped_target_fraction": 0.975,
+     "exposed_target_fraction": 0.841,
+     "exposed_target_area_km2": 106.2,
+     "partner_fraction": 0.017,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 2.15,
+     "lon": 36.45,
+     "mapped_target_fraction": 0.87,
+     "exposed_target_fraction": 0.849,
+     "exposed_target_area_km2": 105.1,
+     "partner_fraction": 0.13,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 14.7,
+     "lon": 40.2,
+     "mapped_target_fraction": 0.87,
+     "exposed_target_fraction": 0.87,
+     "exposed_target_area_km2": 104.3,
+     "partner_fraction": 0.04,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 11.1,
+     "lon": 40.8,
+     "mapped_target_fraction": 0.95,
+     "exposed_target_fraction": 0.854,
+     "exposed_target_area_km2": 103.8,
+     "partner_fraction": 0.05,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -41.95,
+     "lon": -70.255,
+     "mapped_target_fraction": 0.915,
+     "exposed_target_fraction": 0.864,
+     "exposed_target_area_km2": 103.6,
+     "partner_fraction": 0.085,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.5,
+     "lon": 41.3,
+     "mapped_target_fraction": 0.85,
+     "exposed_target_fraction": 0.85,
+     "exposed_target_area_km2": 102.4,
+     "partner_fraction": 0.09,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 31.8,
+     "lon": -113.34,
+     "mapped_target_fraction": 0.95,
+     "exposed_target_fraction": 0.809,
+     "exposed_target_area_km2": 102.3,
+     "partner_fraction": 0.025,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -40.9,
+     "lon": -69.655,
+     "mapped_target_fraction": 0.969,
+     "exposed_target_fraction": 0.831,
+     "exposed_target_area_km2": 101.2,
+     "partner_fraction": 0.031,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 10.5,
+     "lon": 42.45,
+     "mapped_target_fraction": 0.87,
+     "exposed_target_fraction": 0.818,
+     "exposed_target_area_km2": 99.7,
+     "partner_fraction": 0.13,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 33.2,
+     "lon": 78.54,
+     "mapped_target_fraction": 0.8,
+     "exposed_target_fraction": 0.791,
+     "exposed_target_area_km2": 98.5,
+     "partner_fraction": 0.192,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -27.2,
+     "lon": -68.395,
+     "mapped_target_fraction": 0.809,
+     "exposed_target_fraction": 0.805,
+     "exposed_target_area_km2": 97.6,
+     "partner_fraction": 0.127,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 14.75,
+     "lon": 40.45,
+     "mapped_target_fraction": 0.81,
+     "exposed_target_fraction": 0.81,
+     "exposed_target_area_km2": 97.1,
+     "partner_fraction": 0.04,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -35.5,
+     "lon": -70.74,
+     "mapped_target_fraction": 0.925,
+     "exposed_target_fraction": 0.8,
+     "exposed_target_area_km2": 96.9,
+     "partner_fraction": 0.033,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -46.65,
+     "lon": -71.915,
+     "mapped_target_fraction": 0.772,
+     "exposed_target_fraction": 0.725,
+     "exposed_target_area_km2": 91.9,
+     "partner_fraction": 0.06,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -31.35,
+     "lon": -70.62,
+     "mapped_target_fraction": 0.882,
+     "exposed_target_fraction": 0.724,
+     "exposed_target_area_km2": 91.1,
+     "partner_fraction": 0.067,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 10.75,
+     "lon": 42.7,
+     "mapped_target_fraction": 0.75,
+     "exposed_target_fraction": 0.748,
+     "exposed_target_area_km2": 91.1,
+     "partner_fraction": 0.23,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 1.9,
+     "lon": 36.4,
+     "mapped_target_fraction": 0.8,
+     "exposed_target_fraction": 0.735,
+     "exposed_target_area_km2": 91.0,
+     "partner_fraction": 0.2,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -25.45,
+     "lon": -67.345,
+     "mapped_target_fraction": 0.727,
+     "exposed_target_fraction": 0.723,
+     "exposed_target_area_km2": 89.0,
+     "partner_fraction": 0.136,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -36.0,
+     "lon": -70.86,
+     "mapped_target_fraction": 0.9,
+     "exposed_target_fraction": 0.738,
+     "exposed_target_area_km2": 88.8,
+     "partner_fraction": 0.017,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 31.3,
+     "lon": 66.18,
+     "mapped_target_fraction": 0.7,
+     "exposed_target_fraction": 0.692,
+     "exposed_target_area_km2": 87.9,
+     "partner_fraction": 0.292,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 3.45,
+     "lon": 35.8,
+     "mapped_target_fraction": 0.92,
+     "exposed_target_fraction": 0.708,
+     "exposed_target_area_km2": 87.5,
+     "partner_fraction": 0.08,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 11.4,
+     "lon": 40.75,
+     "mapped_target_fraction": 0.74,
+     "exposed_target_fraction": 0.71,
+     "exposed_target_area_km2": 86.3,
+     "partner_fraction": 0.26,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 34.65,
+     "lon": 75.18,
+     "mapped_target_fraction": 0.875,
+     "exposed_target_fraction": 0.701,
+     "exposed_target_area_km2": 85.7,
+     "partner_fraction": 0.125,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 3.45,
+     "lon": 36.65,
+     "mapped_target_fraction": 0.96,
+     "exposed_target_fraction": 0.69,
+     "exposed_target_area_km2": 85.4,
+     "partner_fraction": 0.04,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 34.1,
+     "lon": 76.74,
+     "mapped_target_fraction": 0.767,
+     "exposed_target_fraction": 0.688,
+     "exposed_target_area_km2": 84.7,
+     "partner_fraction": 0.092,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 68.1,
+     "lon": 152.935,
+     "mapped_target_fraction": 0.759,
+     "exposed_target_fraction": 0.669,
+     "exposed_target_area_km2": 83.4,
+     "partner_fraction": 0.241,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 3.7,
+     "lon": 36.4,
+     "mapped_target_fraction": 0.91,
+     "exposed_target_fraction": 0.669,
+     "exposed_target_area_km2": 82.7,
+     "partner_fraction": 0.09,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -46.05,
+     "lon": -71.92,
+     "mapped_target_fraction": 0.936,
+     "exposed_target_fraction": 0.679,
+     "exposed_target_area_km2": 81.7,
+     "partner_fraction": 0.043,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 11.9,
+     "lon": 40.5,
+     "mapped_target_fraction": 0.92,
+     "exposed_target_fraction": 0.67,
+     "exposed_target_area_km2": 81.3,
+     "partner_fraction": 0.08,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 33.0,
+     "lon": 78.78,
+     "mapped_target_fraction": 0.65,
+     "exposed_target_fraction": 0.649,
+     "exposed_target_area_km2": 81.0,
+     "partner_fraction": 0.342,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -25.75,
+     "lon": -67.495,
+     "mapped_target_fraction": 0.673,
+     "exposed_target_fraction": 0.655,
+     "exposed_target_area_km2": 80.4,
+     "partner_fraction": 0.2,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 2.5,
+     "lon": 36.05,
+     "mapped_target_fraction": 0.82,
+     "exposed_target_fraction": 0.649,
+     "exposed_target_area_km2": 80.3,
+     "partner_fraction": 0.14,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -33.95,
+     "lon": -70.08,
+     "mapped_target_fraction": 0.692,
+     "exposed_target_fraction": 0.649,
+     "exposed_target_area_km2": 80.1,
+     "partner_fraction": 0.042,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 11.05,
+     "lon": 40.35,
+     "mapped_target_fraction": 0.92,
+     "exposed_target_fraction": 0.653,
+     "exposed_target_area_km2": 79.4,
+     "partner_fraction": 0.05,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -26.15,
+     "lon": -67.345,
+     "mapped_target_fraction": 0.645,
+     "exposed_target_fraction": 0.645,
+     "exposed_target_area_km2": 79.0,
+     "partner_fraction": 0.273,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    }
+   ]
+  },
+  "R-IS": {
+   "target": "basic volcanic rock",
+   "partner": "dune sands or loess (wind-blown cover)",
+   "n_windows": 4856398,
+   "n_G1_or_better": 157042,
+   "windows_by_tier": {
+    "G4 (process partner present; G3 spectral not evaluated)": 365,
+    "G2": 23580,
+    "G1": 133097
+   },
+   "candidates": [
+    {
+     "lat": 18.4,
+     "lon": 32.705,
+     "mapped_target_fraction": 0.973,
+     "exposed_target_fraction": 0.973,
+     "exposed_target_area_km2": 125.8,
+     "partner_fraction": 0.027,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 32.05,
+     "lon": 36.78,
+     "mapped_target_fraction": 0.983,
+     "exposed_target_fraction": 0.982,
+     "exposed_target_area_km2": 123.8,
+     "partner_fraction": 0.017,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 25.6,
+     "lon": 17.455,
+     "mapped_target_fraction": 0.991,
+     "exposed_target_fraction": 0.991,
+     "exposed_target_area_km2": 121.8,
+     "partner_fraction": 0.009,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 25.95,
+     "lon": 17.855,
+     "mapped_target_fraction": 0.991,
+     "exposed_target_fraction": 0.991,
+     "exposed_target_area_km2": 121.5,
+     "partner_fraction": 0.009,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 24.35,
+     "lon": 19.205,
+     "mapped_target_fraction": 0.973,
+     "exposed_target_fraction": 0.973,
+     "exposed_target_area_km2": 120.8,
+     "partner_fraction": 0.027,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 25.65,
+     "lon": 17.705,
+     "mapped_target_fraction": 0.982,
+     "exposed_target_fraction": 0.982,
+     "exposed_target_area_km2": 120.6,
+     "partner_fraction": 0.018,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 26.85,
+     "lon": 18.055,
+     "mapped_target_fraction": 0.991,
+     "exposed_target_fraction": 0.991,
+     "exposed_target_area_km2": 120.5,
+     "partner_fraction": 0.009,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.15,
+     "lon": 41.45,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.99,
+     "exposed_target_area_km2": 119.5,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.45,
+     "lon": 41.0,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.983,
+     "exposed_target_area_km2": 118.5,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -20.05,
+     "lon": 13.105,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.987,
+     "exposed_target_area_km2": 118.4,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.55,
+     "lon": 40.6,
+     "mapped_target_fraction": 0.98,
+     "exposed_target_fraction": 0.979,
+     "exposed_target_area_km2": 118.0,
+     "partner_fraction": 0.02,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.8,
+     "lon": 40.5,
+     "mapped_target_fraction": 0.98,
+     "exposed_target_fraction": 0.98,
+     "exposed_target_area_km2": 117.9,
+     "partner_fraction": 0.02,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 15.4,
+     "lon": 26.15,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.985,
+     "exposed_target_area_km2": 117.6,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 26.6,
+     "lon": 17.905,
+     "mapped_target_fraction": 0.955,
+     "exposed_target_fraction": 0.955,
+     "exposed_target_area_km2": 116.3,
+     "partner_fraction": 0.045,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.25,
+     "lon": 41.15,
+     "mapped_target_fraction": 0.96,
+     "exposed_target_fraction": 0.96,
+     "exposed_target_area_km2": 115.8,
+     "partner_fraction": 0.04,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.75,
+     "lon": 40.75,
+     "mapped_target_fraction": 0.96,
+     "exposed_target_fraction": 0.96,
+     "exposed_target_area_km2": 115.6,
+     "partner_fraction": 0.04,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.05,
+     "lon": 41.85,
+     "mapped_target_fraction": 0.95,
+     "exposed_target_fraction": 0.95,
+     "exposed_target_area_km2": 114.7,
+     "partner_fraction": 0.05,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 15.45,
+     "lon": 26.45,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.958,
+     "exposed_target_area_km2": 114.4,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 12.9,
+     "lon": 41.65,
+     "mapped_target_fraction": 0.93,
+     "exposed_target_fraction": 0.93,
+     "exposed_target_area_km2": 112.3,
+     "partner_fraction": 0.07,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 24.9,
+     "lon": 17.755,
+     "mapped_target_fraction": 0.909,
+     "exposed_target_fraction": 0.906,
+     "exposed_target_area_km2": 112.0,
+     "partner_fraction": 0.091,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 15.05,
+     "lon": 26.7,
+     "mapped_target_fraction": 0.94,
+     "exposed_target_fraction": 0.935,
+     "exposed_target_area_km2": 111.9,
+     "partner_fraction": 0.06,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 12.85,
+     "lon": 41.35,
+     "mapped_target_fraction": 0.92,
+     "exposed_target_fraction": 0.92,
+     "exposed_target_area_km2": 111.2,
+     "partner_fraction": 0.08,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 23.9,
+     "lon": 19.005,
+     "mapped_target_fraction": 0.891,
+     "exposed_target_fraction": 0.891,
+     "exposed_target_area_km2": 111.0,
+     "partner_fraction": 0.109,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 27.0,
+     "lon": 18.355,
+     "mapped_target_fraction": 0.909,
+     "exposed_target_fraction": 0.909,
+     "exposed_target_area_km2": 110.4,
+     "partner_fraction": 0.055,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 26.3,
+     "lon": 17.905,
+     "mapped_target_fraction": 0.9,
+     "exposed_target_fraction": 0.9,
+     "exposed_target_area_km2": 110.0,
+     "partner_fraction": 0.1,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.3,
+     "lon": 40.6,
+     "mapped_target_fraction": 0.91,
+     "exposed_target_fraction": 0.91,
+     "exposed_target_area_km2": 109.7,
+     "partner_fraction": 0.09,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 15.2,
+     "lon": 26.3,
+     "mapped_target_fraction": 0.97,
+     "exposed_target_fraction": 0.905,
+     "exposed_target_area_km2": 108.2,
+     "partner_fraction": 0.03,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": -20.2,
+     "lon": 13.355,
+     "mapped_target_fraction": 0.845,
+     "exposed_target_fraction": 0.845,
+     "exposed_target_area_km2": 108.2,
+     "partner_fraction": 0.009,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 13.4,
+     "lon": 41.35,
+     "mapped_target_fraction": 0.89,
+     "exposed_target_fraction": 0.89,
+     "exposed_target_area_km2": 107.3,
+     "partner_fraction": 0.08,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 15.3,
+     "lon": 26.75,
+     "mapped_target_fraction": 0.99,
+     "exposed_target_fraction": 0.891,
+     "exposed_target_area_km2": 106.5,
+     "partner_fraction": 0.01,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 14.7,
+     "lon": 40.2,
+     "mapped_target_fraction": 0.87,
+     "exposed_target_fraction": 0.87,
+     "exposed_target_area_km2": 104.3,
+     "partner_fraction": 0.03,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 25.55,
+     "lon": 17.955,
+     "mapped_target_fraction": 0.8,
+     "exposed_target_fraction": 0.8,
+     "exposed_target_area_km2": 98.4,
+     "partner_fraction": 0.2,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 41.2,
+     "lon": 103.325,
+     "mapped_target_fraction": 0.8,
+     "exposed_target_fraction": 0.8,
+     "exposed_target_area_km2": 97.0,
+     "partner_fraction": 0.038,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 25.45,
+     "lon": 17.205,
+     "mapped_target_fraction": 0.773,
+     "exposed_target_fraction": 0.773,
+     "exposed_target_area_km2": 95.1,
+     "partner_fraction": 0.055,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 17.75,
+     "lon": 32.35,
+     "mapped_target_fraction": 0.77,
+     "exposed_target_fraction": 0.77,
+     "exposed_target_area_km2": 90.9,
+     "partner_fraction": 0.05,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 26.5,
+     "lon": 18.255,
+     "mapped_target_fraction": 0.7,
+     "exposed_target_fraction": 0.7,
+     "exposed_target_area_km2": 85.4,
+     "partner_fraction": 0.173,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 32.1,
+     "lon": 36.48,
+     "mapped_target_fraction": 0.717,
+     "exposed_target_fraction": 0.665,
+     "exposed_target_area_km2": 83.8,
+     "partner_fraction": 0.208,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 16.8,
+     "lon": -7.6,
+     "mapped_target_fraction": 0.94,
+     "exposed_target_fraction": 0.687,
+     "exposed_target_area_km2": 81.5,
+     "partner_fraction": 0.06,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 27.95,
+     "lon": 36.255,
+     "mapped_target_fraction": 0.673,
+     "exposed_target_fraction": 0.673,
+     "exposed_target_area_km2": 81.0,
+     "partner_fraction": 0.064,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 23.75,
+     "lon": 19.805,
+     "mapped_target_fraction": 0.627,
+     "exposed_target_fraction": 0.627,
+     "exposed_target_area_km2": 78.3,
+     "partner_fraction": 0.027,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 16.9,
+     "lon": 36.5,
+     "mapped_target_fraction": 0.91,
+     "exposed_target_fraction": 0.618,
+     "exposed_target_area_km2": 73.3,
+     "partner_fraction": 0.08,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 14.55,
+     "lon": 25.8,
+     "mapped_target_fraction": 0.78,
+     "exposed_target_fraction": 0.585,
+     "exposed_target_area_km2": 70.2,
+     "partner_fraction": 0.22,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 14.7,
+     "lon": 26.1,
+     "mapped_target_fraction": 0.66,
+     "exposed_target_fraction": 0.583,
+     "exposed_target_area_km2": 69.9,
+     "partner_fraction": 0.34,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 16.75,
+     "lon": -7.35,
+     "mapped_target_fraction": 0.63,
+     "exposed_target_fraction": 0.55,
+     "exposed_target_area_km2": 65.2,
+     "partner_fraction": 0.08,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 31.1,
+     "lon": 66.3,
+     "mapped_target_fraction": 0.5,
+     "exposed_target_fraction": 0.457,
+     "exposed_target_area_km2": 58.2,
+     "partner_fraction": 0.067,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 33.3,
+     "lon": 68.94,
+     "mapped_target_fraction": 0.567,
+     "exposed_target_fraction": 0.448,
+     "exposed_target_area_km2": 55.6,
+     "partner_fraction": 0.208,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 32.75,
+     "lon": 67.86,
+     "mapped_target_fraction": 0.6,
+     "exposed_target_fraction": 0.431,
+     "exposed_target_area_km2": 53.9,
+     "partner_fraction": 0.15,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 37.5,
+     "lon": 91.145,
+     "mapped_target_fraction": 0.546,
+     "exposed_target_fraction": 0.351,
+     "exposed_target_area_km2": 44.8,
+     "partner_fraction": 0.008,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 43.7,
+     "lon": -112.59,
+     "mapped_target_fraction": 0.979,
+     "exposed_target_fraction": 0.303,
+     "exposed_target_area_km2": 37.9,
+     "partner_fraction": 0.021,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    },
+    {
+     "lat": 61.6,
+     "lon": -144.695,
+     "mapped_target_fraction": 0.995,
+     "exposed_target_fraction": 0.301,
+     "exposed_target_area_km2": 37.2,
+     "partner_fraction": 0.005,
+     "tier": "G4 (process partner present; G3 spectral not evaluated)"
+    }
+   ]
+  }
+ }
+}

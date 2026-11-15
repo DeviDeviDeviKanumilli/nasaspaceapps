@@ -1,0 +1,5410 @@
+[
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": 3000.0,
+  "share_le10": 0.363,
+  "share_15_30": 0.323,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": 3000.0,
+  "share_le10": 0.331,
+  "share_15_30": 0.415,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": 3000.0,
+  "share_le10": 0.355,
+  "share_15_30": 0.447,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": 3000.0,
+  "share_le10": 0.332,
+  "share_15_30": 0.48,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": 3000.0,
+  "share_le10": 0.218,
+  "share_15_30": 0.587,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": 3000.0,
+  "share_le10": 0.203,
+  "share_15_30": 0.578,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": 3000.0,
+  "share_le10": 0.245,
+  "share_15_30": 0.439,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": 3000.0,
+  "share_le10": 0.263,
+  "share_15_30": 0.403,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": 3000.0,
+  "share_le10": 0.253,
+  "share_15_30": 0.446,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": 3000.0,
+  "share_le10": 0.263,
+  "share_15_30": 0.428,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": 3000.0,
+  "share_le10": 0.196,
+  "share_15_30": 0.517,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": 3000.0,
+  "share_le10": 0.106,
+  "share_15_30": 0.537,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": 3000.0,
+  "share_le10": 0.088,
+  "share_15_30": 0.458,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": 500.0,
+  "share_le10": 0.37,
+  "share_15_30": 0.269,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": 500.0,
+  "share_le10": 0.328,
+  "share_15_30": 0.368,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": 500.0,
+  "share_le10": 0.346,
+  "share_15_30": 0.444,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": 500.0,
+  "share_le10": 0.299,
+  "share_15_30": 0.524,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": 500.0,
+  "share_le10": 0.163,
+  "share_15_30": 0.673,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": 500.0,
+  "share_le10": 0.173,
+  "share_15_30": 0.651,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": 500.0,
+  "share_le10": 0.257,
+  "share_15_30": 0.477,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": 500.0,
+  "share_le10": 0.265,
+  "share_15_30": 0.431,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": 500.0,
+  "share_le10": 0.266,
+  "share_15_30": 0.444,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": 500.0,
+  "share_le10": 0.242,
+  "share_15_30": 0.43,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": 500.0,
+  "share_le10": 0.141,
+  "share_15_30": 0.499,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": 500.0,
+  "share_le10": 0.081,
+  "share_15_30": 0.494,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": 500.0,
+  "share_le10": 0.078,
+  "share_15_30": 0.406,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -2000.0,
+  "share_le10": 0.453,
+  "share_15_30": 0.218,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -2000.0,
+  "share_le10": 0.385,
+  "share_15_30": 0.321,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -2000.0,
+  "share_le10": 0.355,
+  "share_15_30": 0.414,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -2000.0,
+  "share_le10": 0.276,
+  "share_15_30": 0.515,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -2000.0,
+  "share_le10": 0.191,
+  "share_15_30": 0.635,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -2000.0,
+  "share_le10": 0.245,
+  "share_15_30": 0.605,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -2000.0,
+  "share_le10": 0.352,
+  "share_15_30": 0.407,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -2000.0,
+  "share_le10": 0.317,
+  "share_15_30": 0.405,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -2000.0,
+  "share_le10": 0.272,
+  "share_15_30": 0.428,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -2000.0,
+  "share_le10": 0.207,
+  "share_15_30": 0.393,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -2000.0,
+  "share_le10": 0.087,
+  "share_15_30": 0.453,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -2000.0,
+  "share_le10": 0.082,
+  "share_15_30": 0.391,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -2000.0,
+  "share_le10": 0.107,
+  "share_15_30": 0.287,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -4500.0,
+  "share_le10": 0.508,
+  "share_15_30": 0.143,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -4500.0,
+  "share_le10": 0.455,
+  "share_15_30": 0.221,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -4500.0,
+  "share_le10": 0.399,
+  "share_15_30": 0.344,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -4500.0,
+  "share_le10": 0.284,
+  "share_15_30": 0.458,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -4500.0,
+  "share_le10": 0.233,
+  "share_15_30": 0.557,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -4500.0,
+  "share_le10": 0.286,
+  "share_15_30": 0.545,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -4500.0,
+  "share_le10": 0.357,
+  "share_15_30": 0.387,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -4500.0,
+  "share_le10": 0.318,
+  "share_15_30": 0.389,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -4500.0,
+  "share_le10": 0.253,
+  "share_15_30": 0.391,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -4500.0,
+  "share_le10": 0.151,
+  "share_15_30": 0.334,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -4500.0,
+  "share_le10": 0.045,
+  "share_15_30": 0.377,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -4500.0,
+  "share_le10": 0.075,
+  "share_15_30": 0.329,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -4500.0,
+  "share_le10": 0.108,
+  "share_15_30": 0.245,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -7000.0,
+  "share_le10": 0.399,
+  "share_15_30": 0.289,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -7000.0,
+  "share_le10": 0.368,
+  "share_15_30": 0.336,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -7000.0,
+  "share_le10": 0.333,
+  "share_15_30": 0.413,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -7000.0,
+  "share_le10": 0.293,
+  "share_15_30": 0.452,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -7000.0,
+  "share_le10": 0.304,
+  "share_15_30": 0.482,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -7000.0,
+  "share_le10": 0.374,
+  "share_15_30": 0.442,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -7000.0,
+  "share_le10": 0.443,
+  "share_15_30": 0.334,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -7000.0,
+  "share_le10": 0.392,
+  "share_15_30": 0.341,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -7000.0,
+  "share_le10": 0.334,
+  "share_15_30": 0.324,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -7000.0,
+  "share_le10": 0.202,
+  "share_15_30": 0.284,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -7000.0,
+  "share_le10": 0.074,
+  "share_15_30": 0.312,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -7000.0,
+  "share_le10": 0.076,
+  "share_15_30": 0.34,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -7000.0,
+  "share_le10": 0.095,
+  "share_15_30": 0.321,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -9500.0,
+  "share_le10": 0.285,
+  "share_15_30": 0.451,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -9500.0,
+  "share_le10": 0.272,
+  "share_15_30": 0.462,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -9500.0,
+  "share_le10": 0.258,
+  "share_15_30": 0.45,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -9500.0,
+  "share_le10": 0.275,
+  "share_15_30": 0.399,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -9500.0,
+  "share_le10": 0.366,
+  "share_15_30": 0.35,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -9500.0,
+  "share_le10": 0.461,
+  "share_15_30": 0.28,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -9500.0,
+  "share_le10": 0.499,
+  "share_15_30": 0.221,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -9500.0,
+  "share_le10": 0.474,
+  "share_15_30": 0.232,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -9500.0,
+  "share_le10": 0.42,
+  "share_15_30": 0.234,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -9500.0,
+  "share_le10": 0.293,
+  "share_15_30": 0.235,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -9500.0,
+  "share_le10": 0.177,
+  "share_15_30": 0.286,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -9500.0,
+  "share_le10": 0.134,
+  "share_15_30": 0.32,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -9500.0,
+  "share_le10": 0.108,
+  "share_15_30": 0.33,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -12000.0,
+  "share_le10": 0.203,
+  "share_15_30": 0.558,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -12000.0,
+  "share_le10": 0.203,
+  "share_15_30": 0.551,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -12000.0,
+  "share_le10": 0.196,
+  "share_15_30": 0.533,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -12000.0,
+  "share_le10": 0.253,
+  "share_15_30": 0.45,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -12000.0,
+  "share_le10": 0.355,
+  "share_15_30": 0.358,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -12000.0,
+  "share_le10": 0.45,
+  "share_15_30": 0.29,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -12000.0,
+  "share_le10": 0.5,
+  "share_15_30": 0.236,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -12000.0,
+  "share_le10": 0.531,
+  "share_15_30": 0.187,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -12000.0,
+  "share_le10": 0.488,
+  "share_15_30": 0.177,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -12000.0,
+  "share_le10": 0.366,
+  "share_15_30": 0.2,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -12000.0,
+  "share_le10": 0.247,
+  "share_15_30": 0.266,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -12000.0,
+  "share_le10": 0.138,
+  "share_15_30": 0.358,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -12000.0,
+  "share_le10": 0.08,
+  "share_15_30": 0.406,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -14500.0,
+  "share_le10": 0.102,
+  "share_15_30": 0.63,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -14500.0,
+  "share_le10": 0.09,
+  "share_15_30": 0.652,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -14500.0,
+  "share_le10": 0.09,
+  "share_15_30": 0.654,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -14500.0,
+  "share_le10": 0.152,
+  "share_15_30": 0.611,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -14500.0,
+  "share_le10": 0.247,
+  "share_15_30": 0.498,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -14500.0,
+  "share_le10": 0.385,
+  "share_15_30": 0.375,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -14500.0,
+  "share_le10": 0.486,
+  "share_15_30": 0.285,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -14500.0,
+  "share_le10": 0.546,
+  "share_15_30": 0.179,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -14500.0,
+  "share_le10": 0.544,
+  "share_15_30": 0.117,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -14500.0,
+  "share_le10": 0.452,
+  "share_15_30": 0.154,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -14500.0,
+  "share_le10": 0.327,
+  "share_15_30": 0.225,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -14500.0,
+  "share_le10": 0.212,
+  "share_15_30": 0.3,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -14500.0,
+  "share_le10": 0.148,
+  "share_15_30": 0.372,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -17000.0,
+  "share_le10": 0.114,
+  "share_15_30": 0.438,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -17000.0,
+  "share_le10": 0.089,
+  "share_15_30": 0.478,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -17000.0,
+  "share_le10": 0.084,
+  "share_15_30": 0.522,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -17000.0,
+  "share_le10": 0.095,
+  "share_15_30": 0.576,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -17000.0,
+  "share_le10": 0.215,
+  "share_15_30": 0.455,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -17000.0,
+  "share_le10": 0.368,
+  "share_15_30": 0.329,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -17000.0,
+  "share_le10": 0.442,
+  "share_15_30": 0.258,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -17000.0,
+  "share_le10": 0.547,
+  "share_15_30": 0.098,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -17000.0,
+  "share_le10": 0.565,
+  "share_15_30": 0.058,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -17000.0,
+  "share_le10": 0.529,
+  "share_15_30": 0.102,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -17000.0,
+  "share_le10": 0.495,
+  "share_15_30": 0.17,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -17000.0,
+  "share_le10": 0.444,
+  "share_15_30": 0.203,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -17000.0,
+  "share_le10": 0.393,
+  "share_15_30": 0.257,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -19500.0,
+  "share_le10": 0.254,
+  "share_15_30": 0.303,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -19500.0,
+  "share_le10": 0.177,
+  "share_15_30": 0.415,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -19500.0,
+  "share_le10": 0.096,
+  "share_15_30": 0.526,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -19500.0,
+  "share_le10": 0.056,
+  "share_15_30": 0.622,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -19500.0,
+  "share_le10": 0.167,
+  "share_15_30": 0.505,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -19500.0,
+  "share_le10": 0.315,
+  "share_15_30": 0.35,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -19500.0,
+  "share_le10": 0.381,
+  "share_15_30": 0.256,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -19500.0,
+  "share_le10": 0.513,
+  "share_15_30": 0.101,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -19500.0,
+  "share_le10": 0.55,
+  "share_15_30": 0.058,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -19500.0,
+  "share_le10": 0.572,
+  "share_15_30": 0.071,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -19500.0,
+  "share_le10": 0.628,
+  "share_15_30": 0.112,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -19500.0,
+  "share_le10": 0.621,
+  "share_15_30": 0.147,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -19500.0,
+  "share_le10": 0.615,
+  "share_15_30": 0.188,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -22000.0,
+  "share_le10": 0.393,
+  "share_15_30": 0.184,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -22000.0,
+  "share_le10": 0.273,
+  "share_15_30": 0.345,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -22000.0,
+  "share_le10": 0.176,
+  "share_15_30": 0.448,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -22000.0,
+  "share_le10": 0.079,
+  "share_15_30": 0.572,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -22000.0,
+  "share_le10": 0.136,
+  "share_15_30": 0.52,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -22000.0,
+  "share_le10": 0.232,
+  "share_15_30": 0.353,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -22000.0,
+  "share_le10": 0.256,
+  "share_15_30": 0.269,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -22000.0,
+  "share_le10": 0.391,
+  "share_15_30": 0.134,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -22000.0,
+  "share_le10": 0.508,
+  "share_15_30": 0.072,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -22000.0,
+  "share_le10": 0.645,
+  "share_15_30": 0.046,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -22000.0,
+  "share_le10": 0.758,
+  "share_15_30": 0.047,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -22000.0,
+  "share_le10": 0.762,
+  "share_15_30": 0.056,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -22000.0,
+  "share_le10": 0.738,
+  "share_15_30": 0.068,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -24500.0,
+  "share_le10": 0.611,
+  "share_15_30": 0.08,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -24500.0,
+  "share_le10": 0.446,
+  "share_15_30": 0.238,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -24500.0,
+  "share_le10": 0.288,
+  "share_15_30": 0.353,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -24500.0,
+  "share_le10": 0.158,
+  "share_15_30": 0.454,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -24500.0,
+  "share_le10": 0.184,
+  "share_15_30": 0.438,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -24500.0,
+  "share_le10": 0.274,
+  "share_15_30": 0.287,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -24500.0,
+  "share_le10": 0.307,
+  "share_15_30": 0.191,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -24500.0,
+  "share_le10": 0.44,
+  "share_15_30": 0.09,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -24500.0,
+  "share_le10": 0.575,
+  "share_15_30": 0.049,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -24500.0,
+  "share_le10": 0.7,
+  "share_15_30": 0.027,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -24500.0,
+  "share_le10": 0.843,
+  "share_15_30": 0.011,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -24500.0,
+  "share_le10": 0.877,
+  "share_15_30": 0.011,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -24500.0,
+  "share_le10": 0.84,
+  "share_15_30": 0.015,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -26000.0,
+  "y": -27000.0,
+  "share_le10": 0.809,
+  "share_15_30": 0.053,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -23500.0,
+  "y": -27000.0,
+  "share_le10": 0.603,
+  "share_15_30": 0.225,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -21000.0,
+  "y": -27000.0,
+  "share_le10": 0.367,
+  "share_15_30": 0.379,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -18500.0,
+  "y": -27000.0,
+  "share_le10": 0.207,
+  "share_15_30": 0.45,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -16000.0,
+  "y": -27000.0,
+  "share_le10": 0.204,
+  "share_15_30": 0.453,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -13500.0,
+  "y": -27000.0,
+  "share_le10": 0.303,
+  "share_15_30": 0.295,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -11000.0,
+  "y": -27000.0,
+  "share_le10": 0.396,
+  "share_15_30": 0.145,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -8500.0,
+  "y": -27000.0,
+  "share_le10": 0.53,
+  "share_15_30": 0.076,
+  "zone": null
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -6000.0,
+  "y": -27000.0,
+  "share_le10": 0.653,
+  "share_15_30": 0.033,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -3500.0,
+  "y": -27000.0,
+  "share_le10": 0.745,
+  "share_15_30": 0.006,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": -1000.0,
+  "y": -27000.0,
+  "share_le10": 0.824,
+  "share_15_30": 0.006,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 1500.0,
+  "y": -27000.0,
+  "share_le10": 0.819,
+  "share_15_30": 0.014,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Connecting ridge",
+  "x": 4000.0,
+  "y": -27000.0,
+  "share_le10": 0.761,
+  "share_15_30": 0.022,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": 8000.0,
+  "share_le10": 0.54,
+  "share_15_30": 0.26,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": 8000.0,
+  "share_le10": 0.57,
+  "share_15_30": 0.237,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": 8000.0,
+  "share_le10": 0.584,
+  "share_15_30": 0.197,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": 8000.0,
+  "share_le10": 0.646,
+  "share_15_30": 0.144,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": 8000.0,
+  "share_le10": 0.631,
+  "share_15_30": 0.136,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": 8000.0,
+  "share_le10": 0.541,
+  "share_15_30": 0.14,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": 8000.0,
+  "share_le10": 0.513,
+  "share_15_30": 0.189,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": 8000.0,
+  "share_le10": 0.384,
+  "share_15_30": 0.242,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": 8000.0,
+  "share_le10": 0.307,
+  "share_15_30": 0.271,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": 8000.0,
+  "share_le10": 0.285,
+  "share_15_30": 0.26,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": 8000.0,
+  "share_le10": 0.219,
+  "share_15_30": 0.264,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": 8000.0,
+  "share_le10": 0.248,
+  "share_15_30": 0.277,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": 8000.0,
+  "share_le10": 0.295,
+  "share_15_30": 0.259,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": 5500.0,
+  "share_le10": 0.499,
+  "share_15_30": 0.296,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": 5500.0,
+  "share_le10": 0.496,
+  "share_15_30": 0.289,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": 5500.0,
+  "share_le10": 0.511,
+  "share_15_30": 0.23,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": 5500.0,
+  "share_le10": 0.541,
+  "share_15_30": 0.196,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": 5500.0,
+  "share_le10": 0.508,
+  "share_15_30": 0.238,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": 5500.0,
+  "share_le10": 0.457,
+  "share_15_30": 0.244,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": 5500.0,
+  "share_le10": 0.41,
+  "share_15_30": 0.315,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": 5500.0,
+  "share_le10": 0.278,
+  "share_15_30": 0.368,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": 5500.0,
+  "share_le10": 0.214,
+  "share_15_30": 0.349,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": 5500.0,
+  "share_le10": 0.188,
+  "share_15_30": 0.319,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": 5500.0,
+  "share_le10": 0.143,
+  "share_15_30": 0.314,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": 5500.0,
+  "share_le10": 0.172,
+  "share_15_30": 0.344,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": 5500.0,
+  "share_le10": 0.221,
+  "share_15_30": 0.354,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": 3000.0,
+  "share_le10": 0.326,
+  "share_15_30": 0.493,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": 3000.0,
+  "share_le10": 0.301,
+  "share_15_30": 0.488,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": 3000.0,
+  "share_le10": 0.32,
+  "share_15_30": 0.376,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": 3000.0,
+  "share_le10": 0.33,
+  "share_15_30": 0.349,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": 3000.0,
+  "share_le10": 0.309,
+  "share_15_30": 0.385,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": 3000.0,
+  "share_le10": 0.301,
+  "share_15_30": 0.367,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": 3000.0,
+  "share_le10": 0.24,
+  "share_15_30": 0.441,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": 3000.0,
+  "share_le10": 0.139,
+  "share_15_30": 0.455,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": 3000.0,
+  "share_le10": 0.101,
+  "share_15_30": 0.386,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": 3000.0,
+  "share_le10": 0.08,
+  "share_15_30": 0.326,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": 3000.0,
+  "share_le10": 0.077,
+  "share_15_30": 0.305,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": 3000.0,
+  "share_le10": 0.089,
+  "share_15_30": 0.371,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": 3000.0,
+  "share_le10": 0.113,
+  "share_15_30": 0.397,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": 500.0,
+  "share_le10": 0.151,
+  "share_15_30": 0.704,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": 500.0,
+  "share_le10": 0.173,
+  "share_15_30": 0.651,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": 500.0,
+  "share_le10": 0.257,
+  "share_15_30": 0.477,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": 500.0,
+  "share_le10": 0.265,
+  "share_15_30": 0.431,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": 500.0,
+  "share_le10": 0.266,
+  "share_15_30": 0.444,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": 500.0,
+  "share_le10": 0.242,
+  "share_15_30": 0.43,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": 500.0,
+  "share_le10": 0.141,
+  "share_15_30": 0.499,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": 500.0,
+  "share_le10": 0.081,
+  "share_15_30": 0.494,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": 500.0,
+  "share_le10": 0.091,
+  "share_15_30": 0.404,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": 500.0,
+  "share_le10": 0.095,
+  "share_15_30": 0.357,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": 500.0,
+  "share_le10": 0.108,
+  "share_15_30": 0.328,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": 500.0,
+  "share_le10": 0.117,
+  "share_15_30": 0.376,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": 500.0,
+  "share_le10": 0.114,
+  "share_15_30": 0.402,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -2000.0,
+  "share_le10": 0.19,
+  "share_15_30": 0.666,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -2000.0,
+  "share_le10": 0.245,
+  "share_15_30": 0.605,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -2000.0,
+  "share_le10": 0.352,
+  "share_15_30": 0.407,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -2000.0,
+  "share_le10": 0.317,
+  "share_15_30": 0.405,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -2000.0,
+  "share_le10": 0.272,
+  "share_15_30": 0.428,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -2000.0,
+  "share_le10": 0.207,
+  "share_15_30": 0.393,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -2000.0,
+  "share_le10": 0.087,
+  "share_15_30": 0.453,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -2000.0,
+  "share_le10": 0.082,
+  "share_15_30": 0.391,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -2000.0,
+  "share_le10": 0.146,
+  "share_15_30": 0.28,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -2000.0,
+  "share_le10": 0.181,
+  "share_15_30": 0.273,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -2000.0,
+  "share_le10": 0.187,
+  "share_15_30": 0.261,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -2000.0,
+  "share_le10": 0.183,
+  "share_15_30": 0.275,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -2000.0,
+  "share_le10": 0.127,
+  "share_15_30": 0.325,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -4500.0,
+  "share_le10": 0.221,
+  "share_15_30": 0.602,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -4500.0,
+  "share_le10": 0.286,
+  "share_15_30": 0.545,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -4500.0,
+  "share_le10": 0.357,
+  "share_15_30": 0.387,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -4500.0,
+  "share_le10": 0.318,
+  "share_15_30": 0.389,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -4500.0,
+  "share_le10": 0.253,
+  "share_15_30": 0.391,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -4500.0,
+  "share_le10": 0.151,
+  "share_15_30": 0.334,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -4500.0,
+  "share_le10": 0.045,
+  "share_15_30": 0.377,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -4500.0,
+  "share_le10": 0.075,
+  "share_15_30": 0.329,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -4500.0,
+  "share_le10": 0.163,
+  "share_15_30": 0.24,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -4500.0,
+  "share_le10": 0.223,
+  "share_15_30": 0.284,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -4500.0,
+  "share_le10": 0.224,
+  "share_15_30": 0.283,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -4500.0,
+  "share_le10": 0.201,
+  "share_15_30": 0.246,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -4500.0,
+  "share_le10": 0.11,
+  "share_15_30": 0.285,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -7000.0,
+  "share_le10": 0.311,
+  "share_15_30": 0.496,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -7000.0,
+  "share_le10": 0.374,
+  "share_15_30": 0.442,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -7000.0,
+  "share_le10": 0.443,
+  "share_15_30": 0.334,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -7000.0,
+  "share_le10": 0.392,
+  "share_15_30": 0.341,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -7000.0,
+  "share_le10": 0.334,
+  "share_15_30": 0.324,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -7000.0,
+  "share_le10": 0.202,
+  "share_15_30": 0.284,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -7000.0,
+  "share_le10": 0.074,
+  "share_15_30": 0.312,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -7000.0,
+  "share_le10": 0.076,
+  "share_15_30": 0.34,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -7000.0,
+  "share_le10": 0.159,
+  "share_15_30": 0.328,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -7000.0,
+  "share_le10": 0.233,
+  "share_15_30": 0.424,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -7000.0,
+  "share_le10": 0.234,
+  "share_15_30": 0.463,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -7000.0,
+  "share_le10": 0.2,
+  "share_15_30": 0.352,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -7000.0,
+  "share_le10": 0.093,
+  "share_15_30": 0.363,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -9500.0,
+  "share_le10": 0.398,
+  "share_15_30": 0.324,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -9500.0,
+  "share_le10": 0.461,
+  "share_15_30": 0.28,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -9500.0,
+  "share_le10": 0.499,
+  "share_15_30": 0.221,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -9500.0,
+  "share_le10": 0.474,
+  "share_15_30": 0.232,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -9500.0,
+  "share_le10": 0.42,
+  "share_15_30": 0.234,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -9500.0,
+  "share_le10": 0.293,
+  "share_15_30": 0.235,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -9500.0,
+  "share_le10": 0.177,
+  "share_15_30": 0.286,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -9500.0,
+  "share_le10": 0.134,
+  "share_15_30": 0.32,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -9500.0,
+  "share_le10": 0.154,
+  "share_15_30": 0.318,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -9500.0,
+  "share_le10": 0.197,
+  "share_15_30": 0.353,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -9500.0,
+  "share_le10": 0.198,
+  "share_15_30": 0.381,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -9500.0,
+  "share_le10": 0.172,
+  "share_15_30": 0.327,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -9500.0,
+  "share_le10": 0.103,
+  "share_15_30": 0.353,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -12000.0,
+  "share_le10": 0.388,
+  "share_15_30": 0.335,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -12000.0,
+  "share_le10": 0.45,
+  "share_15_30": 0.29,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -12000.0,
+  "share_le10": 0.5,
+  "share_15_30": 0.236,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -12000.0,
+  "share_le10": 0.531,
+  "share_15_30": 0.187,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -12000.0,
+  "share_le10": 0.488,
+  "share_15_30": 0.177,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -12000.0,
+  "share_le10": 0.366,
+  "share_15_30": 0.2,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -12000.0,
+  "share_le10": 0.247,
+  "share_15_30": 0.266,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -12000.0,
+  "share_le10": 0.138,
+  "share_15_30": 0.358,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -12000.0,
+  "share_le10": 0.096,
+  "share_15_30": 0.405,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -12000.0,
+  "share_le10": 0.1,
+  "share_15_30": 0.443,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -12000.0,
+  "share_le10": 0.101,
+  "share_15_30": 0.461,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -12000.0,
+  "share_le10": 0.13,
+  "share_15_30": 0.397,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -12000.0,
+  "share_le10": 0.144,
+  "share_15_30": 0.391,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -14500.0,
+  "share_le10": 0.277,
+  "share_15_30": 0.468,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -14500.0,
+  "share_le10": 0.385,
+  "share_15_30": 0.375,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -14500.0,
+  "share_le10": 0.486,
+  "share_15_30": 0.285,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -14500.0,
+  "share_le10": 0.546,
+  "share_15_30": 0.179,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -14500.0,
+  "share_le10": 0.544,
+  "share_15_30": 0.117,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -14500.0,
+  "share_le10": 0.452,
+  "share_15_30": 0.154,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -14500.0,
+  "share_le10": 0.327,
+  "share_15_30": 0.225,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -14500.0,
+  "share_le10": 0.212,
+  "share_15_30": 0.3,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -14500.0,
+  "share_le10": 0.155,
+  "share_15_30": 0.368,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -14500.0,
+  "share_le10": 0.138,
+  "share_15_30": 0.378,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -14500.0,
+  "share_le10": 0.165,
+  "share_15_30": 0.374,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -14500.0,
+  "share_le10": 0.253,
+  "share_15_30": 0.319,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -14500.0,
+  "share_le10": 0.324,
+  "share_15_30": 0.299,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -17000.0,
+  "share_le10": 0.243,
+  "share_15_30": 0.439,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -17000.0,
+  "share_le10": 0.368,
+  "share_15_30": 0.329,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -17000.0,
+  "share_le10": 0.442,
+  "share_15_30": 0.258,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -17000.0,
+  "share_le10": 0.547,
+  "share_15_30": 0.098,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -17000.0,
+  "share_le10": 0.565,
+  "share_15_30": 0.058,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -17000.0,
+  "share_le10": 0.529,
+  "share_15_30": 0.102,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -17000.0,
+  "share_le10": 0.495,
+  "share_15_30": 0.17,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -17000.0,
+  "share_le10": 0.444,
+  "share_15_30": 0.203,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -17000.0,
+  "share_le10": 0.393,
+  "share_15_30": 0.241,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -17000.0,
+  "share_le10": 0.354,
+  "share_15_30": 0.227,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -17000.0,
+  "share_le10": 0.34,
+  "share_15_30": 0.187,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -17000.0,
+  "share_le10": 0.377,
+  "share_15_30": 0.182,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -17000.0,
+  "share_le10": 0.411,
+  "share_15_30": 0.182,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -19500.0,
+  "share_le10": 0.195,
+  "share_15_30": 0.469,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -19500.0,
+  "share_le10": 0.315,
+  "share_15_30": 0.35,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -19500.0,
+  "share_le10": 0.381,
+  "share_15_30": 0.256,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -19500.0,
+  "share_le10": 0.513,
+  "share_15_30": 0.101,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -19500.0,
+  "share_le10": 0.55,
+  "share_15_30": 0.058,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -19500.0,
+  "share_le10": 0.572,
+  "share_15_30": 0.071,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -19500.0,
+  "share_le10": 0.628,
+  "share_15_30": 0.112,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -19500.0,
+  "share_le10": 0.621,
+  "share_15_30": 0.147,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -19500.0,
+  "share_le10": 0.612,
+  "share_15_30": 0.18,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -19500.0,
+  "share_le10": 0.572,
+  "share_15_30": 0.192,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -19500.0,
+  "share_le10": 0.553,
+  "share_15_30": 0.165,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -19500.0,
+  "share_le10": 0.553,
+  "share_15_30": 0.14,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -19500.0,
+  "share_le10": 0.538,
+  "share_15_30": 0.15,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -16000.0,
+  "y": -22000.0,
+  "share_le10": 0.184,
+  "share_15_30": 0.445,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -13500.0,
+  "y": -22000.0,
+  "share_le10": 0.27,
+  "share_15_30": 0.333,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -11000.0,
+  "y": -22000.0,
+  "share_le10": 0.299,
+  "share_15_30": 0.255,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -8500.0,
+  "y": -22000.0,
+  "share_le10": 0.419,
+  "share_15_30": 0.122,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -6000.0,
+  "y": -22000.0,
+  "share_le10": 0.511,
+  "share_15_30": 0.075,
+  "zone": null
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -3500.0,
+  "y": -22000.0,
+  "share_le10": 0.627,
+  "share_15_30": 0.055,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": -1000.0,
+  "y": -22000.0,
+  "share_le10": 0.754,
+  "share_15_30": 0.053,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 1500.0,
+  "y": -22000.0,
+  "share_le10": 0.79,
+  "share_15_30": 0.055,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 4000.0,
+  "y": -22000.0,
+  "share_le10": 0.785,
+  "share_15_30": 0.056,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 6500.0,
+  "y": -22000.0,
+  "share_le10": 0.727,
+  "share_15_30": 0.057,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 9000.0,
+  "y": -22000.0,
+  "share_le10": 0.713,
+  "share_15_30": 0.043,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 11500.0,
+  "y": -22000.0,
+  "share_le10": 0.68,
+  "share_15_30": 0.048,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Shackleton rim",
+  "x": 14000.0,
+  "y": -22000.0,
+  "share_le10": 0.623,
+  "share_15_30": 0.083,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 30000.0,
+  "share_le10": 0.576,
+  "share_15_30": 0.034,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 30000.0,
+  "share_le10": 0.429,
+  "share_15_30": 0.135,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 30000.0,
+  "share_le10": 0.31,
+  "share_15_30": 0.242,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 30000.0,
+  "share_le10": 0.258,
+  "share_15_30": 0.318,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 30000.0,
+  "share_le10": 0.283,
+  "share_15_30": 0.324,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 30000.0,
+  "share_le10": 0.378,
+  "share_15_30": 0.28,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 30000.0,
+  "share_le10": 0.407,
+  "share_15_30": 0.231,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 30000.0,
+  "share_le10": 0.372,
+  "share_15_30": 0.239,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 30000.0,
+  "share_le10": 0.453,
+  "share_15_30": 0.225,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 30000.0,
+  "share_le10": 0.54,
+  "share_15_30": 0.167,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 30000.0,
+  "share_le10": 0.563,
+  "share_15_30": 0.16,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 30000.0,
+  "share_le10": 0.662,
+  "share_15_30": 0.097,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 30000.0,
+  "share_le10": 0.614,
+  "share_15_30": 0.13,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 27500.0,
+  "share_le10": 0.53,
+  "share_15_30": 0.044,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 27500.0,
+  "share_le10": 0.409,
+  "share_15_30": 0.122,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 27500.0,
+  "share_le10": 0.284,
+  "share_15_30": 0.227,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 27500.0,
+  "share_le10": 0.221,
+  "share_15_30": 0.307,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 27500.0,
+  "share_le10": 0.248,
+  "share_15_30": 0.333,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 27500.0,
+  "share_le10": 0.332,
+  "share_15_30": 0.309,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 27500.0,
+  "share_le10": 0.405,
+  "share_15_30": 0.248,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 27500.0,
+  "share_le10": 0.381,
+  "share_15_30": 0.235,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 27500.0,
+  "share_le10": 0.467,
+  "share_15_30": 0.203,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 27500.0,
+  "share_le10": 0.52,
+  "share_15_30": 0.151,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 27500.0,
+  "share_le10": 0.524,
+  "share_15_30": 0.146,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 27500.0,
+  "share_le10": 0.649,
+  "share_15_30": 0.09,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 27500.0,
+  "share_le10": 0.616,
+  "share_15_30": 0.116,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 25000.0,
+  "share_le10": 0.481,
+  "share_15_30": 0.079,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 25000.0,
+  "share_le10": 0.388,
+  "share_15_30": 0.136,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 25000.0,
+  "share_le10": 0.301,
+  "share_15_30": 0.204,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 25000.0,
+  "share_le10": 0.271,
+  "share_15_30": 0.257,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 25000.0,
+  "share_le10": 0.292,
+  "share_15_30": 0.306,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 25000.0,
+  "share_le10": 0.398,
+  "share_15_30": 0.262,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 25000.0,
+  "share_le10": 0.444,
+  "share_15_30": 0.208,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 25000.0,
+  "share_le10": 0.372,
+  "share_15_30": 0.258,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 25000.0,
+  "share_le10": 0.412,
+  "share_15_30": 0.228,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 25000.0,
+  "share_le10": 0.421,
+  "share_15_30": 0.201,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 25000.0,
+  "share_le10": 0.463,
+  "share_15_30": 0.192,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 25000.0,
+  "share_le10": 0.616,
+  "share_15_30": 0.091,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 25000.0,
+  "share_le10": 0.644,
+  "share_15_30": 0.069,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 22500.0,
+  "share_le10": 0.325,
+  "share_15_30": 0.241,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 22500.0,
+  "share_le10": 0.284,
+  "share_15_30": 0.264,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 22500.0,
+  "share_le10": 0.225,
+  "share_15_30": 0.272,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 22500.0,
+  "share_le10": 0.216,
+  "share_15_30": 0.292,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 22500.0,
+  "share_le10": 0.235,
+  "share_15_30": 0.33,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 22500.0,
+  "share_le10": 0.305,
+  "share_15_30": 0.317,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 22500.0,
+  "share_le10": 0.337,
+  "share_15_30": 0.306,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 22500.0,
+  "share_le10": 0.285,
+  "share_15_30": 0.36,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 22500.0,
+  "share_le10": 0.335,
+  "share_15_30": 0.328,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 22500.0,
+  "share_le10": 0.338,
+  "share_15_30": 0.28,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 22500.0,
+  "share_le10": 0.422,
+  "share_15_30": 0.24,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 22500.0,
+  "share_le10": 0.598,
+  "share_15_30": 0.115,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 22500.0,
+  "share_le10": 0.685,
+  "share_15_30": 0.039,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 20000.0,
+  "share_le10": 0.269,
+  "share_15_30": 0.318,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 20000.0,
+  "share_le10": 0.243,
+  "share_15_30": 0.374,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 20000.0,
+  "share_le10": 0.167,
+  "share_15_30": 0.424,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 20000.0,
+  "share_le10": 0.189,
+  "share_15_30": 0.456,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 20000.0,
+  "share_le10": 0.208,
+  "share_15_30": 0.472,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 20000.0,
+  "share_le10": 0.242,
+  "share_15_30": 0.407,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 20000.0,
+  "share_le10": 0.301,
+  "share_15_30": 0.34,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 20000.0,
+  "share_le10": 0.253,
+  "share_15_30": 0.381,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 20000.0,
+  "share_le10": 0.261,
+  "share_15_30": 0.337,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 20000.0,
+  "share_le10": 0.29,
+  "share_15_30": 0.298,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 20000.0,
+  "share_le10": 0.405,
+  "share_15_30": 0.27,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 20000.0,
+  "share_le10": 0.63,
+  "share_15_30": 0.117,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 20000.0,
+  "share_le10": 0.793,
+  "share_15_30": 0.03,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 17500.0,
+  "share_le10": 0.198,
+  "share_15_30": 0.505,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 17500.0,
+  "share_le10": 0.169,
+  "share_15_30": 0.579,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 17500.0,
+  "share_le10": 0.126,
+  "share_15_30": 0.607,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 17500.0,
+  "share_le10": 0.156,
+  "share_15_30": 0.626,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 17500.0,
+  "share_le10": 0.167,
+  "share_15_30": 0.613,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 17500.0,
+  "share_le10": 0.204,
+  "share_15_30": 0.505,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 17500.0,
+  "share_le10": 0.211,
+  "share_15_30": 0.421,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 17500.0,
+  "share_le10": 0.154,
+  "share_15_30": 0.462,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 17500.0,
+  "share_le10": 0.133,
+  "share_15_30": 0.44,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 17500.0,
+  "share_le10": 0.198,
+  "share_15_30": 0.388,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 17500.0,
+  "share_le10": 0.368,
+  "share_15_30": 0.352,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 17500.0,
+  "share_le10": 0.598,
+  "share_15_30": 0.17,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 17500.0,
+  "share_le10": 0.804,
+  "share_15_30": 0.028,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 15000.0,
+  "share_le10": 0.226,
+  "share_15_30": 0.547,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 15000.0,
+  "share_le10": 0.183,
+  "share_15_30": 0.591,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 15000.0,
+  "share_le10": 0.128,
+  "share_15_30": 0.605,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 15000.0,
+  "share_le10": 0.124,
+  "share_15_30": 0.636,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 15000.0,
+  "share_le10": 0.133,
+  "share_15_30": 0.617,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 15000.0,
+  "share_le10": 0.161,
+  "share_15_30": 0.557,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 15000.0,
+  "share_le10": 0.178,
+  "share_15_30": 0.486,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 15000.0,
+  "share_le10": 0.176,
+  "share_15_30": 0.46,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 15000.0,
+  "share_le10": 0.181,
+  "share_15_30": 0.398,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 15000.0,
+  "share_le10": 0.234,
+  "share_15_30": 0.329,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 15000.0,
+  "share_le10": 0.388,
+  "share_15_30": 0.276,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 15000.0,
+  "share_le10": 0.568,
+  "share_15_30": 0.144,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 15000.0,
+  "share_le10": 0.725,
+  "share_15_30": 0.046,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 12500.0,
+  "share_le10": 0.411,
+  "share_15_30": 0.387,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 12500.0,
+  "share_le10": 0.375,
+  "share_15_30": 0.416,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 12500.0,
+  "share_le10": 0.293,
+  "share_15_30": 0.448,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 12500.0,
+  "share_le10": 0.263,
+  "share_15_30": 0.499,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 12500.0,
+  "share_le10": 0.213,
+  "share_15_30": 0.521,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 12500.0,
+  "share_le10": 0.198,
+  "share_15_30": 0.516,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 12500.0,
+  "share_le10": 0.199,
+  "share_15_30": 0.473,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 12500.0,
+  "share_le10": 0.196,
+  "share_15_30": 0.44,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 12500.0,
+  "share_le10": 0.229,
+  "share_15_30": 0.353,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 12500.0,
+  "share_le10": 0.263,
+  "share_15_30": 0.271,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 12500.0,
+  "share_le10": 0.41,
+  "share_15_30": 0.209,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 12500.0,
+  "share_le10": 0.552,
+  "share_15_30": 0.11,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 12500.0,
+  "share_le10": 0.663,
+  "share_15_30": 0.052,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 10000.0,
+  "share_le10": 0.525,
+  "share_15_30": 0.308,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 10000.0,
+  "share_le10": 0.535,
+  "share_15_30": 0.3,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 10000.0,
+  "share_le10": 0.468,
+  "share_15_30": 0.29,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 10000.0,
+  "share_le10": 0.389,
+  "share_15_30": 0.33,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 10000.0,
+  "share_le10": 0.278,
+  "share_15_30": 0.394,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 10000.0,
+  "share_le10": 0.21,
+  "share_15_30": 0.468,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 10000.0,
+  "share_le10": 0.187,
+  "share_15_30": 0.48,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 10000.0,
+  "share_le10": 0.21,
+  "share_15_30": 0.447,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 10000.0,
+  "share_le10": 0.251,
+  "share_15_30": 0.372,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 10000.0,
+  "share_le10": 0.287,
+  "share_15_30": 0.254,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 10000.0,
+  "share_le10": 0.452,
+  "share_15_30": 0.18,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 10000.0,
+  "share_le10": 0.565,
+  "share_15_30": 0.117,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 10000.0,
+  "share_le10": 0.664,
+  "share_15_30": 0.057,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 7500.0,
+  "share_le10": 0.596,
+  "share_15_30": 0.245,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 7500.0,
+  "share_le10": 0.649,
+  "share_15_30": 0.186,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 7500.0,
+  "share_le10": 0.629,
+  "share_15_30": 0.13,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 7500.0,
+  "share_le10": 0.595,
+  "share_15_30": 0.118,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 7500.0,
+  "share_le10": 0.48,
+  "share_15_30": 0.172,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 7500.0,
+  "share_le10": 0.357,
+  "share_15_30": 0.283,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 7500.0,
+  "share_le10": 0.269,
+  "share_15_30": 0.37,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 7500.0,
+  "share_le10": 0.238,
+  "share_15_30": 0.385,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 7500.0,
+  "share_le10": 0.254,
+  "share_15_30": 0.327,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 7500.0,
+  "share_le10": 0.261,
+  "share_15_30": 0.249,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 7500.0,
+  "share_le10": 0.385,
+  "share_15_30": 0.184,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 7500.0,
+  "share_le10": 0.45,
+  "share_15_30": 0.168,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 7500.0,
+  "share_le10": 0.505,
+  "share_15_30": 0.178,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 5000.0,
+  "share_le10": 0.55,
+  "share_15_30": 0.337,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 5000.0,
+  "share_le10": 0.632,
+  "share_15_30": 0.269,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 5000.0,
+  "share_le10": 0.676,
+  "share_15_30": 0.18,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 5000.0,
+  "share_le10": 0.69,
+  "share_15_30": 0.122,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 5000.0,
+  "share_le10": 0.63,
+  "share_15_30": 0.102,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 5000.0,
+  "share_le10": 0.479,
+  "share_15_30": 0.17,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 5000.0,
+  "share_le10": 0.339,
+  "share_15_30": 0.279,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 5000.0,
+  "share_le10": 0.242,
+  "share_15_30": 0.357,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 5000.0,
+  "share_le10": 0.193,
+  "share_15_30": 0.385,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 5000.0,
+  "share_le10": 0.214,
+  "share_15_30": 0.37,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 5000.0,
+  "share_le10": 0.34,
+  "share_15_30": 0.294,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 5000.0,
+  "share_le10": 0.393,
+  "share_15_30": 0.274,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 5000.0,
+  "share_le10": 0.45,
+  "share_15_30": 0.276,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 2500.0,
+  "share_le10": 0.527,
+  "share_15_30": 0.365,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 2500.0,
+  "share_le10": 0.564,
+  "share_15_30": 0.348,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 2500.0,
+  "share_le10": 0.622,
+  "share_15_30": 0.262,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 2500.0,
+  "share_le10": 0.646,
+  "share_15_30": 0.205,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 2500.0,
+  "share_le10": 0.646,
+  "share_15_30": 0.137,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 2500.0,
+  "share_le10": 0.537,
+  "share_15_30": 0.133,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 2500.0,
+  "share_le10": 0.367,
+  "share_15_30": 0.28,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 2500.0,
+  "share_le10": 0.245,
+  "share_15_30": 0.38,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 2500.0,
+  "share_le10": 0.135,
+  "share_15_30": 0.459,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 2500.0,
+  "share_le10": 0.181,
+  "share_15_30": 0.461,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 2500.0,
+  "share_le10": 0.334,
+  "share_15_30": 0.341,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 2500.0,
+  "share_le10": 0.378,
+  "share_15_30": 0.312,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 2500.0,
+  "share_le10": 0.438,
+  "share_15_30": 0.324,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -52000.0,
+  "y": 0.0,
+  "share_le10": 0.461,
+  "share_15_30": 0.436,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -49500.0,
+  "y": 0.0,
+  "share_le10": 0.462,
+  "share_15_30": 0.439,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -47000.0,
+  "y": 0.0,
+  "share_le10": 0.558,
+  "share_15_30": 0.341,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -44500.0,
+  "y": 0.0,
+  "share_le10": 0.643,
+  "share_15_30": 0.273,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -42000.0,
+  "y": 0.0,
+  "share_le10": 0.69,
+  "share_15_30": 0.161,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -39500.0,
+  "y": 0.0,
+  "share_le10": 0.619,
+  "share_15_30": 0.102,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -37000.0,
+  "y": 0.0,
+  "share_le10": 0.417,
+  "share_15_30": 0.276,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -34500.0,
+  "y": 0.0,
+  "share_le10": 0.242,
+  "share_15_30": 0.39,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -32000.0,
+  "y": 0.0,
+  "share_le10": 0.109,
+  "share_15_30": 0.498,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -29500.0,
+  "y": 0.0,
+  "share_le10": 0.148,
+  "share_15_30": 0.53,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -27000.0,
+  "y": 0.0,
+  "share_le10": 0.293,
+  "share_15_30": 0.381,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -24500.0,
+  "y": 0.0,
+  "share_le10": 0.321,
+  "share_15_30": 0.351,
+  "zone": null
+ },
+ {
+  "site": "de Gerlache rim",
+  "x": -22000.0,
+  "y": 0.0,
+  "share_le10": 0.355,
+  "share_15_30": 0.385,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 136500.0,
+  "share_le10": 0.12,
+  "share_15_30": 0.476,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 136500.0,
+  "share_le10": 0.146,
+  "share_15_30": 0.393,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 136500.0,
+  "share_le10": 0.162,
+  "share_15_30": 0.364,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 136500.0,
+  "share_le10": 0.224,
+  "share_15_30": 0.333,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 136500.0,
+  "share_le10": 0.32,
+  "share_15_30": 0.317,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 136500.0,
+  "share_le10": 0.346,
+  "share_15_30": 0.381,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 136500.0,
+  "share_le10": 0.353,
+  "share_15_30": 0.45,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 136500.0,
+  "share_le10": 0.269,
+  "share_15_30": 0.568,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 136500.0,
+  "share_le10": 0.134,
+  "share_15_30": 0.744,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 136500.0,
+  "share_le10": 0.04,
+  "share_15_30": 0.902,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 136500.0,
+  "share_le10": 0.0,
+  "share_15_30": 0.987,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 136500.0,
+  "share_le10": 0.007,
+  "share_15_30": 0.9,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 136500.0,
+  "share_le10": 0.049,
+  "share_15_30": 0.808,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 134000.0,
+  "share_le10": 0.056,
+  "share_15_30": 0.65,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 134000.0,
+  "share_le10": 0.074,
+  "share_15_30": 0.569,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 134000.0,
+  "share_le10": 0.076,
+  "share_15_30": 0.521,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 134000.0,
+  "share_le10": 0.124,
+  "share_15_30": 0.495,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 134000.0,
+  "share_le10": 0.198,
+  "share_15_30": 0.481,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 134000.0,
+  "share_le10": 0.214,
+  "share_15_30": 0.546,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 134000.0,
+  "share_le10": 0.219,
+  "share_15_30": 0.627,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 134000.0,
+  "share_le10": 0.169,
+  "share_15_30": 0.707,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 134000.0,
+  "share_le10": 0.079,
+  "share_15_30": 0.823,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 134000.0,
+  "share_le10": 0.019,
+  "share_15_30": 0.933,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 134000.0,
+  "share_le10": 0.001,
+  "share_15_30": 0.985,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 134000.0,
+  "share_le10": 0.005,
+  "share_15_30": 0.928,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 134000.0,
+  "share_le10": 0.038,
+  "share_15_30": 0.858,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 131500.0,
+  "share_le10": 0.028,
+  "share_15_30": 0.78,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 131500.0,
+  "share_le10": 0.021,
+  "share_15_30": 0.738,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 131500.0,
+  "share_le10": 0.013,
+  "share_15_30": 0.727,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 131500.0,
+  "share_le10": 0.018,
+  "share_15_30": 0.719,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 131500.0,
+  "share_le10": 0.046,
+  "share_15_30": 0.706,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 131500.0,
+  "share_le10": 0.059,
+  "share_15_30": 0.77,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 131500.0,
+  "share_le10": 0.054,
+  "share_15_30": 0.856,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 131500.0,
+  "share_le10": 0.051,
+  "share_15_30": 0.872,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 131500.0,
+  "share_le10": 0.041,
+  "share_15_30": 0.879,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 131500.0,
+  "share_le10": 0.025,
+  "share_15_30": 0.926,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 131500.0,
+  "share_le10": 0.021,
+  "share_15_30": 0.934,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 131500.0,
+  "share_le10": 0.02,
+  "share_15_30": 0.936,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 131500.0,
+  "share_le10": 0.013,
+  "share_15_30": 0.937,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 129000.0,
+  "share_le10": 0.068,
+  "share_15_30": 0.738,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 129000.0,
+  "share_le10": 0.042,
+  "share_15_30": 0.761,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 129000.0,
+  "share_le10": 0.029,
+  "share_15_30": 0.786,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 129000.0,
+  "share_le10": 0.023,
+  "share_15_30": 0.82,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 129000.0,
+  "share_le10": 0.002,
+  "share_15_30": 0.878,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 129000.0,
+  "share_le10": 0.003,
+  "share_15_30": 0.932,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 129000.0,
+  "share_le10": 0.003,
+  "share_15_30": 0.977,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 129000.0,
+  "share_le10": 0.015,
+  "share_15_30": 0.916,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 129000.0,
+  "share_le10": 0.051,
+  "share_15_30": 0.816,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 129000.0,
+  "share_le10": 0.051,
+  "share_15_30": 0.823,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 129000.0,
+  "share_le10": 0.051,
+  "share_15_30": 0.827,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 129000.0,
+  "share_le10": 0.038,
+  "share_15_30": 0.889,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 129000.0,
+  "share_le10": 0.009,
+  "share_15_30": 0.958,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 126500.0,
+  "share_le10": 0.069,
+  "share_15_30": 0.738,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 126500.0,
+  "share_le10": 0.057,
+  "share_15_30": 0.774,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 126500.0,
+  "share_le10": 0.073,
+  "share_15_30": 0.774,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 126500.0,
+  "share_le10": 0.089,
+  "share_15_30": 0.765,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 126500.0,
+  "share_le10": 0.119,
+  "share_15_30": 0.766,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 126500.0,
+  "share_le10": 0.141,
+  "share_15_30": 0.754,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 126500.0,
+  "share_le10": 0.153,
+  "share_15_30": 0.762,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 126500.0,
+  "share_le10": 0.179,
+  "share_15_30": 0.683,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 126500.0,
+  "share_le10": 0.184,
+  "share_15_30": 0.596,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 126500.0,
+  "share_le10": 0.149,
+  "share_15_30": 0.652,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 126500.0,
+  "share_le10": 0.108,
+  "share_15_30": 0.716,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 126500.0,
+  "share_le10": 0.059,
+  "share_15_30": 0.839,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 126500.0,
+  "share_le10": 0.012,
+  "share_15_30": 0.955,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 124000.0,
+  "share_le10": 0.069,
+  "share_15_30": 0.621,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 124000.0,
+  "share_le10": 0.057,
+  "share_15_30": 0.708,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 124000.0,
+  "share_le10": 0.073,
+  "share_15_30": 0.789,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 124000.0,
+  "share_le10": 0.091,
+  "share_15_30": 0.777,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 124000.0,
+  "share_le10": 0.13,
+  "share_15_30": 0.756,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 124000.0,
+  "share_le10": 0.167,
+  "share_15_30": 0.697,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 124000.0,
+  "share_le10": 0.2,
+  "share_15_30": 0.635,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 124000.0,
+  "share_le10": 0.27,
+  "share_15_30": 0.514,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 124000.0,
+  "share_le10": 0.29,
+  "share_15_30": 0.413,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 124000.0,
+  "share_le10": 0.24,
+  "share_15_30": 0.496,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 124000.0,
+  "share_le10": 0.179,
+  "share_15_30": 0.599,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 124000.0,
+  "share_le10": 0.084,
+  "share_15_30": 0.785,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 124000.0,
+  "share_le10": 0.004,
+  "share_15_30": 0.95,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 121500.0,
+  "share_le10": 0.069,
+  "share_15_30": 0.595,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 121500.0,
+  "share_le10": 0.064,
+  "share_15_30": 0.674,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 121500.0,
+  "share_le10": 0.077,
+  "share_15_30": 0.772,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 121500.0,
+  "share_le10": 0.091,
+  "share_15_30": 0.777,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 121500.0,
+  "share_le10": 0.13,
+  "share_15_30": 0.745,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 121500.0,
+  "share_le10": 0.167,
+  "share_15_30": 0.685,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 121500.0,
+  "share_le10": 0.2,
+  "share_15_30": 0.623,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 121500.0,
+  "share_le10": 0.268,
+  "share_15_30": 0.499,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 121500.0,
+  "share_le10": 0.269,
+  "share_15_30": 0.45,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 121500.0,
+  "share_le10": 0.22,
+  "share_15_30": 0.531,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 121500.0,
+  "share_le10": 0.159,
+  "share_15_30": 0.632,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 121500.0,
+  "share_le10": 0.066,
+  "share_15_30": 0.815,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 121500.0,
+  "share_le10": 0.005,
+  "share_15_30": 0.947,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 119000.0,
+  "share_le10": 0.045,
+  "share_15_30": 0.518,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 119000.0,
+  "share_le10": 0.05,
+  "share_15_30": 0.584,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 119000.0,
+  "share_le10": 0.059,
+  "share_15_30": 0.688,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 119000.0,
+  "share_le10": 0.08,
+  "share_15_30": 0.698,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 119000.0,
+  "share_le10": 0.145,
+  "share_15_30": 0.659,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 119000.0,
+  "share_le10": 0.181,
+  "share_15_30": 0.619,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 119000.0,
+  "share_le10": 0.213,
+  "share_15_30": 0.588,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 119000.0,
+  "share_le10": 0.264,
+  "share_15_30": 0.533,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 119000.0,
+  "share_le10": 0.239,
+  "share_15_30": 0.545,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 119000.0,
+  "share_le10": 0.192,
+  "share_15_30": 0.626,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 119000.0,
+  "share_le10": 0.137,
+  "share_15_30": 0.7,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 119000.0,
+  "share_le10": 0.061,
+  "share_15_30": 0.801,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 119000.0,
+  "share_le10": 0.021,
+  "share_15_30": 0.864,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 116500.0,
+  "share_le10": 0.231,
+  "share_15_30": 0.319,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 116500.0,
+  "share_le10": 0.221,
+  "share_15_30": 0.408,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 116500.0,
+  "share_le10": 0.185,
+  "share_15_30": 0.551,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 116500.0,
+  "share_le10": 0.163,
+  "share_15_30": 0.603,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 116500.0,
+  "share_le10": 0.181,
+  "share_15_30": 0.6,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 116500.0,
+  "share_le10": 0.201,
+  "share_15_30": 0.582,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 116500.0,
+  "share_le10": 0.227,
+  "share_15_30": 0.561,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 116500.0,
+  "share_le10": 0.258,
+  "share_15_30": 0.543,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 116500.0,
+  "share_le10": 0.219,
+  "share_15_30": 0.555,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 116500.0,
+  "share_le10": 0.177,
+  "share_15_30": 0.598,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 116500.0,
+  "share_le10": 0.142,
+  "share_15_30": 0.626,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 116500.0,
+  "share_le10": 0.096,
+  "share_15_30": 0.654,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 116500.0,
+  "share_le10": 0.093,
+  "share_15_30": 0.665,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 114000.0,
+  "share_le10": 0.445,
+  "share_15_30": 0.186,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 114000.0,
+  "share_le10": 0.429,
+  "share_15_30": 0.246,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 114000.0,
+  "share_le10": 0.407,
+  "share_15_30": 0.331,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 114000.0,
+  "share_le10": 0.365,
+  "share_15_30": 0.388,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 114000.0,
+  "share_le10": 0.354,
+  "share_15_30": 0.406,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 114000.0,
+  "share_le10": 0.37,
+  "share_15_30": 0.413,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 114000.0,
+  "share_le10": 0.369,
+  "share_15_30": 0.438,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 114000.0,
+  "share_le10": 0.363,
+  "share_15_30": 0.462,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 114000.0,
+  "share_le10": 0.302,
+  "share_15_30": 0.5,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 114000.0,
+  "share_le10": 0.233,
+  "share_15_30": 0.52,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 114000.0,
+  "share_le10": 0.199,
+  "share_15_30": 0.509,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 114000.0,
+  "share_le10": 0.2,
+  "share_15_30": 0.476,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 114000.0,
+  "share_le10": 0.244,
+  "share_15_30": 0.445,
+  "zone": "MZ-STEEP"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 111500.0,
+  "share_le10": 0.502,
+  "share_15_30": 0.09,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 111500.0,
+  "share_le10": 0.512,
+  "share_15_30": 0.139,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 111500.0,
+  "share_le10": 0.555,
+  "share_15_30": 0.163,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 111500.0,
+  "share_le10": 0.545,
+  "share_15_30": 0.194,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 111500.0,
+  "share_le10": 0.566,
+  "share_15_30": 0.188,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 111500.0,
+  "share_le10": 0.58,
+  "share_15_30": 0.174,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 111500.0,
+  "share_le10": 0.553,
+  "share_15_30": 0.201,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 111500.0,
+  "share_le10": 0.545,
+  "share_15_30": 0.236,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 111500.0,
+  "share_le10": 0.485,
+  "share_15_30": 0.268,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 111500.0,
+  "share_le10": 0.43,
+  "share_15_30": 0.29,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 111500.0,
+  "share_le10": 0.407,
+  "share_15_30": 0.282,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 111500.0,
+  "share_le10": 0.406,
+  "share_15_30": 0.244,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 111500.0,
+  "share_le10": 0.457,
+  "share_15_30": 0.211,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 109000.0,
+  "share_le10": 0.541,
+  "share_15_30": 0.13,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 109000.0,
+  "share_le10": 0.553,
+  "share_15_30": 0.174,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 109000.0,
+  "share_le10": 0.643,
+  "share_15_30": 0.162,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 109000.0,
+  "share_le10": 0.649,
+  "share_15_30": 0.149,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 109000.0,
+  "share_le10": 0.691,
+  "share_15_30": 0.071,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 109000.0,
+  "share_le10": 0.702,
+  "share_15_30": 0.023,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 109000.0,
+  "share_le10": 0.622,
+  "share_15_30": 0.056,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 109000.0,
+  "share_le10": 0.6,
+  "share_15_30": 0.082,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 109000.0,
+  "share_le10": 0.558,
+  "share_15_30": 0.1,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 109000.0,
+  "share_le10": 0.527,
+  "share_15_30": 0.101,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 109000.0,
+  "share_le10": 0.545,
+  "share_15_30": 0.081,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 109000.0,
+  "share_le10": 0.584,
+  "share_15_30": 0.061,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 109000.0,
+  "share_le10": 0.644,
+  "share_15_30": 0.048,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -15500.0,
+  "y": 106500.0,
+  "share_le10": 0.465,
+  "share_15_30": 0.173,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -13000.0,
+  "y": 106500.0,
+  "share_le10": 0.463,
+  "share_15_30": 0.238,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -10500.0,
+  "y": 106500.0,
+  "share_le10": 0.574,
+  "share_15_30": 0.229,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": -8000.0,
+  "y": 106500.0,
+  "share_le10": 0.605,
+  "share_15_30": 0.217,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -5500.0,
+  "y": 106500.0,
+  "share_le10": 0.644,
+  "share_15_30": 0.142,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -3000.0,
+  "y": 106500.0,
+  "share_le10": 0.652,
+  "share_15_30": 0.095,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": -500.0,
+  "y": 106500.0,
+  "share_le10": 0.545,
+  "share_15_30": 0.162,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 2000.0,
+  "y": 106500.0,
+  "share_le10": 0.526,
+  "share_15_30": 0.17,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 4500.0,
+  "y": 106500.0,
+  "share_le10": 0.557,
+  "share_15_30": 0.145,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 7000.0,
+  "y": 106500.0,
+  "share_le10": 0.576,
+  "share_15_30": 0.105,
+  "zone": null
+ },
+ {
+  "site": "Malapert",
+  "x": 9500.0,
+  "y": 106500.0,
+  "share_le10": 0.627,
+  "share_15_30": 0.037,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": 12000.0,
+  "y": 106500.0,
+  "share_le10": 0.698,
+  "share_15_30": 0.01,
+  "zone": "MZ-FLAT"
+ },
+ {
+  "site": "Malapert",
+  "x": 14500.0,
+  "y": 106500.0,
+  "share_le10": 0.738,
+  "share_15_30": 0.009,
+  "zone": "MZ-FLAT"
+ }
+]

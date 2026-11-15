@@ -1,0 +1,64 @@
+{
+  "method": "independent_geology_discovery_v0.2",
+  "planetary_reference": {
+    "id": "jezero_maaz_volcanic",
+    "world": "Mars",
+    "region": "Jezero crater floor, Maaz formation",
+    "question": "Where are terrestrial map units broadly classified as mafic volcanic rocks?",
+    "classes": [
+      "Basic volcanic rocks"
+    ],
+    "scientific_basis": "NASA Perseverance inferred lava flows in Maaz; source geological map is an Earth broad lithology classification.",
+    "basis_url": "https://www.nasa.gov/missions/mars-2020-perseverance/perseverance-rover/nasas-perseverance-makes-new-discoveries-in-mars-jezero-crater/",
+    "limitations": [
+      "Basic volcanic rock does not establish identical mineralogy or alteration",
+      "Volcanism is not equivalent to a NASA-approved Mars base site",
+      "Mapped lithology has uncertain local rock exposure"
+    ]
+  },
+  "source": {
+    "kind": "GeoJSON",
+    "file": "SYNTHETIC_geology_test.geojson",
+    "sha256": "fac006b0b00ff454c22ef14fb6190879c243b876b1b0658c3641e2e366533e89"
+  },
+  "mapping_mode": "exact GLiM Level-1 class match; no inferred process or chemistry",
+  "processed_input_records": 4,
+  "filtered_wrong_class": 3,
+  "invalid_geometry_records": 0,
+  "candidate_count": 1,
+  "coverage_status": "input extent unknown; does not establish global coverage",
+  "candidates": [
+    {
+      "candidate_id": "glim:2",
+      "source_class": "Basic volcanic rocks",
+      "source_record": {
+        "OBJECTID": 2,
+        "xx_Description": "Basic volcanic rocks"
+      },
+      "geometry_locator": {
+        "point_lonlat": [
+          -106.15,
+          38.15
+        ],
+        "bounding_box_lonlat": [
+          -106.2,
+          38.1,
+          -106.1,
+          38.2
+        ],
+        "centroid_lonlat": [
+          -106.15,
+          38.15
+        ]
+      },
+      "evidence_status": "broad_mapped_lithology_only",
+      "matches": "Where are terrestrial map units broadly classified as mafic volcanic rocks?",
+      "does_not_establish": [
+        "Basic volcanic rock does not establish identical mineralogy or alteration",
+        "Volcanism is not equivalent to a NASA-approved Mars base site",
+        "Mapped lithology has uncertain local rock exposure"
+      ],
+      "terrain_screen_required": false
+    }
+  ]
+}
