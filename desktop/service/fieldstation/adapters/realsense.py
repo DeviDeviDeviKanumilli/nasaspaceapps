@@ -78,8 +78,15 @@ def usb_seen() -> list[dict]:
 def sdk_status() -> dict:
     if rs is None:
         return {"available": False, "error": _IMPORT_ERROR}
+    pkg = "pyrealsense2-macosx" if sys.platform == "darwin" else "pyrealsense2"
     ver = getattr(rs, "__version__", None)
-    return {"available": True, "package": "pyrealsense2-macosx" if sys.platform == "darwin" else "pyrealsense2", "version": ver}
+    if not ver:  # the macOS wheel does not set __version__; the installed package metadata has it
+        try:
+            from importlib.metadata import version
+            ver = version(pkg)
+        except Exception:
+            ver = None
+    return {"available": True, "package": pkg, "version": ver}
 
 
 class RealSenseAdapter:
