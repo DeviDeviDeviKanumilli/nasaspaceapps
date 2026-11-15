@@ -48,6 +48,11 @@ MAX_IMPORT_BYTES = 4 * 1024 ** 3
 MAX_IMPORT_FILES = 20000
 
 
+# Catalog licences as SPDX ids (what the phone writes); the desktop's older display names map onto them.
+LICENSE_IDS = {"CC BY 4.0": "CC-BY-4.0", "CC BY-SA 4.0": "CC-BY-SA-4.0", "CC0 1.0": "CC0-1.0",
+               "All rights reserved": "all-rights-reserved"}
+
+
 class BundleError(RuntimeError):
     pass
 
@@ -477,6 +482,9 @@ class ScanStore:
                 raise
         # imported envelopes keep their own status; we only note it was imported
         man["desktop_import"] = {"imported_utc": utc_now(), "verified_sha256_files": len(man["files"]), "source_zip": zip_path.name}
+        if not isinstance(man.get("coordinate_frame"), dict) or not man["coordinate_frame"].get("name"):
+            man["coordinate_frame"] = {"name": "unknown", "note": "the imported scan.json did not state a coordinate frame; none is assumed"}
+            man["desktop_import"]["coordinate_frame_missing"] = True
         man["status"] = man.get("status") or "imported"
         atomic_write_json(dest / ENVELOPE, man)
         return man
@@ -517,22 +525,44 @@ class ScanStore:
         raise KeyError(f"no {kind} point cloud in scan {scan_id}")
 
     def write_catalog_draft(self, scan_id: str, fields: dict) -> dict:
-        """Local CatalogEntry draft. Never uploads; there is no catalog service in this build."""
+        """Local CatalogEntry draft. Never uploads; there is no catalog service in this build.
+
+        A draft already in the folder (for example one the phone wrote before the scan was AirDropped here) is
+        updated, not replaced: fields the desktop has no editor for (the phone's location precision, people /
+        private-property answers, photo and notes choices) are kept as they were."""
         d = self.dir_of(scan_id)
         man = self.manifest(scan_id)
-        draft = {
-            "schema_version": SCHEMA_VERSION, "catalog_entry_id": str(uuid.uuid4()), "scan_id": scan_id,
-            "status": "draft_local", "visibility": "private",
+        prev = {}
+        if (d / "catalog_draft.json").exists():
+            try:
+                prev = json.loads((d / "catalog_draft.json").read_text())
+            except ValueError:
+                prev = {}
+        now = utc_now()
+        approval, consent = bool(fields.get("author_approval")), bool(fields.get("consent_obtained"))
+        people = fields.get("people_or_private_property_visible")
+        lic = fields.get("license")
+        draft = dict(prev)
+        draft.update({
+            "schema_version": SCHEMA_VERSION, "catalog_entry_id": prev.get("catalog_entry_id") or str(uuid.uuid4()),
+            "scan_id": scan_id, "status": "draft_local", "visibility": "private",
             "title": fields.get("title") or (man.get("observation") or {}).get("title"),
-            "license": fields.get("license"), "attribution": fields.get("attribution"),
-            "author_approval": bool(fields.get("author_approval")), "consent_obtained": bool(fields.get("consent_obtained")),
-            "people_or_private_property_visible": fields.get("people_or_private_property_visible"),
-            "location_precision": "hidden", "tags": fields.get("tags", []),
+            "license": LICENSE_IDS.get(lic, lic), "attribution": fields.get("attribution"),
+            # same shape as the phone's draft; consent_obtained is kept at the top level too
+            "author_approval": {"owns_rights": approval, "consent": consent, "utc": now},
+            "consent_obtained": consent,
+            "people_or_private_property_visible": people,
+            "location_precision": prev.get("location_precision") or "hidden",
+            "tags": fields.get("tags", prev.get("tags", [])),
             "quality_label": "unreviewed_user_contribution",
-            "public_files": fields.get("public_files", ["point_cloud_filtered.ply", "thumbnail.jpg", "metrics.json", "scan.json"]),
+            "public_files": fields.get("public_files") or prev.get("public_files")
+                            or ["point_cloud_filtered.ply", "thumbnail.jpg", "metrics.json", "scan.json"],
             "notes": "Local draft only. Upload/publication requires a catalog service, which this build does not have.",
-            "created_utc": utc_now(), "revision_history": [{"t_utc": utc_now(), "change": "created"}],
-        }
+            "created_utc": prev.get("created_utc") or now,
+        })
+        if people is True:
+            draft["include_photos"] = False        # photos of people or private property are never shared
+        draft["revisions"] = list(prev.get("revisions") or []) + [{"utc": now, "change": "edited on desktop" if prev else "created on desktop"}]
         atomic_write_json(d / "catalog_draft.json", draft)
         man["publication"]["license"] = draft["license"]
         man["publication"]["consent_obtained"] = draft["consent_obtained"]

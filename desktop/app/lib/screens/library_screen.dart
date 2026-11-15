@@ -802,11 +802,20 @@ class _LibraryScreenState extends State<LibraryScreen> {
   Future<void> _draftDialog(AppState s, String id, Map<String, dynamic> obs, Object? existing) async {
     final ex = asMap(existing);
     final attribution = TextEditingController(text: asStr(ex['attribution']));
+    // SPDX ids, as the phone writes them; older desktop drafts used the display names.
+    const licenses = {'CC-BY-4.0': 'CC BY 4.0', 'CC-BY-SA-4.0': 'CC BY-SA 4.0', 'CC0-1.0': 'CC0 1.0', 'all-rights-reserved': 'All rights reserved'};
     String? license = ex['license'] as String?;
-    bool approval = ex['author_approval'] == true;
-    bool consent = ex['consent_obtained'] == true;
+    license = licenses.entries.where((e) => e.value == license).map((e) => e.key).firstOrNull ?? license;
+    // A draft can come from the phone (author_approval is a map there, people/property are separate answers).
+    final aa = ex['author_approval'];
+    bool approval = aa == true || (aa is Map && aa['owns_rights'] == true);
+    bool consent = ex['consent_obtained'] == true || (aa is Map && aa['consent'] == true);
     bool? people = ex['people_or_private_property_visible'] as bool?;
-    const licenses = ['CC BY 4.0', 'CC BY-SA 4.0', 'CC0 1.0', 'All rights reserved'];
+    if (people == null && (ex.containsKey('people_visible') || ex.containsKey('private_property_visible'))) {
+      final pv = ex['people_visible'], pp = ex['private_property_visible'];
+      people = (pv == 'yes' || pp == true) ? true : ((pv == 'no' && pp == false) ? false : null);
+    }
+    final precision = asStr(ex['location_precision'], 'hidden');
     final ok = await showDialog<bool>(
       context: context,
       builder: (c) => StatefulBuilder(
@@ -818,15 +827,16 @@ class _LibraryScreenState extends State<LibraryScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Hint(
-                  'Saved on this computer only. This build has no catalog service, so nothing is uploaded. Location stays hidden.',
+                Hint(
+                  'Saved on this computer only. This build has no catalog service, so nothing is uploaded. '
+                  '${precision == 'hidden' ? 'Location stays hidden.' : 'Location precision: $precision (chosen on the phone; kept as it is).'}',
                   color: FsPalette.caution,
                   icon: Icons.warning_amber_rounded,
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
-                  initialValue: licenses.contains(license) ? license : null,
-                  items: [for (final l in licenses) DropdownMenuItem(value: l, child: Text(l))],
+                  initialValue: licenses.containsKey(license) ? license : null,
+                  items: [for (final l in licenses.entries) DropdownMenuItem(value: l.key, child: Text(l.value))],
                   onChanged: (v) => set(() => license = v),
                   decoration: const InputDecoration(labelText: 'Licence, your explicit choice'),
                 ),

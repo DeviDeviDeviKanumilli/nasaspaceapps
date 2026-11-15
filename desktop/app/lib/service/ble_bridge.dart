@@ -84,25 +84,31 @@ class BleBridge extends ChangeNotifier {
         break;
       case 'unsubscribed':
         centrals.remove(asStr(ev['central']));
-        a?.postJson('/api/ble/disconnected', {'central': ev['central']}).catchError((Object e) {
-          lastError = '$e';
-          return null;
-        });
+        _forwardRx(a, '/api/ble/disconnected', {'central': ev['central']});
         break;
       case 'rx':
-        a?.postJson('/api/ble/rx', {'central': ev['central'], 'data_b64': ev['data_b64'], 'max_chunk': ev['max_chunk'] ?? 182}).catchError((
-          Object e,
-        ) {
-          lastError = 'rx forward failed: $e';
-          notifyListeners();
-          return null;
-        });
+        _forwardRx(a, '/api/ble/rx', {'central': ev['central'], 'data_b64': ev['data_b64'], 'max_chunk': ev['max_chunk'] ?? 182});
         return;
       case 'error':
         lastError = asStr(ev['message']);
         break;
     }
     notifyListeners();
+  }
+
+  /// Written chunks must reach the service in the order they arrived: a message split over several chunks is
+  /// discarded if its parts are reassembled out of order. One POST at a time, like notifications below.
+  Future<void> _rxChain = Future.value();
+  void _forwardRx(ApiClient? a, String path, Map<String, dynamic> body) {
+    if (a == null) return;
+    _rxChain = _rxChain.then((_) async {
+      try {
+        await a.postJson(path, body);
+      } catch (e) {
+        lastError = path.endsWith('/rx') ? 'rx forward failed: $e' : '$e';
+        notifyListeners();
+      }
+    });
   }
 
   /// Called for every service event of type "ble_tx"; notifications are serialised to keep chunk order.

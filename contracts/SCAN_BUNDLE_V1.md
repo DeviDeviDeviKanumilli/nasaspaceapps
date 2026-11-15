@@ -116,3 +116,21 @@ Names in use: `distance` (two picked points), `plane_fit_roughness`, `plane_tilt
 
 `status`: `draft_local` → (`uploading` → `private_cloud_draft` → `pending_review` → `published` | `rejected` | `removed`).
 Only `draft_local` exists in this build: there is no catalog service yet. Uploading never equals publishing.
+
+Fields both apps understand: `scan_id`, `status`, `license` (SPDX id: `CC-BY-4.0`, `CC-BY-SA-4.0`, `CC0-1.0`, or
+`all-rights-reserved`), `attribution`, `author_approval` (`{"owns_rights", "consent", "utc"}`), `location_precision`
+(`hidden` | `coarse` | `exact`; default `hidden`), `public_files`, `revisions` (`[{"utc", "change"}]`). The phone also
+writes `people_visible` (`yes`/`no`/`unsure`), `private_property_visible`, `sensitive_site`, `include_photos`,
+`include_notes`, `public_location`. The desktop also writes `consent_obtained` and `people_or_private_property_visible`.
+When the desktop edits a draft the phone made, it keeps every phone field and only changes the ones its form edits.
+If the desktop says people or private property are visible, it also sets `include_photos` to false.
+
+## Links to the website
+
+`candidate_id` is a candidate's `id` in the website's `web/app_bundle.json` (`candidates[].id`, e.g. `T-M-CR-001`, or
+`geology_v2.featured[].id`). `candidate_run_id` is that bundle's `run.created_utc`. Both are opaque references typed
+by the user. Neither app reads the bundle or scores anything against it.
+
+`coordinate_frame` is expected in every `scan.json`. Earlier phone builds left it out for scans recovered
+after a crash. The desktop imports those with `coordinate_frame.name = "unknown"`, so no gravity-referenced tilt is
+reported for them.

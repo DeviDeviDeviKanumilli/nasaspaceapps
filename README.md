@@ -1,8 +1,11 @@
 # Small-tile planetary terrain comparison experiment (v0.1)
 
-> **Desktop capture app (branch `desktop`):** see [desktop/README.md](desktop/README.md) and
-> [desktop/STATUS.md](desktop/STATUS.md). It is the D435 field-instrument workstation only. The analog
-> discovery engine in this repository is not part of it.
+> **Field apps.** [desktop/](desktop/README.md) is Field Station, the D435 field-instrument workstation
+> (state: [desktop/STATUS.md](desktop/STATUS.md)). [mobile/](mobile/README.md) is Field Scan, the iPhone LiDAR app.
+> They share the formats in [contracts/](contracts/) (scan bundle, Bluetooth protocol, test vectors), and
+> `mobile/test/interop_field_station_test.dart` runs the phone's code against the desktop service.
+> Neither app contains the analog discovery engine in this repository; a scan can only carry a website
+> candidate id (`web/app_bundle.json` `candidates[].id`) as an opaque reference.
 
 
 **Research prototype; not global discovery, a validated analog-selection engine, or a NASA flight-safety evaluation.**

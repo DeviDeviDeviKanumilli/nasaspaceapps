@@ -98,7 +98,7 @@ def test_export_import_roundtrip_duplicate_and_tamper(synthetic_scan, store, tmp
         third.import_zip(evil)
 
 
-def _iphone_bundle(tmp_path) -> tuple:
+def _iphone_bundle(tmp_path, drop: tuple = ()) -> tuple:
     """A minimal bundle shaped like contracts/SCAN_BUNDLE_V1.md from the iPhone app. TEST FIXTURE, not a real scan:
     a 40 cm patch tilted 20 degrees from horizontal in arkit_session_world (+Y up)."""
     sid = str(uuid.uuid4())
@@ -119,6 +119,8 @@ def _iphone_bundle(tmp_path) -> tuple:
                                           "bytes": (d / "point_cloud_fused.ply").stat().st_size, "sha256": sha256_file(d / "point_cloud_fused.ply"),
                                           "lineage": "fixture"}],
            "processing": {}, "publication": {"status": "local_private"}, "limitations": ["TEST FIXTURE"]}
+    for k in drop:
+        man.pop(k)
     (d / "scan.json").write_text(json.dumps(man))
     z = tmp_path / f"scan-{sid}.zip"
     with zipfile.ZipFile(z, "w") as zf:
@@ -143,6 +145,14 @@ def test_iphone_bundle_import_keeps_provenance_and_uses_gravity(store, tmp_path)
     assert m2["origin"] == "iphone_arkit_lidar" and len(m2["measurements"]) == len(res["measurements"])
 
 
+def test_iphone_bundle_without_coordinate_frame_imports_with_unknown_frame(store, tmp_path):
+    """Earlier phone builds wrote no coordinate_frame for scans recovered after a crash."""
+    sid, z = _iphone_bundle(tmp_path, drop=("coordinate_frame",))
+    m = store.import_zip(z)
+    assert m["coordinate_frame"]["name"] == "unknown" and m["desktop_import"]["coordinate_frame_missing"] is True
+    assert store.manifest(sid)["coordinate_frame"]["name"] == "unknown"
+
+
 def test_bare_ply_import_flags_provenance(store, tmp_path):
     write_ply(tmp_path / "x.ply", make_vertices(np.zeros((5, 3)) + [0, 0, 1]), [])
     m = store.import_ply(tmp_path / "x.ply")
@@ -155,6 +165,27 @@ def test_catalog_draft_is_local_only(synthetic_scan, store):
     m = store.manifest(synthetic_scan)
     assert m["publication"]["status"] == "draft_local"
     assert any(f["path"] == "catalog_draft.json" for f in m["files"])
+
+
+def test_catalog_draft_keeps_phone_fields(store, tmp_path):
+    """A draft the phone wrote (contribute screen) survives a desktop edit: location choice and privacy answers stay."""
+    sid, z = _iphone_bundle(tmp_path)
+    store.import_zip(z)
+    phone_draft = {"schema_version": "1.0", "catalog_entry_id": None, "scan_id": sid, "status": "draft_local",
+                   "license": "CC-BY-SA-4.0", "attribution": "field team", "location_precision": "coarse",
+                   "public_location": "40.3, -74.6 (rounded to 0.1°, about 10 km)", "people_visible": "no",
+                   "private_property_visible": False, "include_photos": True,
+                   "author_approval": {"consent": True, "owns_rights": True, "utc": "2026-11-15T12:00:00Z"},
+                   "revisions": [{"utc": "2026-11-15T12:00:00Z", "change": "draft prepared on phone"}]}
+    (store.dir_of(sid) / "catalog_draft.json").write_text(json.dumps(phone_draft))
+    dr = store.write_catalog_draft(sid, {"license": "CC BY 4.0", "attribution": "field team", "author_approval": True,
+                                         "consent_obtained": True, "people_or_private_property_visible": True})
+    assert dr["license"] == "CC-BY-4.0" and dr["visibility"] == "private" and dr["status"] == "draft_local"
+    assert dr["location_precision"] == "coarse" and dr["public_location"] == phone_draft["public_location"]
+    assert dr["people_visible"] == "no" and dr["include_photos"] is False          # desktop said people/property visible
+    assert dr["author_approval"]["owns_rights"] is True and dr["consent_obtained"] is True
+    assert [r["change"] for r in dr["revisions"]] == ["draft prepared on phone", "edited on desktop"]
+    assert dr["catalog_entry_id"]
 
 
 def test_grid_mesh_ply_and_glb(synthetic_scan, store):

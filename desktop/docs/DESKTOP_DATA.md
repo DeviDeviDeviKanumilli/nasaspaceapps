@@ -1,7 +1,7 @@
 # Desktop data details (on top of SCAN_BUNDLE_V1)
 
 The shared envelope and the measurement-record fields are defined by the mobile team in
-[contracts/SCAN_BUNDLE_V1.md](contracts/SCAN_BUNDLE_V1.md). The desktop writes exactly those field names.
+[contracts/SCAN_BUNDLE_V1.md](../../contracts/SCAN_BUNDLE_V1.md). The desktop writes exactly those field names.
 This page lists only what the desktop adds or fixes for D435 sessions. These additions were sent to the
 mobile session on 2026-11-15.
 

@@ -1,6 +1,7 @@
 # Field Station desktop: status (updated continuously)
 
-Branch `desktop`, worktree `~/nasaspaceapps-desktop`. Host used for everything below:
+Merged into `main` (PR #2, 2026-11-15); the shared contracts are in `/contracts` at the repository root.
+Host used for everything below:
 **MacBook Air (Apple M4, 16 GB), macOS 26.6.2**. Note that HANDOFF 01 says the team laptop is an M5; this was
 built and tested on an M4.
 
@@ -31,11 +32,11 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
 | Roughness / tilt / extents / protrusion / distance / repeatability | TESTED on analytic fixtures | Box height within 1 cm, length within 1 cm |
 | Noise-floor flag (Intel D400 RMS model) | TESTED | Flat board → `at_noise_floor` |
 | Bundle: hashes, read-only raw, atomic writes, crash recovery | TESTED | |
-| Export zip / import zip (iPhone or desktop) with SHA verification | TESTED with a contract-shaped fixture | Not yet with a real iPhone bundle |
-| Local catalog draft (no upload; there is no catalog service) | TESTED | `draft_local` only |
+| Export zip / import zip (iPhone or desktop) with SHA verification | TESTED with zips made by the phone app's own code (`mobile/test/interop_field_station_test.dart`: LiDAR-shaped, synthetic and crash-recovered scans; duplicate and tampered zips refused; roughness and gravity tilt measured after import) | Not yet with a zip from a real iPhone capture |
+| Local catalog draft (no upload; there is no catalog service) | TESTED | `draft_local` only. A draft the phone made is read correctly and its fields (location precision, people/property answers) are kept when edited here; licences are SPDX ids like the phone's |
 | Local API (loopback, token, Host check) | TESTED | |
 | Headless CLI (`python -m fieldstation.cli`) | TESTED manually (devices, capture via the worker process, roughness) | Field fallback if the GUI fails |
-| BLE protocol (pairing, MAC, seq/id, acks, resend) | TESTED against the mobile team's `BLE_TEST_VECTORS.json` (byte-identical proofs, key, MAC) + SIMULATED end-to-end with `phone_sim.py` | Not yet against the real phone app |
+| BLE protocol (pairing, MAC, seq/id, acks, resend) | TESTED against the mobile team's `BLE_TEST_VECTORS.json` (byte-identical proofs, key, MAC), and against the phone app's own Dart protocol code through the service's HTTP/WebSocket path (`mobile/test/interop_field_station_test.dart`, minimum MTU) | Radio not involved: never over the air with a real phone |
 | BLE radio (Swift CoreBluetooth peripheral in the Flutter runner) | BUILT, UNTESTED | Needs a phone; first run triggers the macOS Bluetooth permission prompt |
 | Flutter macOS UI (Devices, Capture, Viewer, Analysis, Library, Pairing, About) | TESTED on screen with the SYNTHETIC scene | `flutter analyze` clean, 9/9 `flutter test`, `flutter build macos` OK. Driven in the app: open device → live preview (26.7 fps) → record → 3D viewer (132k of 397k points, orbit, back-to-front sort) → sphere-ROI roughness. Analysis rectangle/protrusion/distance and export checked through the same API calls (box height 0.152 m vs 0.150 m true), not by dragging in the app |
 | UI paths never exercised | BUILT, UNTESTED | Import file picker (macOS osascript / Windows dialog), Show folder / Open in Finder or Explorer, edit notes, reprocess, catalog-draft form, phone-refusal error card (no phone yet), Mesh mode in the viewer |
@@ -94,3 +95,18 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
     HTTP/WebSocket path the Dart bridge uses (10/10). Still no radio test (needs the Mac and a phone).
   - Team rule "disclose AI use in every script": AI-assistance header added to all desktop source files.
   - DEMO.md button names updated to the new UI. 39 service tests (2 new: parent watch, shutdown releases the sensor), 9 flutter tests.
+- 2026-11-15 ~06:00 ET, after the merge into `main` (integration check across desktop, mobile, contracts and web):
+  - New `mobile/test/interop_field_station_test.dart`: the phone's real Dart code against this service (started as a subprocess
+    with the synthetic camera). Pairing at MTU 23 with a wrong code first, hello, phone→desktop D435 start acked with a
+    scan id and followed by capture_state/capture_complete, duplicate re-acked without a second recording, forged MAC
+    dropped, desktop→phone command refused by the phone with its error shown verbatim, phone capture_state received;
+    zips made with the phone's Export call import with every SHA-256 verified. 2/2 pass.
+  - Fixed: a scan the phone recovers after a crash was refused on import (`missing coordinate_frame`). The desktop now
+    imports it with an explicit `unknown` frame; the phone now writes the frame for recovered scans too.
+  - Fixed: desktop catalog-draft form misread phone drafts (consent/author unticked, licence blank) and saving would have
+    replaced the phone's location and people/property answers. It now reads both shapes and keeps the phone's fields.
+  - Fixed: written BLE chunks were forwarded to the service as concurrent HTTP requests, so a multi-chunk message could
+    arrive out of order. They are now forwarded one at a time (as notifications already were).
+  - Fixed (phone): the phone re-reads the desktop nonce before pairing, so pressing "Pair a phone" again on the Mac
+    no longer looks like a wrong code.
+  - `desktop/docs/contracts/` removed; `/contracts` at the repository root is the only copy, and the desktop tests read it there.
