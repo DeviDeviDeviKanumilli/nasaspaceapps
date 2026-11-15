@@ -1,0 +1,7 @@
+node_modules/
+.next/
+out/
+public/cesium/
+next-env.d.ts
+*.log
+tsconfig.tsbuildinfo
