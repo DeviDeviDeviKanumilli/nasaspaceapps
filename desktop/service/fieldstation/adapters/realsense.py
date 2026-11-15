@@ -14,6 +14,8 @@ import os
 import plistlib
 import subprocess
 import sys
+import time
+
 import numpy as np
 
 from ..camera_model import Extrinsics, Intrinsics
@@ -29,6 +31,34 @@ except Exception as exc:  # pragma: no cover - depends on the machine
 # librealsense objects from a discover() whose open failed. Freeing them then segfaults on macOS (2.56.5), so they
 # are never freed: discover() runs in a short-lived child process (CaptureController.discover) that exits with os._exit.
 _KEEP: list = []
+
+_LIBUSB_HOLD = None
+
+
+def _hold_libusb() -> None:
+    """Keep one libusb context open for the life of this process (macOS only).
+
+    librealsense's device watcher opens and closes a libusb context about every 100 ms on a background thread, and
+    pipeline.start opens more on the calling thread. libusb's macOS backend sets itself up when the first context opens
+    and tears down when the last one closes, and that is not thread-safe: libusb_init fails, librealsense carries on
+    with a NULL context and the process segfaults in libusb_get_device_list (seen 15 Nov 2026 on macOS 26.6.2 with a
+    D435, every open after the first). With one context held, setup/teardown never run again while the camera is used."""
+    global _LIBUSB_HOLD
+    if _LIBUSB_HOLD is not None or rs is None or sys.platform != "darwin":
+        return
+    import ctypes
+    mod = getattr(rs, "__file__", None)
+    path = os.path.join(os.path.dirname(mod), ".dylibs", "libusb-1.0.0.dylib") if mod else ""
+    if not path or not os.path.exists(path):
+        _LIBUSB_HOLD = False
+        return
+    try:
+        lib = ctypes.CDLL(path)  # the same image librealsense loaded (@loader_path), so the same libusb state
+        ctx = ctypes.c_void_p()
+        _LIBUSB_HOLD = (lib, ctx) if lib.libusb_init(ctypes.byref(ctx)) == 0 else False
+    except OSError:
+        _LIBUSB_HOLD = False
+
 
 _MODEL_NAMES = {}
 if rs is not None:
@@ -100,6 +130,7 @@ class RealSenseAdapter:
     is_real_sensor = True
 
     def __init__(self):
+        _hold_libusb()
         self.pipe = None
         self.profile = None
         self.calib: Calibration | None = None
@@ -167,11 +198,18 @@ class RealSenseAdapter:
         cfg.enable_stream(rs.stream.depth, dw, dh, rs.format.z16, dfps)
         cfg.enable_stream(rs.stream.color, cw, ch, rs.format.rgb8, cfps)
         self.pipe = rs.pipeline()
-        try:
-            self.profile = self.pipe.start(cfg)
-        except RuntimeError as exc:
-            self.pipe = None
-            raise AdapterError(f"could not start streams {dw}x{dh}@{dfps} depth + {cw}x{ch}@{cfps} colour: {exc}") from exc
+        # On macOS the system camera helper (UVCAssistant) sometimes still holds the D435's colour camera for a moment,
+        # and start fails with "failed to set power state"; a second attempt a moment later succeeds (seen 15 Nov 2026).
+        for attempt in range(3):
+            try:
+                self.profile = self.pipe.start(cfg)
+                break
+            except RuntimeError as exc:
+                if "power state" in str(exc) and attempt < 2:
+                    time.sleep(1.5)
+                    continue
+                self.pipe = None
+                raise AdapterError(f"could not start streams {dw}x{dh}@{dfps} depth + {cw}x{ch}@{cfps} colour: {exc}") from exc
         dev = self.profile.get_device()
         dsensor = dev.first_depth_sensor()
         dprof = self.profile.get_stream(rs.stream.depth).as_video_stream_profile()
@@ -213,6 +251,8 @@ class RealSenseAdapter:
     def read_frame(self, timeout_ms: int) -> Frame:
         if self.pipe is None:
             raise AdapterError("not open")
+        if self._i == 0:
+            timeout_ms = max(timeout_ms, 10000)  # the first frames after start can take seconds (auto-exposure, USB 2)
         try:
             ok, frames = self.pipe.try_wait_for_frames(timeout_ms)
         except RuntimeError as exc:

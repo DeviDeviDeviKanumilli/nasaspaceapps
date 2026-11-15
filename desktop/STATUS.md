@@ -141,4 +141,19 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
   Bluetooth permission would be asked for Terminal (now `open -n -W`); every run rebuilt the app (the .app folder's
   timestamp never changes; now compared with its binary, also in run.sh). Camera link still USB 2 with a second cable
   and the other port (480 Mb/s both). Root service with the real camera: not yet run.
+- 08:38–08:52: **first live D435 run in Field Station (root service via d435.sh run).** First open streamed, then
+  "no frames within 3000 ms"; every reopen then crashed the camera worker (SIGSEGV; macOS crash reports read):
+  (a) `libusb_init` failing inside librealsense's 100 ms USB polling thread / `pipeline.start` → NULL context →
+  crash in `libusb_get_device_list`; (b) crash in libusb `darwin_reenumerate_device` while releasing the camera.
+  Cause: as root, libusb takes the camera from macOS and gives it back by re-enumerating it on USB at every
+  release, so any second touch (a reopen, or the Devices screen probing while streaming) resets the camera under
+  the stream. Fixes: each camera process holds one libusb context for its lifetime (no more (a): 0 init crashes
+  after it); `pipeline.start` retries "failed to set power state" (macOS UVCAssistant briefly holding the colour
+  camera); first frame may take 10 s; the service never probes an open RealSense (reports it instead); opens wait
+  3 s after a release and retry up to 3 times on power-state / already-opened / crash; a crashed open worker is
+  reported in < 1 s instead of a 20 s timeout. **Measured with the libusb fix (worker side, live):** open → 15.0 fps
+  steady for 45 s; real scan `800a7322` saved COMPLETE (USB 2.1, usb2_fallback, 15 frames, mean valid depth 0.347,
+  102,944 points; title "D435 setup test (desk)", not a field observation); 5 close/reopen cycles: 3 streamed,
+  1 crash on release (b), 1 "already opened" right after it. The retry/wait logic (service side) needs a service
+  restart to load: re-test after `d435.sh run` again.
 

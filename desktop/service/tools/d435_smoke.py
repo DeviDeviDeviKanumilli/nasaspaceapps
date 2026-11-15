@@ -59,6 +59,8 @@ def main() -> int:
 
     try:
         import pyrealsense2 as rs
+        from fieldstation.adapters.realsense import _hold_libusb
+        _hold_libusb()  # same libusb race workaround as Field Station itself
         log["sdk"] = {"package": "pyrealsense2-macosx", "module": rs.__file__}
     except Exception as exc:
         return done(2, f"pyrealsense2 not importable: {exc}")
