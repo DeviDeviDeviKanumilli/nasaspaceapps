@@ -54,6 +54,23 @@ def wc_name(lat, lon):
             f"{'E' if lo >= 0 else 'W'}{abs(lo):03d}_Map.tif")
 
 
+def wc_missing(fname):
+    """True only if the WorldCover file is definitely absent (HTTP 404/403 from S3)."""
+    import urllib.request, urllib.error
+    url = f"https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/{fname}"
+    for _ in range(3):
+        try:
+            urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=30)
+            return False                      # file exists: the read failure was transient
+        except urllib.error.HTTPError as e:
+            if e.code in (403, 404):
+                return True
+        except Exception:
+            pass
+        time.sleep(2)
+    return False                              # could not tell: treat as transient (retry later)
+
+
 def load(name):
     lat, lon = parse(name)
     clat, clon = lat + 0.5, lon + 0.5
@@ -73,8 +90,12 @@ def load(name):
                 reproject(rasterio.band(w, 1), lab, src_transform=w.transform, src_crs=w.crs,
                           dst_transform=tr2, dst_crs=crs, resampling=Resampling.nearest)
             wc_ok = True
-        except Exception:
-            pass
+        except Exception as e:
+            # Only a WorldCover tile that genuinely does not exist (HTTP 404, e.g. Antarctica or open sea)
+            # may be treated as "no land cover". Any other failure (network glitch, timeout) is raised, so the
+            # tile is logged as ERROR, nothing is written, and the next (resumable) run retries it.
+            if not wc_missing(wc_name(lat, lon)):
+                raise RuntimeError(f"WorldCover read failed (will retry on rerun): {e!r}"[:200])
         for key, cls in (("mask", MASK), ("bare", BARE), ("snow", SNOW)):
             frac[key] = np.isin(lab, cls).reshape(ny, 4, nx, 4).mean((1, 3)).astype(np.float32)
         if not wc_ok:
@@ -190,7 +211,9 @@ def main():
         names = names[k::n]
     t0 = time.time(); done = 0
     log = open(os.path.join(out_dir, "run.log"), "a")
-    with ProcessPoolExecutor(nw) as ex:
+    # max_tasks_per_child recycles workers so memory cannot creep up over thousands of tiles (Python >= 3.11).
+    kw = dict(max_tasks_per_child=50) if sys.version_info >= (3, 11) else {}
+    with ProcessPoolExecutor(nw, **kw) as ex:
         futs = {ex.submit(process, n, out_dir): n for n in names}
         for f in as_completed(futs):
             n = futs[f]
