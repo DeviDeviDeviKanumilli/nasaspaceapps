@@ -489,6 +489,26 @@ class ScanStore:
         atomic_write_json(dest / ENVELOPE, man)
         return man
 
+    def import_dir(self, src: Path, source_name: str | None = None) -> dict:
+        """Import a scan folder (e.g. copied off the iPhone over USB). Zipped first, then imported exactly like a
+        zip, so the same checks apply: one scan.json, safe paths, every listed SHA-256 verified, no overwrite."""
+        src = Path(src)
+        if not (src / ENVELOPE).is_file():
+            raise BundleError(f"no {ENVELOPE} in {src.name}")
+        tmp = self.root / f".import-{uuid.uuid4()}.zip"
+        try:
+            with zipfile.ZipFile(tmp, "w", zipfile.ZIP_STORED) as z:
+                for p in sorted(src.rglob("*")):
+                    if p.is_file() and not p.is_symlink():
+                        z.write(p, p.relative_to(src).as_posix())
+            man = self.import_zip(tmp)
+        finally:
+            tmp.unlink(missing_ok=True)
+        man["desktop_import"]["source_zip"] = None
+        man["desktop_import"]["source"] = source_name or src.name
+        atomic_write_json(self.root / f"scan-{man['scan_id']}" / ENVELOPE, man)
+        return man
+
     def import_ply(self, ply_path: Path, title: str = "", declared_origin: str = "unknown_import") -> dict:
         """A bare PLY with no envelope: kept, but provenance is flagged as unverified."""
         verts, comments = read_ply(ply_path)

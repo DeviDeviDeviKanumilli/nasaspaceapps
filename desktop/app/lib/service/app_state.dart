@@ -119,6 +119,9 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Automatic iPhone import over USB (service: usb_sync.py). Updated by "usb_sync" events.
+  Map<String, dynamic> usbSync = {};
+
   void _onEvent(Map<String, dynamic> ev) {
     final t = ev['type'];
     if (t == 'status') {
@@ -128,6 +131,11 @@ class AppState extends ChangeNotifier {
     }
     if (t == 'ble_tx') {
       ble.forwardTx(ev);
+      return;
+    }
+    if (t == 'usb_sync') {
+      usbSync = ev;
+      notifyListeners();
       return;
     }
     events.add(ev);

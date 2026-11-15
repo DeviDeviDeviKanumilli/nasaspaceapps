@@ -19,10 +19,12 @@ import base64
 import json
 import os
 import secrets
+import shutil
 import socket
 import sys
 import threading
 import time
+import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -30,6 +32,8 @@ import numpy as np
 from fastapi import Body, FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse, JSONResponse, Response
 
+from . import usb_phone as usb_phone_mod
+from .usb_sync import UsbAutoSync
 from . import APP_NAME, APP_VERSION, PIPELINE_VERSION, PROTOCOL_VERSION, SCHEMA_VERSION
 from .adapters import AdapterError, PROFILES, adapter_ids
 from .adapters.base import Calibration
@@ -61,6 +65,8 @@ class Service:
         self.link = DesktopLink(f"{APP_NAME} {socket.gethostname().split('.')[0]}"[:28], did_file.read_text().strip(),
                                 send_cb=self._ble_send, controller=self.ctl, on_event=lambda ev: self.ctl.emit(ev.pop("type"), **ev))
         self.ctl.add_listener(self._on_ctl_event)
+        self.usb = UsbAutoSync(self.store, self.home, self.ctl.emit)
+        self.usb.start()
         self._last_state_push = 0.0
         self._stop = threading.Event()
         threading.Thread(target=self._ticker, daemon=True).start()
@@ -73,6 +79,8 @@ class Service:
         t = ev.get("type")
         if t in ("recording_started", "recording_stopped"):
             self.link.broadcast("capture_state", **self.ctl.capture_state())
+        elif t == "phone_capture_complete":
+            self.usb.kick(retry_failed=True)      # a phone scan just finished: fetch it over USB now if plugged in
         elif t == "scan_processed":
             self.link.broadcast("capture_complete", scan_id=ev.get("scan_id"), keyframes=None, points=ev.get("points"), bytes=ev.get("bytes"))
             self.link.broadcast("capture_state", **self.ctl.capture_state())
@@ -389,15 +397,17 @@ def create_app(svc: Service) -> FastAPI:
     @app.post("/api/import")
     def import_(body: dict = Body(...)):
         p = Path(str(body.get("path", ""))).expanduser()
-        if not p.is_file():
-            err(400, "path is not a file")
+        if not p.exists():
+            err(400, "no such file or folder")
         try:
-            if p.suffix.lower() == ".zip":
+            if p.is_dir():
+                man = svc.store.import_dir(p)
+            elif p.suffix.lower() == ".zip":
                 man = svc.store.import_zip(p)
             elif p.suffix.lower() == ".ply":
                 man = svc.store.import_ply(p, body.get("title", ""))
             else:
-                err(400, "import a scan bundle .zip or a .ply")
+                err(400, "import a scan bundle .zip, a scan folder, or a .ply")
         except DuplicateScan as exc:
             err(409, str(exc))
         except (BundleError, ValueError) as exc:
@@ -454,6 +464,63 @@ def create_app(svc: Service) -> FastAPI:
         except PermissionError as exc:
             err(409, str(exc))
         return {"sent": msg}
+
+    # ---- iPhone over USB (Apple devicectl) ------------------------------------------------
+    @app.get("/api/usb/phone")
+    def usb_phone():
+        av = usb_phone_mod.availability()
+        if not av["available"]:
+            return {**av, "devices": []}
+        try:
+            return {**av, "devices": usb_phone_mod.devices()}
+        except usb_phone_mod.UsbPhoneError as exc:
+            return {"available": True, "reason": None, "devices": [], "error": str(exc)}
+
+    @app.get("/api/usb/sync")
+    def usb_sync_status():
+        return svc.usb.status()
+
+    @app.post("/api/usb/sync")
+    def usb_sync_set(body: dict = Body(...)):
+        if "enabled" in body:
+            return svc.usb.set_enabled(bool(body["enabled"]))
+        svc.usb.kick(retry_failed=True)
+        return svc.usb.status()
+
+    @app.get("/api/usb/phone/{device_id}/scans")
+    def usb_phone_scans(device_id: str):
+        try:
+            rows = usb_phone_mod.list_scans(device_id)
+        except usb_phone_mod.UsbPhoneError as exc:
+            err(409, str(exc))
+        for r in rows:
+            r["already_imported"] = (svc.store.root / f"scan-{r['scan_id']}" / ENVELOPE).exists()
+        return {"scans": rows}
+
+    @app.post("/api/usb/phone/{device_id}/import")
+    def usb_phone_import(device_id: str, body: dict = Body(...)):
+        ids = [str(x) for x in body.get("scan_ids") or []]
+        if not ids:
+            err(400, "scan_ids")
+        results = []
+        work = svc.home / "usb_import_tmp"
+        for i, sid in enumerate(ids):
+            svc.ctl.emit("usb_import_progress", scan_id=sid, index=i, total=len(ids), stage="copying")
+            d = work / str(uuid.uuid4())
+            d.mkdir(parents=True)
+            try:
+                folder = usb_phone_mod.pull_scan(device_id, sid, d)
+                svc.ctl.emit("usb_import_progress", scan_id=sid, index=i, total=len(ids), stage="verifying")
+                man = svc.store.import_dir(folder, source_name=f"iPhone over USB ({device_id[:8]})")
+                results.append({"scan_id": sid, "ok": True, "origin": man.get("origin"), "status": man.get("status")})
+                svc.ctl.emit("scan_imported", scan_id=sid, origin=man.get("origin"), via="usb")
+            except DuplicateScan as exc:
+                results.append({"scan_id": sid, "ok": False, "duplicate": True, "error": str(exc)})
+            except (usb_phone_mod.UsbPhoneError, BundleError, ValueError, OSError) as exc:
+                results.append({"scan_id": sid, "ok": False, "error": str(exc)})
+            finally:
+                shutil.rmtree(d, ignore_errors=True)
+        return {"results": results}
 
     # ---- events --------------------------------------------------------------------------
     @app.websocket("/ws/events")

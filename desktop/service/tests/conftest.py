@@ -1,4 +1,5 @@
 # Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+import os
 import sys
 import time
 from pathlib import Path
@@ -6,6 +7,7 @@ from pathlib import Path
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+os.environ["FIELDSTATION_USB_AUTO"] = "0"   # tests never touch a real phone; usb_sync is tested with stubs
 
 from fieldstation.adapters.synthetic import SyntheticAdapter  # noqa: E402
 from fieldstation.bundle import ScanStore  # noqa: E402
