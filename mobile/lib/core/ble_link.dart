@@ -203,8 +203,10 @@ class BleLink extends ChangeNotifier {
         // repeat the original outcome so a failed command is still reported as failed
         final prev = _ackResults[m['id']];
         if (prev == null) {
-          // first copy still being handled (or never acked): report it as handled, do not run it again
-          send({'type': 'ack', 'ref': m['id'], 'ok': true, 'error': 'duplicate: already handled'});
+          // The first copy is still with the capture screen: its ack is on the way, so stay quiet rather than
+          // claim an outcome we don't know yet. Anything else was never handled: say so (never a false "ok").
+          if (_inFlight.contains(m['id'])) return;
+          send({'type': 'ack', 'ref': m['id'], 'ok': false, 'error': 'duplicate of a command this phone did not handle'});
         } else {
           send({'type': 'ack', 'ref': m['id'], 'ok': prev.$1, 'error': prev.$2 ?? 'duplicate: already handled'});
         }
@@ -227,6 +229,12 @@ class BleLink extends ChangeNotifier {
     if (type == 'start_capture' || type == 'stop_capture' || type == 'capture_now') {
       if ((m['target'] ?? 'phone') == 'phone' || type == 'capture_now') {
         _log('remote $type');
+        if (!_commands.hasListener) {
+          // Only the capture screen can obey (it owns the AR session). Tell the Mac instead of dropping it.
+          ack(m, false, 'phone is not on the capture screen: on the phone, tap Scan › Open scanner first');
+          return;
+        }
+        _inFlight.add('${m['id']}');
         _commands.add(m);
         return; // the capture screen sends the ack (it knows whether it obeyed)
       }
@@ -274,7 +282,11 @@ class BleLink extends ChangeNotifier {
   /// Outcome of each command this phone acknowledged, so a re-sent duplicate gets the same answer.
   final Map<String, (bool, String?)> _ackResults = {};
 
+  /// Commands handed to the capture screen whose ack has not been sent yet.
+  final Set<String> _inFlight = {};
+
   Future<void> ack(Map<String, dynamic> m, bool ok, [String? err]) {
+    _inFlight.remove('${m['id']}');
     _ackResults['${m['id']}'] = (ok, err);
     if (_ackResults.length > 200) _ackResults.remove(_ackResults.keys.first);
     return send({'type': 'ack', 'ref': m['id'], 'ok': ok, if (err != null) 'error': err});

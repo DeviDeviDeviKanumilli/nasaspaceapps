@@ -92,11 +92,12 @@ class _PairingScreenState extends State<PairingScreen> {
     final open = _st['open'] == true;
     final phones = asList(_st['phones']).map(asMap).toList();
     final evs = s.events.where((e) => _bleEvents.contains(e['type'])).toList().reversed.take(60).toList();
-    final failures = s.events
-        .where((e) => (e['type'] == 'phone_ack' && e['ok'] == false) || e['type'] == 'command_failed' || e['type'] == 'phone_error')
+    // Every command outcome, newest first: successes too, so an old refusal never hides a later success.
+    final outcomes = s.events
+        .where((e) => e['type'] == 'phone_ack' || e['type'] == 'command_failed' || e['type'] == 'phone_error')
         .toList()
         .reversed
-        .take(5)
+        .take(6)
         .toList();
     final muted = t.textTheme.bodyMedium?.copyWith(color: FsPalette.inkMuted);
     final bad = t.textTheme.bodySmall?.copyWith(color: FsPalette.record, fontWeight: FontWeight.w600);
@@ -181,7 +182,7 @@ class _PairingScreenState extends State<PairingScreen> {
             ],
           ),
         ),
-        if (failures.isNotEmpty) ...[const SizedBox(height: 16), _failureCard(t, failures)],
+        if (outcomes.isNotEmpty) ...[const SizedBox(height: 16), _commandCard(t, outcomes)],
         const SizedBox(height: 16),
         SectionCard(
           title: 'Paired phones',
@@ -205,28 +206,28 @@ class _PairingScreenState extends State<PairingScreen> {
                               'Paired ${utcText(p['paired_utc'])} UTC. Session expires in ${((asInt(p['expires_in_s']) ?? 0) / 60).round()} min.',
                               style: t.textTheme.bodySmall,
                             ),
-                            if (p['phone_state'] != null)
-                              Text(
-                                'Phone ${asMap(p['phone_state'])['state']}, ${asMap(p['phone_state'])['frames_recorded'] ?? 0} keyframes, '
-                                'tracking ${asMap(p['phone_state'])['tracking'] ?? '—'}',
-                                style: t.textTheme.bodySmall,
-                              ),
+                            if (p['phone_state'] != null) _phoneStateLine(t, asMap(p['phone_state'])),
                             const SizedBox(height: 8),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: [
-                                OutlinedButton(
-                                  onPressed: () => _send(asStr(p['central']), 'start_capture'),
-                                  child: const Text('Start phone capture'),
-                                ),
-                                OutlinedButton(onPressed: () => _send(asStr(p['central']), 'stop_capture'), child: const Text('Stop')),
-                                OutlinedButton(
-                                  onPressed: () => _send(asStr(p['central']), 'capture_now'),
-                                  child: const Text('Capture a keyframe now'),
-                                ),
-                              ],
-                            ),
+                            Builder(builder: (_) {
+                              final st = asStr(asMap(p['phone_state'])['state'], 'idle');
+                              final busy = st == 'recording' || st == 'paused';
+                              final c = asStr(p['central']);
+                              return Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: [
+                                  OutlinedButton(
+                                    onPressed: busy || st == 'saving' ? null : () => _send(c, 'start_capture'),
+                                    child: Text(busy ? 'Phone is recording' : 'Start phone capture'),
+                                  ),
+                                  OutlinedButton(onPressed: busy ? () => _send(c, 'stop_capture') : null, child: const Text('Stop')),
+                                  OutlinedButton(
+                                    onPressed: st == 'recording' ? () => _send(c, 'capture_now') : null,
+                                    child: const Text('Capture a keyframe now'),
+                                  ),
+                                ],
+                              );
+                            }),
                             const SizedBox(height: 6),
                             Text('The phone obeys only if "Let the paired Mac control capture" is on.', style: t.textTheme.bodySmall),
                           ],
@@ -296,13 +297,36 @@ class _PairingScreenState extends State<PairingScreen> {
     );
   }
 
-  Widget _failureCard(ThemeData t, List<Map<String, dynamic>> failures) {
+  Widget _phoneStateLine(ThemeData t, Map<String, dynamic> ps) {
+    final st = asStr(ps['state'], 'idle');
+    final live = st == 'recording' || st == 'paused';
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: Row(
+        children: [
+          Icon(live ? Icons.fiber_manual_record : Icons.stop_circle_outlined, size: 14, color: live ? FsPalette.record : FsPalette.inkMuted),
+          const SizedBox(width: 6),
+          Text(
+            'Phone $st · ${ps['frames_recorded'] ?? 0} keyframes · tracking ${ps['tracking'] ?? '—'}',
+            style: t.textTheme.bodyMedium?.copyWith(fontWeight: live ? FontWeight.w600 : null),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Phone command results, newest first. Red only when the latest result is a failure.
+  Widget _commandCard(ThemeData t, List<Map<String, dynamic>> outcomes) {
+    bool ok(Map<String, dynamic> e) => e['type'] == 'phone_ack' && e['ok'] == true;
+    const done = {'start_capture': 'started recording', 'stop_capture': 'stopped recording', 'capture_now': 'took a keyframe'};
     String text(Map<String, dynamic> e) {
       final who = asStr(e['phone_name'], 'phone');
       final when = asStr(e['t_utc']).length > 19 ? asStr(e['t_utc']).substring(11, 19) : '';
       switch (e['type']) {
         case 'phone_ack':
-          return '$when  $who refused ${e['command'] ?? 'a command'}: ${asStr(e['error'], '(no reason given)')}';
+          return ok(e)
+              ? '$when  $who ${done[e['command']] ?? 'did ${e['command'] ?? 'the command'}'}'
+              : '$when  $who refused ${e['command'] ?? 'a command'}: ${asStr(e['error'], '(no reason given)')}';
         case 'command_failed':
           return '$when  No answer from $who to ${e['command']} after one retry (5 s each).';
         default:
@@ -310,28 +334,41 @@ class _PairingScreenState extends State<PairingScreen> {
       }
     }
 
+    final failedNow = !ok(outcomes.first);
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: FsPalette.recordTint,
+        color: failedNow ? FsPalette.recordTint : FsPalette.sheet,
         borderRadius: BorderRadius.circular(2),
-        border: Border.all(color: FsPalette.recordRule),
+        border: Border.all(color: failedNow ? FsPalette.recordRule : FsPalette.rule),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const Icon(Icons.error_outline, color: FsPalette.record, size: 18),
+              Icon(failedNow ? Icons.error_outline : Icons.check_circle_outline, color: failedNow ? FsPalette.record : FsPalette.sensor, size: 18),
               const SizedBox(width: 8),
-              Text('The phone did not carry out a command', style: t.textTheme.titleSmall),
+              Text(failedNow ? 'The phone did not carry out the last command' : 'Phone commands', style: t.textTheme.titleSmall),
             ],
           ),
           const SizedBox(height: 8),
-          for (final e in failures)
+          for (final e in outcomes)
             Padding(
               padding: const EdgeInsets.only(top: 3),
-              child: SelectableText(text(e), style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.recordInk)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 3),
+                    child: Icon(ok(e) ? Icons.check : Icons.close, size: 14, color: ok(e) ? FsPalette.sensor : FsPalette.record),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: SelectableText(text(e), style: t.textTheme.bodyMedium?.copyWith(color: ok(e) ? FsPalette.ink : FsPalette.recordInk)),
+                  ),
+                ],
+              ),
             ),
         ],
       ),
