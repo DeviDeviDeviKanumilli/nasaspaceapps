@@ -1,0 +1,686 @@
+{
+ "schema_version": "1.0",
+ "scan_id": "bb7e4825-ce4a-49b1-b648-3ed280ad8713",
+ "session_id": "3e50b177-54d9-47bf-a84a-7a08c31d2091",
+ "origin": "synthetic_fixture",
+ "is_real_sensor": false,
+ "replay_of": null,
+ "status": "complete",
+ "status_reason": "frames_requested_reached",
+ "device": {
+  "manufacturer": null,
+  "model": "SYNTHETIC test scene",
+  "firmware": null,
+  "usb_type": null,
+  "serial_sha256_8": null,
+  "host_os": "macOS 26.6.2",
+  "host_machine": "arm64"
+ },
+ "app": {
+  "name": "Field Station",
+  "version": "0.1.0",
+  "pipeline_version": "fieldstation-pointcloud-1.0"
+ },
+ "platform": {
+  "os": "macOS 26.6.2",
+  "machine": "arm64",
+  "app": "Field Station 0.1.0",
+  "python": "3.13.12"
+ },
+ "captured_at_utc": {
+  "start": "2026-11-15T07:35:32.227623Z",
+  "end": "2026-11-15T07:35:32.602326Z"
+ },
+ "capture": {
+  "modality": "synthetic_raycast",
+  "depth_type": "stereo_z16",
+  "depth_units": "m",
+  "depth_scale_m": 0.001,
+  "smoothed_depth_used": false,
+  "profile": "field_static",
+  "frames_requested": 10,
+  "frames_recorded": 10,
+  "color_present": true,
+  "confidence_present": false,
+  "mesh_present": false,
+  "tracking_poses_present": false,
+  "gravity_reference_present": false,
+  "rig_mode": false,
+  "frames_skipped_between_recorded": 0
+ },
+ "coordinate_frame": {
+  "name": "camera_optical_m",
+  "units": "m",
+  "axes": "+X right, +Y down, +Z forward (out of the lens)",
+  "handedness": "right",
+  "origin": "optical centre of the depth imager"
+ },
+ "location": {
+  "sharing": "hidden",
+  "collected": false,
+  "latitude": null,
+  "longitude": null,
+  "uncertainty_m": null,
+  "note": "the desktop has no GPS; location is never added automatically"
+ },
+ "field_site_id": null,
+ "candidate_id": null,
+ "candidate_run_id": null,
+ "reference_note": "field_site_id / candidate_id are opaque references to the website; no analog scoring happens on the desktop",
+ "observation": {
+  "title": "api test",
+  "feature_type": "other",
+  "notes": "",
+  "claims": [],
+  "feature_type_note": "user annotation, not an automatic classification"
+ },
+ "quality": {
+  "frames": 10,
+  "pixels_per_frame": 407040,
+  "depth_valid_fraction_per_frame": [
+   0.9678,
+   0.9678,
+   0.9677,
+   0.9676,
+   0.9678,
+   0.9675,
+   0.9677,
+   0.9676,
+   0.9676,
+   0.9676
+  ],
+  "depth_valid_fraction_mean": 0.9677,
+  "pixels_valid_in_all_frames": 0.8841,
+  "range_m_percentiles": {
+   "5": 0.938,
+   "25": 1.036,
+   "50": 1.173,
+   "75": 1.421,
+   "95": 1.664
+  },
+  "filtered_points": 397009,
+  "filtered_valid_fraction": 0.9754,
+  "temporal_std_median_m": 0.004605,
+  "temporal_std_note": "per-pixel std across frames of a stationary capture: frame-to-frame noise, not accuracy",
+  "raw_point_cloud_points": 393807,
+  "filtered_point_cloud_points": 397009,
+  "frames_skipped_between_recorded": 0
+ },
+ "measurements": [
+  {
+   "id": "4d4ed1ba-7503-466e-9a66-f19639eef6d0",
+   "label": "default: central 50% of depth image",
+   "name": "plane_fit_roughness",
+   "value": 0.046596,
+   "unit": "m",
+   "status": "measured",
+   "method": "total least squares plane (SVD/PCA) on ROI points; RMS of orthogonal residuals",
+   "source_artifact": "depth_filtered.png",
+   "frame": "camera_optical_m",
+   "roi": {
+    "kind": "pixel_rect",
+    "rect_px": [
+     212,
+     120,
+     636,
+     360
+    ],
+    "n_points": 100910
+   },
+   "extra": {
+    "baseline_m": 1.344756,
+    "n_used": 100910,
+    "residual_p05_m": -0.028958,
+    "residual_p95_m": 0.129278,
+    "residual_max_abs_m": 0.136492,
+    "expected_sensor_noise_rms_m": 0.00465
+   },
+   "uncertainty": {
+    "method": "per_frame_spread",
+    "n": 10,
+    "std_m": 1.9e-05,
+    "min_m": 0.047072,
+    "max_m": 0.047137,
+    "note": "spread of the same estimator on each raw frame of this stationary capture; precision, not accuracy",
+    "expected_sensor_noise_rms_m": 0.00465,
+    "noise_model": "Intel D400 RMS model z^2*subpixel/(fx*baseline), subpixel=0.08 (typical, not measured for this unit)"
+   },
+   "validity": [
+    "partial view: only surfaces visible to the sensor are measured",
+    "roughness depends on the region size (baseline_m); compare only at similar baselines",
+    "not comparable with 400-3200 m planetary/DEM roughness descriptors"
+   ],
+   "created_utc": "2026-11-15T07:35:32.909428Z",
+   "pipeline_version": "fieldstation-pointcloud-1.0"
+  },
+  {
+   "id": "8821d12f-2f5b-44ff-951a-88e9617ab6cb",
+   "label": "default: central 50% of depth image",
+   "name": "plane_tilt_from_optical_axis",
+   "value": 30.736,
+   "unit": "deg",
+   "status": "measured",
+   "method": "angle between fitted plane normal and the camera optical axis (+Z)",
+   "source_artifact": "depth_filtered.png",
+   "frame": "camera_optical_m",
+   "roi": {
+    "kind": "pixel_rect",
+    "rect_px": [
+     212,
+     120,
+     636,
+     360
+    ],
+    "n_points": 100910
+   },
+   "extra": {},
+   "uncertainty": {
+    "method": "none from a single scan; compare repeat scans with the same label",
+    "n": 1
+   },
+   "validity": [
+    "relative to the camera, NOT to horizontal"
+   ],
+   "created_utc": "2026-11-15T07:35:32.909468Z",
+   "pipeline_version": "fieldstation-pointcloud-1.0"
+  },
+  {
+   "id": "d9309e2e-260f-4124-8fce-e72bf52d350f",
+   "label": "default: central 50% of depth image",
+   "name": "extent_in_plane_major",
+   "value": 1.344756,
+   "unit": "m",
+   "status": "measured",
+   "method": "extent of ROI points along the plane's first principal axis",
+   "source_artifact": "depth_filtered.png",
+   "frame": "camera_optical_m",
+   "roi": {
+    "kind": "pixel_rect",
+    "rect_px": [
+     212,
+     120,
+     636,
+     360
+    ],
+    "n_points": 100910
+   },
+   "extra": {},
+   "uncertainty": {
+    "method": "none from a single scan; compare repeat scans with the same label",
+    "n": 1
+   },
+   "validity": [
+    "visible extent only; the object may continue outside the ROI or behind occlusions"
+   ],
+   "created_utc": "2026-11-15T07:35:32.909481Z",
+   "pipeline_version": "fieldstation-pointcloud-1.0"
+  },
+  {
+   "id": "ce479b0c-7dcc-41c4-a51e-1b7a3c1dcd66",
+   "label": "default: central 50% of depth image",
+   "name": "extent_in_plane_minor",
+   "value": 0.784217,
+   "unit": "m",
+   "status": "measured",
+   "method": "extent of ROI points along the plane's second principal axis",
+   "source_artifact": "depth_filtered.png",
+   "frame": "camera_optical_m",
+   "roi": {
+    "kind": "pixel_rect",
+    "rect_px": [
+     212,
+     120,
+     636,
+     360
+    ],
+    "n_points": 100910
+   },
+   "extra": {},
+   "uncertainty": {
+    "method": "none from a single scan; compare repeat scans with the same label",
+    "n": 1
+   },
+   "validity": [
+    "visible extent only"
+   ],
+   "created_utc": "2026-11-15T07:35:32.909488Z",
+   "pipeline_version": "fieldstation-pointcloud-1.0"
+  },
+  {
+   "id": "28dcf1b5-d90c-4ee8-8357-f16bf39b6bf2",
+   "label": "default: central 50% of depth image",
+   "name": "median_range",
+   "value": 1.197644,
+   "unit": "m",
+   "status": "measured",
+   "method": "median distance of ROI points from the optical centre",
+   "source_artifact": "depth_filtered.png",
+   "frame": "camera_optical_m",
+   "roi": {
+    "kind": "pixel_rect",
+    "rect_px": [
+     212,
+     120,
+     636,
+     360
+    ],
+    "n_points": 100910
+   },
+   "extra": {},
+   "uncertainty": {
+    "method": "none from a single scan; compare repeat scans with the same label",
+    "n": 1
+   },
+   "validity": [],
+   "created_utc": "2026-11-15T07:35:32.910251Z",
+   "pipeline_version": "fieldstation-pointcloud-1.0"
+  },
+  {
+   "id": "8ca07030-4924-468d-91f3-ce2624a144ff",
+   "label": "default: central 50% of depth image",
+   "name": "plane_tilt_from_horizontal",
+   "value": null,
+   "unit": "deg",
+   "status": "not_measured",
+   "method": "not computed",
+   "source_artifact": "depth_filtered.png",
+   "frame": "camera_optical_m",
+   "roi": {
+    "kind": "pixel_rect",
+    "rect_px": [
+     212,
+     120,
+     636,
+     360
+    ],
+    "n_points": 100910
+   },
+   "extra": {},
+   "uncertainty": {
+    "method": "none from a single scan; compare repeat scans with the same label",
+    "n": 1
+   },
+   "validity": [
+    "no measured world-up: the D435 has no IMU and no levelling reference was recorded"
+   ],
+   "created_utc": "2026-11-15T07:35:32.910258Z",
+   "pipeline_version": "fieldstation-pointcloud-1.0"
+  }
+ ],
+ "files": [
+  {
+   "path": "calibration.json",
+   "role": "calibration",
+   "kind": "raw",
+   "mime": "application/json",
+   "bytes": 1547,
+   "sha256": "6951e53e4dc84e4b95e486fabb83248ca1efa459e223d41f9d07554d9ea48afd",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames.jsonl",
+   "role": "frame_index",
+   "kind": "raw",
+   "mime": "application/x-ndjson",
+   "bytes": 4684,
+   "sha256": "8176b204a81dd88f362572bce2123f4d51259b90a1e832ce6fc8dbf592cd7efa",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "point_cloud_raw.ply",
+   "role": "raw_point_cloud",
+   "kind": "derived",
+   "mime": "application/x-ply",
+   "bytes": 6301575,
+   "sha256": "ad95decb97f9d6918cbebc0293ac69d224fd9383ff1b323431924b17caeb4fb3",
+   "lineage": "one raw frame back-projected; depth==0 removed only",
+   "coordinate_frame": "camera_optical_m"
+  },
+  {
+   "path": "point_cloud_filtered.ply",
+   "role": "derived_point_cloud",
+   "kind": "derived",
+   "mime": "application/x-ply",
+   "bytes": 6749827,
+   "sha256": "e05b28a6b8beb4424e203a2f0e4dff801c869ea62546fd931ad351adc4c0472d",
+   "lineage": "all frames; see processing.operations",
+   "coordinate_frame": "camera_optical_m"
+  },
+  {
+   "path": "depth_filtered.png",
+   "role": "derived_depth",
+   "kind": "derived",
+   "mime": "image/png",
+   "bytes": 244994,
+   "sha256": "a0b3310b43a89f8643bc3dba90c75b66995363fe72785ff874d1ff71d1a5ee72",
+   "lineage": "temporal median + range clip + flying-pixel removal",
+   "coordinate_frame": null
+  },
+  {
+   "path": "thumbnail.jpg",
+   "role": "thumbnail",
+   "kind": "derived",
+   "mime": "image/jpeg",
+   "bytes": 30251,
+   "sha256": "f5ff4f91ca9d517b52ea2b4c36b907bbb91b1e83bcada1d03018a61d5ffd17c0",
+   "lineage": "colour + filtered depth preview",
+   "coordinate_frame": null
+  },
+  {
+   "path": "metrics.json",
+   "role": "analysis",
+   "kind": "derived",
+   "mime": "application/json",
+   "bytes": 9100,
+   "sha256": "9245ab8128587288f3d88baded41a9e5ace681245f86ea64e26e5facaca087f5",
+   "lineage": "capture quality and measurements",
+   "coordinate_frame": null
+  },
+  {
+   "path": "log.jsonl",
+   "role": "log",
+   "kind": "raw",
+   "mime": "application/x-ndjson",
+   "bytes": 399,
+   "sha256": "a2da23abc856924fd7186871658d180788151392b87cfeeba12adf1093788429",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00000.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00001.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00002.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00003.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00004.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00005.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00006.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00007.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00008.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/color_00009.png",
+   "role": "raw_color",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 11681,
+   "sha256": "c2f3d36dfd7c1b5ba5e3f7f4d16cb98776944afceee1e35e30baf3cc5db7c843",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00000.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350661,
+   "sha256": "0b55f1065c994799cd3afe09c71194d569e23ff8a87547812cfd80db3f3c8414",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00001.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350711,
+   "sha256": "81e02f987f8d66dc1addb0fbfbfed3037323404e6c8b603e5669e3e30feff3ad",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00002.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350615,
+   "sha256": "61b864a292457ac5e11cdd24e25064f38b641768af88c164903e5d51b85e73c1",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00003.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350376,
+   "sha256": "3bc7777ea40784036238f16207fc44d6f2e7abeb90870d8ad25878bb69386fd4",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00004.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350695,
+   "sha256": "1a150418c61856743bdfd6e1a88851589e083dbff3d916adbfdf2e52cb15e80c",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00005.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350887,
+   "sha256": "0dcdffbb9e5aabbd1d61119a2c6e3f50ea42759e38b9d4991d361f840ff676a3",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00006.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350805,
+   "sha256": "0bcd6d0ac9e974badd8acf5e6176a49bc064ffd7c49fbcdf281b7c14c6cc2741",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00007.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350701,
+   "sha256": "7ba80720db2d163342b9698ad1532ecda7c56652dae8ee839ddd23faefd8dddd",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00008.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350735,
+   "sha256": "c19e9ede5ccab0bfcd182fa57036eaa81304573a8b97feb078676ebfc8435062",
+   "lineage": "",
+   "coordinate_frame": null
+  },
+  {
+   "path": "frames/depth_00009.png",
+   "role": "raw_depth",
+   "kind": "raw",
+   "mime": "image/png",
+   "bytes": 350914,
+   "sha256": "0ab6d13be852b6b0ebc998894f3c5623b525f7c9815a4461ce58de5621a484b9",
+   "lineage": "",
+   "coordinate_frame": null
+  }
+ ],
+ "processing": {
+  "pipeline_version": "fieldstation-pointcloud-1.0",
+  "operations": [
+   {
+    "op": "raw_point_cloud",
+    "frame_index": 5,
+    "params": {
+     "removed": "depth==0 only"
+    }
+   },
+   {
+    "op": "temporal_median",
+    "frames": 10,
+    "min_valid_fraction": 0.5,
+    "pixels_after": 397859
+   },
+   {
+    "op": "range_clip",
+    "min_m": 0.2,
+    "max_m": 6.0,
+    "pixels_after": 397859
+   },
+   {
+    "op": "flying_pixel_removal",
+    "rel_jump": 0.03,
+    "abs_m": 0.01,
+    "pixels_after": 397009
+   },
+   {
+    "op": "statistical_outlier_removal",
+    "enabled": false,
+    "k": 0,
+    "std_ratio": 2.0,
+    "points_after": 397009
+   },
+   {
+    "op": "voxel_downsample",
+    "enabled": false,
+    "voxel_m": 0.0,
+    "points_after": 397009
+   },
+   {
+    "op": "color_registration",
+    "method": "project into colour camera with recorded depth->colour extrinsics; nearest pixel; z-buffer occlusion test",
+    "points_with_color": 212887
+   }
+  ],
+  "runs": [
+   {
+    "t_utc": "2026-11-15T07:35:32.972973Z",
+    "params": {
+     "temporal_median_min_valid_fraction": 0.5,
+     "range_min_m": 0.2,
+     "range_max_m": 6.0,
+     "flying_pixel_rel_jump": 0.03,
+     "flying_pixel_abs_m": 0.01,
+     "voxel_m": 0.0,
+     "outlier_k": 0,
+     "outlier_std_ratio": 2.0,
+     "color_occlusion_tol_rel": 0.02,
+     "color_occlusion_tol_abs_m": 0.01
+    },
+    "pipeline_version": "fieldstation-pointcloud-1.0"
+   }
+  ],
+  "params": {
+   "temporal_median_min_valid_fraction": 0.5,
+   "range_min_m": 0.2,
+   "range_max_m": 6.0,
+   "flying_pixel_rel_jump": 0.03,
+   "flying_pixel_abs_m": 0.01,
+   "voxel_m": 0.0,
+   "outlier_k": 0,
+   "outlier_std_ratio": 2.0,
+   "color_occlusion_tol_rel": 0.02,
+   "color_occlusion_tol_abs_m": 0.01
+  }
+ },
+ "publication": {
+  "status": "local_private",
+  "license": null,
+  "consent_obtained": false
+ },
+ "operator": {
+  "started_by": "desktop_user"
+ },
+ "limitations": [
+  "Geometry only: no mineral, chemical or rock-type identification.",
+  "Single viewpoint: hidden surfaces (backs, undersides) are not measured and are not shown as measured.",
+  "Close-range scale (centimetres to metres); not comparable with the 400-3200 m terrain descriptors used for planetary analog discovery.",
+  "No gravity reference (the D435 has no IMU): plane angles are relative to the camera, not to horizontal.",
+  "This scan is a field observation, not a validated planetary analog match.",
+  "SYNTHETIC: rendered test scene with simulated noise. Not a sensor measurement of anything real."
+ ]
+}

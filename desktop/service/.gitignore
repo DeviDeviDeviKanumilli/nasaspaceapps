@@ -1,0 +1,3 @@
+examples/SYNTHETIC_example_bundle/
+.venv/
+.pytest_cache/

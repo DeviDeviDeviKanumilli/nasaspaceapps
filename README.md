@@ -1,5 +1,10 @@
 # Small-tile planetary terrain comparison experiment (v0.1)
 
+> **Desktop capture app (branch `desktop`):** see [desktop/README.md](desktop/README.md) and
+> [desktop/STATUS.md](desktop/STATUS.md). It is the D435 field-instrument workstation only. The analog
+> discovery engine in this repository is not part of it.
+
+
 **Research prototype; not global discovery, a validated analog-selection engine, or a NASA flight-safety evaluation.**
 
 This package contains working, tested exploratory code for comparing physical terrain measurements from a **projected planetary elevation raster** with one or more **georeferenced Earth elevation rasters**. It implements the mathematical and measurement revisions identified in the research audit.
