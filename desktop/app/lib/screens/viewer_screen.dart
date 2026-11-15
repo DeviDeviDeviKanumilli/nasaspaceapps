@@ -30,6 +30,9 @@ class _ViewerScreenState extends State<ViewerScreen> {
   String? _resultError;
   final _label = TextEditingController();
   bool _robust = false;
+  List<Map<String, dynamic>> _photos = [];
+  String? _photosFor;
+  bool _allPhotos = false;
 
   @override
   void dispose() {
@@ -59,6 +62,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
     final ticket = ++_loadTicket;
     _loadingId = scanId;
     _detail = {};
+    if (_photosFor != scanId) _loadPhotos(scanId, ticket);
     try {
       final detail = asMap(await s.api!.getJson('/api/scans/$scanId'));
       if (ticket != _loadTicket) return; // another scan was picked meanwhile
@@ -70,7 +74,14 @@ class _ViewerScreenState extends State<ViewerScreen> {
       final r = await s.api!.getBytes('/api/scans/$scanId/cloud.bin', query: {'kind': _kind, 'max_points': '$_maxPoints'});
       if (ticket != _loadTicket) return;
       final cloud = CloudData.parse(r.bytes, r.headers);
+      MeshData? mesh;
+      if (_kind == 'mesh') {
+        final mr = await s.api!.getBytes('/api/scans/$scanId/mesh.bin', query: {'max_triangles': '150000'});
+        if (ticket != _loadTicket) return;
+        mesh = MeshData.parse(mr.bytes, mr.headers);
+      }
       _ctl.setCloud(cloud);
+      _ctl.setMesh(mesh);
       _loadedFor = '$scanId/$_kind/$_maxPoints';
     } catch (e) {
       if (ticket != _loadTicket) return;
@@ -79,6 +90,125 @@ class _ViewerScreenState extends State<ViewerScreen> {
     } finally {
       if (mounted) setState(() => _loading = false);
     }
+  }
+
+  Future<void> _loadPhotos(String scanId, int ticket) async {
+    final s = AppScope.read(context);
+    setState(() {
+      _photosFor = scanId;
+      _photos = [];
+      _allPhotos = false;
+    });
+    try {
+      final r = asMap(await s.api!.getJson('/api/scans/$scanId/photos'));
+      if (!mounted || _photosFor != scanId) return;
+      setState(() => _photos = asList(r['photos']).map((e) => asMap(e)).toList());
+    } catch (_) {
+      // photos are optional; the 3D view does not depend on them
+    }
+  }
+
+  Uri _photoUrl(String scanId, String path, int w) => AppScope.read(context).api!.url('/api/scans/$scanId/photo/$path', {'w': '$w'});
+
+  Widget _photosCard(ThemeData t, String id) {
+    final shown = _allPhotos ? _photos : _photos.take(9).toList();
+    final kinds = _photos.map((p) => asStr(p['kind'])).toSet().join(', ');
+    return SectionCard(
+      title: 'Photos (${_photos.length})',
+      subtitle: '$kinds. Kept on this Mac. They may show people: check before sharing anything.',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          GridView.count(
+            crossAxisCount: 3,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            mainAxisSpacing: 6,
+            crossAxisSpacing: 6,
+            childAspectRatio: 4 / 3,
+            children: [
+              for (int i = 0; i < shown.length; i++)
+                InkWell(
+                  onTap: () => _openPhoto(id, i),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: Image.network(
+                      _photoUrl(id, asStr(shown[i]['path']), 240).toString(),
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, _, _) => const ColoredBox(color: FsPalette.ruleLight, child: Center(child: Icon(Icons.broken_image_outlined))),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          if (_photos.length > 9)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () => setState(() => _allPhotos = !_allPhotos),
+                child: Text(_allPhotos ? 'Show fewer' : 'Show all ${_photos.length}'),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  void _openPhoto(String id, int start) {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        int i = start;
+        return StatefulBuilder(
+          builder: (context, set) {
+            final ph = _photos[i];
+            return Dialog(
+              insetPadding: const EdgeInsets.all(32),
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Image.network(
+                        _photoUrl(id, asStr(ph['path']), 1800).toString(),
+                        fit: BoxFit.contain,
+                        loadingBuilder: (_, child, prog) => prog == null
+                            ? child
+                            : const SizedBox(width: 480, height: 360, child: Center(child: CircularProgressIndicator(strokeWidth: 2))),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        IconButton(
+                          tooltip: 'Previous',
+                          onPressed: i > 0 ? () => set(() => i--) : null,
+                          icon: const Icon(Icons.chevron_left),
+                        ),
+                        Expanded(
+                          child: Text(
+                            '${i + 1} of ${_photos.length} · ${asStr(ph['path'])} · ${asStr(ph['kind'])} (shown downsized; the file is unchanged)',
+                            style: Theme.of(context).textTheme.bodySmall,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        IconButton(
+                          tooltip: 'Next',
+                          onPressed: i < _photos.length - 1 ? () => set(() => i++) : null,
+                          icon: const Icon(Icons.chevron_right),
+                        ),
+                        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Close')),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
   Future<void> _measure(String scanId) async {
@@ -182,13 +312,19 @@ class _ViewerScreenState extends State<ViewerScreen> {
       listenable: _ctl,
       builder: (context, _) {
         final cloud = _ctl.cloud;
+        final mesh = _ctl.mesh;
         final title = switch (_kind) {
           'raw' => 'Raw point cloud.',
-          'mesh' => 'Mesh vertices.',
+          'mesh' => mesh != null ? 'Mesh surface.' : 'Mesh vertices.',
           _ => 'Filtered point cloud.',
         };
+        final simplified = (mesh?.cellM ?? 0) > 0;
         final shown = cloud == null
             ? (_error != null ? 'Not loaded.' : 'Loading.')
+            : mesh != null
+            ? '${_n(mesh.triangleCount)} of ${_n(mesh.total ?? mesh.triangleCount)} triangles from ${mesh.sourceFile ?? 'the mesh'}'
+                  '${simplified ? ', simplified for display (details under ${(mesh.cellM! * 100).toStringAsFixed(1)} cm merged; the file is unchanged)' : ''}. '
+                  '${_ctl.colorMode == ColorMode.rgb ? 'Neutral colour: the mesh carries no measured colour. ' : ''}Shaded by surface direction. '
             : '${_n(cloud.count)} of ${_n(cloud.total ?? cloud.count)} points shown${(cloud.step ?? 1) > 1 ? ' (1 in ${cloud.step}, for display only)' : ''}. ';
         return Figure(
           background: FsPalette.plot,
@@ -363,6 +499,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
         return ListView(
           children: [
             if (man.isNotEmpty && man['scan_id'] == id) ...[_titleBlock(t, man), const SizedBox(height: 16)],
+            if (_photos.isNotEmpty && _photosFor == id) ...[_photosCard(t, id), const SizedBox(height: 16)],
             if (_resultError != null) ...[ErrorBox(_resultError!), const SizedBox(height: 12)],
             if (_results.isNotEmpty) ...[
               SectionCard(

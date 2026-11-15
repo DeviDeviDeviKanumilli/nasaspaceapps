@@ -29,64 +29,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from fieldstation.bundle import default_home  # noqa: E402
+from fieldstation.mesh_io import read_mesh_ply  # noqa: E402
 from fieldstation.tracking_check import check as tracking_check  # noqa: E402
-
-
-def read_mesh_ply(p: Path) -> tuple[np.ndarray, np.ndarray]:
-    """Vertices (N,3 float32) and triangles (M,3 uint32) from a binary little-endian or ASCII PLY."""
-    raw = p.read_bytes()
-    end = raw.index(b"end_header") + len(b"end_header")
-    end = raw.index(b"\n", end) + 1
-    header = raw[:end].decode("ascii", "replace").splitlines()
-    fmt = next(line.split()[1] for line in header if line.startswith("format"))
-    elements, cur = [], None
-    for line in header:
-        t = line.split()
-        if t[:1] == ["element"]:
-            cur = {"name": t[1], "count": int(t[2]), "props": []}
-            elements.append(cur)
-        elif t[:1] == ["property"] and cur is not None:
-            cur["props"].append(t[1:])
-    sizes = {"char": "i1", "uchar": "u1", "int8": "i1", "uint8": "u1", "short": "i2", "ushort": "u2", "int16": "i2",
-             "uint16": "u2", "int": "i4", "uint": "u4", "int32": "i4", "uint32": "u4", "float": "f4", "float32": "f4",
-             "double": "f8", "float64": "f8"}
-    if fmt == "ascii":
-        lines = raw[end:].decode("ascii").split("\n")
-        i = 0
-        verts = faces = None
-        for el in elements:
-            if el["name"] == "vertex":
-                names = [pr[-1] for pr in el["props"]]
-                arr = np.array([[float(x) for x in lines[i + k].split()] for k in range(el["count"])])
-                verts = arr[:, [names.index("x"), names.index("y"), names.index("z")]].astype(np.float32)
-            elif el["name"] == "face":
-                faces = np.array([[int(x) for x in lines[i + k].split()[1:4]] for k in range(el["count"])], np.uint32)
-            i += el["count"]
-        return verts, faces
-    if fmt != "binary_little_endian":
-        raise SystemExit(f"unsupported PLY format {fmt}")
-    off = end
-    verts = faces = None
-    for el in elements:
-        if el["name"] == "face" and el["props"] and el["props"][0][0] == "list":
-            cnt_t, idx_t = sizes[el["props"][0][1]], sizes[el["props"][0][2]]
-            extra = [(f"p{i}", "<" + sizes[pr[0]]) for i, pr in enumerate(el["props"][1:])]
-            # every face in these files is a triangle: fixed-size records
-            dt = np.dtype([("n", "<" + cnt_t), ("v", "<" + idx_t, (3,))] + extra)
-            rec = np.frombuffer(raw, dt, el["count"], off)
-            if not (rec["n"] == 3).all():
-                raise SystemExit("mesh has non-triangle faces; not supported here")
-            faces = rec["v"].astype(np.uint32)
-            off += dt.itemsize * el["count"]
-        else:
-            dt = np.dtype([(pr[-1], "<" + sizes[pr[0]]) for pr in el["props"]])
-            rec = np.frombuffer(raw, dt, el["count"], off)
-            off += dt.itemsize * el["count"]
-            if el["name"] == "vertex":
-                verts = np.stack([rec["x"], rec["y"], rec["z"]], 1).astype(np.float32)
-    if verts is None or faces is None:
-        raise SystemExit("no vertex/face elements in the mesh")
-    return verts, faces
 
 
 VIEWER = r"""<!doctype html>

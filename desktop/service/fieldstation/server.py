@@ -266,6 +266,65 @@ def create_app(svc: Service) -> FastAPI:
             "X-Source-File": p.name, "X-Frame": (man.get("coordinate_frame") or {}).get("name", "unknown"),
             "X-Origin": man.get("origin", "")})
 
+    @app.get("/api/scans/{scan_id}/mesh.bin")
+    def mesh(scan_id: str, max_triangles: int = 150000):
+        """Triangle mesh for the viewer: uint32 V | uint32 T | V*3 float32 xyz | T*3 uint32 indices (little-endian).
+        Big meshes are simplified for display only (vertex clustering, X-Cell-M says the cell size); the file on disk
+        is untouched."""
+        from .mesh_io import read_mesh_ply, simplify_for_display
+        d = scan_dir(scan_id)
+        p = next((d / m for m in ("mesh_arkit.ply", "mesh_grid.ply") if (d / m).exists()), None)
+        if p is None:
+            err(404, "this scan has no mesh")
+        v, f = read_mesh_ply(p)
+        total = len(f)
+        v, f, cell = simplify_for_display(v, f, max(1000, min(int(max_triangles), 400000)))
+        man = svc.store.manifest(scan_id)
+        body = (np.uint32(len(v)).tobytes() + np.uint32(len(f)).tobytes()
+                + v.astype("<f4").tobytes() + f.astype("<u4").tobytes())
+        return Response(body, media_type="application/octet-stream", headers={
+            "X-Triangles-Total": str(total), "X-Triangles-Sent": str(len(f)), "X-Cell-M": f"{cell:.4f}",
+            "X-Source-File": p.name, "X-Frame": (man.get("coordinate_frame") or {}).get("name", "unknown")})
+
+    _PHOTO_ROLES = {"photo_full_resolution": "Phone photo (full resolution)", "raw_color": "D435 colour frame"}
+
+    @app.get("/api/scans/{scan_id}/photos")
+    def photos(scan_id: str):
+        """The scan's photos as listed in its manifest. Private, local: they may show people."""
+        d = scan_dir(scan_id)
+        man = json.loads((d / ENVELOPE).read_text())
+        out = [{"path": f["path"], "kind": _PHOTO_ROLES[f.get("role")], "bytes": f.get("bytes"), "lineage": f.get("lineage")}
+               for f in man.get("files") or [] if f.get("role") in _PHOTO_ROLES and (d / f["path"]).is_file()]
+        return {"photos": sorted(out, key=lambda r: r["path"])}
+
+    _thumb_cache: dict = {}
+
+    @app.get("/api/scans/{scan_id}/photo/{rel:path}")
+    def photo(scan_id: str, rel: str, w: int = 320):
+        """One photo, downsized to width w for display (JPEG). The original file is unchanged; GET .../file/<path>
+        returns it byte for byte."""
+        from io import BytesIO
+        from PIL import Image, ImageOps
+        d = scan_dir(scan_id).resolve()
+        p = (d / rel).resolve()
+        if d not in p.parents or not p.is_file() or p.suffix.lower() not in (".jpg", ".jpeg", ".png"):
+            err(404, "no such photo")
+        w = max(64, min(int(w), 2400))
+        key = (str(p), p.stat().st_mtime_ns, w)
+        if key not in _thumb_cache:
+            with Image.open(p) as im:
+                if im.format == "JPEG":
+                    im.draft("RGB", (w, w))  # decode a 7 MB phone photo at reduced scale: much faster
+                im = ImageOps.exif_transpose(im).convert("RGB")
+                if im.width > w:
+                    im = im.resize((w, max(1, round(im.height * w / im.width))), Image.LANCZOS)
+                buf = BytesIO()
+                im.save(buf, "JPEG", quality=85)
+            if len(_thumb_cache) > 400:
+                _thumb_cache.clear()
+            _thumb_cache[key] = buf.getvalue()
+        return Response(_thumb_cache[key], media_type="image/jpeg", headers={"Cache-Control": "private, max-age=3600"})
+
     def _depth_and_calib(scan_id: str):
         d = scan_dir(scan_id)
         if not (d / "depth_filtered.png").exists():

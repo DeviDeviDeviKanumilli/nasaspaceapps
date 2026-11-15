@@ -43,6 +43,62 @@ class PointCloudController extends ChangeNotifier {
   bool interacting = false;
   Timer? _settle;
 
+  // optional solid surface, drawn instead of the points (same frame, same camera)
+  MeshData? mesh;
+  Float32List meshDisp = Float32List(0); // display-frame vertices
+  Float32List triNormal = Float32List(0); // display-frame unit normal per triangle
+  Float32List triUp = Float32List(0), triRange = Float32List(0); // per-triangle height (display up) and range
+  Int32List triOrder = Int32List(0); // far -> near after a settled sort
+
+  /// Show [m] as a shaded surface (or go back to points with null). Call after [setCloud]: it uses that frame.
+  void setMesh(MeshData? m) {
+    mesh = m;
+    if (m == null) {
+      meshDisp = Float32List(0);
+      triNormal = Float32List(0);
+      triUp = Float32List(0);
+      triRange = Float32List(0);
+      triOrder = Int32List(0);
+      notifyListeners();
+      return;
+    }
+    final nv = m.vertexCount, nt = m.triangleCount;
+    meshDisp = Float32List(nv * 3);
+    final rng = Float32List(nv);
+    for (int i = 0; i < nv; i++) {
+      final x = m.xyz[i * 3], y = m.xyz[i * 3 + 1], z = m.xyz[i * 3 + 2];
+      final d = mapping.toDisplay(x, y, z);
+      meshDisp[i * 3] = d.x;
+      meshDisp[i * 3 + 1] = d.y;
+      meshDisp[i * 3 + 2] = d.z;
+      rng[i] = math.sqrt(x * x + y * y + z * z);
+    }
+    triNormal = Float32List(nt * 3);
+    triUp = Float32List(nt);
+    triRange = Float32List(nt);
+    final t = m.tris, v = meshDisp;
+    for (int k = 0; k < nt; k++) {
+      final a = t[k * 3] * 3, b = t[k * 3 + 1] * 3, c = t[k * 3 + 2] * 3;
+      final ux = v[b] - v[a], uy = v[b + 1] - v[a + 1], uz = v[b + 2] - v[a + 2];
+      final wx = v[c] - v[a], wy = v[c + 1] - v[a + 1], wz = v[c + 2] - v[a + 2];
+      var nx = uy * wz - uz * wy, ny = uz * wx - ux * wz, nz = ux * wy - uy * wx;
+      final l = math.sqrt(nx * nx + ny * ny + nz * nz);
+      if (l > 0) {
+        nx /= l;
+        ny /= l;
+        nz /= l;
+      }
+      triNormal[k * 3] = nx;
+      triNormal[k * 3 + 1] = ny;
+      triNormal[k * 3 + 2] = nz;
+      triUp[k] = (v[a + 1] + v[b + 1] + v[c + 1]) / 3;
+      triRange[k] = (rng[t[k * 3]] + rng[t[k * 3 + 1]] + rng[t[k * 3 + 2]]) / 3;
+    }
+    triOrder = Int32List.fromList(List<int>.generate(nt, (i) => i));
+    resetView();
+    sortBackToFront();
+  }
+
   void setCloud(CloudData c) {
     cloud = c;
     mapping = FrameMapping.forFrame(c.frame);
@@ -101,6 +157,7 @@ class PointCloudController extends ChangeNotifier {
   /// Drop the cloud (e.g. the next scan failed to load) so nothing stale is drawn.
   void clear() {
     cloud = null;
+    setMesh(null);
     _disp = Float32List(0);
     order = Int32List(0);
     sx = Float32List(0);
@@ -115,7 +172,8 @@ class PointCloudController extends ChangeNotifier {
   void resetView() {
     cam.target = centroid;
     cam.yaw = 0;
-    cam.pitch = 0;
+    // a surface seen level shows the ground edge-on: look at a phone mesh from a little above
+    cam.pitch = mesh != null && !mapping.flipYZ ? 0.45 : 0;
     // start at the sensor position for camera_optical_m (origin), otherwise at 2.2 x extent
     final fromOrigin = mapping.flipYZ ? centroid.length : 0.0;
     cam.distance = fromOrigin > 0.05 ? fromOrigin : extent * 2.2;
@@ -155,6 +213,19 @@ class PointCloudController extends ChangeNotifier {
     final idx = List<int>.generate(n, (i) => i);
     idx.sort((a, b) => depth[b].compareTo(depth[a]));
     order = Int32List.fromList(idx);
+    final m = mesh;
+    if (m != null) {
+      final nt = m.triangleCount, t = m.tris, v = meshDisp;
+      final td = Float64List(nt);
+      for (int k = 0; k < nt; k++) {
+        final a = t[k * 3] * 3, b = t[k * 3 + 1] * 3, cc = t[k * 3 + 2] * 3;
+        td[k] = (v[a] + v[b] + v[cc] - 3 * eye.x) * f.x + (v[a + 1] + v[b + 1] + v[cc + 1] - 3 * eye.y) * f.y +
+            (v[a + 2] + v[b + 2] + v[cc + 2] - 3 * eye.z) * f.z;
+      }
+      final ti = List<int>.generate(nt, (i) => i);
+      ti.sort((a, b) => td[b].compareTo(td[a]));
+      triOrder = Int32List.fromList(ti);
+    }
   }
 
   void orbit(Offset d) {
@@ -366,6 +437,7 @@ class _CloudPainter extends CustomPainter {
     final ur = (c.upMax - c.upMin) == 0 ? 1.0 : (c.upMax - c.upMin);
     final ar = (accent.r * 255).round(), ag = (accent.g * 255).round(), ab = (accent.b * 255).round();
     final hasRoi = c.roiCenter != null;
+    final meshMode = c.mesh != null;
     int k = 0;
     final order = c.order.length == n ? c.order : Int32List.fromList(List<int>.generate(n, (i) => i));
     for (int oi = 0; oi < n; oi++) {
@@ -381,7 +453,7 @@ class _CloudPainter extends CustomPainter {
       c.sx[i] = px;
       c.sy[i] = py;
       c.sz[i] = zf;
-      if (px < -10 || py < -10 || px > size.width + 10 || py > size.height + 10) continue;
+      if (meshMode || px < -10 || py < -10 || px > size.width + 10 || py > size.height + 10) continue;
       int color;
       switch (mode) {
         case ColorMode.rgb:
@@ -418,9 +490,91 @@ class _CloudPainter extends CustomPainter {
       canvas.drawVertices(v, BlendMode.dst, Paint());
       v.dispose();
     }
+    if (meshMode) _drawMesh(canvas, size, r, u, f, eye, fp);
     _drawGizmo(canvas, size, r, u);
     _drawScaleBar(canvas, size, fp);
     if (c.roiCenter != null) _drawRoiCenter(canvas, size, r, u, f, eye, fp);
+  }
+
+  Float32List _mx = Float32List(0), _my = Float32List(0), _mz = Float32List(0);
+  Float32List _tpos = Float32List(0);
+  Int32List _tcol = Int32List(0);
+
+  /// Flat-shaded triangles, far to near (painter's algorithm), lit from the camera so both sides show.
+  void _drawMesh(Canvas canvas, Size size, V3 r, V3 u, V3 f, V3 eye, double fp) {
+    final m = c.mesh!;
+    final nv = m.vertexCount, nt = m.triangleCount;
+    if (_mx.length != nv) {
+      _mx = Float32List(nv);
+      _my = Float32List(nv);
+      _mz = Float32List(nv);
+    }
+    if (_tpos.length != nt * 6) {
+      _tpos = Float32List(nt * 6);
+      _tcol = Int32List(nt * 3);
+    }
+    final v = c.meshDisp;
+    final w2 = size.width / 2, h2 = size.height / 2;
+    for (int i = 0; i < nv; i++) {
+      final dx = v[i * 3] - eye.x, dy = v[i * 3 + 1] - eye.y, dz = v[i * 3 + 2] - eye.z;
+      final zf = dx * f.x + dy * f.y + dz * f.z;
+      _mz[i] = zf;
+      if (zf < OrbitCamera.near) continue;
+      _mx[i] = w2 + fp * (dx * r.x + dy * r.y + dz * r.z) / zf;
+      _my[i] = h2 - fp * (dx * u.x + dy * u.y + dz * u.z) / zf;
+    }
+    // light: a headlight tilted slightly down from above, so slopes read
+    var lx = -f.x + u.x * 0.6, ly = -f.y + u.y * 0.6, lz = -f.z + u.z * 0.6;
+    final ll = math.sqrt(lx * lx + ly * ly + lz * lz);
+    lx /= ll;
+    ly /= ll;
+    lz /= ll;
+    final mode = c.colorMode;
+    final zr = (c.zMax - c.zMin) == 0 ? 1.0 : (c.zMax - c.zMin);
+    final ur = (c.upMax - c.upMin) == 0 ? 1.0 : (c.upMax - c.upMin);
+    final t = m.tris, n = c.triNormal;
+    final order = c.triOrder.length == nt ? c.triOrder : Int32List.fromList(List<int>.generate(nt, (i) => i));
+    int k = 0;
+    for (int oi = 0; oi < nt; oi++) {
+      final tri = order[oi];
+      final a = t[tri * 3], b = t[tri * 3 + 1], cc = t[tri * 3 + 2];
+      if (_mz[a] < OrbitCamera.near || _mz[b] < OrbitCamera.near || _mz[cc] < OrbitCamera.near) continue;
+      final ax = _mx[a], ay = _my[a], bx = _mx[b], by = _my[b], cx = _mx[cc], cy = _my[cc];
+      if ((ax < 0 && bx < 0 && cx < 0) || (ay < 0 && by < 0 && cy < 0)) continue;
+      if ((ax > size.width && bx > size.width && cx > size.width) || (ay > size.height && by > size.height && cy > size.height)) continue;
+      int base;
+      switch (mode) {
+        case ColorMode.rgb:
+          base = 0xFFB9B2A4; // no measured colour on the mesh: neutral clay
+        case ColorMode.range:
+          base = viridisArgb((c.triRange[tri] - c.zMin) / zr);
+        case ColorMode.up:
+          base = viridisArgb((c.triUp[tri] - c.upMin) / ur);
+      }
+      final d = (n[tri * 3] * lx + n[tri * 3 + 1] * ly + n[tri * 3 + 2] * lz).abs();
+      final sh = 0.32 + 0.68 * d;
+      final col = 0xFF000000 |
+          ((((base >> 16) & 0xFF) * sh).round() << 16) |
+          ((((base >> 8) & 0xFF) * sh).round() << 8) |
+          ((base & 0xFF) * sh).round();
+      final p = k * 6;
+      _tpos[p] = ax;
+      _tpos[p + 1] = ay;
+      _tpos[p + 2] = bx;
+      _tpos[p + 3] = by;
+      _tpos[p + 4] = cx;
+      _tpos[p + 5] = cy;
+      final q = k * 3;
+      _tcol[q] = col;
+      _tcol[q + 1] = col;
+      _tcol[q + 2] = col;
+      k++;
+    }
+    if (k == 0) return;
+    final vv = ui.Vertices.raw(VertexMode.triangles, Float32List.sublistView(_tpos, 0, k * 6),
+        colors: Int32List.sublistView(_tcol, 0, k * 3));
+    canvas.drawVertices(vv, BlendMode.dst, Paint());
+    vv.dispose();
   }
 
   void _drawRoiCenter(Canvas canvas, Size size, V3 r, V3 u, V3 f, V3 eye, double fp) {
