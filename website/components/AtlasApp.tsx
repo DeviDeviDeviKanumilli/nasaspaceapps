@@ -124,7 +124,11 @@ export default function AtlasApp() {
   const railOpen = mode !== "explore";
   const sideOpen = !!(selected || location || clusterIds);
   const run = atlas.bundle.run;
-  const tilesTotal = run?.tiles ? Object.values(run.tiles).reduce((a, b) => a + b, 0) : null;
+  const tileCounts = run?.tiles ?? {};
+  const tilesMissing = Object.entries(tileCounts).filter(([k]) => /missing|failed/i.test(k)).reduce((a, [, v]) => a + v, 0);
+  const tilesListed = Object.values(tileCounts).reduce((a, b) => a + b, 0);
+  const tilesDone = tilesListed - tilesMissing;
+  const runText = !run?.tiles ? "terrain run: tile counts not recorded" : tilesMissing > 0 ? `terrain run: ${tilesDone.toLocaleString("en-US")} of ${tilesListed.toLocaleString("en-US")} listed tiles processed` : `terrain run: ${tilesListed.toLocaleString("en-US")} listed tiles processed`;
 
   return (
     <div className={`app${railOpen ? " rail-open" : ""}${sideOpen ? " side-open" : ""}${drawMode ? " drawing" : ""}`}>
@@ -219,9 +223,9 @@ export default function AtlasApp() {
       )}
 
       <footer className="statusbar">
-        <button className="runchip" onClick={() => { setLayers((l) => ({ ...l, coverage: !l.coverage })); setLayersOpen(true); }} title="Show which 1-degree tiles the terrain run processed">
+        <button className="runchip" onClick={() => { setLayers((l) => ({ ...l, coverage: !l.coverage })); setLayersOpen(true); }} title={`Run statement: ${run?.manifest_describe_as ?? "missing"}. Click to show which 1-degree tiles the terrain run processed.`}>
           <strong>{result.records.length === atlas.counts.total ? `${atlas.counts.total} loaded records` : `${result.records.length} of ${atlas.counts.total} records shown`}</strong>
-          <span> · terrain run: {tilesTotal ?? "?"} supplied tiles; not global</span>
+          <span> · {runText}</span>
         </button>
         <div className="spacer" />
         {cursor && <span className="coords">{formatLatLon(cursor.lat, cursor.lon, 3)}</span>}
@@ -237,16 +241,17 @@ export default function AtlasApp() {
 
 function CoverageLegend({ atlas }: { atlas: Atlas }) {
   const t = atlas.bundle.run?.tiles ?? {};
+  const missing = Object.entries(t).filter(([k]) => /missing|failed/i.test(k)).reduce((a, [, v]) => a + v, 0);
   return (
     <div className="covlegend">
       <ul className="legend">
         <li><i className="cov c1" /> Processed, has eligible windows <span className="muted">{t.windows ?? "?"} tiles</span></li>
         <li><i className="cov c2" /> Processed, no window passed the validity test <span className="muted">{t.no_valid_windows ?? "?"}</span></li>
         <li><i className="cov c3" /> Skipped: land cover rules out every window <span className="muted">{t.skipped_landcover ?? "?"}</span></li>
-        <li><i className="cov c0" /> Everywhere else: not processed in this run</li>
+        <li><i className="cov c0" /> Everywhere else: no result in this run{missing ? <span className="muted">{missing} listed tiles failed or were not run</span> : null}</li>
         <li><i className="cov ring" /> Dashed circles: regional geology study areas</li>
       </ul>
-      <p className="muted">Terrain run: {atlas.bundle.run?.manifest_describe_as ?? "coverage statement missing"}. Rock-type screening used a global lithology map and is not limited to these tiles.</p>
+      <p className="muted">Run statement: {atlas.bundle.run?.manifest_describe_as ?? "coverage statement missing"}. Uncoloured land and ocean have no terrain result. Rock-type screening used a global lithology map and is not limited to these tiles.</p>
     </div>
   );
 }

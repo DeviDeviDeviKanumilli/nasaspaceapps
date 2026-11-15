@@ -20,6 +20,7 @@ export default function Methods() {
   const p = (run.parameters ?? {}) as Record<string, unknown>;
   const g2 = b.geology_v2;
   const ext = atlas.coverage.length ? { s: Math.min(...atlas.coverage.map((t) => t.south)), n: Math.max(...atlas.coverage.map((t) => t.south)) + 1, w: Math.min(...atlas.coverage.map((t) => t.west)), e: Math.max(...atlas.coverage.map((t) => t.west)) + 1 } : null;
+  const missing = Object.entries(run.tiles ?? {}).filter(([k]) => /missing|failed/i.test(k)).reduce((a, [, v]) => a + v, 0);
   const list = (v: unknown) => (Array.isArray(v) ? v.join(", ") : String(v ?? "not recorded"));
   const classes = (v: unknown) => (Array.isArray(v) ? v.map((c) => `${c} ${WC[String(c)] ?? ""}`.trim()).join("; ") : "not recorded");
   return (
@@ -43,10 +44,12 @@ export default function Methods() {
           <tr><td>1° tiles with evaluated windows</td><td className="num">{run.tiles?.windows ?? "not recorded"}</td></tr>
           <tr><td>1° tiles processed, no valid window</td><td className="num">{run.tiles?.no_valid_windows ?? "not recorded"}</td></tr>
           <tr><td>1° tiles skipped because land cover rules out every window</td><td className="num">{run.tiles?.skipped_landcover ?? "not recorded"}</td></tr>
+          {missing > 0 ? <tr><td>Listed 1° tiles that failed or were not run</td><td className="num">{missing}</td></tr> : null}
           <tr><td>10 km windows evaluated</td><td className="num">{run.windows?.evaluated?.toLocaleString("en-US") ?? "not recorded"}</td></tr>
+          {typeof run.windows?.excluded_snow_ice_gt_half === "number" ? <tr><td>Windows not nominated because more than half is snow or ice</td><td className="num">{run.windows.excluded_snow_ice_gt_half.toLocaleString("en-US")}</td></tr> : null}
           <tr><td>Bundle schema</td><td>{b.schema_version ?? "not recorded"}{g2?.block_version ? `; geology block ${g2.block_version}` : ""}</td></tr>
         </tbody></table>
-        <p>{ext ? `The ${atlas.coverage.length} tiles in the supplied list lie between ${ext.s}° and ${ext.n}° N and between ${Math.abs(ext.w)}° and ${Math.abs(ext.e)}° W: a rectangle around the contiguous United States that also takes in parts of Mexico and Canada.` : "The bundle does not list the processed tiles."} Tiles outside the list were not processed. The globe shows the whole Earth for navigation; that is not evidence of whole-Earth analysis. Turn on <em>Analysis coverage</em> in the map layers to see each tile's status.</p>
+        <p>{ext ? `The ${atlas.coverage.length.toLocaleString("en-US")} processed 1° tiles lie between ${Math.abs(ext.s)}° ${ext.s < 0 ? "S" : "N"} and ${Math.abs(ext.n)}° ${ext.n < 0 ? "S" : "N"}, and between ${Math.abs(ext.w)}° ${ext.w < 0 ? "W" : "E"} and ${Math.abs(ext.e)}° ${ext.e < 0 ? "W" : "E"}.` : "The bundle does not list the processed tiles."}{ext && ext.s >= -60 ? " No tile south of 60° S is in the loaded run, so Antarctica has no result." : ""}{missing > 0 ? ` ${missing} listed tiles failed or were not run and have no result.` : ""} Only tiles that exist in the Copernicus land-tile list can be processed; open ocean has none. The globe shows the whole Earth for navigation; that is not evidence that every place was analysed. Turn on <em>Analysis coverage</em> in the map layers to see each tile's status.</p>
         <h3>Known coverage limits of the terrain run</h3>
         <ul>{(run.known_coverage_limits ?? []).map((x) => <li key={x}>{x}</li>)}</ul>
         {atlas.issues.length > 0 && (<><h3>Bundle validation notes</h3><ul>{atlas.issues.map((x) => <li key={x}>{x}</li>)}</ul></>)}

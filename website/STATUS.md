@@ -7,6 +7,15 @@ Tested in headless Chrome 153 with a software renderer (no GPU) at 1440×900, 12
 the local build and the live URL. **It has not been viewed on a real GPU or a physical phone**; imagery sharpness
 and frame rate there are expected to be better than in the test screenshots, but that is not verified.
 
+## Update: near-global bundle loaded
+
+The site now reads the bundle from commit `3cac280` (`web/app_bundle.json`): terrain run "partial: 19295 of 19433 tiles
+in the supplied list processed", 1,464,296 windows evaluated, no tile south of 60° S. It still holds 600 records
+(50 per reference), now nominated from the near-global search instead of the US test tiles. Cross-pathway values
+are "not measured" in this bundle (`results_global/cross_global_pending.json` is empty). Re-tested on this bundle:
+globe, coverage layer and legend, a terrain record, a far-south location, and the Data & methods page.
+The P0 table below was run on the earlier US test bundle; the filter counts quoted there belong to that bundle.
+
 ## P0 gates
 
 | ID | Status | Evidence |

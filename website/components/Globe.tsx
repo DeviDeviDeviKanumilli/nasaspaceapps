@@ -229,7 +229,7 @@ export function areaRing(a: Area): [number, number][] {
   return [...a.ring, a.ring[0]];
 }
 
-const HOME = { lon: -98, lat: 31, height: 15_500_000 };
+const HOME = { lon: -78, lat: 12, height: 17_000_000 };
 
 const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
   const el = useRef<HTMLDivElement>(null);
@@ -642,7 +642,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
     if (!P.current.layers.coverage || !atlas.coverage.length) { viewer.scene.requestRender(); return; }
     let w = 180, e = -180, so = 90, n = -90;
     for (const t of atlas.coverage) { w = Math.min(w, t.west); e = Math.max(e, t.west + 1); so = Math.min(so, t.south); n = Math.max(n, t.south + 1); }
-    const k = 24;
+    const k = Math.max(4, Math.min(24, Math.floor(4096 / Math.max(1, e - w)))); // keep the texture within common GPU limits
     const cv = document.createElement("canvas");
     cv.width = (e - w) * k; cv.height = (n - so) * k;
     const g = cv.getContext("2d")!;
@@ -650,7 +650,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
       const x = (t.west - w) * k, y = (n - t.south - 1) * k;
       g.fillStyle = t.status === "windows" ? "rgba(120,200,170,0.30)" : t.status === "no_valid_windows" ? "rgba(200,205,210,0.22)" : "rgba(30,34,40,0.50)";
       g.fillRect(x, y, k, k);
-      g.strokeStyle = "rgba(240,245,244,0.28)"; g.lineWidth = 1; g.strokeRect(x + 0.5, y + 0.5, k - 1, k - 1);
+      if (k >= 10) { g.strokeStyle = "rgba(240,245,244,0.28)"; g.lineWidth = 1; g.strokeRect(x + 0.5, y + 0.5, k - 1, k - 1); }
     }
     s.coverage = viewer.imageryLayers.addImageryProvider(new C.SingleTileImageryProvider({ url: cv.toDataURL("image/png"), rectangle: C.Rectangle.fromDegrees(w, so, e, n), tileWidth: cv.width, tileHeight: cv.height }));
     s.coverage.magnificationFilter = C.TextureMagnificationFilter.NEAREST;

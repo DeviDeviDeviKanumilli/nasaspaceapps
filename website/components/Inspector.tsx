@@ -126,7 +126,7 @@ export function LocationCard({ atlas, loc, onSelect, onUseAsCentre, onFly }: { a
       <table className="kv"><tbody>
         <tr><th scope="row">Terrain run</th><td>
           {t ? (t.status === "windows" ? `This 1° tile was processed: ${t.windows} windows were evaluated.` : t.status === "no_valid_windows" ? "This 1° tile was processed, but no 10 km window passed the validity test (too much masked or missing ground)." : t.status === "skipped_landcover" ? "This 1° tile was skipped: land cover (trees, crops, built-up, water) rules out every window, so its elevation data was not read." : `Tile status: ${String(t.rawStatus)}.`)
-            : "This 1° tile is not in the supplied tile list. It was not processed."}
+            : "There is no result for this 1° tile in the loaded run: it is ocean, outside the tile list, or it failed."}
         </td></tr>
         <tr><th scope="row">Loaded footprints containing this point</th><td>
           {info.containing.length === 0 ? "None." : (
