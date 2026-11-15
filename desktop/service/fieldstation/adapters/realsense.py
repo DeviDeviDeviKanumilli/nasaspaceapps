@@ -26,6 +26,10 @@ except Exception as exc:  # pragma: no cover - depends on the machine
     rs = None
     _IMPORT_ERROR = f"{type(exc).__name__}: {exc}"
 
+# librealsense objects from a discover() whose open failed. Freeing them then segfaults on macOS (2.56.5), so they
+# are never freed: discover() runs in a short-lived child process (CaptureController.discover) that exits with os._exit.
+_KEEP: list = []
+
 _MODEL_NAMES = {}
 if rs is not None:
     _MODEL_NAMES = {
@@ -105,7 +109,16 @@ class RealSenseAdapter:
         if rs is None:
             raise AdapterError(f"pyrealsense2 is not importable: {_IMPORT_ERROR}")
         out = []
-        for dev in rs.context().query_devices():
+        ctx = rs.context()
+        devlist = ctx.query_devices()
+        _KEEP.extend([ctx, devlist])  # see _KEEP
+        try:
+            found = list(devlist)
+        except RuntimeError as exc:
+            # macOS: "failed to set power state" when the system owns the camera's USB interface and this user cannot
+            # claim it. (librealsense may then crash when these objects are freed: callers run this in a child process.)
+            raise AdapterError(self._cannot_open(f"librealsense: {exc}")) from exc
+        for dev in found:
             usb = _info(dev, rs.camera_info.usb_type_descriptor)
             d = {
                 "device_id": f"realsense:{_info(dev, rs.camera_info.serial_number)}",
@@ -114,8 +127,10 @@ class RealSenseAdapter:
                 "product_line": _info(dev, rs.camera_info.product_line), "is_real_sensor": True,
             }
             if usb and not str(usb).startswith("3"):
-                d["warning"] = (f"Connected over USB {usb}. Depth + colour at field profiles needs USB 3: "
-                                "use a USB 3 data cable and port, or the usb2_fallback profile.")
+                d["recommended_profile"] = "usb2_fallback"
+                d["warning"] = (f"Connected over USB {usb}, too slow for depth + colour at 848x480. Field Station opens it with "
+                                "the USB 2 fallback profile (640x480 @ 15 fps). For full resolution: flip the USB-C plug at the "
+                                "camera end, use a USB 3 data cable, plug straight into the Mac (no hub), then Scan again.")
             out.append(d)
         if not out:
             seen = usb_seen()
@@ -123,13 +138,20 @@ class RealSenseAdapter:
                 raise AdapterError("A RealSense camera is on USB in firmware RECOVERY mode. Unplug it, wait 10 s and plug it in "
                                    "again; if it stays in recovery it needs a firmware update with Intel's tools.")
             if seen:
-                root = hasattr(os, "geteuid") and os.geteuid() == 0
-                raise AdapterError(
-                    f"{seen[0]['name'] or 'A RealSense camera'} is plugged in (macOS sees it on USB) but librealsense cannot open it"
-                    + (" even as root. Unplug it for 10 s, try the other port, then Scan again." if root else
-                       " as this user. On recent macOS it needs root: quit Field Station and start it with "
-                       "desktop/d435.sh (checks the camera, asks for your password once), then desktop/d435.sh run."))
+                raise AdapterError(self._cannot_open(None, seen))
         return out
+
+    @staticmethod
+    def _cannot_open(detail: str | None, seen: list[dict] | None = None) -> str:
+        seen = usb_seen() if seen is None else seen
+        name = (seen[0]["name"] if seen else None) or "The RealSense camera"
+        root = hasattr(os, "geteuid") and os.geteuid() == 0
+        where = "is plugged in (macOS sees it on USB) but" if seen else ""
+        msg = (f"{name} {where} librealsense cannot open it".replace("  ", " ")
+               + (" even as root. Unplug it for 10 s, try the other port, then Scan again." if root else
+                  " as this user. On recent macOS it needs root: quit Field Station, then in Terminal run "
+                  "desktop/d435.sh (checks the camera, asks for your Mac password once) and then desktop/d435.sh run."))
+        return msg + (f" ({detail})" if detail else "")
 
     def open(self, device_id: str, config: dict) -> None:
         if rs is None:

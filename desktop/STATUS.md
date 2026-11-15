@@ -14,7 +14,7 @@ exercised. **PLANNED** = not built.
 | Check | State | Evidence |
 |---|---|---|
 | librealsense on this Mac | `pyrealsense2-macosx` 2.56.5 imports (arm64, Python 3.13) | `service/requirements.lock.txt` |
-| D435 enumerated / real depth frame | **NOT YET: no camera was attached** (2026-11-15 02:40 ET; `tools/d435_smoke.py` exit 3, "no RealSense device enumerated") | log in `~/Library/Application Support/FieldStation/hardware_smoke/` once run on the real camera |
+| D435 enumerated / real depth frame | **ON USB, NOT YET STREAMING** (2026-11-15 08:20 ET): macOS lists "Intel(R) RealSense(TM) Depth Camera 435" (8086:0b07) at **USB 2 (480 Mb/s)**; as a normal user librealsense lists 1 device but opening it fails with `failed to set power state` (`tools/d435_smoke.py` exit 3). Needs the sudo run of `desktop/d435.sh` (password; not yet done) | log in `~/Library/Application Support/FieldStation/hardware_smoke/` |
 
 Until the smoke test returns exit 0 with the real camera, **no live D435 capture may be claimed**. The
 fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC scene for rehearsal only
@@ -125,4 +125,10 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
   macOS, the hardware gate, automatic sudo retry and a root service launcher for Macs where librealsense needs root.
   Discovery now says when the camera is on USB but cannot be opened, or is in firmware recovery. Checked here without a
   camera only (exit 3, clear message; USB parser checked against the iPhone); **never run with a D435**.
+- 08:20: **D435 attached** (first time). USB 2 link (480 Mb/s). As the normal user: 1 device listed, opening it raises
+  `failed to set power state`, and librealsense then **segfaults** when Python frees its objects (smoke test exit 139, so
+  d435.sh never offered the sudo retry; service discovery timed out after 15 s with no reason). Fixed: the smoke test and
+  the discovery child keep the SDK objects alive and leave with `os._exit` (smoke now exits 3 with the error text;
+  discovery returns "needs root: run desktop/d435.sh"); d435.sh also retries with sudo on any crash; on a USB 2 link
+  discovery recommends `usb2_fallback` and the app opens with it, the smoke test picks it by default. Real depth: not yet.
 

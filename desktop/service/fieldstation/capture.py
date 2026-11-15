@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import io
 import multiprocessing as mp
+import os
 import queue
 import threading
 import time
@@ -77,8 +78,15 @@ def _discover_worker(adapter_id: str, store_root: str | None, out_q) -> None:
     try:
         a = make_adapter(adapter_id, Path(store_root) if store_root else None)
         out_q.put(("ok", a.discover()))
+    except AdapterError as exc:
+        out_q.put(("error", str(exc)))
     except Exception as exc:
         out_q.put(("error", f"{type(exc).__name__}: {exc}"))
+    # Deliver the answer, then leave without running destructors: after a failed open, librealsense on macOS
+    # segfaults while freeing its device objects, which used to lose the result.
+    out_q.close()
+    out_q.join_thread()
+    os._exit(0)
 
 
 # ----------------------------------------------------------------------------- service side
@@ -149,8 +157,6 @@ class CaptureController:
             return {"adapter_id": adapter_id, "devices": [], "error": f"device enumeration did not finish within {timeout_s:.0f} s"}
         finally:
             p.join(timeout=2)
-        if p.exitcode not in (0, None):
-            return {"adapter_id": adapter_id, "devices": [], "error": f"enumeration process exited with code {p.exitcode}"}
         return {"adapter_id": adapter_id, "devices": payload if kind == "ok" else [], "error": None if kind == "ok" else payload}
 
     # -- open / close

@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import platform
 import sys
 import time
@@ -30,6 +31,9 @@ from PIL import Image  # noqa: E402
 from fieldstation.adapters.base import PROFILES  # noqa: E402
 
 
+_KEEP: list = []  # librealsense objects kept alive until exit: freeing them after a failed open segfaults on macOS
+
+
 def now():
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -37,7 +41,8 @@ def now():
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", type=Path, default=Path.home() / "Library" / "Application Support" / "FieldStation" / "hardware_smoke")
-    ap.add_argument("--profile", default="field_static", choices=list(PROFILES))
+    ap.add_argument("--profile", default=None, choices=list(PROFILES),
+                    help="default: field_static on USB 3, usb2_fallback on a USB 2 link")
     ap.add_argument("--frames", type=int, default=30)
     a = ap.parse_args()
     log = {"tool": "d435_smoke", "started_utc": now(), "host": {"os": f"macOS {platform.mac_ver()[0]}", "machine": platform.machine(),
@@ -58,16 +63,31 @@ def main() -> int:
     except Exception as exc:
         return done(2, f"pyrealsense2 not importable: {exc}")
     devs = []
-    for d in rs.context().query_devices():
-        g = lambda k: d.get_info(k) if d.supports(k) else None  # noqa: E731
-        devs.append({"name": g(rs.camera_info.name), "serial": g(rs.camera_info.serial_number),
-                     "firmware": g(rs.camera_info.firmware_version), "usb": g(rs.camera_info.usb_type_descriptor),
-                     "product_line": g(rs.camera_info.product_line)})
+    ctx = rs.context()
+    found = ctx.query_devices()
+    _KEEP.extend([ctx, found])  # never freed before os._exit (see the bottom of this file)
+    try:
+        for d in found:
+            g = lambda k: d.get_info(k) if d.supports(k) else None  # noqa: E731
+            devs.append({"name": g(rs.camera_info.name), "serial": g(rs.camera_info.serial_number),
+                         "firmware": g(rs.camera_info.firmware_version), "usb": g(rs.camera_info.usb_type_descriptor),
+                         "product_line": g(rs.camera_info.product_line)})
+    except RuntimeError as exc:
+        # macOS: "failed to set power state" = the camera is on USB but this user cannot claim it (needs sudo)
+        log["devices"] = devs
+        return done(3, f"RealSense device listed but could not be opened as this user: {exc} "
+                       "(on recent macOS librealsense needs root; desktop/d435.sh retries with sudo)")
     log["devices"] = devs
     print("devices:", json.dumps(devs, indent=2))
     if not devs:
         return done(3, "no RealSense device enumerated (check USB 3 DATA cable, port/hub, then retry; "
                        "if it appears in System Information > USB but not here, retry with sudo and note it)")
+    if a.profile is None:
+        usb2 = bool(devs[0]["usb"]) and not str(devs[0]["usb"]).startswith("3")
+        a.profile = "usb2_fallback" if usb2 else "field_static"
+        log["profile"] = a.profile
+        if usb2:
+            print(f"USB {devs[0]['usb']} link: using the usb2_fallback profile (640x480 @ 15 fps)")
     prof = PROFILES[a.profile]
     cfg, pipe = rs.config(), rs.pipeline()
     cfg.enable_device(devs[0]["serial"])
@@ -115,4 +135,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    code = main()
+    sys.stdout.flush()
+    sys.stderr.flush()
+    os._exit(code)  # skip interpreter teardown: librealsense on macOS can segfault freeing devices after a failed open

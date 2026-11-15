@@ -61,9 +61,13 @@ class _DevicesScreenState extends State<DevicesScreen> {
 
   Future<void> _open(String adapterId, String deviceId) async {
     final s = AppScope.read(context);
+    // A camera on a USB 2 link cannot carry depth + colour at the field profiles; the service says which profile fits.
+    final dev = asList(asMap(_found[adapterId])['devices']).map(asMap).where((d) => d['device_id'] == deviceId).firstOrNull;
+    final rec = dev == null ? null : dev['recommended_profile'] as String?;
     setState(() {
       _busy = deviceId;
       _openError = null;
+      if (rec != null && asMap(s.adapters['profiles']).containsKey(rec)) _profile = rec;
     });
     try {
       s.status = asMap(await s.api!.postJson('/api/device/open', {'adapter_id': adapterId, 'device_id': deviceId, 'profile': _profile}));

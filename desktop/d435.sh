@@ -82,7 +82,7 @@ check() {
     elif (( speed > 0 )); then
       warn "USB 2 link ($(( speed / 1000000 )) Mb/s). Depth + colour at 848x480 will likely fail."
       print "    Fix: flip the USB-C plug at the camera end (it matters on the D435), try the other Mac port or another cable,"
-      print "    and avoid hubs. Otherwise pick the profile \"USB 2 fallback\" in Field Station."
+      print "    and avoid hubs. Until then the check and Field Station use the USB 2 fallback profile (640x480 @ 15 fps)."
     fi
   done <<< "$lines"
 
@@ -94,7 +94,7 @@ check() {
     ok "Real depth acquired as your normal user. Start Field Station with: desktop/d435.sh run   (or desktop/run.sh)"
     return 0
   fi
-  if (( code == 3 || code == 4 )); then
+  if (( code == 3 || code == 4 || code >= 128 )); then
     warn "The camera is on USB but librealsense could not use it as your user (exit $code)."
     print "  On recent macOS the system holds the camera's USB interface; librealsense then needs root."
     print "  Retrying once with sudo (your Mac password; it is not stored)…"
