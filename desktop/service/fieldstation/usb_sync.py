@@ -65,9 +65,13 @@ class UsbAutoSync:
             return dict(self.state, failed=[{"scan_id": k, "error": v} for k, v in self.failed.items()])
 
     def _set(self, **kw) -> None:
+        """Update the state; tell the app only when something other than the poll time changed."""
         with self._lock:
+            before = {k: v for k, v in self.state.items() if k != "last_check_utc"}
             self.state.update(kw)
-        self.emit("usb_sync", **self.status())
+            changed = before != {k: v for k, v in self.state.items() if k != "last_check_utc"}
+        if changed:
+            self.emit("usb_sync", **self.status())
 
     def _run(self) -> None:
         av = usb_phone.availability()

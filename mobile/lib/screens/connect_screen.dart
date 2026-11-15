@@ -30,15 +30,19 @@ class _ConnectScreenState extends State<ConnectScreen> {
                 title: 'Connect',
                 subtitle: link.paired
                     ? StatusLine('Paired with ${link.desktopInfo?['name'] ?? 'Field Station'}')
-                    : const Text('Pair with Field Station on the Mac'),
+                    : link.reconnecting
+                        ? StatusLine('Reconnecting to ${link.desktopInfo?['name'] ?? 'Field Station'}…', dot: Fs.amberInk)
+                        : const Text('Pair with Field Station on the Mac'),
               ),
               Expanded(
                 child: ListView(padding: const EdgeInsets.fromLTRB(Fs.side, 4, Fs.side, 24), children: [
                   if (link.error != null) ...[
-                    Note(kind: TagKind.bad, leading: const Icon(Icons.error_outline_rounded, color: Fs.redInk), child: Text(link.error!)),
+                    link.reconnecting
+                        ? Note(kind: TagKind.warn, leading: const Icon(Icons.bluetooth_searching_rounded, color: Fs.amberInk), child: Text(link.error!))
+                        : Note(kind: TagKind.bad, leading: const Icon(Icons.error_outline_rounded, color: Fs.redInk), child: Text(link.error!)),
                     const SizedBox(height: 12),
                   ],
-                  if (link.paired) _pairedCard(t) else _pairing(t),
+                  if (link.paired || link.reconnecting) _pairedCard(t) else _pairing(t),
                   const SizedBox(height: 12),
                   SwitchCard(
                     title: 'Let the paired Mac control capture',
@@ -143,9 +147,12 @@ class _ConnectScreenState extends State<ConnectScreen> {
     return FsCard(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            const Icon(Icons.bluetooth_connected_rounded, color: Fs.moss),
+            Icon(link.paired ? Icons.bluetooth_connected_rounded : Icons.bluetooth_searching_rounded, color: link.paired ? Fs.moss : Fs.amberInk),
             const SizedBox(width: 10),
-            Expanded(child: Text('Paired with ${link.desktopInfo?['name'] ?? 'Field Station'}', style: t.textTheme.titleSmall)),
+            Expanded(
+              child: Text('${link.paired ? 'Paired with' : 'Reconnecting to'} ${link.desktopInfo?['name'] ?? 'Field Station'}',
+                  style: t.textTheme.titleSmall),
+            ),
             TextButton(onPressed: () => link.disconnect(), child: const Text('Disconnect')),
           ]),
           Text('Mac reports: $caps', style: t.textTheme.bodySmall),

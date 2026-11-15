@@ -377,10 +377,9 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
                                      "vertical_accuracy_m": f.verticalAccuracy, "fix_utc": self.iso(f.timestamp)]
                 }
                 s["files"] = self.files
-                DispatchQueue.main.async {
-                    UIApplication.shared.isIdleTimerDisabled = false
-                    result(s)
-                }
+                // Keep-awake is owned by the Dart side (AppState.updateAwake): a phone on the rig must stay awake
+                // between scans, so stopping a recording does not touch it.
+                DispatchQueue.main.async { result(s) }
             }
         }
     }

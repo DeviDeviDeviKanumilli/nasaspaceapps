@@ -37,14 +37,14 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
 | Local API (loopback, token, Host check) | TESTED | |
 | Headless CLI (`python -m fieldstation.cli`) | TESTED manually (devices, capture via the worker process, roughness) | Field fallback if the GUI fails |
 | BLE protocol (pairing, MAC, seq/id, acks, resend) | TESTED against the mobile team's `BLE_TEST_VECTORS.json` (byte-identical proofs, key, MAC), and against the phone app's own Dart protocol code through the service's HTTP/WebSocket path (`mobile/test/interop_field_station_test.dart`, minimum MTU) | Radio not involved: never over the air with a real phone |
-| BLE radio (Swift CoreBluetooth peripheral in the Flutter runner) | BUILT, UNTESTED | Needs a phone; first run triggers the macOS Bluetooth permission prompt |
+| BLE radio (Swift CoreBluetooth peripheral in the Flutter runner) | TESTED over the air, 2026-11-15 | iPhone 17 Pro + MacBook Air M4: pairing, Mac→phone start/stop/keyframe, phone state, remote start opening the phone's scanner, sessions 12 h. Auto-reconnect after a dropped link is unit-tested (new Bluetooth identity, wrong key refused) but **not yet over the air** |
 | Flutter macOS UI (Devices, Capture, Viewer, Analysis, Library, Pairing, About) | TESTED on screen with the SYNTHETIC scene | `flutter analyze` clean, 9/9 `flutter test`, `flutter build macos` OK. Driven in the app: open device → live preview (26.7 fps) → record → 3D viewer (132k of 397k points, orbit, back-to-front sort) → sphere-ROI roughness. Analysis rectangle/protrusion/distance and export checked through the same API calls (box height 0.152 m vs 0.150 m true), not by dragging in the app |
 | UI paths never exercised | BUILT, UNTESTED | Import file picker (macOS osascript / Windows dialog), Show folder / Open in Finder or Explorer, edit notes, reprocess, catalog-draft form, phone-refusal error card (no phone yet), Mesh mode in the viewer |
 | App self-starts the Python service and stops it on quit | TESTED | Window 1430x840, title "Field Station" |
 | Bounded grid mesh (`mesh_grid.ply`) + GLB (`mesh_grid.glb`) | TESTED (structure, indices, frame conversion) | Only neighbouring measured pixels are joined; no hole filling; labelled DERIVED. GLB loads in trimesh (99k vertices, 197k faces, vertex colours) |
 | Redesigned UI (light survey-plate style, viridis depth figures with colour bars, booktabs result tables) | TESTED on Windows 11 with the SYNTHETIC scene. **macOS build not re-run since the redesign** | `flutter analyze` clean, 9/9 `flutter test`, 37/37 service tests, `flutter build windows --debug` OK, every screen checked on screen (Capture only in Colour mode). Run `flutter build macos` and click through on the Mac before demoing |
 | Windows build (runner, service from `.venv\Scripts\python.exe`, data in `%LOCALAPPDATA%\FieldStation`, service watches the app's process with `--parent-pid` and exits when it is gone) | TESTED on Windows with SYNTHETIC: app opened from Explorer starts its own service, service gone 5 s after force-killing the app, no console window. D435 on Windows: UNTESTED | `service/requirements-windows.txt` (`pyrealsense2` instead of `pyrealsense2-macosx`) |
-| Phone pairing on Windows | Not available by design | The Pairing screen says so; scans still move by zip import |
+| Phone pairing on Windows | Not available by design | The Phone screen says so; scans still move by zip import |
 | BLE protocol through the app's own path (`POST /api/ble/rx` in, `ble_tx` WebSocket events out) | SIMULATED end-to-end, 10/10 checks | `phone_sim.py` driven over HTTP + WebSocket against a running service: pairing, wrong code refused, phone→desktop start/stop acked, duplicate re-acked, desktop→phone command with valid MAC, phone ack recorded, unpaired sender refused. No radio, no real phone |
 | Depth display colour map | Changed from a jet-like map to viridis; pixels with no depth are white (were black) | Display only: raw and filtered depth PNGs are unchanged. `thumbnail.jpg` of scans recorded earlier keeps the old map until reprocessed |
 | Multi-view registration / TSDF / fusion with ARKit | PLANNED (P2) | Not implied anywhere in the UI |
@@ -110,3 +110,19 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
   - Fixed (phone): the phone re-reads the desktop nonce before pairing, so pressing "Pair a phone" again on the Mac
     no longer looks like a wrong code.
   - `desktop/docs/contracts/` removed; `/contracts` at the repository root is the only copy, and the desktop tests read it there.
+- 06:00–06:50: live tests with the real iPhone 17 Pro.
+  - iPhone scans copy into Library over the USB cable automatically (`usb_phone.py`, `usb_sync.py`; needs Xcode's
+    devicectl). Measured: about 2–3.5 s per scan after stop, every SHA-256 verified (4 real scans, up to 116 files / 88 MB).
+  - Rig use (phone mounted, run from the Mac): start acked in 0.3 s, stop saved, scan in Library ~2 s later, phone
+    re-armed for the next scan; tested twice in a row. **Failed once**: after ~2 min idle the phone stopped answering
+    (most likely the screen auto-locked, which suspends the app). Fixed by making the phone app the only owner of
+    keep-awake (the native code no longer clears it after each recording) and re-asserting it every 10 s; **re-test pending**.
+  - Also fixed live: a remote scan's title carried over to the next scan; no answer to the Mac if the phone's camera
+    failed to start; a reconnecting phone showed the pairing form.
+  - Pairing screen is now **Phone**: rig control panel (state + timer, Start/Stop with confirmation spinner, next scan
+    name, cable status, last scan with Open), connection details folded away.
+- 06:55: D435 preparation (camera not attached yet). `desktop/d435.sh` (check / watch / run): USB link speed from
+  macOS, the hardware gate, automatic sudo retry and a root service launcher for Macs where librealsense needs root.
+  Discovery now says when the camera is on USB but cannot be opened, or is in firmware recovery. Checked here without a
+  camera only (exit 3, clear message; USB parser checked against the iPhone); **never run with a D435**.
+

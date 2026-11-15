@@ -222,8 +222,9 @@ class _DevicesScreenState extends State<DevicesScreen> {
                           Text(scanning ? 'Looking for a camera' : 'No camera found', style: t.textTheme.titleSmall),
                           const SizedBox(height: 2),
                           Text(
-                            'Plug the D435 into a USB 3 port on this computer with a data cable (not charge-only), then select Scan again. '
-                            'A USB 2 link works only with the fallback profile.',
+                            'Plug the D435 straight into a USB-C port on this computer with a USB 3 data cable (not charge-only), then '
+                            'select Scan again. A USB 2 link works only with the fallback profile.'
+                            '${Platform.isMacOS ? ' Not sure it is working? In Terminal run desktop/d435.sh: it checks the link speed and that real depth comes out.' : ''}',
                             style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.inkMuted),
                           ),
                         ],

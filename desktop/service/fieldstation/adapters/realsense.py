@@ -10,6 +10,9 @@ Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Ap
 """
 from __future__ import annotations
 
+import os
+import plistlib
+import subprocess
 import sys
 import numpy as np
 
@@ -43,6 +46,33 @@ def _info(dev, key):
         return dev.get_info(key) if dev.supports(key) else None
     except Exception:
         return None
+
+
+def usb_seen() -> list[dict]:
+    """RealSense devices macOS lists on USB (vendor 0x8086), whether or not librealsense can open them. Lets
+    discover() tell "nothing plugged in" apart from "plugged in but this user can't open it" (needs sudo)."""
+    if sys.platform != "darwin":
+        return []
+    try:
+        raw = subprocess.run(["ioreg", "-p", "IOUSB", "-l", "-a"], capture_output=True, timeout=10).stdout
+        root = plistlib.loads(raw)
+    except Exception:
+        return []
+    out: list[dict] = []
+
+    def walk(n):
+        if isinstance(n, dict):
+            if n.get("idVendor") == 0x8086:
+                out.append({"product_id": f"{int(n.get('idProduct', 0)):04x}", "link_bps": int(n.get("UsbLinkSpeed") or 0),
+                            "name": n.get("USB Product Name") or n.get("IORegistryEntryName")})
+            for c in n.get("IORegistryEntryChildren", []):
+                walk(c)
+        elif isinstance(n, list):
+            for c in n:
+                walk(c)
+
+    walk(root)
+    return out
 
 
 def sdk_status() -> dict:
@@ -80,6 +110,18 @@ class RealSenseAdapter:
                 d["warning"] = (f"Connected over USB {usb}. Depth + colour at field profiles needs USB 3: "
                                 "use a USB 3 data cable and port, or the usb2_fallback profile.")
             out.append(d)
+        if not out:
+            seen = usb_seen()
+            if any(d["product_id"] in ("0adb", "0adc", "0ab3") for d in seen):
+                raise AdapterError("A RealSense camera is on USB in firmware RECOVERY mode. Unplug it, wait 10 s and plug it in "
+                                   "again; if it stays in recovery it needs a firmware update with Intel's tools.")
+            if seen:
+                root = hasattr(os, "geteuid") and os.geteuid() == 0
+                raise AdapterError(
+                    f"{seen[0]['name'] or 'A RealSense camera'} is plugged in (macOS sees it on USB) but librealsense cannot open it"
+                    + (" even as root. Unplug it for 10 s, try the other port, then Scan again." if root else
+                       " as this user. On recent macOS it needs root: quit Field Station and start it with "
+                       "desktop/d435.sh (checks the camera, asks for your password once), then desktop/d435.sh run."))
         return out
 
     def open(self, device_id: str, config: dict) -> None:

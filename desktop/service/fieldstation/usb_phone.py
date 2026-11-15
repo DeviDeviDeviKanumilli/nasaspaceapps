@@ -12,6 +12,7 @@ Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Ap
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -30,13 +31,22 @@ class UsbPhoneError(RuntimeError):
     pass
 
 
+def _user_prefix() -> list[str]:
+    """When the service runs as root (needed for the D435 on some Macs: desktop/d435.sh run), run devicectl as the
+    user who started it: the iPhone's pairing/trust lives in that user's account, not root's."""
+    user = os.environ.get("SUDO_USER")
+    if hasattr(os, "geteuid") and os.geteuid() == 0 and user and user != "root":
+        return ["sudo", "-n", "-u", user]
+    return []
+
+
 def availability() -> dict:
     """Whether USB import can work on this computer, and why not if it can't."""
     if sys.platform != "darwin":
         return {"available": False, "reason": "USB import from the iPhone needs macOS (Apple's devicectl). Use AirDrop or Files, then Import."}
     if not shutil.which("xcrun"):
         return {"available": False, "reason": "xcrun not found: install Xcode to import over USB, or use AirDrop / Finder."}
-    r = subprocess.run(["xcrun", "-f", "devicectl"], capture_output=True, text=True)
+    r = subprocess.run([*_user_prefix(), "xcrun", "-f", "devicectl"], capture_output=True, text=True)
     if r.returncode != 0:
         return {"available": False, "reason": "devicectl not found: it ships with Xcode (not the Command Line Tools alone). "
                                               "Install Xcode, or drag the scan folder out of Finder (iPhone > Files > Field Scan)."}
@@ -44,10 +54,18 @@ def availability() -> dict:
 
 
 def _devicectl(args: list[str], timeout: float = 120) -> dict:
+    prefix = _user_prefix()
     with tempfile.TemporaryDirectory(prefix="fs-devicectl-") as td:
         out = Path(td) / "out.json"
+        if prefix:
+            # devicectl runs as the user: let it write its JSON and copied files into our (root-owned) temp folders
+            for d in [Path(td)] + [Path(args[i + 1]).parent for i, a in enumerate(args) if a == "--destination" and i + 1 < len(args)]:
+                try:
+                    os.chmod(d, 0o777)
+                except OSError:
+                    pass
         try:
-            r = subprocess.run(["xcrun", "devicectl", *args, "--json-output", str(out), "--quiet"],
+            r = subprocess.run([*prefix, "xcrun", "devicectl", *args, "--json-output", str(out), "--quiet"],
                                capture_output=True, text=True, timeout=timeout)
         except subprocess.TimeoutExpired:
             raise UsbPhoneError(f"devicectl timed out after {timeout:.0f} s")
