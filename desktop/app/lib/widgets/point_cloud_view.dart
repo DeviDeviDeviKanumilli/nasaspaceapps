@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 
 import '../service/models.dart';
 import '../viewer/orbit_camera.dart';
+import 'common.dart';
+import 'figure.dart';
 
 enum ColorMode { rgb, range, up }
 
@@ -236,68 +238,70 @@ class _PointCloudViewState extends State<PointCloudView> {
   @override
   Widget build(BuildContext context) {
     final ctl = widget.controller;
-    return LayoutBuilder(builder: (context, box) {
-      return Listener(
-        onPointerSignal: (e) {
-          if (e is PointerScrollEvent) {
-            ctl.zoom(math.exp(e.scrollDelta.dy * 0.0015));
-          }
-        },
-        onPointerDown: (e) {
-          _down = e.localPosition;
-          _moved = false;
-          _buttons = e.buttons;
-          ctl.beginInteraction();
-        },
-        onPointerMove: (e) {
-          if (_down == null) return;
-          if ((e.localPosition - _down!).distance > 3) _moved = true;
-          if (_buttons & kSecondaryMouseButton != 0 || _buttons & kMiddleMouseButton != 0 || _shift) {
-            ctl.pan(e.delta);
-          } else {
-            ctl.orbit(e.delta);
-          }
-        },
-        onPointerUp: (e) {
-          final wasClick = !_moved && _down != null;
-          final pos = e.localPosition;
-          _down = null;
-          ctl.endInteraction();
-          if (wasClick && widget.onPick != null && _buttons & kPrimaryMouseButton != 0) {
-            final i = ctl.pick(pos);
-            if (i != null) widget.onPick!(i);
-          }
-        },
-        onPointerCancel: (_) {
-          _down = null;
-          ctl.endInteraction();
-        },
-        onPointerPanZoomStart: (_) {
-          _lastScale = 1;
-          ctl.beginInteraction();
-        },
-        onPointerPanZoomUpdate: (e) {
-          if (e.scale != _lastScale) {
-            ctl.zoom(_lastScale / e.scale);
-            _lastScale = e.scale;
-          }
-          if (e.panDelta != Offset.zero) {
-            if (_shift) {
-              ctl.pan(e.panDelta);
-            } else {
-              ctl.orbit(-e.panDelta);
+    return LayoutBuilder(
+      builder: (context, box) {
+        return Listener(
+          onPointerSignal: (e) {
+            if (e is PointerScrollEvent) {
+              ctl.zoom(math.exp(e.scrollDelta.dy * 0.0015));
             }
-          }
-        },
-        onPointerPanZoomEnd: (_) => ctl.endInteraction(),
-        child: ClipRect(
-          child: CustomPaint(
-            size: Size(box.maxWidth, box.maxHeight),
-            painter: _CloudPainter(ctl, widget.accent, Theme.of(context).brightness == Brightness.dark),
+          },
+          onPointerDown: (e) {
+            _down = e.localPosition;
+            _moved = false;
+            _buttons = e.buttons;
+            ctl.beginInteraction();
+          },
+          onPointerMove: (e) {
+            if (_down == null) return;
+            if ((e.localPosition - _down!).distance > 3) _moved = true;
+            if (_buttons & kSecondaryMouseButton != 0 || _buttons & kMiddleMouseButton != 0 || _shift) {
+              ctl.pan(e.delta);
+            } else {
+              ctl.orbit(e.delta);
+            }
+          },
+          onPointerUp: (e) {
+            final wasClick = !_moved && _down != null;
+            final pos = e.localPosition;
+            _down = null;
+            ctl.endInteraction();
+            if (wasClick && widget.onPick != null && _buttons & kPrimaryMouseButton != 0) {
+              final i = ctl.pick(pos);
+              if (i != null) widget.onPick!(i);
+            }
+          },
+          onPointerCancel: (_) {
+            _down = null;
+            ctl.endInteraction();
+          },
+          onPointerPanZoomStart: (_) {
+            _lastScale = 1;
+            ctl.beginInteraction();
+          },
+          onPointerPanZoomUpdate: (e) {
+            if (e.scale != _lastScale) {
+              ctl.zoom(_lastScale / e.scale);
+              _lastScale = e.scale;
+            }
+            if (e.panDelta != Offset.zero) {
+              if (_shift) {
+                ctl.pan(e.panDelta);
+              } else {
+                ctl.orbit(-e.panDelta);
+              }
+            }
+          },
+          onPointerPanZoomEnd: (_) => ctl.endInteraction(),
+          child: ClipRect(
+            child: CustomPaint(
+              size: Size(box.maxWidth, box.maxHeight),
+              painter: _CloudPainter(ctl, widget.accent, false), // light plot, like the other figures
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
 
@@ -310,17 +314,9 @@ class _CloudPainter extends CustomPainter {
   Float32List _pos = Float32List(0);
   Int32List _col = Int32List(0);
 
-  static int _turbo(double t) {
-    t = t.clamp(0.0, 1.0);
-    final r = (34.61 + t * (1172.33 - t * (10793.56 - t * (33300.12 - t * (38394.49 - t * 14825.05))))).clamp(0, 255).toInt();
-    final g = (23.31 + t * (557.33 + t * (1225.33 - t * (3574.96 - t * (1073.77 + t * 707.56))))).clamp(0, 255).toInt();
-    final b = (27.2 + t * (3211.1 - t * (15327.97 - t * (27814 - t * (22569.18 - t * 6838.66))))).clamp(0, 255).toInt();
-    return 0xFF000000 | (r << 16) | (g << 8) | b;
-  }
-
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawRect(Offset.zero & size, Paint()..color = dark ? const Color(0xFF0E0F10) : const Color(0xFFF1F1EF));
+    canvas.drawRect(Offset.zero & size, Paint()..color = dark ? const Color(0xFF101315) : FsPalette.plot);
     final cloud = c.cloud;
     if (cloud == null) return;
     c.lastSize = size;
@@ -365,9 +361,9 @@ class _CloudPainter extends CustomPainter {
           color = 0xFF000000 | (rgb[i * 3] << 16) | (rgb[i * 3 + 1] << 8) | rgb[i * 3 + 2];
         case ColorMode.range:
           final x = xyz[i * 3], y = xyz[i * 3 + 1], z = xyz[i * 3 + 2];
-          color = _turbo((math.sqrt(x * x + y * y + z * z) - c.zMin) / zr);
+          color = viridisArgb((math.sqrt(x * x + y * y + z * z) - c.zMin) / zr);
         case ColorMode.up:
-          color = _turbo((disp[i * 3 + 1] - c.upMin) / ur);
+          color = viridisArgb((disp[i * 3 + 1] - c.upMin) / ur);
       }
       if (hasRoi && c.roiMask[i] == 1) {
         final cr = (color >> 16) & 0xFF, cg = (color >> 8) & 0xFF, cb = color & 0xFF;
@@ -387,12 +383,16 @@ class _CloudPainter extends CustomPainter {
       k++;
     }
     if (k > 0) {
-      final v = ui.Vertices.raw(VertexMode.triangles, Float32List.sublistView(_pos, 0, k * 6),
-          colors: Int32List.sublistView(_col, 0, k * 3));
+      final v = ui.Vertices.raw(
+        VertexMode.triangles,
+        Float32List.sublistView(_pos, 0, k * 6),
+        colors: Int32List.sublistView(_col, 0, k * 3),
+      );
       canvas.drawVertices(v, BlendMode.dst, Paint());
       v.dispose();
     }
     _drawGizmo(canvas, size, r, u);
+    _drawScaleBar(canvas, size, fp);
     if (c.roiCenter != null) _drawRoiCenter(canvas, size, r, u, f, eye, fp);
   }
 
@@ -403,34 +403,90 @@ class _CloudPainter extends CustomPainter {
     if (zf <= OrbitCamera.near) return;
     final p = Offset(size.width / 2 + fp * d.dot(r) / zf, size.height / 2 - fp * d.dot(u) / zf);
     final rad = fp * c.roiRadius / zf;
-    canvas.drawCircle(p, rad, Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5
-      ..color = accent);
+    canvas.drawCircle(
+      p,
+      rad,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5
+        ..color = accent,
+    );
     canvas.drawCircle(p, 3, Paint()..color = accent);
   }
 
+  /// Axis triad in ink, bottom left: which way the scan's own axes point in this view.
   void _drawGizmo(Canvas canvas, Size size, V3 r, V3 u) {
-    final origin = Offset(56, size.height - 56);
-    const len = 36.0;
-    final axes = [
-      ('+X', c.mapping.toDisplay(1, 0, 0), const Color(0xFFD9534F)),
-      ('+Y', c.mapping.toDisplay(0, 1, 0), const Color(0xFF4CAF50)),
-      ('+Z', c.mapping.toDisplay(0, 0, 1), const Color(0xFF3F7FD9)),
-    ];
-    canvas.drawCircle(origin, 48, Paint()..color = (dark ? Colors.black : Colors.white).withValues(alpha: 0.55));
-    for (final (label, v, col) in axes) {
-      final end = origin + Offset(v.dot(r) * len, -v.dot(u) * len);
-      canvas.drawLine(origin, end, Paint()
-        ..color = col
-        ..strokeWidth = 2.2);
+    final origin = Offset(54, size.height - 54);
+    const len = 30.0;
+    final axes = [('+X', c.mapping.toDisplay(1, 0, 0)), ('+Y', c.mapping.toDisplay(0, 1, 0)), ('+Z', c.mapping.toDisplay(0, 0, 1))];
+    final halo = Paint()
+      ..color = FsPalette.sheet
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round;
+    final line = Paint()
+      ..color = FsPalette.ink
+      ..strokeWidth = 1.5
+      ..strokeCap = StrokeCap.round;
+    for (final (label, v) in axes) {
+      final dir = Offset(v.dot(r), -v.dot(u));
+      final end = origin + dir * len;
+      canvas.drawLine(origin, end, halo);
+      canvas.drawLine(origin, end, line);
       final tp = TextPainter(
-        text: TextSpan(text: label, style: TextStyle(color: col, fontSize: 11, fontWeight: FontWeight.w700)),
+        text: TextSpan(
+          text: label,
+          style: const TextStyle(fontFamily: fsFont, color: FsPalette.ink, fontSize: 10.5, fontWeight: FontWeight.w600),
+        ),
         textDirection: TextDirection.ltr,
       )..layout();
-      final dir = end - origin;
-      final lp = end + (dir.distance > 0 ? dir / dir.distance * 9 : Offset.zero) - Offset(tp.width / 2, tp.height / 2);
-      tp.paint(canvas, lp);
+      final d = end - origin;
+      // An axis pointing at or away from the viewer has almost no length on screen; its label sits beside the origin.
+      final centre = d.distance > 6 ? end + d / d.distance * 11 : origin + const Offset(-14, -14);
+      final box = Rect.fromCenter(center: centre, width: tp.width + 6, height: tp.height + 2);
+      canvas.drawRect(box, Paint()..color = FsPalette.sheet.withValues(alpha: 0.9));
+      tp.paint(canvas, box.topLeft + const Offset(3, 1));
+    }
+  }
+
+  /// Scale bar, bottom right. Perspective makes it exact only at the orbit centre (the depth of the target).
+  void _drawScaleBar(Canvas canvas, Size size, double fp) {
+    if (fp <= 0 || c.cam.distance <= 0) return;
+    final mpp = c.cam.distance / fp; // metres per screen pixel at the orbit centre
+    final want = 120 * mpp;
+    final mag = math.pow(10, (math.log(want) / math.ln10).floor()).toDouble();
+    final nice = [5.0, 2.0, 1.0].map((k) => k * mag).firstWhere((v) => v <= want, orElse: () => mag);
+    final px = nice / mpp;
+    if (px < 30 || px > size.width * 0.5) return;
+    final right = size.width - 16, base = size.height - 30;
+    final left = right - px;
+    final bar = Rect.fromLTWH(left, base, px, 6);
+    canvas.drawRect(bar.inflate(10).translate(0, 6), Paint()..color = FsPalette.sheet.withValues(alpha: 0.8));
+    for (int i = 0; i < 4; i++) {
+      canvas.drawRect(Rect.fromLTWH(left + i * px / 4, base, px / 4, 6), Paint()..color = i.isEven ? FsPalette.ink : FsPalette.sheet);
+    }
+    canvas.drawRect(
+      bar,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..color = FsPalette.ink
+        ..strokeWidth = 1,
+    );
+    String fmt(double m) {
+      if (nice >= 1) return m.toStringAsFixed(m == m.roundToDouble() ? 0 : 1);
+      if (nice >= 0.01) return (m * 100).toStringAsFixed((m * 100) == (m * 100).roundToDouble() ? 0 : 1);
+      return (m * 1000).toStringAsFixed(0);
+    }
+
+    final unit = nice >= 1 ? 'm' : (nice >= 0.01 ? 'cm' : 'mm');
+    const st = TextStyle(fontFamily: fsFont, color: FsPalette.ink, fontSize: 10.5, fontFeatures: tnum);
+    for (final (frac, label) in [(0.0, '0'), (1.0, '${fmt(nice)} $unit')]) {
+      final tp = TextPainter(
+        text: TextSpan(text: label, style: st),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      final x = left + frac * px;
+      final dx = frac == 1.0 ? x - tp.width : (frac == 0.0 ? x : x - tp.width / 2);
+      tp.paint(canvas, Offset(dx, base + 9));
     }
   }
 

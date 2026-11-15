@@ -1,11 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import '../service/app_state.dart';
 import '../service/models.dart';
+import '../service/platform.dart';
 import '../widgets/common.dart';
 import '../widgets/honesty_banner.dart';
+
+enum _OriginFilter { all, real, iphone, synthetic, replay, unverified }
 
 class LibraryScreen extends StatefulWidget {
   const LibraryScreen({super.key});
@@ -23,6 +24,14 @@ class _LibraryScreenState extends State<LibraryScreen> {
   int _detailVersion = -1;
   bool _busy = false;
   String? _exportPath;
+  final _search = TextEditingController();
+  _OriginFilter _filter = _OriginFilter.all;
+
+  @override
+  void dispose() {
+    _search.dispose();
+    super.dispose();
+  }
 
   Future<void> _load(AppState s) async {
     _version = s.scansVersion;
@@ -50,19 +59,21 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 
   Future<void> _import(AppState s) async {
-    String? path;
-    try {
-      final r = await Process.run('osascript', [
-        '-e',
-        'POSIX path of (choose file with prompt "Import a scan bundle (.zip) or point cloud (.ply)" of type {"zip", "ply", "public.zip-archive"})',
-      ]);
-      if (r.exitCode == 0) path = (r.stdout as String).trim();
-    } catch (_) {}
+    final path = await Desktop.pickFile(
+      prompt: 'Import a scan bundle (.zip) or point cloud (.ply)',
+      extensions: const ['zip', 'ply'],
+      description: 'Scan bundles and point clouds',
+    );
     if (path == null || path.isEmpty) return;
     setState(() => _busy = true);
     try {
       final r = asMap(await s.api!.postJson('/api/import', {'path': path}));
-      if (mounted) showSnack(context, 'Imported ${originBadge(r['origin'] as String?)} scan ${shortId(r['scan_id'] as String?)} (checksums verified)');
+      if (mounted) {
+        showSnack(
+          context,
+          'Imported scan ${shortId(r['scan_id'] as String?)}, ${originLabel(r['origin'] as String?).toLowerCase()}. Checksums verified.',
+        );
+      }
       s.selectScan(r['scan_id'] as String?);
       s.bumpScans();
     } catch (e) {
@@ -97,6 +108,13 @@ class _LibraryScreenState extends State<LibraryScreen> {
     }
   }
 
+  String? _scanFolder(AppState s, String id) {
+    final home = s.health['home'] as String?;
+    if (home == null) return null;
+    final sep = home.contains('\\') ? '\\' : '/';
+    return '$home${sep}scans${sep}scan-$id';
+  }
+
   void _alert(String title, String msg) {
     showDialog<void>(
       context: context,
@@ -106,6 +124,25 @@ class _LibraryScreenState extends State<LibraryScreen> {
         actions: [TextButton(onPressed: () => Navigator.pop(c), child: const Text('OK'))],
       ),
     );
+  }
+
+  bool _matches(ScanSummary sc) {
+    final k = originKind(sc.origin);
+    final okOrigin = switch (_filter) {
+      _OriginFilter.all => true,
+      _OriginFilter.real => k == OriginKind.realD435,
+      _OriginFilter.iphone => k == OriginKind.iphone,
+      _OriginFilter.synthetic => k == OriginKind.synthetic,
+      _OriginFilter.replay => k == OriginKind.replay,
+      _OriginFilter.unverified => k == OriginKind.unknownImport || k == OriginKind.other,
+    };
+    if (!okOrigin) return false;
+    final q = _search.text.trim().toLowerCase();
+    if (q.isEmpty) return true;
+    return sc.title.toLowerCase().contains(q) ||
+        sc.id.toLowerCase().startsWith(q) ||
+        (sc.featureType ?? '').toLowerCase().contains(q) ||
+        (sc.sessionId ?? '').toLowerCase().startsWith(q);
   }
 
   @override
@@ -121,194 +158,527 @@ class _LibraryScreenState extends State<LibraryScreen> {
       _detailFor = sel;
       WidgetsBinding.instance.addPostFrameCallback((_) => _loadDetail(s, sel));
     }
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      PageHeader('Library',
-          subtitle: 'Scans stored on this Mac (${s.health['home'] ?? ''}). Private by default; nothing is uploaded.',
+    final shown = _scans.where(_matches).toList();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        PageHeader(
+          'Library',
+          subtitle: 'Scans stored on this computer. Private by default; nothing is uploaded.',
           actions: [
-            OutlinedButton.icon(
-              onPressed: _busy ? null : () => _import(s),
-              icon: const Icon(Icons.file_open_outlined),
-              label: const Text('Import .zip / .ply'),
-            ),
-          ]),
-      if (_error != null) Padding(padding: const EdgeInsets.symmetric(horizontal: 24), child: ErrorBox(_error!)),
-      Expanded(
-        child: _scans.isEmpty && !_loading
-            ? const EmptyState(
-                icon: Icons.folder_open_outlined,
-                title: 'No scans yet',
-                body: 'Record a scan in Capture, or import an iPhone scan bundle (.zip) sent by AirDrop or Files.')
-            : Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                SizedBox(
-                  width: 430,
-                  child: ListView.separated(
-                    padding: const EdgeInsets.fromLTRB(24, 0, 12, 24),
-                    itemCount: _scans.length,
-                    separatorBuilder: (_, _) => const SizedBox(height: 8),
-                    itemBuilder: (_, i) => _tile(s, t, _scans[i], _scans[i].id == sel),
-                  ),
+            SizedBox(
+              width: 230,
+              child: TextField(
+                controller: _search,
+                onChanged: (_) => setState(() {}),
+                decoration: const InputDecoration(
+                  labelText: 'Search',
+                  hintText: 'Title, feature or ID',
+                  prefixIcon: Icon(Icons.search, size: 18),
+                  prefixIconConstraints: BoxConstraints(minWidth: 36, minHeight: 20),
                 ),
-                const VerticalDivider(width: 1),
-                Expanded(child: sel == null ? const EmptyState(icon: Icons.touch_app_outlined, title: 'Select a scan') : _detailPane(s, t, sel)),
-              ]),
-      ),
-    ]);
-  }
-
-  Widget _tile(AppState s, ThemeData t, ScanSummary sc, bool selected) {
-    return Material(
-      color: selected ? t.colorScheme.primary.withValues(alpha: 0.08) : Colors.transparent,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-        side: BorderSide(color: selected ? t.colorScheme.primary : t.colorScheme.outlineVariant),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        onTap: () => s.selectScan(sc.id),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: SizedBox(
-                width: 120,
-                height: 68,
-                child: sc.hasThumbnail
-                    ? Image.network(s.api!.url('/api/scans/${sc.id}/file/thumbnail.jpg').toString(),
-                        fit: BoxFit.cover, errorBuilder: (_, e, _) => const ColoredBox(color: Colors.black12))
-                    : ColoredBox(color: t.colorScheme.surfaceContainerHighest, child: const Icon(Icons.scatter_plot_outlined)),
               ),
             ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(sc.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: t.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-                const SizedBox(height: 4),
-                Row(children: [OriginChip(sc.origin), const SizedBox(width: 8), StatusChip(sc.status)]),
-                const SizedBox(height: 4),
-                Text(
-                  '${(sc.capturedAt ?? '').replaceFirst('T', ' ').split('.').first} UTC\n${sc.frames ?? '—'} frames · ${sc.measurementCount} measurements',
-                  style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+            SizedBox(
+              width: 190,
+              child: DropdownButtonFormField<_OriginFilter>(
+                initialValue: _filter,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Origin'),
+                items: const [
+                  DropdownMenuItem(value: _OriginFilter.all, child: Text('All origins')),
+                  DropdownMenuItem(value: _OriginFilter.real, child: Text('Real sensor, D435')),
+                  DropdownMenuItem(value: _OriginFilter.iphone, child: Text('iPhone')),
+                  DropdownMenuItem(value: _OriginFilter.synthetic, child: Text('Synthetic')),
+                  DropdownMenuItem(value: _OriginFilter.replay, child: Text('Replay')),
+                  DropdownMenuItem(value: _OriginFilter.unverified, child: Text('Unverified import')),
+                ],
+                onChanged: (v) => setState(() => _filter = v ?? _OriginFilter.all),
+              ),
+            ),
+            OutlinedButton(onPressed: _busy ? null : () => _import(s), child: const Text('Import .zip or .ply…')),
+          ],
+        ),
+        if (_error != null) Padding(padding: const EdgeInsets.fromLTRB(24, 0, 24, 12), child: ErrorBox(_error!)),
+        Expanded(
+          child: _scans.isEmpty && !_loading
+              ? EmptyState(
+                  title: 'No scans yet',
+                  body: 'Record a scan in Capture, or import a scan bundle (.zip) exported from the iPhone app.',
+                  action: FilledButton(onPressed: () => s.go(Section.capture), child: const Text('Go to Capture')),
+                )
+              : Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(child: Panel(child: _table(s, t, shown, sel))),
+                      const SizedBox(width: 20),
+                      SizedBox(
+                        width: 470,
+                        child: sel == null
+                            ? Panel(
+                                child: EmptyState(title: 'Select a scan', body: 'Its files, checksums and history appear here.'),
+                              )
+                            : _detailPane(s, t, sel),
+                      ),
+                    ],
+                  ),
                 ),
-                if (sc.status == 'incomplete' && sc.statusReason != null)
-                  Text(sc.statusReason!, maxLines: 2, overflow: TextOverflow.ellipsis, style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.error)),
-              ]),
-            ),
-            Tooltip(
-              message: 'Include in repeatability comparison',
-              child: Checkbox(value: s.repeatSelection.contains(sc.id), onChanged: (_) => s.toggleRepeat(sc.id)),
-            ),
-          ]),
+        ),
+      ],
+    );
+  }
+
+  // ------------------------------------------------------------------ table
+
+  static const _wCheck = 70.0, _wThumb = 74.0, _wOrigin = 126.0, _wDate = 128.0, _wNum = 52.0;
+
+  Widget _table(AppState s, ThemeData t, List<ScanSummary> shown, String? sel) {
+    final head = t.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600, color: FsPalette.ink);
+    final groups = <String, List<ScanSummary>>{};
+    for (final sc in shown) {
+      groups.putIfAbsent(sc.sessionId ?? '', () => []).add(sc);
+    }
+    final compare = s.repeatSelection.length;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(8, 9, 14, 9),
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: FsPalette.ink)),
+          ),
+          child: Row(
+            children: [
+              SizedBox(
+                width: _wCheck,
+                child: Tooltip(
+                  message: 'Tick scans to compare in Analysis, Repeatability',
+                  child: Text('Compare', textAlign: TextAlign.center, style: head),
+                ),
+              ),
+              const SizedBox(width: _wThumb),
+              Expanded(child: Text('Scan', style: head)),
+              SizedBox(
+                width: _wOrigin,
+                child: Text('Origin', style: head),
+              ),
+              SizedBox(
+                width: _wDate,
+                child: Text('Captured, UTC', style: head),
+              ),
+              SizedBox(
+                width: _wNum,
+                child: Text('Frames', textAlign: TextAlign.right, style: head),
+              ),
+              SizedBox(
+                width: _wNum + 8,
+                child: Text('Results', textAlign: TextAlign.right, style: head),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: shown.isEmpty
+              ? Center(
+                  child: Text('No scans match.', style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.inkMuted)),
+                )
+              : ListView(
+                  children: [
+                    for (final e in groups.entries) ...[
+                      Container(
+                        color: FsPalette.sheetAlt,
+                        padding: const EdgeInsets.fromLTRB(14, 6, 14, 6),
+                        child: Text(
+                          e.key.isEmpty
+                              ? 'No session, ${e.value.length} scan${e.value.length == 1 ? '' : 's'}'
+                              : 'Session ${shortId(e.key)}, ${e.value.length} scan${e.value.length == 1 ? '' : 's'}, '
+                                    '${(e.value.first.capturedAt ?? '').split('T').first}',
+                          style: t.textTheme.labelMedium?.copyWith(color: FsPalette.inkMuted),
+                        ),
+                      ),
+                      for (final sc in e.value) _row(s, t, sc, sc.id == sel),
+                    ],
+                  ],
+                ),
+        ),
+        Container(
+          padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+          decoration: const BoxDecoration(
+            border: Border(top: BorderSide(color: FsPalette.rule)),
+          ),
+          child: Row(
+            children: [
+              Text('${shown.length} of ${_scans.length} scans', style: t.textTheme.bodySmall),
+              const Spacer(),
+              if (compare > 0) ...[
+                Text('$compare ticked to compare', style: t.textTheme.bodySmall),
+                const SizedBox(width: 8),
+                TextButton(
+                  onPressed: compare < 2 ? null : () => s.go(Section.analysis),
+                  style: TextButton.styleFrom(minimumSize: const Size(0, 28), padding: const EdgeInsets.symmetric(horizontal: 8)),
+                  child: const Text('Compare in Analysis'),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _row(AppState s, ThemeData t, ScanSummary sc, bool selected) {
+    final bad = sc.status != 'complete';
+    return Material(
+      color: selected ? FsPalette.surveyTint : FsPalette.sheet,
+      child: InkWell(
+        onTap: () => s.selectScan(sc.id),
+        hoverColor: FsPalette.paper,
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(8, 7, 14, 7),
+          decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: FsPalette.ruleLight)),
+          ),
+          child: Row(
+            children: [
+              SizedBox(
+                width: _wCheck,
+                child: Checkbox(
+                  value: s.repeatSelection.contains(sc.id),
+                  onChanged: (_) => s.toggleRepeat(sc.id),
+                  visualDensity: VisualDensity.compact,
+                  semanticLabel: 'Compare ${sc.title}',
+                ),
+              ),
+              SizedBox(
+                width: _wThumb,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    width: 64,
+                    height: 36,
+                    decoration: BoxDecoration(border: Border.all(color: FsPalette.rule)),
+                    child: sc.hasThumbnail
+                        ? Image.network(
+                            s.api!.url('/api/scans/${sc.id}/file/thumbnail.jpg').toString(),
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, e, _) => const ColoredBox(color: FsPalette.sheetAlt),
+                          )
+                        : const ColoredBox(color: FsPalette.sheetAlt),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      sc.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: t.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600, color: selected ? FsPalette.surveyDeep : null),
+                    ),
+                    Text(
+                      [
+                        shortId(sc.id),
+                        if (sc.featureType != null) prettyName(sc.featureType!).toLowerCase(),
+                        if (bad) sc.status,
+                      ].join(', '),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: t.textTheme.bodySmall?.copyWith(
+                        color: bad ? FsPalette.record : null,
+                        fontWeight: bad ? FontWeight.w600 : null,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: _wOrigin,
+                child: Align(alignment: Alignment.centerLeft, child: OriginTag(sc.origin)),
+              ),
+              SizedBox(
+                width: _wDate,
+                child: Text(
+                  utcText(sc.capturedAt).replaceFirst(RegExp(r':\d\d$'), ''),
+                  style: t.textTheme.bodyMedium?.copyWith(fontSize: 13),
+                ),
+              ),
+              SizedBox(
+                width: _wNum,
+                child: Text('${sc.frames ?? '—'}', textAlign: TextAlign.right, style: t.textTheme.bodyMedium?.copyWith(fontSize: 13)),
+              ),
+              SizedBox(
+                width: _wNum + 8,
+                child: Text('${sc.measurementCount}', textAlign: TextAlign.right, style: t.textTheme.bodyMedium?.copyWith(fontSize: 13)),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
+  // ------------------------------------------------------------------ detail
+
   Widget _detailPane(AppState s, ThemeData t, String id) {
-    if (_detail['error'] != null) return Padding(padding: const EdgeInsets.all(24), child: ErrorBox('${_detail['error']}'));
+    if (_detail['error'] != null) return Align(alignment: Alignment.topCenter, child: ErrorBox('${_detail['error']}'));
     final man = asMap(_detail['manifest']);
-    if (man.isEmpty || man['scan_id'] != id) return const Center(child: CircularProgressIndicator());
+    if (man.isEmpty || man['scan_id'] != id) {
+      return const Panel(
+        child: Center(child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))),
+      );
+    }
     final obs = asMap(man['observation']);
     final dev = asMap(man['device']);
     final cap = asMap(man['capture']);
     final pub = asMap(man['publication']);
+    final cf = asMap(man['coordinate_frame']);
+    final loc = asMap(man['location']);
     final files = asList(man['files']).map(asMap).toList();
     final log = asList(_detail['log']).map(asMap).toList();
     final draft = _detail['catalog_draft'];
     final captured = man['captured_at_utc'];
     final start = captured is Map ? captured['start'] : captured;
-    final isD435Like = _detail['depth_image'] != null;
-    return ListView(padding: const EdgeInsets.fromLTRB(20, 0, 24, 32), children: [
-      HonestyBanner(origin: man['origin'] as String?, isRealSensor: man['is_real_sensor'] as bool?, replayOf: asMap(man['replay_of'])['scan_id'] as String?),
-      const SizedBox(height: 12),
-      Wrap(spacing: 8, runSpacing: 8, children: [
-        FilledButton.icon(onPressed: () => s.go(Section.viewer, scanId: id), icon: const Icon(Icons.view_in_ar), label: const Text('View 3D')),
-        OutlinedButton.icon(onPressed: () => s.go(Section.analysis, scanId: id), icon: const Icon(Icons.straighten), label: const Text('Analyse')),
-        OutlinedButton.icon(onPressed: _busy ? null : () => _export(s, id), icon: const Icon(Icons.archive_outlined), label: const Text('Export zip')),
-        OutlinedButton.icon(onPressed: () => _editDialog(s, id, obs, man), icon: const Icon(Icons.edit_outlined), label: const Text('Edit notes')),
-        if (isD435Like)
-          OutlinedButton.icon(onPressed: _busy ? null : () => _reprocess(s, id), icon: const Icon(Icons.refresh), label: const Text('Reprocess')),
-        OutlinedButton.icon(onPressed: () => _draftDialog(s, id, obs, draft), icon: const Icon(Icons.public_outlined), label: const Text('Catalog draft')),
-      ]),
-      if (_exportPath != null && _exportPath!.contains(id)) ...[
-        const SizedBox(height: 10),
-        Row(children: [
-          Expanded(child: SelectableText('Exported: $_exportPath', style: t.textTheme.bodySmall)),
-          TextButton(onPressed: () => Process.run('open', ['-R', _exportPath!]), child: const Text('Reveal in Finder')),
-        ]),
-      ],
-      const SizedBox(height: 16),
-      SectionCard(
-        title: asStr(obs['title']).isEmpty ? 'Untitled scan' : asStr(obs['title']),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          KV('Scan ID', asStr(man['scan_id'])),
-          KV('Session ID', asStr(man['session_id'])),
-          KV('Status', '${man['status']}${man['status_reason'] != null ? ' — ${man['status_reason']}' : ''}'),
-          KV('Origin', '${originBadge(man['origin'] as String?)} (${man['origin']})'),
-          KV('Device', [dev['manufacturer'], dev['model'], if (dev['firmware'] != null) 'fw ${dev['firmware']}', if (dev['usb_type'] != null) 'USB ${dev['usb_type']}']
-              .whereType<Object>()
-              .join(' · ')),
-          KV('Captured (UTC)', asStr(start, '—')),
-          KV('Frames', '${cap['frames_recorded'] ?? cap['keyframes'] ?? '—'} (profile ${cap['profile'] ?? '—'})'),
-          KV('Coordinate frame', '${asMap(man['coordinate_frame'])['name']} — ${asMap(man['coordinate_frame'])['axes'] ?? asMap(man['coordinate_frame'])['up'] ?? ''}'),
-          KV('Feature type', '${obs['feature_type'] ?? '—'} (user annotation)'),
-          if (asStr(obs['notes']).isNotEmpty) KV('Notes', asStr(obs['notes'])),
-          for (final c in asList(obs['claims']).map(asMap)) KV('Claim (${c['kind']})', asStr(c['text'])),
-          KV('Field site / candidate', '${man['field_site_id'] ?? '—'} / ${man['candidate_id'] ?? '—'} (references only)'),
-          KV('Location', '${asMap(man['location'])['sharing'] ?? 'hidden'} — ${asMap(man['location'])['note'] ?? ''}'),
-          KV('Publication', '${pub['status']} · license ${pub['license'] ?? 'none'} · consent ${pub['consent_obtained'] == true ? 'yes' : 'no'}'),
-        ]),
-      ),
-      const SizedBox(height: 16),
-      SectionCard(
-        title: 'Limitations',
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          for (final l in asList(man['limitations'])) Padding(padding: const EdgeInsets.symmetric(vertical: 2), child: Text('• $l', style: t.textTheme.bodySmall)),
-        ]),
-      ),
-      const SizedBox(height: 16),
-      SectionCard(
-        title: 'Files (${files.length}) — SHA-256 recorded for each',
-        child: Column(children: [
-          for (final f in files.take(60))
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-              child: Row(children: [
-                SizedBox(
-                  width: 62,
-                  child: Text(asStr(f['kind'], '—'),
-                      style: t.textTheme.labelSmall?.copyWith(color: f['kind'] == 'raw' ? t.colorScheme.primary : t.colorScheme.onSurfaceVariant)),
-                ),
-                Expanded(child: Text(asStr(f['path']), style: t.textTheme.bodySmall, overflow: TextOverflow.ellipsis)),
-                SizedBox(width: 120, child: Text(asStr(f['role']), style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant), overflow: TextOverflow.ellipsis)),
-                SizedBox(width: 80, child: Text(_bytes(asInt(f['bytes'])), textAlign: TextAlign.right, style: t.textTheme.bodySmall)),
-                const SizedBox(width: 10),
-                Text(asStr(f['sha256']).length >= 12 ? asStr(f['sha256']).substring(0, 12) : '—',
-                    style: t.textTheme.bodySmall?.copyWith(fontFamily: 'Menlo', color: t.colorScheme.onSurfaceVariant)),
-              ]),
-            ),
-          if (files.length > 60) Text('… ${files.length - 60} more (see scan.json)', style: t.textTheme.bodySmall),
-        ]),
-      ),
-      const SizedBox(height: 16),
-      SectionCard(
-        title: 'Log (latest ${log.length > 30 ? 30 : log.length})',
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          for (final e in log.reversed.take(30))
-            Text('${asStr(e['t_utc']).split('.').first}  ${e['event']}  ${e.entries.where((x) => x.key != 't_utc' && x.key != 'event').map((x) => '${x.key}=${x.value}').join(' ')}',
-                style: t.textTheme.bodySmall?.copyWith(fontFamily: 'Menlo', fontSize: 11), maxLines: 2, overflow: TextOverflow.ellipsis),
-        ]),
-      ),
-    ]);
-  }
+    final hasDepth = _detail['depth_image'] != null;
+    final folder = _scanFolder(s, id);
+    final limitations = asList(man['limitations']).map((e) => '$e').toList();
+    final small = t.textTheme.bodySmall;
+    const lw = 112.0;
 
-  static String _bytes(int? b) {
-    if (b == null) return '—';
-    if (b > 1e6) return '${(b / 1e6).toStringAsFixed(1)} MB';
-    if (b > 1e3) return '${(b / 1e3).toStringAsFixed(0)} kB';
-    return '$b B';
+    return ListView(
+      children: [
+        Panel(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              PanelPart(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(asStr(obs['title']).isEmpty ? 'Untitled scan' : asStr(obs['title']), style: t.textTheme.titleLarge),
+                              const SizedBox(height: 2),
+                              SelectableText('Scan ${man['scan_id']}', style: small),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        OriginTag(man['origin'] as String?),
+                      ],
+                    ),
+                    if (HonestyBanner.messageFor(man['origin'] as String?) != null) ...[
+                      const SizedBox(height: 12),
+                      HonestyBanner(
+                        origin: man['origin'] as String?,
+                        isRealSensor: man['is_real_sensor'] as bool?,
+                        replayOf: asMap(man['replay_of'])['scan_id'] as String?,
+                        compact: true,
+                        boxed: true,
+                      ),
+                    ],
+                    const SizedBox(height: 14),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        FilledButton(
+                          onPressed: () => s.go(Section.viewer, scanId: id),
+                          child: const Text('Open in Viewer'),
+                        ),
+                        OutlinedButton(
+                          onPressed: () => s.go(Section.analysis, scanId: id),
+                          child: const Text('Analyse'),
+                        ),
+                        OutlinedButton(onPressed: _busy ? null : () => _export(s, id), child: const Text('Export .zip')),
+                        PopupMenuButton<String>(
+                          tooltip: 'More actions',
+                          position: PopupMenuPosition.under,
+                          onSelected: (v) {
+                            switch (v) {
+                              case 'edit':
+                                _editDialog(s, id, obs, man);
+                              case 'reprocess':
+                                _reprocess(s, id);
+                              case 'draft':
+                                _draftDialog(s, id, obs, draft);
+                              case 'folder':
+                                if (folder != null) Desktop.reveal(folder);
+                            }
+                          },
+                          itemBuilder: (_) => [
+                            const PopupMenuItem(value: 'edit', child: Text('Edit title and notes')),
+                            if (hasDepth)
+                              PopupMenuItem(value: 'reprocess', enabled: !_busy, child: const Text('Reprocess from raw frames')),
+                            const PopupMenuItem(value: 'draft', child: Text('Prepare catalog draft')),
+                            if (folder != null) PopupMenuItem(value: 'folder', child: Text('Show folder in ${Desktop.fileManager}')),
+                          ],
+                          child: IgnorePointer(
+                            child: OutlinedButton(
+                              onPressed: () {},
+                              child: const Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [Text('More'), SizedBox(width: 2), Icon(Icons.arrow_drop_down, size: 20)],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (_exportPath != null && _exportPath!.contains(id)) ...[
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(child: SelectableText('Exported to $_exportPath', style: small)),
+                          TextButton(onPressed: () => Desktop.reveal(_exportPath!), child: Text('Show in ${Desktop.fileManager}')),
+                        ],
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              PanelPart(
+                ruled: true,
+                title: 'Record',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    KV('Session', asStr(man['session_id'], '—'), labelWidth: lw),
+                    KV(
+                      'Status',
+                      '${man['status']}${man['status_reason'] != null ? ', ${asStr(man['status_reason']).replaceAll('_', ' ')}' : ''}',
+                      labelWidth: lw,
+                      valueStyle: man['status'] == 'complete'
+                          ? null
+                          : t.textTheme.bodyMedium?.copyWith(fontSize: 13.5, color: FsPalette.record, fontWeight: FontWeight.w600),
+                    ),
+                    KV('Origin', '${originLabel(man['origin'] as String?)} (${man['origin']})', labelWidth: lw),
+                    KV(
+                      'Device',
+                      [
+                        dev['manufacturer'],
+                        dev['model'],
+                        if (dev['firmware'] != null) 'firmware ${dev['firmware']}',
+                        if (dev['usb_type'] != null) 'USB ${dev['usb_type']}',
+                      ].whereType<Object>().join(', '),
+                      labelWidth: lw,
+                    ),
+                    KV('Captured, UTC', utcText(start), labelWidth: lw),
+                    KV(
+                      'Frames',
+                      '${cap['frames_recorded'] ?? cap['keyframes'] ?? '—'}${cap['profile'] != null ? ', profile ${cap['profile']}' : ''}',
+                      labelWidth: lw,
+                    ),
+                    KV('Coordinates', [cf['name'], cf['axes'] ?? cf['up']].whereType<Object>().join(', '), labelWidth: lw),
+                    KV(
+                      'Feature type',
+                      '${obs['feature_type'] == null ? '—' : prettyName(asStr(obs['feature_type']))}, your annotation',
+                      labelWidth: lw,
+                    ),
+                    if (asStr(obs['notes']).isNotEmpty) KV('Notes', asStr(obs['notes']), labelWidth: lw),
+                    for (final c in asList(obs['claims']).map(asMap))
+                      KV('Claim, ${asStr(c['kind']).replaceAll('_', ' ')}', asStr(c['text']), labelWidth: lw),
+                    KV(
+                      'Site, candidate',
+                      '${man['field_site_id'] ?? '—'}, ${man['candidate_id'] ?? '—'} (references only)',
+                      labelWidth: lw,
+                    ),
+                    KV('Location', '${loc['sharing'] ?? 'hidden'}${loc['note'] != null ? ', ${loc['note']}' : ''}', labelWidth: lw),
+                    KV(
+                      'Publication',
+                      '${asStr(pub['status']).replaceAll('_', ' ')}, licence ${pub['license'] ?? 'none'}, consent ${pub['consent_obtained'] == true ? 'given' : 'not given'}',
+                      labelWidth: lw,
+                    ),
+                  ],
+                ),
+              ),
+              if (limitations.isNotEmpty)
+                PanelPart(
+                  ruled: true,
+                  title: 'Limitations',
+                  subtitle: 'Written into scan.json; they travel with every export.',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (final l in limitations)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('–  ', style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.inkMuted, fontSize: 13)),
+                              Expanded(child: Text(l, style: t.textTheme.bodyMedium?.copyWith(fontSize: 13))),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              PanelPart(
+                ruled: true,
+                title: 'Files',
+                subtitle:
+                    '${files.length} files, ${bytesText(files.fold<int>(0, (a, f) => a + (asInt(f['bytes']) ?? 0)))} in all. A SHA-256 hash is recorded for each.',
+                child: ResultTable(
+                  fontSize: 12.5,
+                  columns: const [
+                    RCol('File', flex: 6),
+                    RCol('Kind', flex: 2),
+                    RCol('Size', numeric: true, flex: 2),
+                    RCol('SHA-256', flex: 3),
+                  ],
+                  rows: [
+                    for (final f in files.take(40))
+                      [
+                        Tooltip(
+                          message: asStr(f['role']).isEmpty ? asStr(f['path']) : '${f['path']}: ${f['role']}',
+                          child: Text(
+                            asStr(f['path']),
+                            overflow: TextOverflow.ellipsis,
+                            style: t.textTheme.bodyMedium?.copyWith(fontSize: 12.5),
+                          ),
+                        ),
+                        asStr(f['kind'], '—'),
+                        bytesText(asInt(f['bytes'])),
+                        asStr(f['sha256']).length >= 10 ? '${asStr(f['sha256']).substring(0, 10)}…' : '—',
+                      ],
+                  ],
+                  footnotes: [
+                    if (files.length > 40) '${files.length - 40} more files are listed in scan.json.',
+                    'Hashes are shortened here; scan.json holds the full values.',
+                  ],
+                ),
+              ),
+              if (log.isNotEmpty)
+                PanelPart(
+                  ruled: true,
+                  title: 'Log',
+                  subtitle: 'Latest ${log.length > 30 ? 30 : log.length} events, newest first.',
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    color: FsPalette.sheetAlt,
+                    child: SelectableText(
+                      [
+                        for (final e in log.reversed.take(30))
+                          '${utcText(e['t_utc'])}  ${e['event']}  ${e.entries.where((x) => x.key != 't_utc' && x.key != 'event').map((x) => '${x.key}=${x.value}').join(' ')}',
+                      ].join('\n'),
+                      style: mono(t.textTheme.bodySmall, size: 11)?.copyWith(color: FsPalette.ink),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Future<void> _editDialog(AppState s, String id, Map<String, dynamic> obs, Map<String, dynamic> man) async {
@@ -324,49 +694,82 @@ class _LibraryScreenState extends State<LibraryScreen> {
       context: context,
       builder: (c) => StatefulBuilder(
         builder: (c, set) => AlertDialog(
-          title: const Text('Edit observation'),
+          title: const Text('Edit title and notes'),
           content: SizedBox(
-            width: 520,
+            width: 540,
             child: SingleChildScrollView(
-              child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                TextField(controller: title, decoration: const InputDecoration(labelText: 'Title')),
-                const SizedBox(height: 10),
-                DropdownButtonFormField<String>(
-                  initialValue: feature,
-                  items: [for (final f in featureTypes) DropdownMenuItem(value: f, child: Text(prettyName(f)))],
-                  onChanged: (v) => set(() => feature = v ?? 'other'),
-                  decoration: const InputDecoration(labelText: 'Feature type (annotation, not automatic classification)'),
-                ),
-                const SizedBox(height: 10),
-                TextField(controller: notes, maxLines: 3, decoration: const InputDecoration(labelText: 'Notes')),
-                const SizedBox(height: 10),
-                TextField(controller: site, decoration: const InputDecoration(labelText: 'Field site ID (website reference)')),
-                const SizedBox(height: 10),
-                TextField(controller: cand, decoration: const InputDecoration(labelText: 'Website candidate ID (reference only)')),
-                const SizedBox(height: 16),
-                Text('Claims', style: Theme.of(c).textTheme.titleSmall),
-                for (final cl in claims) Text('• [${cl['kind']}] ${cl['text']}'),
-                Row(children: [
-                  Expanded(child: TextField(controller: claim, decoration: const InputDecoration(labelText: 'Add a claim'))),
-                  const SizedBox(width: 8),
-                  DropdownButton<String>(
-                    value: claimKind,
-                    items: const [
-                      DropdownMenuItem(value: 'observed', child: Text('observed')),
-                      DropdownMenuItem(value: 'interpreted', child: Text('interpreted')),
-                      DropdownMenuItem(value: 'user_reported', child: Text('user reported')),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 6),
+                  TextField(
+                    controller: title,
+                    decoration: const InputDecoration(labelText: 'Title'),
+                  ),
+                  const SizedBox(height: 14),
+                  DropdownButtonFormField<String>(
+                    initialValue: feature,
+                    items: [for (final f in featureTypes) DropdownMenuItem(value: f, child: Text(prettyName(f)))],
+                    onChanged: (v) => set(() => feature = v ?? 'other'),
+                    decoration: const InputDecoration(labelText: 'Feature type, your annotation (not automatic classification)'),
+                  ),
+                  const SizedBox(height: 14),
+                  TextField(
+                    controller: notes,
+                    maxLines: 3,
+                    decoration: const InputDecoration(labelText: 'Notes'),
+                  ),
+                  const SizedBox(height: 14),
+                  TextField(
+                    controller: site,
+                    decoration: const InputDecoration(labelText: 'Field site ID, website reference'),
+                  ),
+                  const SizedBox(height: 14),
+                  TextField(
+                    controller: cand,
+                    decoration: const InputDecoration(labelText: 'Website candidate ID, reference only'),
+                  ),
+                  const SizedBox(height: 18),
+                  Text('Claims', style: Theme.of(c).textTheme.titleSmall),
+                  const SizedBox(height: 4),
+                  if (claims.isEmpty) Text('None.', style: Theme.of(c).textTheme.bodySmall),
+                  for (final cl in claims) Text('${asStr(cl['kind']).replaceAll('_', ' ')}: ${cl['text']}'),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: claim,
+                          decoration: const InputDecoration(labelText: 'Add a claim'),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      SizedBox(
+                        width: 150,
+                        child: DropdownButtonFormField<String>(
+                          initialValue: claimKind,
+                          decoration: const InputDecoration(labelText: 'Kind'),
+                          items: const [
+                            DropdownMenuItem(value: 'observed', child: Text('Observed')),
+                            DropdownMenuItem(value: 'interpreted', child: Text('Interpreted')),
+                            DropdownMenuItem(value: 'user_reported', child: Text('User reported')),
+                          ],
+                          onChanged: (v) => set(() => claimKind = v ?? 'observed'),
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      TextButton(
+                        onPressed: () => set(() {
+                          if (claim.text.trim().isNotEmpty) claims.add({'text': claim.text.trim(), 'kind': claimKind});
+                          claim.clear();
+                        }),
+                        child: const Text('Add'),
+                      ),
                     ],
-                    onChanged: (v) => set(() => claimKind = v ?? 'observed'),
                   ),
-                  IconButton(
-                    onPressed: () => set(() {
-                      if (claim.text.trim().isNotEmpty) claims.add({'text': claim.text.trim(), 'kind': claimKind});
-                      claim.clear();
-                    }),
-                    icon: const Icon(Icons.add),
-                  ),
-                ]),
-              ]),
+                ],
+              ),
             ),
           ),
           actions: [
@@ -387,6 +790,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
           'claims': claims,
         });
         s.bumpScans();
+        if (mounted) showSnack(context, 'Saved.');
       } catch (e) {
         if (mounted) showSnack(context, errText(e), error: true);
       }
@@ -407,44 +811,54 @@ class _LibraryScreenState extends State<LibraryScreen> {
         builder: (c, set) => AlertDialog(
           title: const Text('Prepare catalog draft'),
           content: SizedBox(
-            width: 520,
-            child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(border: Border.all(color: warnColor(c)), borderRadius: BorderRadius.circular(6)),
-                child: Text('Local draft only — this build has no catalog service; nothing is uploaded. Location stays hidden.',
-                    style: TextStyle(color: warnColor(c), fontWeight: FontWeight.w600)),
-              ),
-              const SizedBox(height: 12),
-              DropdownButtonFormField<String>(
-                initialValue: licenses.contains(license) ? license : null,
-                items: [for (final l in licenses) DropdownMenuItem(value: l, child: Text(l))],
-                onChanged: (v) => set(() => license = v),
-                decoration: const InputDecoration(labelText: 'License (your explicit choice)'),
-              ),
-              const SizedBox(height: 10),
-              TextField(controller: attribution, decoration: const InputDecoration(labelText: 'Attribution (pseudonym is fine)')),
-              CheckboxListTile(
-                contentPadding: EdgeInsets.zero,
-                value: approval,
-                onChanged: (v) => set(() => approval = v ?? false),
-                title: const Text('I am the author, or have the author\'s approval'),
-              ),
-              CheckboxListTile(
-                contentPadding: EdgeInsets.zero,
-                value: consent,
-                onChanged: (v) => set(() => consent = v ?? false),
-                title: const Text('I consent to this scan being shared once a catalog exists'),
-              ),
-              CheckboxListTile(
-                contentPadding: EdgeInsets.zero,
-                tristate: true,
-                value: people,
-                onChanged: (v) => set(() => people = v),
-                title: const Text('People, faces or private property are visible'),
-                subtitle: const Text('Unchecked = no, dash = not reviewed. Scans showing people must not be published.'),
-              ),
-            ]),
+            width: 540,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Hint(
+                  'Saved on this computer only. This build has no catalog service, so nothing is uploaded. Location stays hidden.',
+                  color: FsPalette.caution,
+                  icon: Icons.warning_amber_rounded,
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<String>(
+                  initialValue: licenses.contains(license) ? license : null,
+                  items: [for (final l in licenses) DropdownMenuItem(value: l, child: Text(l))],
+                  onChanged: (v) => set(() => license = v),
+                  decoration: const InputDecoration(labelText: 'Licence, your explicit choice'),
+                ),
+                const SizedBox(height: 14),
+                TextField(
+                  controller: attribution,
+                  decoration: const InputDecoration(labelText: 'Attribution, a pseudonym is fine'),
+                ),
+                const SizedBox(height: 6),
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: approval,
+                  onChanged: (v) => set(() => approval = v ?? false),
+                  title: const Text('I am the author, or have the author\'s approval'),
+                ),
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  value: consent,
+                  onChanged: (v) => set(() => consent = v ?? false),
+                  title: const Text('I consent to this scan being shared once a catalog exists'),
+                ),
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  tristate: true,
+                  value: people,
+                  onChanged: (v) => set(() => people = v),
+                  title: const Text('People, faces or private property are visible'),
+                  subtitle: const Text('Unticked means no; a dash means not reviewed. Scans that show people must not be published.'),
+                ),
+              ],
+            ),
           ),
           actions: [
             TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('Cancel')),
@@ -464,7 +878,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
           'people_or_private_property_visible': people,
         });
         s.bumpScans();
-        if (mounted) showSnack(context, 'Local catalog draft saved (status draft_local). Nothing was uploaded.');
+        if (mounted) showSnack(context, 'Local catalog draft saved. Nothing was uploaded.');
       } catch (e) {
         if (mounted) showSnack(context, errText(e), error: true);
       }

@@ -56,6 +56,15 @@ def test_full_flow_over_http(client, tmp_path):
     assert dist["measurements"][0]["unit"] == "m"
     sph = c.post(f"/api/scans/{sid}/analyze", json={"kind": "roughness", "roi": {"kind": "sphere", "center": p["point_m"], "radius_m": 0.1}}).json()
     assert sph["saved"]
+    # depth figure: viridis over the scan's own percentile range, range reported in headers
+    import io
+
+    from PIL import Image
+    fig = c.get(f"/api/scans/{sid}/depth_figure.png")
+    assert fig.status_code == 200 and fig.headers["content-type"] == "image/png"
+    lo, hi = float(fig.headers["x-range-lo-m"]), float(fig.headers["x-range-hi-m"])
+    assert 0.3 < lo < hi < 3.0
+    assert Image.open(io.BytesIO(fig.content)).size == (848, 480)
     # path traversal on the file endpoint
     assert c.get(f"/api/scans/{sid}/file/../../desktop_id").status_code == 404
     # repeatability over two scans of the same session
@@ -78,3 +87,13 @@ def test_scope_no_analog_discovery_in_desktop():
         for b in banned:
             assert f"import {b}" not in code and f"def {b}" not in code, f"{py.name}: {b}"
         assert "from engine" not in code and "import engine" not in code
+
+
+
+def test_depth_colormap_is_viridis_with_white_holes():
+    """Near end is viridis purple, far end yellow, pixels without depth are white."""
+    from fieldstation.bundle import depth_colormap, viridis
+    rgb = depth_colormap(np.array([[0.2, 4.0, 0.0]]))
+    assert tuple(rgb[0, 0]) == tuple((viridis(np.array(0.0)) * 255).round().astype(int))
+    assert rgb[0, 1, 0] > 200 and rgb[0, 1, 2] < 80
+    assert tuple(rgb[0, 2]) == (255, 255, 255)

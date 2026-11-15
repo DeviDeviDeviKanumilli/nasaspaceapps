@@ -57,6 +57,20 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # Bundled so the app looks the same offline on every machine.
+  # Public Sans v2.001 (SIL OFL 1.1, assets/fonts/OFL.txt), static instances from github.com/uswds/public-sans.
+  fonts:
+    - family: PublicSans
+      fonts:
+        - asset: assets/fonts/PublicSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PublicSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/PublicSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PublicSans-Bold.ttf
+          weight: 700
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

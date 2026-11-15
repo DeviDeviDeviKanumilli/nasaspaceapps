@@ -27,6 +27,10 @@ class ServiceLauncher extends ChangeNotifier {
 
   bool get running => api != null && error == null;
 
+  /// The service's virtualenv interpreter (POSIX `.venv/bin/python`, Windows `.venv/Scripts/python.exe`).
+  static String venvPython(String serviceDir) =>
+      Platform.isWindows ? '$serviceDir/.venv/Scripts/python.exe' : '$serviceDir/.venv/bin/python';
+
   static String? findServiceDir() {
     final env = Platform.environment['FIELDSTATION_SERVICE_DIR'];
     if (env != null && File('$env/fieldstation/server.py').existsSync()) return env;
@@ -66,13 +70,21 @@ class ServiceLauncher extends ChangeNotifier {
       external = false;
       serviceDir = findServiceDir();
       if (serviceDir == null) {
-        throw StateError('Could not find desktop/service. Set FIELDSTATION_SERVICE_DIR to the folder that contains fieldstation/server.py.');
+        throw StateError(
+          'Could not find desktop/service. Set FIELDSTATION_SERVICE_DIR to the folder that contains fieldstation/server.py.',
+        );
       }
-      final py = '$serviceDir/.venv/bin/python';
+      final py = venvPython(serviceDir!);
       if (!File(py).existsSync()) {
-        throw StateError('Python environment missing at $py. Create it: cd desktop/service && python3.13 -m venv .venv && .venv/bin/pip install -r requirements.txt');
+        throw StateError(
+          Platform.isWindows
+              ? 'Python environment missing at $py. Create it: cd desktop/service; py -3.13 -m venv .venv; .venv/Scripts/pip install -r requirements-windows.txt'
+              : 'Python environment missing at $py. Create it: cd desktop/service && python3.13 -m venv .venv && .venv/bin/pip install -r requirements.txt',
+        );
       }
-      final args = ['-m', 'fieldstation.server', '--port', '0', if (withFixtures) '--fixtures'];
+      // --exit-with-stdin: the service stops by itself when this app's end of its stdin pipe closes,
+      // so a crash or force-quit never leaves an orphan holding the camera.
+      final args = ['-m', 'fieldstation.server', '--port', '0', '--exit-with-stdin', if (withFixtures) '--fixtures'];
       onLog('Starting service: $py ${args.join(' ')} (cwd $serviceDir)');
       final env = Map<String, String>.from(Platform.environment)..remove('FIELDSTATION_TOKEN');
       final p = await Process.start(py, args, workingDirectory: serviceDir, environment: env);
@@ -92,15 +104,17 @@ class ServiceLauncher extends ChangeNotifier {
         onLog('[service] $line');
       });
       p.stderr.transform(utf8.decoder).transform(const LineSplitter()).listen((line) => onLog('[service:err] $line'));
-      unawaited(p.exitCode.then((code) {
-        if (_proc != p) return;
-        exitCode = code;
-        _proc = null;
-        error = 'The local service stopped (exit code $code). See About › Diagnostics.';
-        if (!ready.isCompleted) ready.completeError(StateError(error!));
-        onLog(error!);
-        notifyListeners();
-      }));
+      unawaited(
+        p.exitCode.then((code) {
+          if (_proc != p) return;
+          exitCode = code;
+          _proc = null;
+          error = 'The local service stopped (exit code $code). See About › Diagnostics.';
+          if (!ready.isCompleted) ready.completeError(StateError(error!));
+          onLog(error!);
+          notifyListeners();
+        }),
+      );
       final m = await ready.future.timeout(const Duration(seconds: 60));
       api = ApiClient(Uri.parse('http://127.0.0.1:${m['port']}'), m['token'] as String);
       home = m['home'] as String?;
@@ -121,12 +135,25 @@ class ServiceLauncher extends ChangeNotifier {
     api?.close();
     api = null;
     if (p != null) {
-      p.kill(ProcessSignal.sigterm);
+      if (Platform.isWindows) {
+        _killTreeWindows(p.pid);
+      } else {
+        p.kill(ProcessSignal.sigterm);
+      }
       try {
         await p.exitCode.timeout(const Duration(seconds: 4));
       } catch (_) {
         p.kill(ProcessSignal.sigkill);
       }
+    }
+  }
+
+  /// Windows has no SIGTERM: end the service and its sensor-worker child together.
+  static void _killTreeWindows(int pid) {
+    try {
+      Process.runSync('taskkill', ['/PID', '$pid', '/T', '/F']);
+    } catch (_) {
+      Process.killPid(pid);
     }
   }
 
@@ -138,7 +165,13 @@ class ServiceLauncher extends ChangeNotifier {
 
   /// Synchronous best-effort kill for app shutdown.
   void killNow() {
-    _proc?.kill(ProcessSignal.sigterm);
+    final p = _proc;
     _proc = null;
+    if (p == null) return;
+    if (Platform.isWindows) {
+      _killTreeWindows(p.pid);
+    } else {
+      p.kill(ProcessSignal.sigterm);
+    }
   }
 }

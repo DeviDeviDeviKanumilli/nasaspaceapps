@@ -28,8 +28,7 @@ class FrameMapping {
   final String frameName;
   final bool flipYZ;
 
-  factory FrameMapping.forFrame(String? name) =>
-      FrameMapping(name ?? 'unknown', name == 'camera_optical_m');
+  factory FrameMapping.forFrame(String? name) => FrameMapping(name ?? 'unknown', name == 'camera_optical_m');
 
   V3 toDisplay(double x, double y, double z) => flipYZ ? V3(x, -y, -z) : V3(x, y, z);
   V3 fromDisplay(V3 p) => flipYZ ? V3(p.x, -p.y, -p.z) : p;
@@ -37,8 +36,8 @@ class FrameMapping {
   String get legend => flipYZ
       ? 'Frame camera_optical_m (+X right, +Y down, +Z forward). Shown rotated 180° about X so the scene looks upright; view starts at the sensor.'
       : (frameName == 'arkit_session_world'
-          ? 'Frame arkit_session_world (+Y up along measured gravity). Local to the capture session.'
-          : 'Frame $frameName (axes as stored in the file).');
+            ? 'Frame arkit_session_world (+Y up along measured gravity). Local to the capture session.'
+            : 'Frame $frameName (axes as stored in the file).');
 }
 
 /// Orbit camera around a target point, perspective projection to screen pixels.

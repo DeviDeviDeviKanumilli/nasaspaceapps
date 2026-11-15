@@ -24,6 +24,7 @@ import json
 import os
 import shutil
 import stat
+import sys
 import threading
 import uuid
 import zipfile
@@ -89,15 +90,46 @@ def load_depth_png(path: Path) -> np.ndarray:
     return np.array(Image.open(path), dtype=np.uint16)
 
 
+# Polynomial fit to matplotlib's viridis (max error well under one 8-bit step), so no matplotlib dependency.
+# The desktop app's colour bars use the same coefficients (lib/widgets/figure.dart).
+_VIRIDIS = np.array([
+    [0.2777273272234177, 0.005407344544966578, 0.3340998053353061],
+    [0.1050930431085774, 1.404613529898575, 1.384590162594685],
+    [-0.3308618287255563, 0.214847559468213, 0.09509516302823659],
+    [-4.634230498983486, -5.799100973351585, -19.33244095627987],
+    [6.228269936347081, 14.17993336680509, 56.69055260068105],
+    [4.776384997670288, -13.74514537774601, -65.35303263337234],
+    [-5.435455855934631, 4.645852612178535, 26.3124352495832],
+])
+
+
+def viridis(t: np.ndarray) -> np.ndarray:
+    """t in [0, 1] -> float RGB in [0, 1] (shape t.shape + (3,))."""
+    t = np.clip(np.asarray(t, dtype=np.float64), 0, 1)[..., None]
+    c = _VIRIDIS[6]
+    for k in range(5, -1, -1):
+        c = _VIRIDIS[k] + t * c
+    return np.clip(c, 0, 1)
+
+
 def depth_colormap(depth_m: np.ndarray, zmin: float = 0.2, zmax: float = 4.0) -> np.ndarray:
-    """Perceptual-ish near=warm far=cool map; invalid = black. Display only."""
-    t = np.clip((depth_m - zmin) / (zmax - zmin), 0, 1)
-    r = np.clip(1.5 - np.abs(4 * t - 1), 0, 1)
-    g = np.clip(1.5 - np.abs(4 * t - 2), 0, 1)
-    b = np.clip(1.5 - np.abs(4 * t - 3), 0, 1)
-    rgb = (np.stack([r, g, b], -1) * 255).astype(np.uint8)
-    rgb[depth_m <= 0] = 0
+    """Viridis, near = dark purple, far = yellow; pixels without depth are white. Display only.
+
+    Viridis is perceptually even and stays ordered in greyscale and for colour-blind readers."""
+    rgb = (viridis((depth_m - zmin) / (zmax - zmin)) * 255).round().astype(np.uint8)
+    rgb[~(depth_m > 0)] = 255
     return rgb
+
+
+def depth_figure_range(depth_m: np.ndarray) -> tuple[float, float] | None:
+    """2nd to 98th percentile of valid depth, used to colour a saved scan's depth figure."""
+    v = depth_m[depth_m > 0]
+    if v.size < 10:
+        return None
+    lo, hi = np.percentile(v, [2, 98])
+    if hi - lo < 1e-3:
+        hi = lo + 1e-3
+    return float(lo), float(hi)
 
 
 class ScanWriter:
@@ -531,4 +563,6 @@ def default_home() -> Path:
     env = os.environ.get("FIELDSTATION_HOME")
     if env:
         return Path(env)
+    if sys.platform == "win32":
+        return Path(os.environ.get("LOCALAPPDATA") or Path.home() / "AppData" / "Local") / "FieldStation"
     return Path.home() / "Library" / "Application Support" / "FieldStation"

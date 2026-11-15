@@ -47,8 +47,13 @@ class ApiClient {
 
   Future<dynamic> patchJson(String path, Object body) => _json('PATCH', path, body: body);
 
-  Future<dynamic> _json(String method, String path,
-      {Map<String, String>? query, Object? body, Duration timeout = const Duration(seconds: 30)}) async {
+  Future<dynamic> _json(
+    String method,
+    String path, {
+    Map<String, String>? query,
+    Object? body,
+    Duration timeout = const Duration(seconds: 30),
+  }) async {
     final r = await _send(method, path, query: query, body: body, timeout: timeout);
     final text = utf8.decode(r.bytes);
     if (r.status >= 400) {
@@ -76,8 +81,7 @@ class ApiClient {
     return r;
   }
 
-  Future<ApiBytes> _send(String method, String path,
-      {Map<String, String>? query, Object? body, required Duration timeout}) async {
+  Future<ApiBytes> _send(String method, String path, {Map<String, String>? query, Object? body, required Duration timeout}) async {
     final uri = base.replace(path: path, queryParameters: query);
     try {
       final req = await _http.openUrl(method, uri).timeout(timeout);

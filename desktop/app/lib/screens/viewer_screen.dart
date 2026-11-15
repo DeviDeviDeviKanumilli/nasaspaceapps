@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../service/app_state.dart';
 import '../service/models.dart';
 import '../widgets/common.dart';
+import '../widgets/figure.dart';
 import '../widgets/honesty_banner.dart';
 import '../widgets/measurement_table.dart';
 import '../widgets/point_cloud_view.dart';
@@ -47,7 +48,9 @@ class _ViewerScreenState extends State<ViewerScreen> {
     try {
       _detail = asMap(await s.api!.getJson('/api/scans/$scanId'));
       final clouds = asMap(_detail['clouds']);
-      if (!clouds.containsKey(_kind)) _kind = clouds.containsKey('filtered') ? 'filtered' : (clouds.keys.isNotEmpty ? clouds.keys.first : 'filtered');
+      if (!clouds.containsKey(_kind)) {
+        _kind = clouds.containsKey('filtered') ? 'filtered' : (clouds.keys.isNotEmpty ? clouds.keys.first : 'filtered');
+      }
       final r = await s.api!.getBytes('/api/scans/$scanId/cloud.bin', query: {'kind': _kind, 'max_points': '$_maxPoints'});
       final cloud = CloudData.parse(r.bytes, r.headers);
       _ctl.setCloud(cloud);
@@ -68,12 +71,14 @@ class _ViewerScreenState extends State<ViewerScreen> {
       _resultError = null;
     });
     try {
-      final r = asMap(await s.api!.postJson('/api/scans/$scanId/analyze', {
-        'kind': 'roughness',
-        'roi': {'kind': 'sphere', 'center': c, 'radius_m': _ctl.roiRadius},
-        'robust': _robust,
-        'label': _label.text.trim().isEmpty ? 'viewer sphere ROI' : _label.text.trim(),
-      }));
+      final r = asMap(
+        await s.api!.postJson('/api/scans/$scanId/analyze', {
+          'kind': 'roughness',
+          'roi': {'kind': 'sphere', 'center': c, 'radius_m': _ctl.roiRadius},
+          'robust': _robust,
+          'label': _label.text.trim().isEmpty ? 'viewer sphere ROI' : _label.text.trim(),
+        }),
+      );
       if (r['saved'] == false) {
         _resultError = 'Not measured: ${r['reason'] ?? r['status']}';
         _results = [];
@@ -101,176 +106,380 @@ class _ViewerScreenState extends State<ViewerScreen> {
     }
     final man = asMap(_detail['manifest']);
     final clouds = asMap(_detail['clouds']);
-    final cloud = _ctl.cloud;
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      Padding(
-        padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
-        child: Wrap(spacing: 12, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
-          ScanPicker(selected: id, onChanged: (v) => s.selectScan(v)),
-          SegmentedButton<String>(
-            segments: [
-              const ButtonSegment(value: 'filtered', label: Text('Filtered')),
-              const ButtonSegment(value: 'raw', label: Text('Raw')),
-              if (clouds.containsKey('mesh')) const ButtonSegment(value: 'mesh', label: Text('Derived mesh (no hole filling)')),
-            ],
-            selected: {_kind},
-            onSelectionChanged: (v) => setState(() => _kind = v.first),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        PageHeader(
+          'Viewer',
+          inline: [
+            ScanPicker(selected: id, onChanged: (v) => s.selectScan(v), width: 380),
+            if (id != null)
+              Segmented<String>(
+                value: _kind,
+                options: [('filtered', 'Filtered'), ('raw', 'Raw'), if (clouds.containsKey('mesh')) ('mesh', 'Mesh')],
+                onChanged: (v) => setState(() => _kind = v),
+              ),
+          ],
+          actions: [if (id != null) TextButton(onPressed: () => s.go(Section.analysis), child: const Text('Measure on the depth image'))],
+        ),
+        if (man.isNotEmpty && man['scan_id'] == id)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 14),
+            child: HonestyBanner(
+              origin: man['origin'] as String?,
+              isRealSensor: man['is_real_sensor'] as bool?,
+              compact: true,
+              boxed: true,
+              replayOf: asMap(man['replay_of'])['scan_id'] as String?,
+            ),
           ),
-          DropdownButton<int>(
-            value: _maxPoints,
-            items: const [
-              DropdownMenuItem(value: 60000, child: Text('60k points')),
-              DropdownMenuItem(value: 150000, child: Text('150k points')),
-              DropdownMenuItem(value: 300000, child: Text('300k points')),
-            ],
-            onChanged: (v) => setState(() => _maxPoints = v ?? 150000),
-          ),
-          if (man.isNotEmpty) OriginChip(man['origin'] as String?),
-        ]),
-      ),
-      if (man.isNotEmpty) HonestyBanner(origin: man['origin'] as String?, isRealSensor: man['is_real_sensor'] as bool?, compact: true,
-          replayOf: asMap(man['replay_of'])['scan_id'] as String?),
-      Expanded(
-        child: id == null
-            ? const EmptyState(icon: Icons.view_in_ar_outlined, title: 'Choose a scan', body: 'Pick a saved scan above, or record one in Capture.')
-            : Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 8, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: t.colorScheme.outlineVariant)),
-                      clipBehavior: Clip.antiAlias,
-                      child: Stack(children: [
-                        Positioned.fill(
-                          child: PointCloudView(
-                            controller: _ctl,
-                            accent: t.colorScheme.primary,
-                            onPick: (i) => _ctl.setRoi(_ctl.pointInScanFrame(i)),
-                          ),
-                        ),
-                        if (_loading) const Center(child: CircularProgressIndicator()),
-                        if (_error != null) Center(child: Padding(padding: const EdgeInsets.all(24), child: ErrorBox(_error!))),
-                        Positioned(
-                          right: 10,
-                          top: 10,
-                          child: IconButton.filledTonal(tooltip: 'Reset view', onPressed: _ctl.resetView, icon: const Icon(Icons.center_focus_strong)),
-                        ),
-                        Positioned(
-                          left: 12,
-                          right: 64,
-                          top: 12,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(color: t.colorScheme.surface.withValues(alpha: 0.85), borderRadius: BorderRadius.circular(6)),
-                              child: Text(
-                                'Drag: orbit · Shift/right-drag: pan · Scroll/pinch: zoom · Click a point: set ROI centre',
-                                style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ]),
-                    ),
+        Expanded(
+          child: id == null
+              ? EmptyState(
+                  title: 'Choose a scan',
+                  body: 'Pick a saved scan above, or record one in Capture.',
+                  action: OutlinedButton(onPressed: () => s.go(Section.library), child: const Text('Open Library')),
+                )
+              : Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: Panel(padding: const EdgeInsets.all(16), child: _figure(t)),
+                      ),
+                      const SizedBox(width: 20),
+                      SizedBox(width: 380, child: _panel(t, id, man)),
+                    ],
                   ),
                 ),
-                SizedBox(width: 360, child: _panel(t, id, cloud)),
-              ]),
-      ),
-    ]);
+        ),
+      ],
+    );
   }
 
-  Widget _panel(ThemeData t, String id, CloudData? cloud) {
+  Widget _figure(ThemeData t) {
     return ListenableBuilder(
       listenable: _ctl,
-      builder: (context, _) => ListView(padding: const EdgeInsets.fromLTRB(0, 8, 24, 24), children: [
-        if (_resultError != null) ...[ErrorBox(_resultError!), const SizedBox(height: 12)],
-        if (_results.isNotEmpty) ...[
-          SectionCard(
-            title: 'Result (saved to metrics.json)',
-            trailing: IconButton(onPressed: () => setState(() => _results = []), icon: const Icon(Icons.close, size: 18), tooltip: 'Hide'),
-            child: MeasurementTable(measurements: _results),
-          ),
-          const SizedBox(height: 16),
-        ],
-        SectionCard(
-          title: 'Display',
-          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            SegmentedButton<ColorMode>(
-              segments: const [
-                ButtonSegment(value: ColorMode.rgb, label: Text('RGB')),
-                ButtonSegment(value: ColorMode.range, label: Text('Range')),
-                ButtonSegment(value: ColorMode.up, label: Text('Up axis')),
-              ],
-              selected: {_ctl.colorMode},
-              onSelectionChanged: (v) => _ctl.setColorMode(v.first),
-            ),
-            const SizedBox(height: 8),
-            Row(children: [
-              const Text('Point size'),
-              Expanded(child: Slider(value: _ctl.pointSize, min: 1, max: 6, divisions: 10, onChanged: _ctl.setPointSize)),
-              Text('${_ctl.pointSize.toStringAsFixed(1)} px'),
-            ]),
-            if (cloud != null) ...[
-              KV('Points shown', '${cloud.count} of ${cloud.total ?? cloud.count}${(cloud.step ?? 1) > 1 ? ' (1 in ${cloud.step}, display only)' : ''}', labelWidth: 110),
-              KV('Source file', cloud.sourceFile ?? '—', labelWidth: 110),
-              if (_kind == 'mesh')
-                Text('Derived mesh (no hole filling), shown as its vertices. Not raw sensor data.',
-                    style: t.textTheme.bodySmall?.copyWith(color: warnColor(context))),
-              KV('Extent', '≈ ${formatMetres(_ctl.extent * 2)} across', labelWidth: 110),
+      builder: (context, _) {
+        final cloud = _ctl.cloud;
+        final title = switch (_kind) {
+          'raw' => 'Raw point cloud.',
+          'mesh' => 'Mesh vertices.',
+          _ => 'Filtered point cloud.',
+        };
+        final shown = cloud == null
+            ? 'Loading.'
+            : '${_n(cloud.count)} of ${_n(cloud.total ?? cloud.count)} points shown${(cloud.step ?? 1) > 1 ? ' (1 in ${cloud.step}, for display only)' : ''}. ';
+        return Figure(
+          background: FsPalette.plot,
+          caption: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FigureCaption(
+                title,
+                cloud == null
+                    ? shown
+                    : '$shown${_ctl.mapping.legend} Hidden surfaces (backs, undersides) were not measured and are not drawn. '
+                          'The scale bar is exact only at the orbit centre.'
+                          '${_kind == 'mesh' ? ' Derived mesh without hole filling, not raw sensor data.' : ''}',
+              ),
               const SizedBox(height: 6),
-              Text(_ctl.mapping.legend, style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
-              const SizedBox(height: 6),
-              Text('Partial view: hidden surfaces (backs, undersides) were not measured and are not shown.',
-                  style: t.textTheme.bodySmall?.copyWith(color: warnColor(context))),
+              Text(
+                'Drag to orbit. Shift-drag or right-drag to pan. Scroll to zoom. Click a point to centre the region of interest.',
+                style: t.textTheme.bodySmall,
+              ),
             ],
-          ]),
-        ),
-        const SizedBox(height: 16),
-        SectionCard(
-          title: 'Sphere region of interest',
-          child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Text(
-              _ctl.roiCenter == null
-                  ? 'Click a point in the cloud to set the centre.'
-                  : 'Centre (${_ctl.roiCenter!.map((e) => e.toStringAsFixed(3)).join(', ')}) m · ${_ctl.roiCount} displayed points inside',
-              style: t.textTheme.bodySmall,
-            ),
-            Row(children: [
-              const Text('Radius'),
-              Expanded(
-                child: Slider(
-                  value: _ctl.roiRadius,
-                  min: 0.02,
-                  max: 1.0,
-                  onChanged: (v) => _ctl.setRoi(_ctl.roiCenter, v),
+          ),
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: PointCloudView(controller: _ctl, accent: FsPalette.ochre, onPick: (i) => _ctl.setRoi(_ctl.pointInScanFrame(i))),
+              ),
+              Positioned(
+                right: 10,
+                top: 10,
+                child: OutlinedButton(
+                  onPressed: _ctl.resetView,
+                  style: OutlinedButton.styleFrom(minimumSize: const Size(0, 32), padding: const EdgeInsets.symmetric(horizontal: 10)),
+                  child: const Text('Reset view'),
                 ),
               ),
-              SizedBox(width: 64, child: Text(formatMetres(_ctl.roiRadius), textAlign: TextAlign.right)),
-            ]),
-            Text('Baseline (diameter) ${formatMetres(_ctl.roiRadius * 2)}. Roughness depends on it: compare at similar baselines.',
-                style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
-            const SizedBox(height: 8),
-            TextField(controller: _label, decoration: const InputDecoration(labelText: 'Label (e.g. boulder A, upper face)')),
-            CheckboxListTile(
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-              value: _robust,
-              onChanged: (v) => setState(() => _robust = v ?? false),
-              title: const Text('Robust fit (reject points > 3 MAD)'),
-            ),
-            FilledButton(
-              onPressed: _ctl.roiCenter == null || _measuring ? null : () => _measure(id),
-              child: Text(_measuring ? 'Measuring…' : 'Measure roughness here'),
-            ),
-            if (_ctl.roiCenter != null)
-              TextButton(onPressed: () => _ctl.setRoi(null), child: const Text('Clear ROI')),
-            Text('Measured on the full filtered file in the service, not on the decimated display points.',
-                style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
-          ]),
+              if (_loading) const Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))),
+              if (_error != null)
+                Center(
+                  child: Padding(padding: const EdgeInsets.all(24), child: ErrorBox(_error!)),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  static String _n(int v) {
+    final s = '$v';
+    final b = StringBuffer();
+    for (int i = 0; i < s.length; i++) {
+      if (i > 0 && (s.length - i) % 3 == 0) b.write(' ');
+      b.write(s[i]);
+    }
+    return b.toString();
+  }
+
+  Widget _titleBlock(ThemeData t, Map<String, dynamic> man) {
+    final obs = asMap(man['observation']);
+    final cap = asMap(man['capture']);
+    final cf = asMap(man['coordinate_frame']);
+    final captured = man['captured_at_utc'];
+    final start = captured is Map ? captured['start'] : captured;
+    final k = originKind(man['origin'] as String?);
+    final originColor = (k == OriginKind.realD435 || k == OriginKind.iphone)
+        ? FsPalette.sensor
+        : (k == OriginKind.replay || k == OriginKind.other ? FsPalette.ink : FsPalette.synthetic);
+    Widget cell(String label, String value, {Color? color, bool right = false, bool bottom = true}) => Container(
+      padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
+      decoration: BoxDecoration(
+        border: Border(
+          right: right ? const BorderSide(color: FsPalette.ink) : BorderSide.none,
+          bottom: bottom ? const BorderSide(color: FsPalette.ink) : BorderSide.none,
         ),
-      ]),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label, style: t.textTheme.labelSmall),
+          const SizedBox(height: 1),
+          Text(
+            value,
+            style: t.textTheme.bodyMedium?.copyWith(fontSize: 13.5, color: color, fontWeight: color != null ? FontWeight.w600 : null),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+    final cells = [
+      ('Scan', shortId(asStr(man['scan_id'])), null),
+      ('Session', shortId(man['session_id'] as String?), null),
+      ('Captured, UTC', utcText(start), null),
+      ('Frames', '${cap['frames_recorded'] ?? cap['keyframes'] ?? '—'}${cap['profile'] != null ? ', ${cap['profile']}' : ''}', null),
+      ('Origin', originLabel(man['origin'] as String?), originColor),
+      ('Status', asStr(man['status'], '—'), man['status'] == 'complete' ? null : FsPalette.record),
+      ('Frame', asStr(cf['name'], '—'), null),
+      ('Units', asStr(cf['units'], 'm') == 'm' ? 'metre' : asStr(cf['units']), null),
+    ];
+    final rows = <Widget>[];
+    for (int i = 0; i < cells.length; i += 2) {
+      final last = i + 2 >= cells.length;
+      rows.add(
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: cell(cells[i].$1, cells[i].$2, color: cells[i].$3, right: true, bottom: !last),
+              ),
+              Expanded(
+                child: cell(cells[i + 1].$1, cells[i + 1].$2, color: cells[i + 1].$3, bottom: !last),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return Semantics(
+      container: true,
+      label: 'Title block',
+      child: Panel(
+        strong: true,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+              decoration: const BoxDecoration(
+                border: Border(bottom: BorderSide(color: FsPalette.ink)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Title', style: t.textTheme.labelSmall),
+                  Text(
+                    asStr(obs['title']).isEmpty ? 'Untitled scan' : asStr(obs['title']),
+                    style: t.textTheme.titleMedium?.copyWith(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+            ...rows,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _panel(ThemeData t, String id, Map<String, dynamic> man) {
+    return ListenableBuilder(
+      listenable: _ctl,
+      builder: (context, _) {
+        final hasRoi = _ctl.roiCenter != null;
+        final cloud = _ctl.cloud;
+        return ListView(
+          children: [
+            if (man.isNotEmpty && man['scan_id'] == id) ...[_titleBlock(t, man), const SizedBox(height: 16)],
+            if (_resultError != null) ...[ErrorBox(_resultError!), const SizedBox(height: 12)],
+            if (_results.isNotEmpty) ...[
+              SectionCard(
+                title: 'Result, saved to metrics.json',
+                trailing: IconButton(
+                  onPressed: () => setState(() => _results = []),
+                  icon: const Icon(Icons.close, size: 18),
+                  tooltip: 'Hide result',
+                ),
+                child: MeasurementTable(measurements: _results),
+              ),
+              const SizedBox(height: 16),
+            ],
+            SectionCard(
+              title: 'Sphere region of interest',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (!hasRoi)
+                    Text(
+                      'Click a point in the cloud to place the centre.',
+                      style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.inkMuted),
+                    )
+                  else
+                    FactTable([
+                      FactRow('Points inside, displayed', '${_ctl.roiCount}'),
+                      FactRow('Baseline, diameter', (_ctl.roiRadius * 2).toStringAsFixed(3), unit: 'm'),
+                      FactRow('Centre', _ctl.roiCenter!.map((e) => e.toStringAsFixed(3)).join(', '), unit: 'm'),
+                    ]),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      SizedBox(width: 56, child: Text('Radius', style: t.textTheme.bodyMedium)),
+                      Expanded(
+                        child: Slider(value: _ctl.roiRadius, min: 0.02, max: 1.0, onChanged: (v) => _ctl.setRoi(_ctl.roiCenter, v)),
+                      ),
+                      SizedBox(
+                        width: 64,
+                        child: Text(
+                          '${_ctl.roiRadius.toStringAsFixed(3)} m',
+                          textAlign: TextAlign.right,
+                          style: t.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text('Roughness grows with baseline, so compare values measured at similar baselines.', style: t.textTheme.bodySmall),
+                  const SizedBox(height: 14),
+                  TextField(
+                    controller: _label,
+                    decoration: const InputDecoration(labelText: 'Label', hintText: 'e.g. boulder A, upper face'),
+                  ),
+                  CheckboxListTile(
+                    contentPadding: EdgeInsets.zero,
+                    dense: true,
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: _robust,
+                    onChanged: (v) => setState(() => _robust = v ?? false),
+                    title: const Text('Robust fit, rejecting points beyond 3 MAD'),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton(
+                          onPressed: !hasRoi || _measuring ? null : () => _measure(id),
+                          style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(42)),
+                          child: Text(_measuring ? 'Measuring' : 'Measure roughness here'),
+                        ),
+                      ),
+                      if (hasRoi) ...[
+                        const SizedBox(width: 8),
+                        OutlinedButton(
+                          onPressed: () => _ctl.setRoi(null),
+                          style: OutlinedButton.styleFrom(minimumSize: const Size(0, 42)),
+                          child: const Text('Clear'),
+                        ),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text('Measured on the full filtered file, not on the displayed points.', style: t.textTheme.bodySmall),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            SectionCard(
+              title: 'Display',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Segmented<ColorMode>(
+                    expand: true,
+                    value: _ctl.colorMode,
+                    options: const [(ColorMode.rgb, 'Colour'), (ColorMode.range, 'Range'), (ColorMode.up, 'Up axis')],
+                    onChanged: _ctl.setColorMode,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      SizedBox(width: 72, child: Text('Point size', style: t.textTheme.bodyMedium)),
+                      Expanded(
+                        child: Slider(value: _ctl.pointSize, min: 1, max: 6, divisions: 10, onChanged: _ctl.setPointSize),
+                      ),
+                      SizedBox(
+                        width: 48,
+                        child: Text(
+                          '${_ctl.pointSize.toStringAsFixed(1)} px',
+                          textAlign: TextAlign.right,
+                          style: t.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  DropdownButtonFormField<int>(
+                    initialValue: _maxPoints,
+                    decoration: const InputDecoration(labelText: 'Points drawn'),
+                    items: const [
+                      DropdownMenuItem(value: 60000, child: Text('Up to 60 000, fastest')),
+                      DropdownMenuItem(value: 150000, child: Text('Up to 150 000')),
+                      DropdownMenuItem(value: 300000, child: Text('Up to 300 000, slowest')),
+                    ],
+                    onChanged: (v) => setState(() => _maxPoints = v ?? 150000),
+                  ),
+                  if (cloud != null && _ctl.colorMode == ColorMode.range) ...[
+                    const SizedBox(height: 6),
+                    ColorScaleStrip(
+                      caption: 'Range from the sensor, viridis',
+                      lo: '${_ctl.zMin.toStringAsFixed(2)} m',
+                      hi: '${_ctl.zMax.toStringAsFixed(2)} m',
+                    ),
+                  ],
+                  if (cloud != null && _ctl.colorMode == ColorMode.up) ...[
+                    const SizedBox(height: 6),
+                    ColorScaleStrip(
+                      caption: _ctl.mapping.flipYZ
+                          ? 'Height along the display up axis (camera −Y, not gravity), viridis'
+                          : 'Height along the display up axis, viridis',
+                      lo: '${_ctl.upMin.toStringAsFixed(2)} m',
+                      hi: '${_ctl.upMax.toStringAsFixed(2)} m',
+                    ),
+                  ],
+                  if (cloud != null) ...[
+                    const Divider(height: 24, color: FsPalette.ruleLight),
+                    KV('Source file', cloud.sourceFile ?? '—', labelWidth: 96),
+                    KV('Extent', 'about ${formatMetres(_ctl.extent * 2)} across', labelWidth: 96),
+                  ],
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

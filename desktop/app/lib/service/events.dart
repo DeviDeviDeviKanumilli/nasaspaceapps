@@ -27,14 +27,19 @@ class EventStream {
       }
       _ws = ws;
       onConnection(true);
-      ws.listen((data) {
-        if (data is String) {
-          try {
-            final m = jsonDecode(data);
-            if (m is Map) onEvent(m.cast<String, dynamic>());
-          } catch (_) {}
-        }
-      }, onDone: _dropped, onError: (_) => _dropped(), cancelOnError: true);
+      ws.listen(
+        (data) {
+          if (data is String) {
+            try {
+              final m = jsonDecode(data);
+              if (m is Map) onEvent(m.cast<String, dynamic>());
+            } catch (_) {}
+          }
+        },
+        onDone: _dropped,
+        onError: (_) => _dropped(),
+        cancelOnError: true,
+      );
     } catch (_) {
       _dropped();
     }

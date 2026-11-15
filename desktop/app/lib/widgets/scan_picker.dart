@@ -47,7 +47,10 @@ class _ScanPickerState extends State<ScanPicker> {
           for (final sc in _scans)
             DropdownMenuItem(
               value: sc.id,
-              child: Text('${sc.title} · ${originBadge(sc.origin)} · ${sc.status} · ${shortId(sc.id)}', overflow: TextOverflow.ellipsis),
+              child: Text(
+                '${sc.title} (${shortId(sc.id)}), ${originLabel(sc.origin).toLowerCase()}${sc.status == 'complete' ? '' : ', ${sc.status}'}',
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
         ],
         onChanged: widget.onChanged,

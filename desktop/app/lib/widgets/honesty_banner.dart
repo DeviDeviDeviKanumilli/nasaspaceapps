@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../service/models.dart';
 import 'common.dart';
+import 'figure.dart';
 
-/// Persistent banner whenever data does not come from a live real sensor.
-/// Shown for synthetic fixtures, replays and unverified imports.
+/// Persistent banner whenever data does not come from a live real sensor: synthetic fixtures, replays and
+/// unverified imports. Hatched magenta, the one place an all-caps line is used, because it is a warning.
 class HonestyBanner extends StatelessWidget {
-  const HonestyBanner({super.key, required this.origin, this.isRealSensor, this.replayOf, this.compact = false});
+  const HonestyBanner({super.key, required this.origin, this.isRealSensor, this.replayOf, this.compact = false, this.boxed = false});
   final String? origin;
   final bool? isRealSensor;
   final String? replayOf;
+
+  /// Message only, no explanatory detail.
   final bool compact;
+
+  /// Bordered box inside page content (scan views) rather than a full-width band (live data).
+  final bool boxed;
 
   static String? messageFor(String? origin, {String? replayOf}) {
     switch (originKind(origin)) {
@@ -25,27 +31,45 @@ class HonestyBanner extends StatelessWidget {
     }
   }
 
+  static String? detailFor(String? origin) {
+    switch (originKind(origin)) {
+      case OriginKind.synthetic:
+        return 'Ray-cast board, box and sphere with simulated noise. Every scan from it is stamped SYNTHETIC.';
+      case OriginKind.replay:
+        return 'Raw frames of an earlier recording, played back.';
+      case OriginKind.unknownImport:
+        return 'Treat every value as unverified.';
+      default:
+        return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final msg = messageFor(origin, replayOf: replayOf) ??
+    final msg =
+        messageFor(origin, replayOf: replayOf) ??
         (isRealSensor == false && origin != null && originKind(origin) != OriginKind.iphone ? 'NOT A LIVE SENSOR' : null);
     if (msg == null) return const SizedBox.shrink();
-    final c = warnColor(context);
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: compact ? 6 : 10),
-      decoration: BoxDecoration(
-        color: c.withValues(alpha: 0.14),
-        border: Border(bottom: BorderSide(color: c, width: 2)),
-      ),
-      child: Row(children: [
-        Icon(Icons.warning_amber_rounded, color: c, size: compact ? 16 : 20),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(msg,
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(color: c, fontWeight: FontWeight.w800, letterSpacing: 0.5)),
+    final t = Theme.of(context);
+    final detail = compact ? null : detailFor(origin);
+    return Semantics(
+      container: true,
+      label: '$msg. ${detail ?? ''}',
+      child: SyntheticHatch(
+        boxed: boxed,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: boxed ? 14 : 24, vertical: boxed ? 8 : 9),
+          child: Wrap(
+            spacing: 14,
+            runSpacing: 2,
+            crossAxisAlignment: WrapCrossAlignment.end,
+            children: [
+              Text(msg, style: t.textTheme.labelLarge?.copyWith(color: FsPalette.synthetic)),
+              if (detail != null) Text(detail, style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.synthetic, fontSize: 13)),
+            ],
+          ),
         ),
-      ]),
+      ),
     );
   }
 }

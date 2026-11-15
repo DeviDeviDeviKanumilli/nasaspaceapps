@@ -50,6 +50,19 @@ cd desktop/service
 cd ../app && ~/development/flutter/bin/flutter build macos --debug
 ```
 
+On Windows (PowerShell), the same steps with the Windows wheel (`pyrealsense2`, see `requirements-windows.txt`):
+
+```powershell
+cd desktop\service
+py -3.13 -m venv .venv
+.venv\Scripts\pip install -r requirements-windows.txt
+cd ..\app; flutter build windows --debug
+.\build\windows\x64\runner\Debug\field_station.exe     # the app finds desktop\service and starts it
+```
+
+Scans live in `%LOCALAPPDATA%\FieldStation` on Windows. Phone pairing over Bluetooth needs the macOS build;
+on Windows, move phone scans as .zip files and import them in Library.
+
 After that, everything works offline: no network calls, and the viewer is pure Dart.
 
 ## Run
@@ -60,7 +73,7 @@ desktop/run.sh --fixtures      # also offers the SYNTHETIC test scene (for rehea
 ```
 
 Rehearsal helpers for the app (these only choose the opening view): `FIELDSTATION_UI_SECTION=devices|capture|viewer|analysis|library|pairing|about`,
-`FIELDSTATION_UI_SCAN=<scan id>`, `FIELDSTATION_THEME=light|dark`. To attach the app to a service that is already running:
+`FIELDSTATION_UI_SCAN=<scan id>`. To attach the app to a service that is already running:
 `FIELDSTATION_URL=http://127.0.0.1:8765 FIELDSTATION_TOKEN=devtoken`.
 
 To run the service on its own (for development, or to drive it with curl):

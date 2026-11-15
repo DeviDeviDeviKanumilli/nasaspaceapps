@@ -1,0 +1,13 @@
+# Desktop field-capture workstation on Windows 11 (x64). Python 3.13; tested 2026-11-15, 36/36 tests pass.
+# Same service code as macOS; only the RealSense wheel differs (Intel's official Windows build) and there is
+# no pyobjc / pywebview (macOS-only). Bluetooth pairing is macOS-only in this build (CoreBluetooth runner).
+numpy==2.5.4
+scipy==1.18.1
+pillow==13.0.0
+fastapi==0.163.0
+uvicorn[standard]==0.54.0
+cryptography==50.0.2
+pyrealsense2==2.59.1.11053       # Intel's official Windows x64 wheel of librealsense
+# tests
+pytest==9.2.0
+httpx==0.28.1

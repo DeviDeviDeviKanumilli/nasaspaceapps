@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -19,8 +20,17 @@ class _PairingScreenState extends State<PairingScreen> {
   bool _busy = false;
 
   static const _bleEvents = {
-    'pairing_opened', 'phone_paired', 'pair_rejected', 'remote_command', 'phone_ack', 'command_failed',
-    'phone_capture_state', 'phone_capture_complete', 'phone_disconnected', 'phone_error', 'message_dropped',
+    'pairing_opened',
+    'phone_paired',
+    'pair_rejected',
+    'remote_command',
+    'phone_ack',
+    'command_failed',
+    'phone_capture_state',
+    'phone_capture_complete',
+    'phone_disconnected',
+    'phone_error',
+    'message_dropped',
   };
 
   @override
@@ -66,7 +76,7 @@ class _PairingScreenState extends State<PairingScreen> {
     final s = AppScope.read(context);
     try {
       await s.api!.postJson('/api/ble/send', {'central': central, 'type': type});
-      if (mounted) showSnack(context, 'Sent $type; waiting for the phone\'s ack (5 s, one retry).');
+      if (mounted) showSnack(context, 'Sent ${type.replaceAll('_', ' ')}. Waiting for the phone to confirm (5 s, one retry).');
     } catch (e) {
       if (mounted) showSnack(context, errText(e), error: true);
     }
@@ -86,124 +96,202 @@ class _PairingScreenState extends State<PairingScreen> {
         .reversed
         .take(5)
         .toList();
-    return ListView(padding: const EdgeInsets.only(bottom: 32), children: [
-      const PageHeader('Pairing',
-          subtitle: 'Pair the iPhone app over Bluetooth LE to start/stop captures remotely. Bluetooth carries control messages only.'),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          if (!ble.available)
-            ErrorBox(ble.unavailableReason ?? 'Bluetooth bridge unavailable in this build')
-          else
-            SectionCard(
-              title: 'Bluetooth',
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                KV('Radio', ble.bluetooth),
-                KV('Advertising', ble.advertising ? 'yes, as "${s.health['app'] ?? 'Field Station'} …"' : 'no'),
-                KV('Connected phones (BLE)', ble.centrals.isEmpty ? 'none' : ble.centrals.length.toString()),
-                if (ble.bluetooth == 'unauthorized')
-                  Text('Bluetooth permission denied: System Settings › Privacy & Security › Bluetooth, allow Field Station.',
-                      style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.error)),
-                if (ble.bluetooth == 'poweredOff') Text('Bluetooth is off. Turn it on in Control Centre.', style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.error)),
-                if (ble.lastError != null) Text('Last error: ${ble.lastError}', style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.error)),
-                if (ble.advertising) ...[
-                  const SizedBox(height: 8),
-                  OutlinedButton(onPressed: ble.stopAdvertising, child: const Text('Stop advertising')),
-                ],
-              ]),
-            ),
-          const SizedBox(height: 16),
-          SectionCard(
-            title: 'Pair a phone',
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    final muted = t.textTheme.bodyMedium?.copyWith(color: FsPalette.inkMuted);
+    final bad = t.textTheme.bodySmall?.copyWith(color: FsPalette.record, fontWeight: FontWeight.w600);
+
+    final children = <Widget>[
+      if (!ble.available)
+        SectionCard(
+          title: Platform.isMacOS ? 'Bluetooth is not available' : 'Phone pairing needs the macOS build',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                Platform.isMacOS
+                    ? (ble.unavailableReason ?? 'The Bluetooth bridge did not start in this build.')
+                    : 'Pairing uses the CoreBluetooth bridge, which only the macOS build includes. Everything else works on this computer: '
+                          'export a scan from the iPhone app as a .zip and import it in Library.',
+                style: t.textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 12),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: OutlinedButton(onPressed: () => s.go(Section.library), child: const Text('Go to Library')),
+              ),
+            ],
+          ),
+        )
+      else
+        SectionCard(
+          title: 'Bluetooth',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              KV('Radio', ble.bluetooth),
+              KV('Advertising', ble.advertising ? 'yes, as "${s.health['app'] ?? 'Field Station'}"' : 'no'),
+              KV('Connected phones', ble.centrals.isEmpty ? 'none' : ble.centrals.length.toString()),
+              if (ble.bluetooth == 'unauthorized')
+                Text('Bluetooth permission denied. In System Settings, Privacy & Security, Bluetooth, allow Field Station.', style: bad),
+              if (ble.bluetooth == 'poweredOff') Text('Bluetooth is off. Turn it on in Control Centre.', style: bad),
+              if (ble.lastError != null) Text('Last error: ${ble.lastError}', style: bad),
+              if (ble.advertising) ...[
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: OutlinedButton(onPressed: ble.stopAdvertising, child: const Text('Stop advertising')),
+                ),
+              ],
+            ],
+          ),
+        ),
+      if (ble.available) ...[
+        const SizedBox(height: 16),
+        SectionCard(
+          title: 'Pair a phone',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               if (open) ...[
                 Text('Enter this code in the iPhone app:', style: t.textTheme.bodyMedium),
                 const SizedBox(height: 8),
                 SelectableText(
                   _spaced(asStr(_st['code'])),
-                  style: t.textTheme.displayMedium?.copyWith(
-                      fontWeight: FontWeight.w600, letterSpacing: 6, color: t.colorScheme.primary, fontFeatures: const [FontFeature.tabularFigures()]),
+                  style: t.textTheme.displaySmall?.copyWith(fontSize: 40, fontWeight: FontWeight.w600, letterSpacing: 6),
                 ),
-                Text('Expires in ${_st['expires_in_s']} s · one phone per code · locks after 3 wrong attempts',
-                    style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
+                Text(
+                  'Expires in ${_st['expires_in_s']} s. One phone per code; locks after 3 wrong attempts.',
+                  style: t.textTheme.bodySmall,
+                ),
               ] else ...[
                 if (_st['locked'] == true)
-                  Text('Locked after 3 wrong codes. Start a new pairing window.', style: t.textTheme.bodyMedium?.copyWith(color: t.colorScheme.error)),
-                Text('A new 6-digit code appears here for 120 s. Only someone who can see this screen can pair.', style: t.textTheme.bodyMedium),
+                  Text(
+                    'Locked after 3 wrong codes. Start a new pairing window.',
+                    style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.record),
+                  ),
+                Text(
+                  'A new 6-digit code appears here for 120 s. Only someone who can see this screen can pair.',
+                  style: t.textTheme.bodyMedium,
+                ),
               ],
               const SizedBox(height: 12),
-              FilledButton.icon(
-                onPressed: _busy || open ? null : _pair,
-                icon: const Icon(Icons.bluetooth_searching),
-                label: Text(open ? 'Waiting for the phone…' : 'Pair a phone'),
-              ),
+              FilledButton(onPressed: _busy || open ? null : _pair, child: Text(open ? 'Waiting for the phone' : 'Pair a phone')),
               if (_error != null) ...[const SizedBox(height: 8), ErrorBox(_error!)],
-            ]),
+            ],
           ),
-          if (failures.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            _failureCard(t, failures),
-          ],
-          const SizedBox(height: 16),
-          SectionCard(
-            title: 'Paired phones',
-            child: phones.isEmpty
-                ? Text('None.', style: t.textTheme.bodyMedium?.copyWith(color: t.colorScheme.onSurfaceVariant))
-                : Column(children: [
+        ),
+        if (failures.isNotEmpty) ...[const SizedBox(height: 16), _failureCard(t, failures)],
+        const SizedBox(height: 16),
+        SectionCard(
+          title: 'Paired phones',
+          child: phones.isEmpty
+              ? Text('None.', style: muted)
+              : Column(
+                  children: [
                     for (final p in phones)
                       Container(
                         margin: const EdgeInsets.only(bottom: 8),
                         padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(border: Border.all(color: t.colorScheme.outlineVariant), borderRadius: BorderRadius.circular(8)),
-                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Text(asStr(p['phone_name'], 'iPhone'), style: t.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-                          Text('paired ${p['paired_utc']} · session expires in ${((asInt(p['expires_in_s']) ?? 0) / 60).round()} min',
-                              style: t.textTheme.bodySmall),
-                          if (p['phone_state'] != null)
+                        decoration: BoxDecoration(
+                          border: Border.all(color: FsPalette.rule),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(asStr(p['phone_name'], 'iPhone'), style: t.textTheme.titleSmall),
                             Text(
-                                'phone: ${asMap(p['phone_state'])['state']} · ${asMap(p['phone_state'])['frames_recorded'] ?? 0} keyframes · tracking ${asMap(p['phone_state'])['tracking'] ?? '—'}',
-                                style: t.textTheme.bodySmall),
-                          const SizedBox(height: 8),
-                          Wrap(spacing: 8, children: [
-                            OutlinedButton(onPressed: () => _send(asStr(p['central']), 'start_capture'), child: const Text('Start phone capture')),
-                            OutlinedButton(onPressed: () => _send(asStr(p['central']), 'stop_capture'), child: const Text('Stop')),
-                            OutlinedButton(onPressed: () => _send(asStr(p['central']), 'capture_now'), child: const Text('Capture keyframe now')),
-                          ]),
-                          Text('The phone obeys only if "Let the paired Mac control capture" is on.',
-                              style: t.textTheme.bodySmall?.copyWith(color: t.colorScheme.onSurfaceVariant)),
-                        ]),
-                      ),
-                  ]),
-          ),
-          const SizedBox(height: 16),
-          SectionCard(
-            title: 'Moving scans',
-            child: Text(
-              'Bluetooth carries control messages only. Move scans by zip (AirDrop / Files / USB) → Library › Import. '
-              'Imports are checked against the SHA-256 in each bundle\'s scan.json.',
-              style: t.textTheme.bodyMedium,
-            ),
-          ),
-          const SizedBox(height: 16),
-          SectionCard(
-            title: 'Bluetooth events',
-            child: evs.isEmpty
-                ? Text('No events yet.', style: t.textTheme.bodyMedium?.copyWith(color: t.colorScheme.onSurfaceVariant))
-                : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    for (final e in evs)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 2),
-                        child: Text(
-                          '${asStr(e['t_utc']).length > 19 ? asStr(e['t_utc']).substring(11, 19) : ''}  ${e['type']}  '
-                          '${e.entries.where((x) => !const {'type', 't_utc', 'seq'}.contains(x.key)).map((x) => '${x.key}=${x.value}').join(' ')}',
-                          style: t.textTheme.bodySmall?.copyWith(fontFamily: 'Menlo', fontSize: 11),
+                              'Paired ${utcText(p['paired_utc'])} UTC. Session expires in ${((asInt(p['expires_in_s']) ?? 0) / 60).round()} min.',
+                              style: t.textTheme.bodySmall,
+                            ),
+                            if (p['phone_state'] != null)
+                              Text(
+                                'Phone ${asMap(p['phone_state'])['state']}, ${asMap(p['phone_state'])['frames_recorded'] ?? 0} keyframes, '
+                                'tracking ${asMap(p['phone_state'])['tracking'] ?? '—'}',
+                                style: t.textTheme.bodySmall,
+                              ),
+                            const SizedBox(height: 8),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: [
+                                OutlinedButton(
+                                  onPressed: () => _send(asStr(p['central']), 'start_capture'),
+                                  child: const Text('Start phone capture'),
+                                ),
+                                OutlinedButton(onPressed: () => _send(asStr(p['central']), 'stop_capture'), child: const Text('Stop')),
+                                OutlinedButton(
+                                  onPressed: () => _send(asStr(p['central']), 'capture_now'),
+                                  child: const Text('Capture a keyframe now'),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            Text('The phone obeys only if "Let the paired Mac control capture" is on.', style: t.textTheme.bodySmall),
+                          ],
                         ),
                       ),
-                  ]),
-          ),
-        ]),
+                  ],
+                ),
+        ),
+      ],
+      const SizedBox(height: 16),
+      SectionCard(
+        title: 'Moving scans',
+        child: Text(
+          'Bluetooth carries control messages only. Move scans as .zip files (AirDrop, Files or USB), then import them in Library. '
+          'Each import is checked against the SHA-256 hashes in the bundle\'s scan.json.',
+          style: t.textTheme.bodyMedium,
+        ),
       ),
-    ]);
+      if (ble.available) ...[
+        const SizedBox(height: 16),
+        SectionCard(
+          title: 'Bluetooth events',
+          child: evs.isEmpty
+              ? Text('No events yet.', style: muted)
+              : Container(
+                  padding: const EdgeInsets.all(10),
+                  color: FsPalette.sheetAlt,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (final e in evs)
+                        Text(
+                          '${asStr(e['t_utc']).length > 19 ? asStr(e['t_utc']).substring(11, 19) : ''}  ${e['type']}  '
+                          '${e.entries.where((x) => !const {'type', 't_utc', 'seq'}.contains(x.key)).map((x) => '${x.key}=${x.value}').join(' ')}',
+                          style: mono(t.textTheme.bodySmall, size: 11)?.copyWith(color: FsPalette.ink),
+                        ),
+                    ],
+                  ),
+                ),
+        ),
+      ],
+    ];
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const PageHeader(
+          'Pairing',
+          subtitle:
+              'Pair the iPhone app over Bluetooth LE to start and stop its captures from here. Bluetooth carries control messages only.',
+        ),
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 820),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _failureCard(ThemeData t, List<Map<String, dynamic>> failures) {
@@ -223,23 +311,28 @@ class _PairingScreenState extends State<PairingScreen> {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: t.colorScheme.errorContainer.withValues(alpha: 0.55),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: t.colorScheme.error, width: 1.5),
+        color: FsPalette.recordTint,
+        borderRadius: BorderRadius.circular(2),
+        border: Border.all(color: FsPalette.recordRule),
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Icon(Icons.error_outline, color: t.colorScheme.error),
-          const SizedBox(width: 8),
-          Text('The phone did not carry out a command', style: t.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
-        ]),
-        const SizedBox(height: 8),
-        for (final e in failures)
-          Padding(
-            padding: const EdgeInsets.only(top: 3),
-            child: SelectableText(text(e), style: t.textTheme.bodyMedium?.copyWith(color: t.colorScheme.onErrorContainer)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.error_outline, color: FsPalette.record, size: 18),
+              const SizedBox(width: 8),
+              Text('The phone did not carry out a command', style: t.textTheme.titleSmall),
+            ],
           ),
-      ]),
+          const SizedBox(height: 8),
+          for (final e in failures)
+            Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: SelectableText(text(e), style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.recordInk)),
+            ),
+        ],
+      ),
     );
   }
 

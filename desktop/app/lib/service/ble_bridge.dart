@@ -29,9 +29,12 @@ class BleBridge extends ChangeNotifier {
     api = client;
     if (_sub != null || !available) return;
     try {
-      _sub = _events.receiveBroadcastStream().listen(_onRadioEvent, onError: (Object e) {
-        _markUnavailable(e);
-      });
+      _sub = _events.receiveBroadcastStream().listen(
+        _onRadioEvent,
+        onError: (Object e) {
+          _markUnavailable(e);
+        },
+      );
       unawaited(refreshState());
     } catch (e) {
       _markUnavailable(e);
@@ -82,8 +85,9 @@ class BleBridge extends ChangeNotifier {
         });
         break;
       case 'rx':
-        a?.postJson('/api/ble/rx', {'central': ev['central'], 'data_b64': ev['data_b64'], 'max_chunk': ev['max_chunk'] ?? 182})
-            .catchError((Object e) {
+        a?.postJson('/api/ble/rx', {'central': ev['central'], 'data_b64': ev['data_b64'], 'max_chunk': ev['max_chunk'] ?? 182}).catchError((
+          Object e,
+        ) {
           lastError = 'rx forward failed: $e';
           notifyListeners();
           return null;

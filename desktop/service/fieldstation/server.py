@@ -281,6 +281,26 @@ def create_app(svc: Service) -> FastAPI:
         p = deproject(calib.depth, np.array([u]), np.array([v]), np.array([float(np.median(z))]))[0]
         return {"valid": True, "point_m": p.round(6).tolist(), "n_samples": int(z.size)}
 
+    @app.get("/api/scans/{scan_id}/depth_figure.png")
+    def depth_figure(scan_id: str):
+        """Filtered depth coloured with viridis over its own 2nd-98th percentile; white = no depth. Display only.
+        The range used is returned in headers so the app's colour bar matches the image exactly."""
+        import io
+
+        from PIL import Image
+
+        from .bundle import depth_colormap, depth_figure_range
+        _, _, depth_m = _depth_and_calib(scan_id)
+        rng = depth_figure_range(depth_m)
+        if rng is None:
+            err(409, "no valid depth in this scan")
+        lo, hi = rng
+        buf = io.BytesIO()
+        Image.fromarray(depth_colormap(depth_m, lo, hi)).save(buf, format="PNG", optimize=False)
+        return Response(buf.getvalue(), media_type="image/png", headers={
+            "X-Range-Lo-M": f"{lo:.4f}", "X-Range-Hi-M": f"{hi:.4f}",
+            "X-Valid-Fraction": f"{float((depth_m > 0).mean()):.4f}", "Cache-Control": "no-store"})
+
     def _gravity(scan_id: str):
         man = svc.store.manifest(scan_id)
         cf = man.get("coordinate_frame") or {}
@@ -471,6 +491,8 @@ def main(argv=None) -> int:
     ap.add_argument("--home", type=Path, default=None)
     ap.add_argument("--fixtures", action="store_true", default=os.environ.get("FIELDSTATION_FIXTURES") == "1")
     ap.add_argument("--token", default=os.environ.get("FIELDSTATION_TOKEN"))
+    ap.add_argument("--exit-with-stdin", action="store_true",
+                    help="shut down when stdin reaches EOF, i.e. when the app that started this service quits or crashes")
     args = ap.parse_args(argv)
     import uvicorn
     home = args.home or default_home()
@@ -479,12 +501,32 @@ def main(argv=None) -> int:
     svc = Service(home, args.fixtures, token)
     app = create_app(svc)
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    if sys.platform == "win32":
+        # On Windows SO_REUSEADDR lets a second process bind a port that is already in use (and lets others
+        # bind ours). Exclusive use makes a busy --port fail loudly instead of silently sharing it.
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+    else:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock.bind(("127.0.0.1", args.port))
     port = sock.getsockname()[1]
     print(json.dumps({"event": "ready", "port": port, "token": token, "home": str(home), "fixtures": args.fixtures}), flush=True)
-    config = uvicorn.Config(app, log_level="warning", log_config=None, ws_ping_interval=20)
+    config = uvicorn.Config(app, log_level="warning", log_config=None, ws_ping_interval=20, timeout_graceful_shutdown=3)
     server = uvicorn.Server(config)
+    if args.exit_with_stdin:
+        # The app keeps our stdin open for its whole life. EOF means it is gone (quit, crash or force-kill),
+        # so stop instead of lingering as an orphan that still holds the camera.
+        def _watch_parent() -> None:
+            try:
+                while sys.stdin.buffer.read(4096):
+                    pass
+            except (OSError, ValueError):
+                pass
+            server.should_exit = True
+            last_resort = threading.Timer(10.0, lambda: os._exit(0))  # if graceful shutdown hangs
+            last_resort.daemon = True
+            last_resort.start()
+
+        threading.Thread(target=_watch_parent, name="parent-watch", daemon=True).start()
     try:
         server.run(sockets=[sock])
     finally:

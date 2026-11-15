@@ -43,6 +43,10 @@ class AppState extends ChangeNotifier {
   bool get connected => launcher.running;
 
   static File get _settingsFile {
+    if (Platform.isWindows) {
+      final appData = Platform.environment['APPDATA'] ?? Platform.environment['USERPROFILE'] ?? '.';
+      return File('$appData/FieldStation/ui_settings.json');
+    }
     final home = Platform.environment['HOME'] ?? '.';
     return File('$home/Library/Application Support/FieldStation/ui_settings.json');
   }
@@ -81,11 +85,14 @@ class AppState extends ChangeNotifier {
   void _onLauncher() {
     final a = launcher.api;
     if (a != null && launcher.error == null && _events == null) {
-      _events = EventStream(a, onEvent: _onEvent, onConnection: (c) {
-        eventsConnected = c;
-        notifyListeners();
-      })
-        ..start();
+      _events = EventStream(
+        a,
+        onEvent: _onEvent,
+        onConnection: (c) {
+          eventsConnected = c;
+          notifyListeners();
+        },
+      )..start();
       ble.attach(a);
       unawaited(refreshBasics());
     }

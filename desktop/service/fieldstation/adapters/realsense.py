@@ -8,6 +8,7 @@ The D435 has no IMU: nothing here produces a gravity direction.
 """
 from __future__ import annotations
 
+import sys
 import numpy as np
 
 from ..camera_model import Extrinsics, Intrinsics
@@ -46,7 +47,7 @@ def sdk_status() -> dict:
     if rs is None:
         return {"available": False, "error": _IMPORT_ERROR}
     ver = getattr(rs, "__version__", None)
-    return {"available": True, "package": "pyrealsense2-macosx", "version": ver}
+    return {"available": True, "package": "pyrealsense2-macosx" if sys.platform == "darwin" else "pyrealsense2", "version": ver}
 
 
 class RealSenseAdapter:
