@@ -10,6 +10,7 @@ import { applyFilters, DEFAULT_FILTERS, activeFilterCount, type Filters } from "
 import { formatLatLon, niceScale, parseCoordinates } from "@/lib/geo";
 import { APP_NAME, BASE_PATH } from "@/lib/config";
 import type { Atlas, AtlasRecord } from "@/lib/types";
+import { IconChevron, IconGlobe, IconLayers, IconMinus, IconPlus, IconSearch, IconX } from "./Icons";
 
 export type Mode = "explore" | "find" | "profiles" | "area";
 type Loc = { lat: number; lon: number; label?: string };
@@ -34,6 +35,7 @@ export default function AtlasApp() {
   const [gstatus, setGstatus] = useState<GlobeStatus | null>(null);
   const [fatal, setFatal] = useState<string | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [railCollapsed, setRailCollapsed] = useState(false);
   const globe = useRef<GlobeHandle>(null);
 
   // ---- load data + URL state ----
@@ -73,6 +75,7 @@ export default function AtlasApp() {
     setLocation(null);
     setClusterIds(null);
     setHover(null);
+    if (window.innerWidth < 1400 && window.innerWidth > 900) setRailCollapsed(true); // keep the map wide enough to read
     if (fly) globe.current?.flyToRecord(r);
   }, [atlas]);
 
@@ -99,13 +102,17 @@ export default function AtlasApp() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return;
+      // close the topmost thing first
       if (drawMode) { setDrawMode(null); return; }
       if (workspace) { setWorkspace(null); return; }
       if (layersOpen) { setLayersOpen(false); return; }
+      if (selectedId || location || clusterIds) { setSelectedId(null); setLocation(null); setClusterIds(null); setRailCollapsed(false); return; }
+      if (mode !== "explore") { setMode("explore"); return; }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [drawMode, workspace, layersOpen]);
+  }, [drawMode, workspace, layersOpen, selectedId, location, clusterIds, mode]);
+  useEffect(() => { setRailCollapsed(false); }, [mode]);
 
   if (loadError) {
     return (
@@ -146,7 +153,7 @@ export default function AtlasApp() {
       )}
 
       <header className="topbar">
-        <div className="brand" title="Team Vancomycin, NASA Space Apps Challenge 2026">{APP_NAME}</div>
+        <div className="brand" title="Team Vancomycin, NASA Space Apps Challenge 2026"><b>{APP_NAME}</b><span>Earth analog atlas</span></div>
         <nav aria-label="Modes">
           <button className={mode === "explore" ? "on" : ""} onClick={() => setMode("explore")}>Explore Earth</button>
           <button className={mode === "find" ? "on" : ""} onClick={() => setMode(mode === "find" ? "explore" : "find")}>Find analogs{nFilters ? <span className="dot" aria-label={`${nFilters} filters active`} /> : null}</button>
@@ -157,9 +164,12 @@ export default function AtlasApp() {
         <SearchBox atlas={atlas} onRecord={(id) => selectRecord(id)} onLocation={goToLocation} onReference={(id) => setWorkspace({ type: "reference", id })} />
       </header>
 
-      {railOpen && (
+      {railOpen && railCollapsed && (
+        <button className="railtab" onClick={() => setRailCollapsed(false)} aria-label="Show the panel again">{mode === "find" ? "Find analogs" : mode === "profiles" ? "Base profiles" : "Search area"} <IconChevron /></button>
+      )}
+      {railOpen && !railCollapsed && (
         <aside className="rail" aria-label={mode === "find" ? "Find analogs" : mode === "profiles" ? "Base profiles" : "Search area"}>
-          <div className="phead"><span>{mode === "find" ? "Find analogs" : mode === "profiles" ? "Base profiles" : "Search area"}</span><button className="close" aria-label="Close panel" onClick={() => { setMode("explore"); setDrawMode(null); }}>×</button></div>
+          <div className="phead"><span>{mode === "find" ? "Find analogs" : mode === "profiles" ? "Base profiles" : "Search area"}</span><button className="close" aria-label="Close panel" onClick={() => { setMode("explore"); setDrawMode(null); }}><IconX /></button></div>
           <div className="pbody">
           {mode === "find" && <FindPanel atlas={atlas} filters={filters} setFilters={setFilters} result={result} selectedId={selectedId} location={location} onSelect={(id) => selectRecord(id)} onReference={(id) => setWorkspace({ type: "reference", id })} onArea={() => setMode("area")} />}
           {mode === "profiles" && <ProfilesPanel atlas={atlas} profileId={profileId} setProfileId={setProfileId} onReference={(id) => setWorkspace({ type: "reference", id })} onShow={(refs, kinds) => { setFilters((f) => ({ ...f, body: "all", refs, kinds: { terrain: kinds.includes("terrain"), rock: kinds.includes("rock"), geo2: kinds.includes("geo2") }, insideYardstick: false, tiers: [] })); setMode("find"); }} />}
@@ -170,7 +180,7 @@ export default function AtlasApp() {
 
       {sideOpen && (
         <aside className="side" aria-label="Details">
-          <div className="phead"><span>{selected ? "Record" : clusterIds ? "Records at this place" : "Location"}</span><button className="close" aria-label="Close details" onClick={() => { setSelectedId(null); setLocation(null); setClusterIds(null); }}>×</button></div>
+          <div className="phead"><span>{selected ? "Record" : clusterIds ? "Records at this place" : "Location"}</span><button className="close" aria-label="Close details" onClick={() => { setSelectedId(null); setLocation(null); setClusterIds(null); setRailCollapsed(false); }}><IconX /></button></div>
           <div className="pbody">
           {selected && <Inspector atlas={atlas} rec={selected} onData={(tab) => setWorkspace({ type: "record", id: selected.id, tab: tab ?? "comparison" })} onReference={(id) => setWorkspace({ type: "reference", id })} onFly={() => globe.current?.flyToRecord(selected)} />}
           {!selected && clusterIds && <ClusterList atlas={atlas} ids={clusterIds} onSelect={(id) => selectRecord(id, false)} />}
@@ -189,17 +199,13 @@ export default function AtlasApp() {
       {!fatal && (
         <div className="mapctl" aria-label="Map controls">
           <button className="compass" title="Reset to north-up" aria-label="Reset to north-up" onClick={() => globe.current?.resetNorth()}>
-            <svg viewBox="0 0 32 32" width="26" height="26" style={{ transform: `rotate(${-(cam?.heading ?? 0)}deg)` }} aria-hidden="true"><path d="M16 4 L21 16 L16 14 L11 16 Z" fill="#E4573D" /><path d="M16 28 L21 16 L16 18 L11 16 Z" fill="#F3F5F4" /></svg>
+            <svg viewBox="0 0 32 32" width="22" height="22" style={{ transform: `rotate(${-(cam?.heading ?? 0)}deg)` }} aria-hidden="true"><path d="M16 4 L21 16 L16 14 L11 16 Z" fill="#D8674A" /><path d="M16 28 L21 16 L16 18 L11 16 Z" fill="#F5F7F7" /></svg>
           </button>
           <button title="Tilt between top-down and oblique view (or drag with Shift held)" aria-label="Toggle tilt" onClick={() => globe.current?.toggleTilt()}>{cam && cam.pitch > -80 ? "2D" : "3D"}</button>
-          <button title="Zoom in" aria-label="Zoom in" onClick={() => globe.current?.zoom(0.5)}>+</button>
-          <button title="Zoom out" aria-label="Zoom out" onClick={() => globe.current?.zoom(2)}>−</button>
-          <button title="Whole Earth" aria-label="Whole Earth view" onClick={() => globe.current?.flyHome()}>
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="1.6" /><path d="M3.5 12h17M12 3.5c3 3 3 14 0 17M12 3.5c-3 3-3 14 0 17" fill="none" stroke="currentColor" strokeWidth="1.3" /></svg>
-          </button>
-          <button className={layersOpen ? "on" : ""} title="Map layers" aria-label="Map layers" aria-expanded={layersOpen} onClick={() => setLayersOpen((v) => !v)}>
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 4 3 9l9 5 9-5-9-5Zm-9 9 9 5 9-5M3 17l9 5 9-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" /></svg>
-          </button>
+          <button title="Zoom in" aria-label="Zoom in" onClick={() => globe.current?.zoom(0.5)}><IconPlus /></button>
+          <button title="Zoom out" aria-label="Zoom out" onClick={() => globe.current?.zoom(2)}><IconMinus /></button>
+          <button title="Whole Earth" aria-label="Whole Earth view" onClick={() => globe.current?.flyHome()}><IconGlobe /></button>
+          <button className={layersOpen ? "on" : ""} title="Map layers" aria-label="Map layers" aria-expanded={layersOpen} onClick={() => setLayersOpen((v) => !v)}><IconLayers /></button>
         </div>
       )}
       {layersOpen && (
@@ -209,6 +215,8 @@ export default function AtlasApp() {
           <label><input type="radio" name="img" checked={layers.imagery === "bluemarble"} onChange={() => setLayers((l) => ({ ...l, imagery: "bluemarble" }))} /> Blue Marble <span className="muted">NASA GIBS, 500 m</span></label>
           <label><input type="checkbox" checked={layers.labels} onChange={(e) => setLayers((l) => ({ ...l, labels: e.target.checked }))} /> Borders and place names</label>
           <label><input type="checkbox" checked={layers.relief} onChange={(e) => setLayers((l) => ({ ...l, relief: e.target.checked }))} /> 3D relief {gstatus?.relief === "unavailable" ? <span className="warn">unavailable</span> : null}</label>
+          <p className="provider">Showing: {gstatus?.stack ?? "checking imagery services"}.{gstatus?.relief === "unavailable" ? " 3D relief service could not be reached; the surface is drawn smooth." : ""}</p>
+          {gstatus?.imageryNote ? <p className="warn">{gstatus.imageryNote}</p> : null}
           <h3>Results</h3>
           <label><input type="checkbox" checked={layers.footprints} onChange={(e) => setLayers((l) => ({ ...l, footprints: e.target.checked }))} /> Record footprints when zoomed in</label>
           <label><input type="checkbox" checked={layers.coverage} onChange={(e) => setLayers((l) => ({ ...l, coverage: e.target.checked }))} /> Analysis coverage</label>
@@ -221,13 +229,12 @@ export default function AtlasApp() {
             <li><i className="sym diamond mars" /> Mapped geologic unit (geo-2.0), representative point</li>
             <li><i className="sym cluster" /> Several records; the ring shows the Moon/Mars split</li>
           </ul>
-          {gstatus?.imageryNote ? <p className="warn">{gstatus.imageryNote}</p> : null}
         </div>
       )}
 
       <footer className="statusbar">
         <button className="runchip" onClick={() => { setLayers((l) => ({ ...l, coverage: !l.coverage })); setLayersOpen(true); }} title={`Run statement: ${run?.manifest_describe_as ?? "missing"}. Click to show which 1-degree tiles the terrain run processed.`}>
-          <strong>{result.records.length === atlas.counts.total ? `${atlas.counts.total} loaded records` : `${result.records.length} of ${atlas.counts.total} records shown`}</strong>
+          <strong>{result.records.length === atlas.counts.total ? `${atlas.counts.total} records` : `${result.records.length} of ${atlas.counts.total} records shown`}</strong>
           <span> · {runText}</span>
         </button>
         <div className="spacer" />
@@ -317,6 +324,7 @@ function SearchBox({ atlas, onRecord, onLocation, onReference }: { atlas: Atlas;
 
   return (
     <div className="search" ref={box}>
+      <IconSearch />
       <input
         type="search" value={q} placeholder="Search a place, coordinates or record ID" aria-label="Search a place, coordinates or record ID"
         onChange={(e) => { setQ(e.target.value); setOpen(true); setPlaces(null); setErr(null); }} onFocus={() => setOpen(true)}

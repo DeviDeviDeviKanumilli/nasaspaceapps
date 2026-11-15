@@ -5,6 +5,7 @@ import type { Area, DrawMode } from "./Globe";
 import { DEFAULT_FILTERS, activeFilterCount, describeArea, type FilterResult, type Filters } from "@/lib/filter";
 import { haversineKm, formatLatLon } from "@/lib/geo";
 import { PROFILES } from "@/lib/profiles";
+import { IconBack, IconInfo } from "./Icons";
 
 const KIND_LABEL: Record<RecordKind, string> = { terrain: "Terrain windows", rock: "Rock-type screening (GLiM)", geo2: "Mapped geologic units (geo-2.0)" };
 
@@ -54,59 +55,61 @@ export function FindPanel({ atlas, filters, setFilters, result, selectedId, loca
   const n = activeFilterCount(filters);
 
   return (
-    <div className="panel">
-      <p className="lede">Precomputed records from the loaded run. Choosing a reference filters them; it does not start a new analysis.</p>
-
-      <div className="seg" role="group" aria-label="Planetary body">
-        {(["all", "Moon", "Mars"] as const).map((b) => (<button key={b} className={filters.body === b ? "on" : ""} onClick={() => setFilters((f) => ({ ...f, body: b }))}>{b === "all" ? "All" : b}</button>))}
-      </div>
-
-      <h3>Pathway</h3>
-      {(["terrain", "rock", "geo2"] as RecordKind[]).map((k) => (
-        <label key={k} className="check"><input type="checkbox" checked={filters.kinds[k]} onChange={(e) => setFilters((f) => ({ ...f, kinds: { ...f.kinds, [k]: e.target.checked } }))} /> {KIND_LABEL[k]} <span className="count">{atlas.counts[k]}</span></label>
-      ))}
-
-      <h3>Planetary reference</h3>
-      {(["Moon", "Mars"] as const).filter((b) => filters.body === "all" || filters.body === b).map((b) => (
-        <div key={b} className="refgroup">
-          <div className={`grouplab ${b.toLowerCase()}`}>{b}</div>
-          {refs.filter((r) => r.body === b).map((r) => {
-            const c = perRef.get(r.id) ?? 0;
-            return (
-              <div key={r.id} className={`refrow${filters.refs.includes(r.id) ? " on" : ""}${c === 0 ? " none" : ""}`}>
-                <button className="pick" aria-pressed={filters.refs.includes(r.id)} onClick={() => toggleRef(r.id)}>
-                  <span className="rid">{r.id}</span><span className="rlab">{r.label}</span><span className="count">{c}</span>
-                </button>
-                <button className="info" title={`About reference ${r.id}`} aria-label={`About reference ${r.id}`} onClick={() => onReference(r.id)}>i</button>
-              </div>
-            );
-          })}
+    <div className="panel fill">
+      <div className="controls">
+        <p className="lede">Filters the records already computed. Choosing a reference does not start a new analysis.</p>
+        <div className="seg" role="group" aria-label="Planetary body">
+          {(["all", "Moon", "Mars"] as const).map((b) => (<button key={b} className={filters.body === b ? "on" : ""} aria-pressed={filters.body === b} onClick={() => setFilters((f) => ({ ...f, body: b }))}>{b === "all" ? "All" : b}</button>))}
         </div>
-      ))}
-
-      <div className="resulthead">
-        <strong>{result.records.length}</strong> of {atlas.counts.total} loaded records
-        {n > 0 && <button className="link" onClick={() => setFilters(DEFAULT_FILTERS)}>Clear all filters</button>}
-      </div>
-      {filters.area && <p className="active">Area: {describeArea(filters.area)} <button className="link" onClick={onArea}>Edit</button></p>}
-      {(filters.insideYardstick || filters.tiers.length > 0) && <p className="active">Evidence filter active{result.notApplicable ? `; ${result.notApplicable} records do not carry that value and are left out` : ""}. <button className="link" onClick={onArea}>Edit</button></p>}
-      {centre && <p className="muted small">Sorted by distance from {formatLatLon(centre.lat, centre.lon, 2)}.</p>}
-      {result.records.length === 0 ? (
-        <p className="empty">No loaded record matches these filters. Nothing has been computed for this combination; widen the area or clear a filter.</p>
-      ) : (
-        <ul className="reclist">
-          {sorted.slice(0, limit).map((r) => (
-            <li key={r.id}>
-              <button className={r.id === selectedId ? "on" : ""} onClick={() => onSelect(r.id)}>
-                <i className={`sym ${r.kind === "terrain" ? "circle" : r.kind === "rock" ? "square" : "diamond"} ${r.body.toLowerCase()}`} />
-                <span className="t">{r.title}<em>{r.referenceId}</em></span>
-                <span className="s">{recordLine(r)}{centre ? ` · ${Math.round(haversineKm(centre.lat, centre.lon, r.lat, r.lon)).toLocaleString("en-US")} km away` : ""}</span>
-              </button>
-            </li>
+        <div className="checks" role="group" aria-label="Pathway">
+          {(["terrain", "rock", "geo2"] as RecordKind[]).map((k) => (
+            <label key={k} className="check"><input type="checkbox" checked={filters.kinds[k]} onChange={(e) => setFilters((f) => ({ ...f, kinds: { ...f.kinds, [k]: e.target.checked } }))} /> {KIND_LABEL[k]} <span className="count">{atlas.counts[k]}</span></label>
           ))}
-        </ul>
-      )}
-      {sorted.length > limit && <button className="more" onClick={() => setLimit((l) => l + 60)}>Show more ({sorted.length - limit} remaining)</button>}
+        </div>
+        <div className="refs" role="group" aria-label="Planetary reference">
+          {(["Moon", "Mars"] as const).filter((b) => filters.body === "all" || filters.body === b).map((b) => (
+            <div key={b}>
+              <div className={`grouplab ${b.toLowerCase()}`}>{b} references</div>
+              {refs.filter((r) => r.body === b).map((r) => {
+                const c = perRef.get(r.id) ?? 0;
+                return (
+                  <div key={r.id} className={`refrow${filters.refs.includes(r.id) ? " on" : ""}${c === 0 ? " none" : ""}`}>
+                    <button className="pick" aria-pressed={filters.refs.includes(r.id)} title={`${r.id}: ${r.label}`} onClick={() => toggleRef(r.id)}>
+                      <span className="rid">{r.id}</span><span className="rlab">{r.label}</span><span className="count">{c}</span>
+                    </button>
+                    <button className="info" title={`About reference ${r.id}`} aria-label={`About reference ${r.id}`} onClick={() => onReference(r.id)}><IconInfo /></button>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+        <div className="resulthead">
+          <strong>{result.records.length}</strong> of {atlas.counts.total} records
+          {n > 0 && <button className="link" onClick={() => setFilters(DEFAULT_FILTERS)}>Clear all filters</button>}
+        </div>
+        {filters.area && <p className="active">Area: {describeArea(filters.area)} <button className="link" onClick={onArea}>Edit</button></p>}
+        {(filters.insideYardstick || filters.tiers.length > 0) && <p className="active">Evidence filter active{result.notApplicable ? `; ${result.notApplicable} records do not carry that value and are left out` : ""}. <button className="link" onClick={onArea}>Edit</button></p>}
+        {centre && <p className="muted small" style={{ margin: "6px 0 0" }}>Sorted by distance from {formatLatLon(centre.lat, centre.lon, 2)}.</p>}
+      </div>
+      <div className="results-scroll">
+        {result.records.length === 0 ? (
+          <p className="empty">No loaded record matches these filters. Nothing has been computed for this combination; widen the area or clear a filter.</p>
+        ) : (
+          <ul className="reclist">
+            {sorted.slice(0, limit).map((r) => (
+              <li key={r.id}>
+                <button className={r.id === selectedId ? "on" : ""} onClick={() => onSelect(r.id)}>
+                  <i className={`sym ${r.kind === "terrain" ? "circle" : r.kind === "rock" ? "square" : "diamond"} ${r.body.toLowerCase()}`} />
+                  <span className="t">{r.title}<em>{r.referenceId}</em></span>
+                  <span className="s">{recordLine(r)}{centre ? ` · ${Math.round(haversineKm(centre.lat, centre.lon, r.lat, r.lon)).toLocaleString("en-US")} km away` : ""}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+        {sorted.length > limit && <button className="more" onClick={() => setLimit((l) => l + 60)}>Show more ({sorted.length - limit} remaining)</button>}
+      </div>
     </div>
   );
 }
@@ -121,7 +124,8 @@ export function ProfilesPanel({ atlas, profileId, setProfileId, onReference, onS
   if (!p) {
     return (
       <div className="panel">
-        <p className="lede">Four exploration scenarios defined by the team. They are study questions, not sites selected or endorsed by NASA, and none produces a suitability score.</p>
+        <h2>Exploration scenarios</h2>
+        <p className="lede">Team-defined study questions. They are not sites selected or endorsed by NASA, and none produces a suitability score.</p>
         <ul className="profiles">
           {PROFILES.map((x) => (
             <li key={x.id}>
@@ -134,7 +138,7 @@ export function ProfilesPanel({ atlas, profileId, setProfileId, onReference, onS
             </li>
           ))}
         </ul>
-        <p className="muted small">You can also browse every planetary reference without a profile under Find analogs.</p>
+        <p className="muted small" style={{ marginTop: 14 }}>Every planetary reference can also be browsed without a scenario under Find analogs.</p>
       </div>
     );
   }
@@ -142,9 +146,10 @@ export function ProfilesPanel({ atlas, profileId, setProfileId, onReference, onS
   const groups: [string, string][] = [["measured", "Measured in the loaded run"], ["proxy", "Proxy only"], ["not measured", "Not measured"]];
   return (
     <div className="panel">
-      <button className="link back" onClick={() => setProfileId(null)}>← All profiles</button>
-      <div className={`grouplab ${p.body.toLowerCase()}`}>{p.body} · team-defined scenario</div>
+      <button className="link back" onClick={() => setProfileId(null)} style={{ display: "inline-flex", alignItems: "center", gap: 4 }}><IconBack /> All scenarios</button>
+      <div className={`grouplab ${p.body.toLowerCase()}`}>{p.body}</div>
       <h2>{p.title}</h2>
+      <p className="scenario-meta">Team-defined scenario · not a NASA site selection</p>
       <p className="lede">{p.question}</p>
 
       <h3>Planetary references used</h3>
@@ -215,7 +220,7 @@ export function AreaPanel({ atlas, filters, setFilters, result, drawMode, setDra
 
   return (
     <div className="panel">
-      <p className="lede">Limit the loaded records to a place. The count is of records already computed; no new analysis is run for the area.</p>
+      <p className="lede">Limits the loaded records to a place. The count is of records already computed; no new analysis is run for the area.</p>
 
       <h3>Distance from a point</h3>
       <div className="row3">
