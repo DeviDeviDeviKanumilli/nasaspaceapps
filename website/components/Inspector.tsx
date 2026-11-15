@@ -1,86 +1,138 @@
 "use client";
-import { useMemo } from "react";
+// Compact record inspector: identity, evidence state, three facts, one primary action. Detail lives one click away.
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Atlas, AtlasRecord, Candidate, GeoUnit } from "@/lib/types";
 import { formatLatLon, haversineKm, pointInRing, tileKey } from "@/lib/geo";
-import { exportJson } from "@/lib/export";
-import { ComparisonTable, Limits, PROPERTY_LABEL, TerrainMeasurements, WhyIdentified } from "./RecordViews";
+import { exportCsv, exportJson } from "@/lib/export";
+import { Limits, PROPERTY_LABEL } from "./RecordViews";
 import { recordLine } from "./Panels";
+import { IconExport } from "./Icons";
 
 const pct = (v: unknown) => (typeof v === "number" ? `${(v * 100).toFixed(1)}%` : "not recorded");
 const num = (v: unknown, d = 2) => (typeof v === "number" ? v.toFixed(d) : "not recorded");
 
-function Facts({ atlas, rec }: { atlas: Atlas; rec: AtlasRecord }) {
-  const rows: [string, React.ReactNode][] = [];
+type Fact = { label: string; value: string; cmp?: string; wide?: boolean };
+
+/** Up to three facts, all read from the record. No derived scores. */
+function facts(rec: AtlasRecord): Fact[] {
   if (rec.kind === "terrain") {
     const c = rec.raw as Candidate;
     const p0 = c.properties?.[0];
-    rows.push(["Slope distance, worst baseline", <>{num(c.distances?.worst_scale_slope_W1_deg, 3)}° <span className="muted">smaller is closer; not a score</span></>]);
-    if (p0) rows.push([p0.property.replace(/^median slope at /, "Median slope, ").replace(/ m$/, " m baseline"), <>{num(p0.value)}° <span className="muted">reference median {num(p0.reference_band?.p50)}° · {p0.outcome ?? "not evaluated"}</span></>]);
-    rows.push(["Bare or sparse ground", <>{pct(c.land_cover?.bare_fraction)} <span className="muted">of the window; {pct(c.land_cover?.valid_fraction)} of cells used</span></>]);
-    rows.push(["Inside reference yardstick", typeof c.inside_yardstick === "boolean" ? (c.inside_yardstick ? "Yes" : "No") : "not evaluated"]);
-  } else if (rec.kind === "rock") {
-    const c = rec.raw as Candidate;
-    rows.push(["Tier", <>{c.tier ?? "not recorded"} <span className="muted">G1 mapped · G2 exposed · G4 partner class co-located</span></>]);
-    rows.push(["Target rock class mapped", pct(c.values?.mapped_target_fraction)]);
-    rows.push(["Target on bare ground", <>{num(c.values?.exposed_target_area_km2, 1)} km² <span className="muted">{pct(c.values?.exposed_target_fraction)} of the box</span></>]);
-    rows.push(["Mineral spectra", String(c.evidence_ladder?.G3_spectral ?? "not evaluated")]);
-  } else {
-    const u = rec.raw as GeoUnit;
-    for (const h of u.how_core_was_established ?? []) rows.push([`Required: ${PROPERTY_LABEL[h.property] ?? h.property}`, h.earth_status]);
-    rows.push(["Supporting properties", <>{(u.supporting_recorded ?? []).length} of {u.supporting_total ?? "?"} recorded <span className="muted">a count, not a score</span></>]);
-    rows.push(["Source map", u.map_source?.scale ? `1:${u.map_source.scale.toLocaleString("en-US")}; contacts about ±${u.map_source.contact_position_uncertainty_m ?? "?"} m` : "scale not recorded"]);
-    rows.push(["Steep public ground (proxy)", `${num(u.public_steep_ground_km2, 3)} km²`]);
+    const out: Fact[] = [{ label: "Slope distance, worst baseline", value: typeof c.distances?.worst_scale_slope_W1_deg === "number" ? `${c.distances.worst_scale_slope_W1_deg.toFixed(3)}°` : "not recorded", cmp: "Wasserstein-1 between slope distributions. Smaller is closer; not a percentage." }];
+    if (p0) out.push({ label: p0.property.replace(/^median slope at (\d+) m$/, "Median slope, $1 m baseline"), value: typeof p0.value === "number" ? `${p0.value.toFixed(2)}°` : "not measured", cmp: `reference median ${num(p0.reference_band?.p50)}° · ${p0.outcome ?? "not evaluated"}` });
+    out.push({ label: "Bare or sparse ground", value: pct(c.land_cover?.bare_fraction), cmp: `share of the window (ESA WorldCover); ${pct(c.land_cover?.valid_fraction)} of cells used` });
+    return out;
   }
-  return <table className="kv facts"><tbody>{rows.map(([k, v]) => <tr key={k}><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody></table>;
+  if (rec.kind === "rock") {
+    const c = rec.raw as Candidate;
+    return [
+      { label: "Screening tier", value: c.tier ?? "not recorded", cmp: "G1 mapped · G2 on bare ground · G4 partner class in the same box" },
+      { label: "Target rock class mapped", value: pct(c.values?.mapped_target_fraction), cmp: "share of the box on the Global Lithological Map" },
+      { label: "Target class on bare ground", value: typeof c.values?.exposed_target_area_km2 === "number" ? `${c.values.exposed_target_area_km2.toFixed(1)} km²` : "not recorded", cmp: `${pct(c.values?.exposed_target_fraction)} of the box · mineral spectra ${String(c.evidence_ladder?.G3_spectral ?? "not evaluated")}` },
+    ];
+  }
+  const u = rec.raw as GeoUnit;
+  const core = u.how_core_was_established ?? [];
+  return [
+    { label: "Required properties", value: core.length ? core.map((h) => `${PROPERTY_LABEL[h.property] ?? h.property}: ${h.earth_status}`).join(" · ") : "not recorded", wide: true },
+    { label: "Supporting properties recorded", value: `${(u.supporting_recorded ?? []).length} of ${u.supporting_total ?? "?"}`, cmp: "a count from the map-unit description, not a score" },
+    { label: "Source map scale", value: u.map_source?.scale ? `1:${u.map_source.scale.toLocaleString("en-US")}` : "not recorded", cmp: `contacts about ±${u.map_source?.contact_position_uncertainty_m ?? "?"} m · steep public ground (proxy) ${num(u.public_steep_ground_km2, 3)} km²` },
+  ];
+}
+
+/** Two or three template sentences from record fields. */
+function why(atlas: Atlas, rec: AtlasRecord): string {
+  if (rec.kind === "terrain") {
+    const c = rec.raw as Candidate;
+    const ref = atlas.terrainRefs.get(c.reference);
+    const n = atlas.bundle.run?.windows?.evaluated;
+    const y = ref?.yardstick as { p90?: number } | null | undefined;
+    const yard = typeof c.inside_yardstick === "boolean" && typeof y?.p90 === "number"
+      ? ` Its slope distance is ${c.inside_yardstick ? "inside" : "outside"} the spread between real reference sites (yardstick ${y.p90}°).`
+      : " This reference has no site-to-site yardstick.";
+    return `Nominated for ${c.reference}${ref?.description ? ` (${ref.description})` : ""}: on Pareto front ${c.pareto_front ?? "?"} for slope, roughness and connectivity distance${typeof n === "number" ? ` among ${n.toLocaleString("en-US")} windows evaluated` : ""}.${yard}`;
+  }
+  if (rec.kind === "rock") {
+    const c = rec.raw as Candidate;
+    return `The Global Lithological Map shows the rock class associated with ${c.reference} in this 0.1° box (tier ${c.tier ?? "not recorded"}). This is a map classification at 1:1,000,000 to 1:5,000,000; a co-located partner class does not establish a shared process.`;
+  }
+  const u = rec.raw as GeoUnit;
+  const nc = (u.conflicts ?? []).length;
+  return `Every required property of ${u.reference} is recorded for this map unit and no ruling-out property is. ${(u.supporting_recorded ?? []).length} of ${u.supporting_total ?? "?"} supporting properties are recorded${nc ? `, with ${nc} recorded conflict${nc > 1 ? "s" : ""}` : ""}. Evidence is map text and structured lithology, not field observation.`;
 }
 
 export function Inspector({ atlas, rec, onData, onReference, onFly }: { atlas: Atlas; rec: AtlasRecord; onData(tab?: string): void; onReference(id: string): void; onFly(): void }) {
+  const [menu, setMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { setMenu(false); }, [rec.id]);
+  useEffect(() => {
+    if (!menu) return;
+    const f = (e: MouseEvent) => { if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenu(false); };
+    const k = (e: KeyboardEvent) => { if (e.key === "Escape") { e.stopPropagation(); setMenu(false); } };
+    document.addEventListener("mousedown", f);
+    document.addEventListener("keydown", k, true);
+    return () => { document.removeEventListener("mousedown", f); document.removeEventListener("keydown", k, true); };
+  }, [menu]);
+
   const u = rec.kind === "geo2" ? (rec.raw as GeoUnit) : null;
   const featured = u ? (atlas.bundle.geology_v2?.featured ?? []).find((f) => f.unit_link === u.unit_link && f.region === u.region) : undefined;
-  const status = rec.kind === "terrain" ? "Measured from elevation data; not visited" : rec.kind === "rock" ? "Map classification; mineralogy not measured" : "Mapped unit; field exposure not verified";
+  const state = rec.kind === "terrain" ? "Elevation-derived; not field-visited" : rec.kind === "rock" ? "Map classification; mineralogy not measured" : "Mapped unit; exposure unverified";
+  const tref = atlas.terrainRefs.get(rec.referenceId);
+  const gref = atlas.geoRefs.get(rec.referenceId);
+  const refName = tref?.description ?? gref?.name ?? "";
+  const refShort = refName.length > 46 ? `${refName.slice(0, 44)}…` : refName;
+
   return (
     <div className="inspector">
-      <div className={`grouplab ${rec.body.toLowerCase()}`}>{rec.pathwayLabel}</div>
+      <div className="path"><i className={`sym ${rec.kind === "terrain" ? "circle" : rec.kind === "rock" ? "square" : "diamond"} ${rec.body.toLowerCase()}`} />{rec.pathwayLabel}</div>
       <h2>{rec.title}</h2>
-      <p className="sub">{rec.kind === "geo2" ? rec.subtitle : formatLatLon(rec.lat, rec.lon)}</p>
-      <p className="chips">
-        <button className="chip" onClick={() => onReference(rec.referenceId)} title="Open the planetary reference">Compared with {rec.referenceId} · {rec.body}</button>
-        <span className="chip quiet">{status}</span>
-      </p>
-      <Facts atlas={atlas} rec={rec} />
-      <p className="pos muted small">{rec.kind === "geo2" ? `Map point ${formatLatLon(rec.lat, rec.lon)}. ` : ""}{rec.positionMeaning.replace(/\.$/, "")}.</p>
-      <div className="btnrow">
-        <button className="primary" onClick={() => onData()}>Data for this site</button>
-        <button onClick={onFly}>Fly to</button>
-        <button onClick={() => exportJson(atlas, rec)}>Export JSON</button>
+      {rec.kind === "geo2" ? <p className="sub plainfont">{rec.subtitle}{u?.unit_age ? ` · ${u.unit_age}` : ""}</p> : <p className="sub">{formatLatLon(rec.lat, rec.lon)}</p>}
+      <p className="cmpline">Compared with <button onClick={() => onReference(rec.referenceId)} title={`${rec.referenceId}: ${refName}`}>{rec.referenceId}{refShort ? ` · ${refShort}` : ""}</button> <span className={`grouplab ${rec.body.toLowerCase()}`} style={{ display: "inline", marginLeft: 4 }}>{rec.body}</span></p>
+      <p className="state">{state}</p>
+
+      <dl className="facts3">
+        {facts(rec).map((f) => (
+          <div key={f.label} className={`fact${f.wide ? " wide" : ""}`}>
+            <dt>{f.label}</dt><dd>{f.value}</dd>
+            {f.cmp ? <div className="cmp">{f.cmp}</div> : null}
+          </div>
+        ))}
+      </dl>
+
+      <div className="actions" ref={menuRef}>
+        <button className="primary" onClick={() => onData()}>Inspect evidence</button>
+        <button className="textbtn" onClick={onFly}>Fly to</button>
+        <button className="textbtn" aria-haspopup="menu" aria-expanded={menu} onClick={() => setMenu((v) => !v)} style={{ display: "inline-flex", alignItems: "center", gap: 5, marginLeft: "auto" }}><IconExport /> Export</button>
+        {menu && (
+          <div className="menu" role="menu">
+            <button role="menuitem" onClick={() => { exportJson(atlas, rec); setMenu(false); }}>Record as JSON</button>
+            <button role="menuitem" onClick={() => { exportCsv(rec); setMenu(false); }}>Values as CSV</button>
+          </div>
+        )}
       </div>
+      <p className="pos muted small">{rec.kind === "geo2" ? `Map point ${formatLatLon(rec.lat, rec.lon)}: ` : ""}{rec.positionMeaning.replace(/\.$/, "")}.</p>
 
       {featured && (
         <section className="xcheck">
-          <h3>Independent cross-check</h3>
-          <p>{featured.title}.</p>
+          <b>Independent cross-check</b>
           <p><strong>{featured.outcome}.</strong></p>
-          <p className="muted small">{featured.note ? `${featured.note[0].toUpperCase()}${featured.note.slice(1)}. ` : ""}The guide's stop locations are not verified by this project, and no field scan is part of the loaded results. In the polygon inside the preserve, {pct(featured.share_within_500m_of_intrusive_contact)} of the area lies within 500 m of an intrusive contact (possible heat alteration).</p>
+          <details>
+            <summary>Source and caveats</summary>
+            <p>{featured.title}.</p>
+            <p className="muted">{featured.note ? `${featured.note[0].toUpperCase()}${featured.note.slice(1)}. ` : ""}The guide's stop locations are not verified by this project, and no field scan is part of the loaded results. In the polygon inside the preserve, {pct(featured.share_within_500m_of_intrusive_contact)} of the area lies within 500 m of an intrusive contact (possible heat alteration).</p>
+          </details>
         </section>
       )}
 
       <details open>
-        <summary>Why it was identified</summary>
-        <WhyIdentified atlas={atlas} rec={rec} />
+        <summary>Why identified</summary>
+        <div className="prose">
+          <p>{why(atlas, rec)}</p>
+          <button className="link" onClick={() => onData("why")}>Full reasoning</button>
+          {rec.kind !== "rock" && <> · <button className="link" onClick={() => onData("comparison")}>{rec.kind === "terrain" ? "View comparison chart" : "View property-by-property evidence"}</button></>}
+          {" · "}<button className="link" onClick={() => onData("sources")}>Sources</button>
+        </div>
       </details>
-      {rec.kind === "terrain" && (
-        <details open>
-          <summary>Terrain compared with {rec.referenceId}</summary>
-          <TerrainMeasurements rec={rec} part="plot" />
-          <button className="link" onClick={() => onData("comparison")}>Full table and distances →</button>
-        </details>
-      )}
-      {u && (
-        <details>
-          <summary>Geologic evidence, property by property</summary>
-          <ComparisonTable atlas={atlas} rows={u.comparison ?? []} />
-        </details>
-      )}
       <details>
         <summary>Limits</summary>
         <Limits atlas={atlas} rec={rec} />
@@ -118,9 +170,14 @@ export function LocationCard({ atlas, loc, onSelect, onUseAsCentre, onFly }: { a
   const t = info.tile;
   return (
     <div className="inspector">
-      <h2>{formatLatLon(loc.lat, loc.lon)}</h2>
-      {loc.label && <p className="sub">{loc.label}</p>}
-      <p className="notice"><strong>No analysis for this exact location in the loaded results.</strong> The site can navigate anywhere on Earth, but measurements exist only for the precomputed records. On-demand analysis of a new location is not available in this build.</p>
+      <div className="path">Selected location</div>
+      <h2 className="mono" style={{ fontSize: 17 }}>{formatLatLon(loc.lat, loc.lon)}</h2>
+      {loc.label && <p className="sub plainfont">{loc.label}</p>}
+      <p className="notice"><strong>No analysis for this exact location in the loaded results.</strong>The globe can go anywhere, but measurements exist only for the precomputed records. On-demand analysis of a new location is not available in this build.</p>
+      <div className="actions">
+        <button className="btn" onClick={onUseAsCentre}>Search around this point</button>
+        <button className="textbtn" onClick={onFly}>Fly to</button>
+      </div>
 
       <h3>What the loaded run covers here</h3>
       <table className="kv"><tbody>
@@ -128,7 +185,7 @@ export function LocationCard({ atlas, loc, onSelect, onUseAsCentre, onFly }: { a
           {t ? (t.status === "windows" ? `This 1° tile was processed: ${t.windows} windows were evaluated.` : t.status === "no_valid_windows" ? "This 1° tile was processed, but no 10 km window passed the validity test (too much masked or missing ground)." : t.status === "skipped_landcover" ? "This 1° tile was skipped: land cover (trees, crops, built-up, water) rules out every window, so its elevation data was not read." : `Tile status: ${String(t.rawStatus)}.`)
             : "There is no result for this 1° tile in the loaded run: it is ocean, outside the tile list, or it failed."}
         </td></tr>
-        <tr><th scope="row">Loaded footprints containing this point</th><td>
+        <tr><th scope="row">Footprints containing this point</th><td>
           {info.containing.length === 0 ? "None." : (
             <>
               {info.containing.length} record{info.containing.length > 1 ? "s" : ""}. Their values describe the whole window or box, not this point.
@@ -139,16 +196,11 @@ export function LocationCard({ atlas, loc, onSelect, onUseAsCentre, onFly }: { a
         <tr><th scope="row">Regional geology</th><td>
           {info.regions.length ? `Inside the ${info.regions.map((g) => `${g.id} ${g.role}`).join(" and ")} circle. Qualifying map units are shown at representative points; unit outlines are not in the bundle, so the unit under this exact point cannot be stated.` : "Outside both regional geology study areas. Not searched."}
         </td></tr>
-        <tr><th scope="row">Rock-type screening</th><td>Screened globally at 0.1°, but only the 50 highest-ranked boxes per reference are loaded. A box that is not listed was either not nominated or ranked lower.</td></tr>
+        <tr><th scope="row">Rock-type screening</th><td>Screened at 0.1°, but only the 50 highest-ranked boxes per reference are loaded. A box that is not listed was either not nominated or ranked lower.</td></tr>
       </tbody></table>
 
-      <div className="btnrow">
-        <button onClick={onUseAsCentre}>Search around this point</button>
-        <button onClick={onFly}>Fly to</button>
-      </div>
-
       <h3>Nearest loaded records</h3>
-      <p className="muted small">Listed for navigation. Their measurements are not properties of the selected location.</p>
+      <p className="muted small" style={{ margin: 0 }}>Listed for navigation. Their measurements are not properties of the selected location.</p>
       <ul className="reclist">
         {info.nearest.map(({ r, d }) => (
           <li key={r.id}><button onClick={() => onSelect(r.id)}>

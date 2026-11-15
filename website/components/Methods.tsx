@@ -13,8 +13,8 @@ export default function Methods() {
   const [atlas, setAtlas] = useState<Atlas | null>(null);
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => { loadAtlas(BASE_PATH).then(setAtlas).catch((e: Error) => setErr(e.message)); }, []);
-  if (err) return <main className="doc"><p>The results bundle could not be loaded: {err}</p><p><Link href="/">Back to the globe</Link></p></main>;
-  if (!atlas) return <main className="doc" aria-busy="true"><p>Loading…</p></main>;
+  if (err) return <main className="docpage"><div className="doc"><p>The results bundle could not be loaded: {err}</p><p><Link href="/">Back to the globe</Link></p></div></main>;
+  if (!atlas) return <main className="docpage" aria-busy="true"><div className="doc"><p>Loading…</p></div></main>;
   const b = atlas.bundle;
   const run = b.run ?? {};
   const p = (run.parameters ?? {}) as Record<string, unknown>;
@@ -25,10 +25,11 @@ export default function Methods() {
   const list = (v: unknown) => (Array.isArray(v) ? v.join(", ") : String(v ?? "not recorded"));
   const classes = (v: unknown) => (Array.isArray(v) ? v.map((c) => `${c} ${WC[String(c)] ?? ""}`.trim()).join("; ") : "not recorded");
   return (
-    <main className="doc">
+    <main className="docpage">
+    <div className="doc">
       <header className="dochead">
-        <Link href="/" className="backbtn">← Back to the globe</Link>
-        <div className="brand">{APP_NAME}</div>
+        <Link href="/" className="backbtn">Back to the globe</Link>
+        <div className="brand"><b>{APP_NAME}</b><span>Earth analog atlas</span></div>
       </header>
       <h1>Data &amp; methods</h1>
       <p className="lede">What was computed, from which data, at what scale, and what it does not show. {TEAM}.</p>
@@ -157,7 +158,7 @@ export default function Methods() {
 
       <section id="literature">
         <h2>Literature for the Mars geology references</h2>
-        <ul className="cites">{Object.entries(g2?.citations ?? {}).map(([k, v]) => { const u = doiUrl(v); return (<li key={k} id={`cite-${k}`}><span className="code">{k}</span> {u ? <a href={u} target="_blank" rel="noreferrer">{v}</a> : v}</li>); })}</ul>
+        <ul className="cites">{Object.entries(g2?.citations ?? {}).map(([k, v]) => { const u = doiUrl(v); return (<li key={k} id={`cite-${k}`}><span className="code">{k}</span><span>{u ? <a href={u} target="_blank" rel="noreferrer">{v}</a> : v}</span></li>); })}</ul>
       </section>
 
       <section id="limits">
@@ -175,6 +176,7 @@ export default function Methods() {
         <h2>Code and reproducibility</h2>
         <p>The analysis code, tests and result files are in the project repository: <a href={REPO_URL} target="_blank" rel="noreferrer">{REPO_URL.replace("https://", "")}</a>. The file this site reads is <code>web/app_bundle.json</code> (schema in <code>SCHEMA.md</code>). Map outlines are derived from each record's centre by <code>scripts/derive_geometry.py</code> using the engine's documented footprint rule.</p>
       </section>
+    </div>
     </main>
   );
 }

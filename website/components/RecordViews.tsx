@@ -228,7 +228,7 @@ export function RockMeasurements({ rec }: { rec: AtlasRecord }) {
 export function ComparisonTable({ atlas, rows }: { atlas: Atlas; rows: ComparisonRow[] }) {
   return (
     <div className="tablewrap">
-      <table className="data cmp">
+      <table className="data cmp-table">
         <thead><tr><th>Property</th><th>Role</th><th>Mars: what is reported</th><th>Earth: map record for this unit</th></tr></thead>
         <tbody>
           {rows.map((r) => (
@@ -379,7 +379,7 @@ export function ReferenceDetail({ atlas, id }: { atlas: Atlas; id: string }) {
         {g.site_note ? <p className="muted">{g.site_note}</p> : null}
         {(g.locations ?? []).length ? <p className="muted">Mars locations: {(g.locations ?? []).map((l) => `${l.site ?? "site"} (${fmt(l.lat)}° N, ${fmt(l.lon)}° E)`).join("; ")}</p> : null}
         <div className="tablewrap">
-          <table className="data cmp">
+          <table className="data cmp-table">
             <thead><tr><th>Property</th><th>Role</th><th>What is reported on Mars</th><th>Evidence</th></tr></thead>
             <tbody>
               {(g.properties ?? []).map((p) => (

@@ -2,8 +2,8 @@
 // SVG charts drawn only from values in the loaded bundle. Every chart has an axis, units and a source note.
 import type { Band } from "@/lib/types";
 
-const MOON = "#A7CBE5";
-const MARS = "#D49A80";
+const MOON = "#567C94";
+const MARS = "#B66F54";
 
 function ticks(max: number): number[] {
   const step = max <= 6 ? 1 : max <= 12 ? 2 : max <= 30 ? 5 : 10;
@@ -37,7 +37,7 @@ export function BandPlot({ rows, body, unit, axisLabel, earthLabel, note }: { ro
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${axisLabel}: reference percentile bands${hasEarth ? " and the Earth value" : ""} by baseline`}>
         {ticks(max).map((t) => (
           <g key={t}>
-            <line x1={x(t)} x2={x(t)} y1={top} y2={top + rows.length * rowH} stroke="rgba(255,255,255,0.08)" />
+            <line x1={x(t)} x2={x(t)} y1={top} y2={top + rows.length * rowH} className="grid" />
             <text x={x(t)} y={top + rows.length * rowH + 14} textAnchor="middle" className="tick">{t}</text>
           </g>
         ))}
@@ -47,12 +47,12 @@ export function BandPlot({ rows, body, unit, axisLabel, earthLabel, note }: { ro
           return (
             <g key={r.label}>
               <text x={L - 10} y={y + 4} textAnchor="end" className="rowlab">{r.label}</text>
-              {b && typeof b.p10 === "number" && typeof b.p90 === "number" && <rect x={x(b.p10)} y={y - 3} width={Math.max(1, x(b.p90) - x(b.p10))} height={6} fill={col} opacity={0.28} />}
-              {b && typeof b.p25 === "number" && typeof b.p75 === "number" && <rect x={x(b.p25)} y={y - 7} width={Math.max(1, x(b.p75) - x(b.p25))} height={14} fill={col} opacity={0.5} />}
+              {b && typeof b.p10 === "number" && typeof b.p90 === "number" && <rect x={x(b.p10)} y={y - 3} width={Math.max(1, x(b.p90) - x(b.p10))} height={6} fill={col} opacity={0.22} />}
+              {b && typeof b.p25 === "number" && typeof b.p75 === "number" && <rect x={x(b.p25)} y={y - 7} width={Math.max(1, x(b.p75) - x(b.p25))} height={14} fill={col} opacity={0.45} />}
               {b && typeof b.p50 === "number" && <line x1={x(b.p50)} x2={x(b.p50)} y1={y - 9} y2={y + 9} stroke={col} strokeWidth={2} />}
               {typeof r.value === "number" && (
                 <g transform={`translate(${x(r.value)},${y})`}>
-                  <path d="M0,-7 L6,0 L0,7 L-6,0 Z" fill="#F3F5F4" stroke="#0a1118" strokeWidth={1.5} />
+                  <path d="M0,-7 L6,0 L0,7 L-6,0 Z" fill="#18252A" stroke="#F7F8F5" strokeWidth={1.5} />
                 </g>
               )}
             </g>
@@ -61,8 +61,8 @@ export function BandPlot({ rows, body, unit, axisLabel, earthLabel, note }: { ro
         <text x={(L + W - R) / 2} y={H - 4} textAnchor="middle" className="axis">{axisLabel} ({unit})</text>
       </svg>
       <figcaption>
-        <span className="key"><i style={{ background: col, opacity: 0.28 }} />reference 10th–90th percentile</span>
-        <span className="key"><i style={{ background: col, opacity: 0.5 }} />25th–75th</span>
+        <span className="key"><i style={{ background: col, opacity: 0.22 }} />reference 10th–90th percentile</span>
+        <span className="key"><i style={{ background: col, opacity: 0.45 }} />25th–75th</span>
         <span className="key"><i className="tickkey" style={{ background: col }} />median</span>
         {hasEarth && <span className="key"><i className="diamond" />{earthLabel ?? "Earth window median"}</span>}
         <span className="note">{note}</span>
@@ -85,7 +85,7 @@ export function ConnectivityChart({ curve, body, baselineM }: { curve: Record<st
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Connectivity curve of the reference">
         {[0, 0.25, 0.5, 0.75, 1].map((t) => (
           <g key={t}>
-            <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="rgba(255,255,255,0.08)" />
+            <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} className="grid" />
             <text x={L - 8} y={y(t) + 4} textAnchor="end" className="tick">{t.toFixed(2)}</text>
           </g>
         ))}

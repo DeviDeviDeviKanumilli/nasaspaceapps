@@ -6,6 +6,7 @@ import { formatLatLon } from "@/lib/geo";
 import { exportCsv, exportJson, exportObject } from "@/lib/export";
 import { ComparisonTable, GeoMeasurements, IdentityTable, Limits, ReferenceDetail, RockMeasurements, SourcesTable, TerrainMeasurements, WhyIdentified } from "./RecordViews";
 import Link from "next/link";
+import { IconBack, IconExport } from "./Icons";
 
 export type WorkspaceState = { type: "record"; id: string; tab: string } | { type: "reference"; id: string };
 
@@ -23,14 +24,16 @@ export default function Workspace({ atlas, state, setState, onShowOnMap, onRefer
     const n = atlas.records.filter((r) => r.referenceId === state.id).length;
     return (
       <div className="workspace" role="dialog" aria-modal="true" aria-label={`Planetary reference ${state.id}`}>
+        <div className="sheet">
         <header>
-          <button ref={closeRef} className="backbtn" onClick={() => setState(null)}>← Back to map</button>
-          <div className="wtitle"><span className={`grouplab ${(t?.body ?? "Mars").toLowerCase()}`}>{t?.body ?? (g ? "Mars" : "")} · planetary reference</span><h1>{state.id}{t?.description ? ` — ${t.description}` : ""}</h1></div>
+          <button ref={closeRef} className="backbtn" onClick={() => setState(null)}><IconBack /> Back to map</button>
+          <div className="wtitle"><span className={`grouplab ${(t?.body ?? "Mars").toLowerCase()}`}>{t?.body ?? (g ? "Mars" : "")} · planetary reference</span><h1>{state.id}{t?.description ? `: ${t.description}` : ""}</h1></div>
           <div className="wactions"><button className="primary" disabled={n === 0} onClick={() => onShowRecords(state.id)}>Show {n} Earth records</button></div>
         </header>
         <div className="wbody single">
           <p className="muted">A reference is a measured comparator region on the Moon or Mars. It is not a selected landing or base site.</p>
           <ReferenceDetail atlas={atlas} id={state.id} />
+        </div>
         </div>
       </div>
     );
@@ -43,13 +46,14 @@ export default function Workspace({ atlas, state, setState, onShowOnMap, onRefer
   const json = JSON.stringify(exportObject(atlas, rec), null, 2);
   return (
     <div className="workspace" role="dialog" aria-modal="true" aria-label={`Data for ${rec.title}`}>
+      <div className="sheet">
       <header>
-        <button ref={closeRef} className="backbtn" onClick={() => setState(null)}>← Back to map</button>
-        <div className="wtitle"><span className={`grouplab ${rec.body.toLowerCase()}`}>{rec.pathwayLabel} · data for this site</span><h1>{rec.title}</h1><p className="sub">{formatLatLon(rec.lat, rec.lon)} · compared with <button className="link" onClick={() => onReference(rec.referenceId)}>{rec.referenceId}</button> ({bodyName})</p></div>
+        <button ref={closeRef} className="backbtn" onClick={() => setState(null)}><IconBack /> Back to map</button>
+        <div className="wtitle"><span className={`grouplab ${rec.body.toLowerCase()}`}>{rec.pathwayLabel} · data for this site</span><h1>{rec.title}</h1><p className="sub"><span className="mono">{formatLatLon(rec.lat, rec.lon)}</span> · compared with <button className="link" onClick={() => onReference(rec.referenceId)}>{rec.referenceId}</button> ({bodyName})</p></div>
         <div className="wactions">
-          <button onClick={() => onShowOnMap(rec.id)}>Show on map</button>
-          <button onClick={() => exportJson(atlas, rec)}>Export JSON</button>
-          <button onClick={() => exportCsv(rec)}>Export CSV</button>
+          <button className="textbtn" onClick={() => onShowOnMap(rec.id)}>Show on map</button>
+          <button className="textbtn" onClick={() => exportJson(atlas, rec)} style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><IconExport /> JSON</button>
+          <button className="textbtn" onClick={() => exportCsv(rec)} style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><IconExport /> CSV</button>
         </div>
       </header>
       <nav className="tabs" role="tablist">
@@ -98,7 +102,7 @@ export default function Workspace({ atlas, state, setState, onShowOnMap, onRefer
             <>
               <h2>Where each value comes from</h2>
               <SourcesTable rec={rec} />
-              <p><Link href="/methods/">Full dataset catalogue, licences and methods →</Link></p>
+              <p><Link href="/methods/">Full dataset catalogue, licences and methods</Link></p>
             </>
           )}
           {tab === "record" && (
@@ -111,6 +115,7 @@ export default function Workspace({ atlas, state, setState, onShowOnMap, onRefer
           )}
           {tab === "limits" && (<><h2>Limits</h2><Limits atlas={atlas} rec={rec} /></>)}
         </section>
+      </div>
       </div>
     </div>
   );
