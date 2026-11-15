@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -348,7 +350,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
               Expanded(flex: 5, child: Text('Scan', style: head)),
               Expanded(flex: 3, child: Text('Recorded from', style: head)),
               Expanded(flex: 3, child: Text('Captured, UTC', style: head)),
-              const SizedBox(width: 150),
+              const SizedBox(width: 236), // fits Close + Go to Capture when the replay is open
             ],
           ),
         ),
@@ -386,7 +388,7 @@ class _DevicesScreenState extends State<DevicesScreen> {
                     ),
                     Expanded(flex: 3, child: Text(utcText(d['captured_at_utc']), style: t.textTheme.bodyMedium)),
                     SizedBox(
-                      width: 150,
+                      width: 236,
                       child: Align(alignment: Alignment.centerRight, child: _openButton(s, 'replay', did, primary: false)),
                     ),
                   ],
@@ -409,7 +411,8 @@ class _DevicesScreenState extends State<DevicesScreen> {
         children: [
           KV(
             'Source',
-            asStr(dev['name'], '—'),
+            // A replay reports the recorded device's name; say it is a replay so it never reads as a live camera.
+            st['origin'] == 'replay' ? 'Replay of ${asStr(dev['name'], 'a saved scan')}' : asStr(dev['name'], '—'),
             labelWidth: 120,
             valueStyle: t.textTheme.bodyMedium?.copyWith(
               fontSize: 13.5,

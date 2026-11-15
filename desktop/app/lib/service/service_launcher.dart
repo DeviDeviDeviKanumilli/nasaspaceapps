@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -82,9 +84,9 @@ class ServiceLauncher extends ChangeNotifier {
               : 'Python environment missing at $py. Create it: cd desktop/service && python3.13 -m venv .venv && .venv/bin/pip install -r requirements.txt',
         );
       }
-      // --exit-with-stdin: the service stops by itself when this app's end of its stdin pipe closes,
+      // --parent-pid: the service watches this app's process and stops by itself when it is gone,
       // so a crash or force-quit never leaves an orphan holding the camera.
-      final args = ['-m', 'fieldstation.server', '--port', '0', '--exit-with-stdin', if (withFixtures) '--fixtures'];
+      final args = ['-m', 'fieldstation.server', '--port', '0', '--parent-pid', '$pid', if (withFixtures) '--fixtures'];
       onLog('Starting service: $py ${args.join(' ')} (cwd $serviceDir)');
       final env = Map<String, String>.from(Platform.environment)..remove('FIELDSTATION_TOKEN');
       final p = await Process.start(py, args, workingDirectory: serviceDir, environment: env);

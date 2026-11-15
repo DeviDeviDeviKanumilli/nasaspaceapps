@@ -3,6 +3,8 @@
 Only real sensors and replay are offered by default. The synthetic scene is
 offered only when fixtures are explicitly enabled (FIELDSTATION_FIXTURES=1 or
 --fixtures), so it cannot appear in a field session by accident.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

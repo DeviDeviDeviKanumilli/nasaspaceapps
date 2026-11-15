@@ -13,6 +13,8 @@ Interpretation choices where the contract is silent (sent to the mobile team):
   * nonces, proofs, MACs = standard base64 with padding
   * K = raw 32-byte HMAC-SHA256 output
   * seq starts at 1 per sender per session
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

@@ -3,6 +3,8 @@
 Every function returns plain dicts with explicit units, method, and
 limitations. Nothing here says anything about rock type, mineralogy or
 planetary analog suitability.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -70,8 +72,9 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
         _imagesFor = id;
         _depthPng = _colorImg = null;
         _depthError = _colorError = null;
+        _rangeLo = _rangeHi = _validFrac = null; // never show the previous scan's range while this one loads or fails
         if (asMap(_detail['depth_image']).isNotEmpty) await _loadDepthFigure(s, id);
-        if (_showColor) await _loadColor(s, id);
+        if (_showColor && _hasColorFrame()) await _loadColor(s, id);
       }
     } catch (e) {
       _error = errText(e);
@@ -92,14 +95,15 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
     }
   }
 
-  String _colorPath() {
-    final files = asList(asMap(_detail['manifest'])['files']).map(asMap).map((f) => f['path']).toSet();
-    return files.contains('frames/color_00000.png') ? 'frames/color_00000.png' : 'thumbnail.jpg';
-  }
+  static const _colorPath = 'frames/color_00000.png';
+
+  /// Only a recorded colour frame is offered as a backdrop. The thumbnail is not one (it can be the depth image, or
+  /// colour and depth side by side), so scans without a colour frame are shown on depth only.
+  bool _hasColorFrame() => asList(asMap(_detail['manifest'])['files']).map(asMap).any((f) => f['path'] == _colorPath);
 
   Future<void> _loadColor(AppState s, String id) async {
     try {
-      _colorImg = (await s.api!.getBytes('/api/scans/$id/file/${_colorPath()}')).bytes;
+      _colorImg = (await s.api!.getBytes('/api/scans/$id/file/$_colorPath')).bytes;
     } catch (e) {
       _colorError = errText(e);
     }
@@ -302,7 +306,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
   Widget _figurePanel(AppState s, String id, ThemeData t, Map<String, dynamic> di) {
     final w = (asInt(di['width']) ?? 848).toDouble();
     final h = (asInt(di['height']) ?? 480).toDouble();
-    final color = _showColor;
+    final hasColor = _hasColorFrame();
+    final color = _showColor && hasColor;
     final img = color ? _colorImg : _depthPng;
     final imgError = color ? _colorError : _depthError;
     final hint = switch (_tool) {
@@ -316,13 +321,13 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
     final caption = color
         ? FigureCaption(
             'Colour frame on the depth grid.',
-            '${_colorPath()}, stretched to ${w.round()} × ${h.round()} depth pixels. Registration is approximate and for picking only; '
+            '$_colorPath, stretched to ${w.round()} × ${h.round()} depth pixels. Registration is approximate and for picking only; '
                 'measurements use the filtered depth.',
           )
         : FigureCaption(
             'Filtered depth.',
             '${w.round()} × ${h.round()} px, per-pixel median of the recorded frames. '
-                '${_rangeLo != null ? 'Coloured ${_rangeLo!.toStringAsFixed(2)} to ${_rangeHi!.toStringAsFixed(2)} m (2nd to 98th percentile); white' : 'White'} '
+                '${_rangeLo != null ? 'Coloured by depth along the camera axis, ${_rangeLo!.toStringAsFixed(2)} to ${_rangeHi!.toStringAsFixed(2)} m (2nd to 98th percentile); white' : 'White'} '
                 'has no depth${_validFrac != null ? ' (${(_validFrac! * 100).toStringAsFixed(1)} % of pixels are valid)' : ''}. '
                 'Regions are in depth pixels.',
           );
@@ -334,7 +339,10 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           children: [
             Expanded(child: Text(hint, style: t.textTheme.bodyMedium)),
             const SizedBox(width: 12),
-            Segmented<bool>(value: color, options: const [(false, 'Depth'), (true, 'Colour')], onChanged: _setBackdrop),
+            if (hasColor)
+              Segmented<bool>(value: color, options: const [(false, 'Depth'), (true, 'Colour')], onChanged: _setBackdrop)
+            else
+              Text('No colour frame in this scan', style: t.textTheme.bodySmall),
           ],
         ),
         const SizedBox(height: 10),
@@ -342,7 +350,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
           child: Figure(
             dataSize: Size(w, h),
             colorBar: !color && _rangeLo != null && _rangeHi != null
-                ? ColorBarSpec(lo: _rangeLo!, hi: _rangeHi!, unit: 'range, m', decimals: 2)
+                ? ColorBarSpec(lo: _rangeLo!, hi: _rangeHi!, unit: 'depth z, m', decimals: 2)
                 : null,
             caption: caption,
             overlay: LayoutBuilder(

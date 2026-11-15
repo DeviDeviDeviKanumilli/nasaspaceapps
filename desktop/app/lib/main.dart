@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:io';
 import 'dart:ui';
 

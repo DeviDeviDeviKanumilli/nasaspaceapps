@@ -3,6 +3,8 @@
 Used when no camera is attached (demo/rehearsal). Everything recorded from a
 replay is stamped origin=replay with replay_of=<source scan id> and the
 source's origin, so a replayed capture can never pass as a new field scan.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

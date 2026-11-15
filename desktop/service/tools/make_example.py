@@ -3,6 +3,8 @@
     .venv/bin/python tools/make_example.py
 Writes a full bundle to examples/SYNTHETIC_example_bundle/ (gitignored: large) and copies its small JSON
 files (scan.json, calibration.json, metrics.json) to examples/SYNTHETIC_example_json/ for reference.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 import json
 import shutil

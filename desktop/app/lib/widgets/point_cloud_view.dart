@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:async';
 import 'dart:math' as math;
 import 'dart:typed_data';

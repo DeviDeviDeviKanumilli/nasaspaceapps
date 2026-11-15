@@ -1,4 +1,7 @@
-"""Projection, plane fitting and measurements against analytic ground truth."""
+"""Projection, plane fitting and measurements against analytic ground truth.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+"""
 import json
 
 import numpy as np

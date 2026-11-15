@@ -7,6 +7,8 @@ the SDK; tests/test_camera_model.py cross-checks against pyrealsense2 itself.
 Coordinate convention (RealSense "camera optical" frame): metres,
 +X right, +Y down, +Z forward out of the lens, right-handed, origin at the
 optical centre of the stream's imager.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

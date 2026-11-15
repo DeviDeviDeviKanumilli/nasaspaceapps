@@ -1,4 +1,7 @@
-"""Capture lifecycle: repeat captures, unplug mid-recording, cancel, fixtures gate, process isolation."""
+"""Capture lifecycle: repeat captures, unplug mid-recording, cancel, fixtures gate, process isolation.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+"""
 import json
 
 import pytest

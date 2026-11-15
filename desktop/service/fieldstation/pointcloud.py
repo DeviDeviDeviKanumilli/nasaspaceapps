@@ -10,6 +10,8 @@ optional voxel downsample and optional statistical outlier removal. Every
 parameter is returned so it can be written into the bundle.
 
 Neither cloud contains surfaces the sensor did not see; no hole filling.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

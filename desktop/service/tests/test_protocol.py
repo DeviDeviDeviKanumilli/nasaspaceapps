@@ -1,4 +1,7 @@
-"""BLE control protocol (contracts/BLE_PROTOCOL_V1.md), desktop side, against a contract-based phone simulator."""
+"""BLE control protocol (contracts/BLE_PROTOCOL_V1.md), desktop side, against a contract-based phone simulator.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+"""
 import json
 import time
 

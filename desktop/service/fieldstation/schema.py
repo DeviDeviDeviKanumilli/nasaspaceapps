@@ -2,6 +2,8 @@
 
 Field names follow HANDOFF 03 section 5 ("common versioned scan envelope");
 desktop-only additions are listed in schema/scan_envelope.v1.schema.json.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

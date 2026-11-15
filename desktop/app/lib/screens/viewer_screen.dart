@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'package:flutter/material.dart';
 
 import '../service/app_state.dart';
@@ -454,7 +456,11 @@ class _ViewerScreenState extends State<ViewerScreen> {
                   if (cloud != null && _ctl.colorMode == ColorMode.range) ...[
                     const SizedBox(height: 6),
                     ColorScaleStrip(
-                      caption: 'Range from the sensor, viridis',
+                      // D435 clouds are in the camera frame; iPhone clouds are in the ARKit session frame, whose origin is
+                      // where the session started, not the phone's position at each keyframe.
+                      caption: asStr(asMap(asMap(_detail['manifest'])['coordinate_frame'])['name']) == 'arkit_session_world'
+                          ? 'Distance from the session origin, viridis'
+                          : 'Distance from the sensor, viridis',
                       lo: '${_ctl.zMin.toStringAsFixed(2)} m',
                       hi: '${_ctl.zMax.toStringAsFixed(2)} m',
                     ),

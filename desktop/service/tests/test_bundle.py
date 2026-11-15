@@ -1,4 +1,7 @@
-"""Bundles: hashes, raw immutability, recovery, export/import, duplicates, tampering, iPhone import."""
+"""Bundles: hashes, raw immutability, recovery, export/import, duplicates, tampering, iPhone import.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+"""
 import json
 import os
 import shutil

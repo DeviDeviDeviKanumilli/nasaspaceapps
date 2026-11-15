@@ -2,6 +2,8 @@
 
 The UI and the recorder only see these types. Nothing outside
 fieldstation/adapters/<vendor>.py imports a vendor SDK.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

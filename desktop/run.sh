@@ -2,6 +2,7 @@
 # Build (if needed) and launch Field Station. The app starts its own local Python service.
 #   desktop/run.sh               normal
 #   desktop/run.sh --fixtures    also offer the SYNTHETIC test scene (rehearsal only)
+# Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 set -e
 here="${0:A:h}"
 flutter="${FLUTTER:-$HOME/development/flutter/bin/flutter}"

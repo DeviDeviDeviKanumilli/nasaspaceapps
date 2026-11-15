@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:async';
 import 'dart:typed_data';
 
@@ -205,6 +207,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
             ),
           ],
           actions: [
+            if (st['origin'] != null) OriginTag(st['origin'] as String?),
             Text(
               '${asStr(dev['name'], 'Source')}, profile $profileLabel, ${dims(cal[_which == 'color' ? 'color' : 'depth'])}',
               style: t.textTheme.bodySmall?.copyWith(fontSize: 13),
@@ -253,15 +256,23 @@ class _CaptureScreenState extends State<CaptureScreen> {
     final fps = st['measured_fps'];
     final w = size.width.round(), h = size.height.round();
     final frameText = _frameIdx >= 0 ? 'frame $_frameIdx' : 'no frame yet';
+    // Say what the frames are: only a real sensor gives a live stream.
+    final source = switch (originKind(st['origin'] as String?)) {
+      OriginKind.realD435 => 'Live',
+      OriginKind.replay => 'Replayed',
+      OriginKind.synthetic => 'Synthetic',
+      _ => 'Streamed',
+    };
+    final isRealD435 = originKind(st['origin'] as String?) == OriginKind.realD435;
     return Figure(
       dataSize: size,
       unitX: 'px',
-      colorBar: depth ? const ColorBarSpec(lo: 0.2, hi: 4.0, unit: 'range, m', decimals: 1) : null,
+      colorBar: depth ? const ColorBarSpec(lo: 0.2, hi: 4.0, unit: 'depth z, m', decimals: 1) : null,
       caption: FigureCaption(
-        depth ? 'Live depth stream.' : 'Live colour stream.',
+        depth ? '$source depth frames.' : '$source colour frames.',
         depth
-            ? '$w × $h px, $frameText${fps != null ? ', $fps fps measured' : ''}. Coloured 0.2 to 4 m; white has no depth. '
-                  'The D435 cannot measure closer than about 0.28 m.'
+            ? '$w × $h px, $frameText${fps != null ? ', $fps fps measured' : ''}. Coloured by depth along the camera axis, 0.2 to 4 m; '
+                  'white has no depth.${isRealD435 ? ' The D435 cannot measure closer than about 0.28 m.' : ''}'
             : '$w × $h px, $frameText${fps != null ? ', $fps fps measured' : ''}.',
       ),
       child: _frame == null

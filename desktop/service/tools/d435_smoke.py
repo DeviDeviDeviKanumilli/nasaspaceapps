@@ -8,6 +8,8 @@
 
 Exit codes: 0 = real non-empty depth acquired; 2 = SDK missing; 3 = no device; 4 = streaming failed; 5 = depth empty.
 Nothing is simulated. If this fails, record the error text and use replay mode, never a fake capture.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

@@ -1,3 +1,4 @@
+# Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 import sys
 import time
 from pathlib import Path

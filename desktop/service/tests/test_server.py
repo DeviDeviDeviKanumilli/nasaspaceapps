@@ -1,4 +1,7 @@
-"""Local API: auth, host check, capture -> analyse -> export through HTTP, cloud.bin format, scope."""
+"""Local API: auth, host check, capture -> analyse -> export through HTTP, cloud.bin format, scope.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+"""
 import struct
 from pathlib import Path
 
@@ -97,3 +100,29 @@ def test_depth_colormap_is_viridis_with_white_holes():
     assert tuple(rgb[0, 0]) == tuple((viridis(np.array(0.0)) * 255).round().astype(int))
     assert rgb[0, 1, 0] > 200 and rgb[0, 1, 2] < 80
     assert tuple(rgb[0, 2]) == (255, 255, 255)
+
+
+def test_parent_watch_fires_only_after_the_parent_exits():
+    """--parent-pid: the service notices when the app that started it is gone (quit, crash, force-kill)."""
+    import subprocess
+    import sys
+    import threading
+    import time
+
+    from fieldstation.server import _watch_process
+    child = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(2)"])
+    gone = threading.Event()
+    threading.Thread(target=_watch_process, args=(child.pid, gone.set, 0.1), daemon=True).start()
+    assert not gone.wait(0.8), "fired while the watched process was still running"
+    child.wait(10)
+    assert gone.wait(5), "did not fire after the watched process exited"
+
+
+def test_shutdown_releases_the_sensor(tmp_path):
+    """The camera worker is stopped during the server's own shutdown, not only in main()'s finally."""
+    svc = Service(tmp_path / "home", fixtures=True, token=TOKEN, use_process=False)
+    with TestClient(create_app(svc)) as c:
+        c.headers["Authorization"] = f"Bearer {TOKEN}"
+        assert c.post("/api/device/open", json={"adapter_id": "synthetic", "device_id": "synthetic:scene-v1"}).json()["state"] == "streaming"
+    assert svc.ctl.state == "idle"
+    svc._stop.set()

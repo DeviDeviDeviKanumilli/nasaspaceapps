@@ -11,6 +11,8 @@ known exactly, which is what the tests need:
 Depth noise follows the Intel D400 RMS model at each pixel's range (Gaussian),
 values are quantised to 1 mm units like a D435, ~1% random dropouts, and the
 left-edge band that a left-imager stereo camera cannot match is left invalid.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

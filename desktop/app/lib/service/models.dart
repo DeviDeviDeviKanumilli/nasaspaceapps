@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:typed_data';
 
 /// Helpers to read loosely-typed JSON from the service without crashing on missing keys.

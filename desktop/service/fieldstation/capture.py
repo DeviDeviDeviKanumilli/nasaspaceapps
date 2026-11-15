@@ -3,6 +3,8 @@
 The sensor adapter runs in its own process (multiprocessing 'spawn'), so a
 USB failure or SDK crash cannot take down the service or the UI. Tests can
 use the same loop in a thread (use_process=False).
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

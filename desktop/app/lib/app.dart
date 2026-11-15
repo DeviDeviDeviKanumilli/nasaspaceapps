@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -457,74 +459,96 @@ class _StatusFooter extends StatelessWidget {
         color: FsPalette.sheet,
         border: Border(top: BorderSide(color: FsPalette.rule)),
       ),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () => s.go(open ? Section.capture : Section.devices),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
-              child: Row(
-                children: [
-                  _PulseDot(color: dotColor, pulsing: recording),
-                  const SizedBox(width: 7),
-                  Text(
-                    open
-                        ? [stateWord, asStr(dev['name'], 'sensor'), if (fps != null && ds == 'streaming') '$fps fps'].join(', ')
-                        : 'No source open',
-                    style: recording ? ink?.copyWith(color: FsPalette.record, fontWeight: FontWeight.w600) : ink,
-                  ),
-                ],
+      // Source names can be long (a replay is named after its scan's title): cap them so the footer never overflows.
+      child: LayoutBuilder(
+        builder: (context, box) => Row(
+          children: [
+            InkWell(
+              onTap: () => s.go(open ? Section.capture : Section.devices),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+                child: Row(
+                  children: [
+                    _PulseDot(color: dotColor, pulsing: recording),
+                    const SizedBox(width: 7),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: box.maxWidth * 0.32),
+                      child: Text(
+                        open
+                            ? [
+                                stateWord,
+                                st['origin'] == 'replay' ? 'replay of ${asStr(dev['name'], 'a saved scan')}' : asStr(dev['name'], 'sensor'),
+                                if (fps != null && ds == 'streaming') '$fps fps',
+                              ].join(', ')
+                            : 'No source open',
+                        maxLines: 1,
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                        style: recording ? ink?.copyWith(color: FsPalette.record, fontWeight: FontWeight.w600) : ink,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          if (recording) ...[
-            const SizedBox(width: 14),
-            Text(
-              '$n of $req frames',
-              style: small?.copyWith(color: FsPalette.record, fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(width: 10),
-            SizedBox(
-              width: 120,
-              child: LinearProgressIndicator(value: req > 0 ? n / req : null, color: FsPalette.record, minHeight: 3),
-            ),
-          ] else if (open) ...[
-            const SizedBox(width: 22),
-            Text('Origin ${asStr(st['origin'], '—')}', style: small),
-          ],
-          const Spacer(),
-          _FooterItem(
-            ok: svcOk,
-            label: svcOk ? 'Service 127.0.0.1, connected' : (s.launcher.starting ? 'Service starting' : 'Service offline'),
-            tooltip: svcOk
-                ? 'Local service on this computer, loopback only.${s.launcher.external ? ' External instance.' : ''}'
-                : 'The local service is not connected. About shows the diagnostics.',
-            onTap: svcOk ? null : () => s.go(Section.about),
-          ),
-          const SizedBox(width: 22),
-          _FooterItem(
-            ok: s.ble.available && s.ble.centrals.isNotEmpty,
-            neutral: !s.ble.available || s.ble.centrals.isEmpty,
-            label: !s.ble.available
-                ? (Platform.isMacOS ? 'Bluetooth unavailable' : 'Phone link: macOS only')
-                : (s.ble.centrals.isEmpty
-                      ? 'No phone linked'
-                      : '${s.ble.centrals.length} phone${s.ble.centrals.length == 1 ? '' : 's'} linked'),
-            tooltip: !s.ble.available
-                ? 'Pairing uses the CoreBluetooth bridge in the macOS build. Scans still import by zip in Library.'
-                : 'Bluetooth LE control link to the iPhone app.',
-            onTap: () => s.go(Section.pairing),
-          ),
-          if (s.health['home'] != null) ...[
-            const SizedBox(width: 22),
-            Flexible(
-              child: Tooltip(
-                message: asStr(s.health['home']),
-                child: Text('Data in ${_shortHome(asStr(s.health['home']))}', style: small, overflow: TextOverflow.ellipsis),
+            if (recording) ...[
+              const SizedBox(width: 14),
+              Text(
+                '$n of $req frames',
+                style: small?.copyWith(color: FsPalette.record, fontWeight: FontWeight.w600),
               ),
+              const SizedBox(width: 10),
+              SizedBox(
+                width: 120,
+                child: LinearProgressIndicator(value: req > 0 ? n / req : null, color: FsPalette.record, minHeight: 3),
+              ),
+            ] else if (open && box.maxWidth >= 900) ...[
+              const SizedBox(width: 22),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: box.maxWidth * 0.16),
+                child: Text(
+                  'Origin ${asStr(st['origin'], '—')}',
+                  style: small,
+                  maxLines: 1,
+                  softWrap: false,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+            const Spacer(),
+            _FooterItem(
+              ok: svcOk,
+              label: svcOk ? 'Service 127.0.0.1, connected' : (s.launcher.starting ? 'Service starting' : 'Service offline'),
+              tooltip: svcOk
+                  ? 'Local service on this computer, loopback only.${s.launcher.external ? ' External instance.' : ''}'
+                  : 'The local service is not connected. About shows the diagnostics.',
+              onTap: svcOk ? null : () => s.go(Section.about),
             ),
+            const SizedBox(width: 22),
+            _FooterItem(
+              ok: s.ble.available && s.ble.centrals.isNotEmpty,
+              neutral: !s.ble.available || s.ble.centrals.isEmpty,
+              label: !s.ble.available
+                  ? (Platform.isMacOS ? 'Bluetooth unavailable' : 'Phone link: macOS only')
+                  : (s.ble.centrals.isEmpty
+                        ? 'No phone linked'
+                        : '${s.ble.centrals.length} phone${s.ble.centrals.length == 1 ? '' : 's'} linked'),
+              tooltip: !s.ble.available
+                  ? 'Pairing uses the CoreBluetooth bridge in the macOS build. Scans still import by zip in Library.'
+                  : 'Bluetooth LE control link to the iPhone app.',
+              onTap: () => s.go(Section.pairing),
+            ),
+            if (s.health['home'] != null) ...[
+              const SizedBox(width: 22),
+              Flexible(
+                child: Tooltip(
+                  message: asStr(s.health['home']),
+                  child: Text('Data in ${_shortHome(asStr(s.health['home']))}', style: small, overflow: TextOverflow.ellipsis),
+                ),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

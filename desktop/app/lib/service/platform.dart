@@ -1,3 +1,6 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
+import 'dart:convert';
 import 'dart:io';
 
 /// Small OS integrations without plugins: a native file picker and "show in file manager".
@@ -8,7 +11,8 @@ class Desktop {
   static Future<String?> pickFile({required String prompt, required List<String> extensions, String? description}) async {
     try {
       if (Platform.isMacOS) {
-        final types = extensions.map((e) => '"$e"').join(', ');
+        // Finder matches .zip by its UTI as well as by extension; keep both so zips stay selectable.
+        final types = [...extensions, if (extensions.contains('zip')) 'public.zip-archive'].map((e) => '"$e"').join(', ');
         final r = await Process.run('osascript', ['-e', 'POSIX path of (choose file with prompt "$prompt" of type {$types})']);
         return r.exitCode == 0 ? _clean(r.stdout) : null;
       }
@@ -16,6 +20,8 @@ class Desktop {
         final pattern = extensions.map((e) => '*.$e').join(';');
         final desc = (description ?? prompt).replaceAll("'", "''").replaceAll('|', ' ');
         final script = [
+          // UTF-8 out, read as UTF-8 below, so paths with accents or non-Latin names come back intact.
+          r'[Console]::OutputEncoding = [System.Text.Encoding]::UTF8',
           r'Add-Type -AssemblyName System.Windows.Forms',
           r'$owner = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false}',
           r'$d = New-Object System.Windows.Forms.OpenFileDialog',
@@ -24,7 +30,7 @@ class Desktop {
           r'$d.Multiselect = $false',
           r'if ($d.ShowDialog($owner) -eq [System.Windows.Forms.DialogResult]::OK) { [Console]::Out.Write($d.FileName) }',
         ].join('; ');
-        final r = await Process.run('powershell.exe', ['-NoProfile', '-NonInteractive', '-STA', '-Command', script]);
+        final r = await Process.run('powershell.exe', ['-NoProfile', '-NonInteractive', '-STA', '-Command', script], stdoutEncoding: utf8);
         return r.exitCode == 0 ? _clean(r.stdout) : null;
       }
       final r = await Process.run('zenity', [

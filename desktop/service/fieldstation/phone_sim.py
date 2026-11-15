@@ -3,6 +3,8 @@
 FOR TESTS AND REHEARSAL ONLY. It talks to DesktopLink directly (no radio), so
 it proves the application protocol, not Bluetooth. The real phone
 implementation is the mobile team's ble_protocol.dart.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

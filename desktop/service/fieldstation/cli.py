@@ -8,6 +8,8 @@
     python -m fieldstation.cli repeat <scan_id> <scan_id> [...] --rect u0 v0 u1 v1
     python -m fieldstation.cli export <scan_id>
     python -m fieldstation.cli import <file.zip|file.ply>
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

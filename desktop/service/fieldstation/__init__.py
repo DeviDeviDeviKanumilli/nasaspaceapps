@@ -7,6 +7,8 @@ and computes local geometric measurements with units and limitations.
 It deliberately contains no planetary analog discovery, terrain/geology
 scoring or candidate ranking: that belongs to the website. A scan may carry a
 website candidate or field-site ID as an opaque reference, nothing more.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 
 APP_NAME = "Field Station"

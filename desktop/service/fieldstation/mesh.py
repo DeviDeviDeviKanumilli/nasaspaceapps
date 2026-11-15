@@ -4,6 +4,8 @@ Triangles join only neighbouring depth pixels that were all measured and whose
 depths agree (max jump <= max(abs_m, rel*z)), so no gaps are bridged and no
 hidden surfaces are invented. Holes stay holes. Exported as binary PLY
 (scientific copy) and GLB (for viewing on other devices; colours per vertex).
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

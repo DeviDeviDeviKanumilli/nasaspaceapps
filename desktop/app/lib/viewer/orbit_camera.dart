@@ -1,3 +1,5 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:math' as math;
 
 /// 3-vector helpers on plain doubles (no package needed).

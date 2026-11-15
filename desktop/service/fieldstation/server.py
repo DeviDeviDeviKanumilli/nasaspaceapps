@@ -8,6 +8,8 @@ files through zip import.
 
 Run:  python -m fieldstation.server [--port 0] [--fixtures] [--home DIR]
 On start it prints one JSON line {"event":"ready","port":..,"token":..} on stdout.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 
@@ -21,6 +23,7 @@ import socket
 import sys
 import threading
 import time
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 import numpy as np
@@ -85,7 +88,14 @@ class Service:
 
 
 def create_app(svc: Service) -> FastAPI:
-    app = FastAPI(title=f"{APP_NAME} service", version=APP_VERSION)
+    @asynccontextmanager
+    async def lifespan(_app):
+        yield
+        # Runs inside uvicorn's graceful shutdown, before it re-raises SIGTERM/SIGINT with the default handler
+        # (which would skip main()'s `finally`). Stops the sensor worker so the camera is always released.
+        await asyncio.to_thread(svc.ctl.close)
+
+    app = FastAPI(title=f"{APP_NAME} service", version=APP_VERSION, lifespan=lifespan)
 
     @app.middleware("http")
     async def guard(request: Request, call_next):
@@ -485,14 +495,42 @@ def create_app(svc: Service) -> FastAPI:
     return app
 
 
+def _watch_process(pid: int, on_exit, poll_s: float = 1.0) -> None:
+    """Block until process `pid` has exited, then call on_exit(). Runs in a daemon thread."""
+    if sys.platform == "win32":
+        import _winapi
+        try:
+            h = _winapi.OpenProcess(_winapi.SYNCHRONIZE, False, pid)
+        except OSError:
+            on_exit()  # already gone
+            return
+        try:
+            while _winapi.WaitForSingleObject(h, int(poll_s * 1000)) == _winapi.WAIT_TIMEOUT:
+                pass
+        finally:
+            _winapi.CloseHandle(h)
+    else:
+        while True:
+            try:
+                os.kill(pid, 0)
+            except ProcessLookupError:
+                break
+            except PermissionError:
+                pass  # exists, owned by someone else (cannot happen for our own parent, kept for safety)
+            if os.getppid() != pid and os.getppid() == 1:
+                break  # we were re-parented: the app is gone even if its pid was reused
+            time.sleep(poll_s)
+    on_exit()
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=f"{APP_NAME} local service")
     ap.add_argument("--port", type=int, default=0)
     ap.add_argument("--home", type=Path, default=None)
     ap.add_argument("--fixtures", action="store_true", default=os.environ.get("FIELDSTATION_FIXTURES") == "1")
     ap.add_argument("--token", default=os.environ.get("FIELDSTATION_TOKEN"))
-    ap.add_argument("--exit-with-stdin", action="store_true",
-                    help="shut down when stdin reaches EOF, i.e. when the app that started this service quits or crashes")
+    ap.add_argument("--parent-pid", type=int, default=None,
+                    help="shut down when this process exits (the app that started the service quits or crashes)")
     args = ap.parse_args(argv)
     import uvicorn
     home = args.home or default_home()
@@ -512,21 +550,17 @@ def main(argv=None) -> int:
     print(json.dumps({"event": "ready", "port": port, "token": token, "home": str(home), "fixtures": args.fixtures}), flush=True)
     config = uvicorn.Config(app, log_level="warning", log_config=None, ws_ping_interval=20, timeout_graceful_shutdown=3)
     server = uvicorn.Server(config)
-    if args.exit_with_stdin:
-        # The app keeps our stdin open for its whole life. EOF means it is gone (quit, crash or force-kill),
-        # so stop instead of lingering as an orphan that still holds the camera.
-        def _watch_parent() -> None:
-            try:
-                while sys.stdin.buffer.read(4096):
-                    pass
-            except (OSError, ValueError):
-                pass
+    if args.parent_pid:
+        # Stop when the app that started us is gone (quit, crash or force-kill) instead of lingering as an
+        # orphan that still holds the camera. Watching the process itself, not a stdin pipe: on Windows a
+        # GUI parent's stdin pipe was seen to report EOF while the app was still running.
+        def _parent_gone() -> None:
             server.should_exit = True
             last_resort = threading.Timer(10.0, lambda: os._exit(0))  # if graceful shutdown hangs
             last_resort.daemon = True
             last_resort.start()
 
-        threading.Thread(target=_watch_parent, name="parent-watch", daemon=True).start()
+        threading.Thread(target=_watch_process, args=(args.parent_pid, _parent_gone), name="parent-watch", daemon=True).start()
     try:
         server.run(sockets=[sock])
     finally:

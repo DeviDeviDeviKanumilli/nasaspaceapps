@@ -4,6 +4,8 @@ Vertices always carry x, y, z as float32 metres. Extra per-vertex properties
 (colour, flags) are written from a numpy structured array. Header comments
 record units, frame and provenance so a PLY separated from its bundle still
 says what it is.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

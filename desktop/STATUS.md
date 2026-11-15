@@ -38,9 +38,14 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
 | BLE protocol (pairing, MAC, seq/id, acks, resend) | TESTED against the mobile team's `BLE_TEST_VECTORS.json` (byte-identical proofs, key, MAC) + SIMULATED end-to-end with `phone_sim.py` | Not yet against the real phone app |
 | BLE radio (Swift CoreBluetooth peripheral in the Flutter runner) | BUILT, UNTESTED | Needs a phone; first run triggers the macOS Bluetooth permission prompt |
 | Flutter macOS UI (Devices, Capture, Viewer, Analysis, Library, Pairing, About) | TESTED on screen with the SYNTHETIC scene | `flutter analyze` clean, 9/9 `flutter test`, `flutter build macos` OK. Driven in the app: open device → live preview (26.7 fps) → record → 3D viewer (132k of 397k points, orbit, back-to-front sort) → sphere-ROI roughness. Analysis rectangle/protrusion/distance and export checked through the same API calls (box height 0.152 m vs 0.150 m true), not by dragging in the app |
-| UI paths never exercised | BUILT, UNTESTED | Import file picker, Reveal in Finder, edit notes, reprocess, catalog-draft form, phone-refusal error card (no phone yet), Mesh mode in the viewer |
+| UI paths never exercised | BUILT, UNTESTED | Import file picker (macOS osascript / Windows dialog), Show folder / Open in Finder or Explorer, edit notes, reprocess, catalog-draft form, phone-refusal error card (no phone yet), Mesh mode in the viewer |
 | App self-starts the Python service and stops it on quit | TESTED | Window 1430x840, title "Field Station" |
 | Bounded grid mesh (`mesh_grid.ply`) + GLB (`mesh_grid.glb`) | TESTED (structure, indices, frame conversion) | Only neighbouring measured pixels are joined; no hole filling; labelled DERIVED. GLB loads in trimesh (99k vertices, 197k faces, vertex colours) |
+| Redesigned UI (light survey-plate style, viridis depth figures with colour bars, booktabs result tables) | TESTED on Windows 11 with the SYNTHETIC scene. **macOS build not re-run since the redesign** | `flutter analyze` clean, 9/9 `flutter test`, 37/37 service tests, `flutter build windows --debug` OK, every screen checked on screen (Capture only in Colour mode). Run `flutter build macos` and click through on the Mac before demoing |
+| Windows build (runner, service from `.venv\Scripts\python.exe`, data in `%LOCALAPPDATA%\FieldStation`, service watches the app's process with `--parent-pid` and exits when it is gone) | TESTED on Windows with SYNTHETIC: app opened from Explorer starts its own service, service gone 5 s after force-killing the app, no console window. D435 on Windows: UNTESTED | `service/requirements-windows.txt` (`pyrealsense2` instead of `pyrealsense2-macosx`) |
+| Phone pairing on Windows | Not available by design | The Pairing screen says so; scans still move by zip import |
+| BLE protocol through the app's own path (`POST /api/ble/rx` in, `ble_tx` WebSocket events out) | SIMULATED end-to-end, 10/10 checks | `phone_sim.py` driven over HTTP + WebSocket against a running service: pairing, wrong code refused, phone→desktop start/stop acked, duplicate re-acked, desktop→phone command with valid MAC, phone ack recorded, unpaired sender refused. No radio, no real phone |
+| Depth display colour map | Changed from a jet-like map to viridis; pixels with no depth are white (were black) | Display only: raw and filtered depth PNGs are unchanged. `thumbnail.jpg` of scans recorded earlier keeps the old map until reprocessed |
 | Multi-view registration / TSDF / fusion with ARKit | PLANNED (P2) | Not implied anywhere in the UI |
 | Wi-Fi bulk transfer | Not in this build (the mobile contract reserves `transfer_offer`) | Zip via AirDrop/Files/USB instead |
 
@@ -70,3 +75,22 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
 - 03:30: Flutter UI finished (built by a sub-agent, reviewed here from screenshots); runner fixed to open at 1430x840 titled
   "Field Station"; app self-launch verified (service starts with the app, gone after quit). Known cosmetic: moiré on the
   synthetic checkerboard at 2.5 px point size when seen head-on.
+- 04:55: UI redesign + Windows support (commit 6249c86), built and tested on a Windows 11 PC, not on the Mac. Viridis depth
+  figures with colour bars (`GET /api/scans/{id}/depth_figure.png`), Public Sans font bundled (OFL), Windows runner and launcher,
+  `--exit-with-stdin` so the service never outlives the app. 37 service tests, 9 flutter tests.
+- 05:30: audit of that commit (own checks + an independent code review). Fixed:
+  - Windows: the app's own service quit about 1 s after start whenever Devices scanned for cameras (stdin EOF seen while
+    the app was running). `--exit-with-stdin` replaced by `--parent-pid` (the service waits on the app's process handle).
+  - Camera release on stop: the sensor worker is now closed in the server's lifespan shutdown. Before, SIGTERM from the
+    app (macOS) made uvicorn re-raise the signal and skip `finally: ctl.close()`, which could leave the worker holding the D435.
+  - Analysis kept the previous scan's depth range and valid-pixel % when the next scan's figure failed or was loading.
+  - Analysis offered `thumbnail.jpg` as a "colour frame" when a scan had none; now only a recorded colour frame is offered.
+  - Wording: colour bars say depth z (along the camera axis), not range; Capture says Live / Replayed / Synthetic frames;
+    Viewer says distance from the session origin for iPhone scans; replay sources are named "replay of ...".
+  - Layout: replay table buttons clipped when a replay was open; footer could overflow with a long scan title.
+  - File picker: Windows paths with non-ASCII characters came back garbled (now UTF-8); macOS filter again includes
+    `public.zip-archive`.
+  - Bluetooth channel is no longer touched on non-macOS builds. BLE protocol re-checked end to end through the
+    HTTP/WebSocket path the Dart bridge uses (10/10). Still no radio test (needs the Mac and a phone).
+  - Team rule "disclose AI use in every script": AI-assistance header added to all desktop source files.
+  - DEMO.md button names updated to the new UI. 39 service tests (2 new: parent watch, shutdown releases the sensor), 9 flutter tests.

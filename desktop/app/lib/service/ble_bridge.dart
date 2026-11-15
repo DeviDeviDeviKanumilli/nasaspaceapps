@@ -1,4 +1,7 @@
+// Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
+
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -16,8 +19,10 @@ class BleBridge extends ChangeNotifier {
 
   ApiClient? api;
   StreamSubscription? _sub;
-  bool available = true;
-  String? unavailableReason;
+  // The CoreBluetooth bridge exists only in the macOS runner. Elsewhere, don't call the channel at all
+  // (the event channel would otherwise report a MissingPluginException at start-up).
+  bool available = Platform.isMacOS;
+  String? unavailableReason = Platform.isMacOS ? null : 'Phone pairing needs the macOS build';
   String bluetooth = 'unknown';
   bool advertising = false;
   final Set<String> centrals = {};

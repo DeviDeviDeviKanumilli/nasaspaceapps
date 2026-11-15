@@ -17,6 +17,8 @@
 Raw files are made read-only once written. Reprocessing replaces derived files
 only. A bundle left in "recording"/"processing" by a crash is marked
 "incomplete" on the next start, never silently "complete".
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 

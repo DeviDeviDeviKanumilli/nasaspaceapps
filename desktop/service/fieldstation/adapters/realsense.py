@@ -5,6 +5,8 @@ On macOS this uses the community `pyrealsense2-macosx` wheel (librealsense
 discover() reports SDK/USB problems as diagnostics instead of failing quietly.
 
 The D435 has no IMU: nothing here produces a gravity direction.
+
+Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 """
 from __future__ import annotations
 
