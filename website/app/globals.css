@@ -300,6 +300,7 @@ table { border-collapse: collapse; width: 100%; }
   .topbar nav button, .topbar nav .navlink { padding: 0 10px; }
   .rail, .side { left: 0; right: 0; width: auto; top: auto; bottom: 0; height: 46vh; border-radius: 12px 12px 0 0; border-width: 1px 0 0; z-index: 22; }
   .side { z-index: 23; }
+  .side-open .rail { display: none; }
   .mapctl, .side-open .mapctl { right: 8px; bottom: 44px; }
   .rail-open .mapctl, .side-open .mapctl { bottom: calc(46vh + 8px); }
   .layers, .side-open .layers { right: 8px; left: 8px; width: auto; bottom: 44px; z-index: 26; max-height: 60vh; }
