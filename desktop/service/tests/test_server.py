@@ -212,3 +212,16 @@ def test_usb_auto_sync_imports_finished_scans_and_skips_recording_ones(tmp_path,
     assert sync.sync_once() == []                              # already imported, recording one still skipped
     sync.set_enabled(False)
     assert sync.status()["enabled"] is False
+
+
+def test_ble_send_passes_title_and_feature_to_the_phone(client, monkeypatch):
+    c, svc = client
+    sent = {}
+    monkeypatch.setattr(svc.link, "send", lambda central, t, **kw: sent.update(central=central, type=t, **kw) or {"type": t, **kw})
+    r = c.post("/api/ble/send", json={"central": "C1", "type": "start_capture", "title": "  Boulder A  ", "feature_type": "boulder"})
+    assert r.status_code == 200
+    assert sent == {"central": "C1", "type": "start_capture", "target": "phone", "sensor_id": "iphone:arkit", "profile": "default",
+                    "title": "Boulder A", "feature_type": "boulder"}
+    sent.clear()
+    c.post("/api/ble/send", json={"central": "C1", "type": "start_capture", "feature_type": "not-a-type"})
+    assert "feature_type" not in sent and "title" not in sent

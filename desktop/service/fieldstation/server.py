@@ -43,7 +43,7 @@ from .metrics import (distance_measurement, plane_fit, protrusion_analysis, repe
                       roi_points_sphere, roughness_analysis)
 from .ply import read_ply, rgb_of, xyz_of
 from .protocol import DesktopLink, b64, unb64
-from .schema import ENVELOPE
+from .schema import ENVELOPE, FEATURE_TYPES
 
 ADAPTER_LABELS = {
     "realsense": {"label": "Intel RealSense (D435)", "is_real_sensor": True},
@@ -459,8 +459,15 @@ def create_app(svc: Service) -> FastAPI:
         if t not in ("start_capture", "stop_capture", "capture_now"):
             err(400, "type")
         try:
-            msg = svc.link.send(str(body["central"]), t, target="phone",
-                                **({"sensor_id": "iphone:arkit", "profile": body.get("profile", "default")} if t == "start_capture" else {}))
+            extra = {}
+            if t == "start_capture":
+                extra = {"sensor_id": "iphone:arkit", "profile": body.get("profile", "default")}
+                # optional annotation for the phone's scan.json (phones that don't know these fields ignore them)
+                if str(body.get("title") or "").strip():
+                    extra["title"] = str(body["title"]).strip()[:120]
+                if body.get("feature_type") in FEATURE_TYPES:
+                    extra["feature_type"] = body["feature_type"]
+            msg = svc.link.send(str(body["central"]), t, target="phone", **extra)
         except PermissionError as exc:
             err(409, str(exc))
         return {"sent": msg}

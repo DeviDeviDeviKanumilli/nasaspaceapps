@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/app_state.dart';
 import '../core/ble_link.dart';
 import '../ui/style.dart';
+import 'capture_screen.dart';
 
 class ConnectScreen extends StatefulWidget {
   const ConnectScreen({super.key});
@@ -51,7 +52,8 @@ class _ConnectScreenState extends State<ConnectScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Bluetooth carries pairing and small commands only (start, stop, status). Move scans by Export, then AirDrop or Files. '
+                    'Bluetooth carries pairing and small commands only (start, stop, status). Scans move when the phone is plugged '
+                    'into the Mac (Field Station copies finished scans by itself), or by Export, then AirDrop or Files. '
                     'No internet is needed.',
                     style: t.textTheme.bodySmall,
                   ),
@@ -67,7 +69,7 @@ class _ConnectScreenState extends State<ConnectScreen> {
                     ),
                   ],
                   const SizedBox(height: 16),
-                  const Note(kind: TagKind.warn, child: Text('Not yet tested with a real Field Station Mac.')),
+                  Text('Tested over Bluetooth with Field Station on a MacBook (iPhone 17 Pro, 15 Nov 2026).', style: t.textTheme.bodySmall),
                 ]),
               ),
             ]),
@@ -148,6 +150,23 @@ class _ConnectScreenState extends State<ConnectScreen> {
           ]),
           Text('Mac reports: $caps', style: t.textTheme.bodySmall),
           if (cs != null) Text('Mac capture: ${cs['state']} · ${cs['frames_recorded'] ?? 0} frames', style: t.textTheme.bodySmall),
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton.icon(
+              icon: const Icon(Icons.precision_manufacturing_outlined),
+              label: const Text('Rig mode: let the Mac run the scans'),
+              onPressed: !AppState.I.allowRemoteControl
+                  ? null
+                  : () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => CaptureScreen(setup: rigSetup(), remoteRig: true))),
+            ),
+          ),
+          Text(
+            AppState.I.allowRemoteControl
+                ? 'Opens the camera and waits. Mount the phone; start and stop from the Mac. The screen stays on and each scan is saved here.'
+                : 'Turn on "Let the paired Mac control capture" below first.',
+            style: t.textTheme.bodySmall,
+          ),
           const SizedBox(height: 10),
           if (d435)
             Wrap(spacing: 8, children: [

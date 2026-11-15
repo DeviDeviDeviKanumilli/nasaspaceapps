@@ -20,10 +20,21 @@ class _PairingScreenState extends State<PairingScreen> {
   Map<String, dynamic> _st = {};
   String? _error;
   bool _busy = false;
+  final _title = TextEditingController();
+  String _feature = 'other';
+  static const _features = {
+    'rock_face': 'Rock face',
+    'boulder': 'Boulder',
+    'boulder_field': 'Boulder field',
+    'outcrop': 'Outcrop',
+    'ground': 'Ground',
+    'other': 'Other',
+  };
 
   static const _bleEvents = {
     'pairing_opened',
     'phone_paired',
+    'phone_reconnected',
     'pair_rejected',
     'remote_command',
     'phone_ack',
@@ -44,6 +55,7 @@ class _PairingScreenState extends State<PairingScreen> {
 
   @override
   void dispose() {
+    _title.dispose();
     _poll?.cancel();
     super.dispose();
   }
@@ -77,7 +89,12 @@ class _PairingScreenState extends State<PairingScreen> {
   Future<void> _send(String central, String type) async {
     final s = AppScope.read(context);
     try {
-      await s.api!.postJson('/api/ble/send', {'central': central, 'type': type});
+      await s.api!.postJson('/api/ble/send', {
+        'central': central,
+        'type': type,
+        if (type == 'start_capture' && _title.text.trim().isNotEmpty) 'title': _title.text.trim(),
+        if (type == 'start_capture') 'feature_type': _feature,
+      });
       if (mounted) showSnack(context, 'Sent ${type.replaceAll('_', ' ')}. Waiting for the phone to confirm (5 s, one retry).');
     } catch (e) {
       if (mounted) showSnack(context, errText(e), error: true);
@@ -207,6 +224,28 @@ class _PairingScreenState extends State<PairingScreen> {
                               style: t.textTheme.bodySmall,
                             ),
                             if (p['phone_state'] != null) _phoneStateLine(t, asMap(p['phone_state'])),
+                            const SizedBox(height: 10),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextField(
+                                    controller: _title,
+                                    decoration: const InputDecoration(labelText: 'Title for the next phone scan (optional)', isDense: true),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                SizedBox(
+                                  width: 170,
+                                  child: DropdownButtonFormField<String>(
+                                    initialValue: _feature,
+                                    isDense: true,
+                                    decoration: const InputDecoration(labelText: 'Feature type'),
+                                    items: [for (final e in _features.entries) DropdownMenuItem(value: e.key, child: Text(e.value))],
+                                    onChanged: (v) => setState(() => _feature = v ?? 'other'),
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(height: 8),
                             Builder(builder: (_) {
                               final st = asStr(asMap(p['phone_state'])['state'], 'idle');
@@ -229,7 +268,12 @@ class _PairingScreenState extends State<PairingScreen> {
                               );
                             }),
                             const SizedBox(height: 6),
-                            Text('The phone obeys only if "Let the paired Mac control capture" is on.', style: t.textTheme.bodySmall),
+                            Text(
+                              'The phone obeys only if "Let the paired Mac control capture" is on. It does not need to be on any '
+                              'particular screen: Start opens its scanner. If it is plugged in by cable, each finished scan is copied here '
+                              'automatically (Library).',
+                              style: t.textTheme.bodySmall,
+                            ),
                           ],
                         ),
                       ),

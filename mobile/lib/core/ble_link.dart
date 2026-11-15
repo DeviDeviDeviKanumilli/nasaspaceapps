@@ -1,5 +1,9 @@
 // Phone side (BLE central) of contracts/BLE_PROTOCOL_V1.md, using flutter_blue_plus under its nonprofit /
-// educational licence tier. NOT yet tested against a real Field Station Mac.
+// educational licence tier. Tested over the air with Field Station (iPhone 17 Pro + MacBook Air M4, 2026-11-15).
+//
+// For a phone mounted on a rig, nothing here needs a touch after pairing: a start command opens the capture
+// screen if it is not open (see [openForRemote]), and a dropped link reconnects by itself with the same session
+// key until the session expires.
 import 'dart:async';
 import 'dart:convert';
 
@@ -28,6 +32,14 @@ class BleLink extends ChangeNotifier {
   /// Remote commands addressed to the phone (start_capture / stop_capture / capture_now with target phone).
   final _commands = StreamController<Map<String, dynamic>>.broadcast();
   Stream<Map<String, dynamic>> get commands => _commands.stream;
+
+  /// Set by the app shell: opens the capture screen for a remote start_capture that arrives while it is closed.
+  /// Returns null when it took the command (the capture screen will ack it), or the reason it refused.
+  String? Function(Map<String, dynamic> cmd)? openForRemote;
+
+  /// True while the link is down and the phone is trying to get it back (the session is kept).
+  bool reconnecting = false;
+  bool _userDisconnect = false;
 
   BluetoothDevice? _dev;
   BluetoothCharacteristic? _rx, _tx, _info;
@@ -96,33 +108,76 @@ class BleLink extends ChangeNotifier {
   /// Connects and reads the desktop's info (nonce, name). Then [pair] with the code shown on the Mac.
   Future<void> connect(FoundDesktop d, String phoneId) async {
     _phoneId = phoneId;
+    _userDisconnect = false;
+    _chan = null;
     _set(LinkState.connecting);
     try {
       await FlutterBluePlus.stopScan();
+      await _connSub?.cancel();
       _dev = d.device;
       await _dev!.connect(license: License.nonprofit, timeout: const Duration(seconds: 15));
       _connSub = _dev!.connectionState.listen((s) {
-        if (s == BluetoothConnectionState.disconnected) {
-          _log('disconnected');
-          _chan = null;
-          if (state != LinkState.idle) _set(LinkState.error, 'Disconnected from ${d.name}. Pair again when back in range.');
+        if (s != BluetoothConnectionState.disconnected) return;
+        _log('disconnected');
+        final sessionOk = _chan != null && (_expires == null || DateTime.now().isBefore(_expires!));
+        if (sessionOk && !_userDisconnect) {
+          _reconnect(d.name);
+          return;
         }
+        _chan = null;
+        if (state != LinkState.idle) _set(LinkState.error, 'Disconnected from ${d.name}. Pair again when back in range.');
       });
-      final services = await _dev!.discoverServices();
-      final svc = services.firstWhere((s) => s.uuid == Guid(bleServiceUuid));
-      BluetoothCharacteristic ch(String u) => svc.characteristics.firstWhere((c) => c.uuid == Guid(u));
-      final info = _info = ch(bleInfoUuid);
-      _rx = ch(bleRxUuid);
-      _tx = ch(bleTxUuid);
-      desktopInfo = jsonDecode(utf8.decode(await info.read())) as Map<String, dynamic>;
+      await _attach();
+      desktopInfo = jsonDecode(utf8.decode(await _info!.read())) as Map<String, dynamic>;
       _nd = desktopInfo!['nonce'] as String?;
-      await _tx!.setNotifyValue(true);
-      _notifySub = _tx!.onValueReceived.listen(_onChunk);
       _log('connected to ${desktopInfo!['name'] ?? d.name}');
       _set(LinkState.awaitingCode);
     } catch (e) {
       _set(LinkState.error, 'Could not connect: $e');
     }
+  }
+
+  /// Finds the service and characteristics on the connected Mac and subscribes to notifications.
+  Future<void> _attach() async {
+    final services = await _dev!.discoverServices();
+    final svc = services.firstWhere((s) => s.uuid == Guid(bleServiceUuid));
+    BluetoothCharacteristic ch(String u) => svc.characteristics.firstWhere((c) => c.uuid == Guid(u));
+    _info = ch(bleInfoUuid);
+    _rx = ch(bleRxUuid);
+    _tx = ch(bleTxUuid);
+    await _notifySub?.cancel();
+    await _tx!.setNotifyValue(true);
+    _notifySub = _tx!.onValueReceived.listen(_onChunk);
+  }
+
+  /// The link dropped while paired: keep the session key and reconnect to the same Mac. The Mac recognises the
+  /// session from the message MAC (the phone may come back with a new Bluetooth identity), so nobody has to
+  /// type a code on a phone that is mounted on the rig.
+  Future<void> _reconnect(String name) async {
+    if (reconnecting) return;
+    reconnecting = true;
+    _set(LinkState.connecting, 'Connection to $name lost. Reconnecting…');
+    var attempt = 0;
+    while (_chan != null && !_userDisconnect && _dev != null) {
+      if (_expires != null && DateTime.now().isAfter(_expires!)) break;
+      attempt++;
+      try {
+        await _dev!.connect(license: License.nonprofit, timeout: const Duration(seconds: 10));
+        await _attach();
+        reconnecting = false;
+        _log('reconnected (attempt $attempt)');
+        _set(LinkState.paired);
+        send({'type': 'hello', 'role': 'phone', 'capabilities': ['arkit_lidar', 'arkit_camera']});
+        return;
+      } catch (e) {
+        _log('reconnect attempt $attempt failed: $e');
+        await Future<void>.delayed(Duration(seconds: attempt < 5 ? 2 : 5));
+      }
+    }
+    reconnecting = false;
+    if (_userDisconnect) return;
+    _chan = null;
+    _set(LinkState.error, 'Could not reconnect to $name (session expired or Mac gone). Pair again.');
   }
 
   Future<bool> pair(String code) async {
@@ -164,6 +219,12 @@ class BleLink extends ChangeNotifier {
       if (_expires != null && DateTime.now().isAfter(_expires!)) {
         _chan = null;
         _set(LinkState.error, 'Pairing expired. Pair again.');
+        return;
+      }
+      if (o['type'] == 'error' && o['code'] == 'not_paired') {
+        // The Mac no longer has our session (its service restarted, or the session expired there).
+        _chan = null;
+        _set(LinkState.error, 'The Mac no longer recognises this phone (Field Station restarted?). Pair again.');
         return;
       }
       final m = _chan!.unwrap(msg);
@@ -230,8 +291,18 @@ class BleLink extends ChangeNotifier {
       if ((m['target'] ?? 'phone') == 'phone' || type == 'capture_now') {
         _log('remote $type');
         if (!_commands.hasListener) {
-          // Only the capture screen can obey (it owns the AR session). Tell the Mac instead of dropping it.
-          ack(m, false, 'phone is not on the capture screen: on the phone, tap Scan › Open scanner first');
+          // Only the capture screen can obey (it owns the AR session). A start opens it (rig use: nobody touches
+          // the phone); anything else is refused with the reason instead of being dropped.
+          if (type == 'start_capture') {
+            final refused = openForRemote == null ? 'phone app cannot open the scanner by itself' : openForRemote!(m);
+            if (refused == null) {
+              _inFlight.add('${m['id']}');
+              return; // the capture screen acks once the camera is ready and recording has started
+            }
+            ack(m, false, refused);
+          } else {
+            ack(m, false, 'not recording (the scanner is not open on the phone)');
+          }
           return;
         }
         _inFlight.add('${m['id']}');
@@ -293,6 +364,7 @@ class BleLink extends ChangeNotifier {
   }
 
   Future<void> disconnect({bool sendMessage = true}) async {
+    _userDisconnect = true;
     try {
       if (sendMessage && _chan != null) await send({'type': 'disconnect', 'reason': 'user'});
     } catch (_) {}
