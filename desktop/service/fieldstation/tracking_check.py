@@ -36,11 +36,23 @@ def check(scan_dir: Path) -> dict | None:
         return None
     pos = [(k["camera_to_world"][12], k["camera_to_world"][13], k["camera_to_world"][14]) for k in kfs]
     t = [float(k.get("t_since_start_s") or 0.0) for k in kfs]
-    speeds = []
-    for i in range(1, len(kfs)):
-        dt = t[i] - t[i - 1]
-        if dt > 0.05:
-            speeds.append(math.dist(pos[i], pos[i - 1]) / dt)
+
+    def speeds_of(ps, ts):
+        out = []
+        for i in range(1, len(ps)):
+            dt = ts[i] - ts[i - 1]
+            if dt > 0.05:
+                out.append(math.dist(ps[i], ps[i - 1]) / dt)
+        return out
+
+    speeds = speeds_of(pos, t)
+    # Field Scan builds of 15 Nov 2026 (11:50 onwards) reset tracking when a rig scan starts, and the first keyframe
+    # could be a frame from before the reset, in the old coordinates: one jump at the start, then a normal track.
+    # Report that one misplaced keyframe for what it is instead of calling the whole scan unreliable.
+    first_offset = None
+    if len(kfs) >= 4 and speeds and speeds[0] > MAX_SPEED_M_S and max(speeds_of(pos[1:], t[1:]) or [0]) <= MAX_SPEED_M_S:
+        first_offset = math.dist(pos[0], pos[1])
+        pos, t, speeds = pos[1:], t[1:], speeds_of(pos[1:], t[1:])
     span = max(math.dist(a, b) for a in (min(pos), max(pos)) for b in pos)
     near = []
     for k in kfs:
@@ -49,7 +61,12 @@ def check(scan_dir: Path) -> dict | None:
             near.append(h[0] / sum(h))
     out = {"keyframes": len(kfs), "max_speed_m_s": round(max(speeds), 2) if speeds else None,
            "track_span_m": round(span, 2), "near_fraction": round(sum(near) / len(near), 3) if near else None,
-           "trustworthy": True, "warnings": []}
+           "trustworthy": True, "warnings": [], "notes": []}
+    if first_offset is not None:
+        out["first_keyframe_offset_m"] = round(first_offset, 2)
+        out["notes"] = [f"The first keyframe was recorded just before tracking restarted and sits {first_offset:.1f} m from the "
+                        f"rest; its depth may be misplaced in the fused point cloud. The other {len(kfs) - 1} keyframes form a "
+                        "consistent track, and ARKit's mesh is built after the restart."]
     if (speeds and max(speeds) > MAX_SPEED_M_S) or span > MAX_TRACK_SPAN_M:
         out["trustworthy"] = False
         out["warnings"].append(

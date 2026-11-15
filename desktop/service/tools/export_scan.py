@@ -174,12 +174,11 @@ def main() -> int:
     (out / "photos").mkdir(exist_ok=True)
     n_ph = 0
     for p in sorted((d / "photos").glob("*.jpg")) if (d / "photos").is_dir() else []:
-        shutil.copy2(p, out / "photos" / p.name)
+        shutil.copyfile(p, out / "photos" / p.name)  # bytes only: scan files are read-only
         n_ph += 1
-    for name in ("color.png", "color_0000.png"):
-        if (d / name).exists():
-            shutil.copy2(d / name, out / "photos" / name)
-            n_ph += 1
+    for p in sorted((d / "frames").glob("color_*.png")) if (d / "frames").is_dir() else []:  # D435 colour frames
+        shutil.copyfile(p, out / "photos" / p.name)  # bytes only: scan files are read-only
+        n_ph += 1
 
     # the scan's own mesh
     mesh = next((d / m for m in ("mesh_arkit.ply", "mesh_grid.ply") if (d / m).exists()), None)
@@ -190,24 +189,35 @@ def main() -> int:
     remap = np.full(len(v), -1, np.int64)
     remap[used] = np.arange(len(used))
     v, f = v[used], remap[f].astype(np.uint32)
+    frame = (man.get("coordinate_frame") or {}).get("name")
+    if frame == "camera_optical_m":
+        # D435: +Y down, +Z out of the lens. Turn 180 degrees about X so the viewer's up is up (a rotation only;
+        # distances unchanged). Stated in the viewer text.
+        v = v * np.array([1, -1, -1], np.float32)
     with open(out / "mesh.obj", "w") as fo:
         fo.write(f"# {title} ({man['scan_id']}), from {mesh.name}; metres, frame {(man.get('coordinate_frame') or {}).get('name')}\n")
         np.savetxt(fo, v, "v %.5f %.5f %.5f")
         np.savetxt(fo, f + 1, "f %d %d %d")
 
     center = np.median(v, 0)
-    radius = float(np.percentile(np.linalg.norm(v - center, axis=1), 95)) or 1.0
+    dist = np.linalg.norm(v - center, axis=1)
+    full = float(np.percentile(dist, 90)) or 1.0
+    # frame the bulk, not stray far points (a D435 outdoors: one near surface plus scattered far returns)
+    radius = min(full, 3 * float(np.median(dist))) or full
     tc = tracking_check(d)
     warn = ""
     if tc and not tc["trustworthy"]:
         warn = '<p class="warn">Unreliable positions: ' + esc(" ".join(tc["warnings"])) + "</p>"
+    elif tc and tc.get("notes"):
+        warn = "<p>Note: " + esc(" ".join(tc["notes"])) + "</p>"
     origin = man.get("origin", "")
     what = ("ARKit scene-reconstruction mesh (derived by ARKit on the iPhone, not raw LiDAR)" if mesh.name == "mesh_arkit.ply"
             else "Field Station grid mesh from the D435 depth image (derived, no hole filling)")
     when = (man.get("captured_at_utc") or {}).get("start") if isinstance(man.get("captured_at_utc"), dict) else None
-    desc = (f"{what}. {len(v):,} vertices, {len(f):,} triangles, about {2 * radius:.2f} m across (95% of vertices). "
+    desc = (f"{what}. {len(v):,} vertices, {len(f):,} triangles, about {2 * full:.2f} m across (90% of vertices){'; the view starts on the densest part' if radius < full else ''}. "
             f"Units: metres. Source: {origin}{', captured ' + when[:16].replace('T', ' ') + ' UTC' if when else ''}. "
-            "Surfaces the sensor did not see are missing, not filled.")
+            "Surfaces the sensor did not see are missing, not filled."
+            + (" Shown turned 180 degrees about the camera's X axis so up is up (camera frame is +Y down)." if frame == "camera_optical_m" else ""))
     html = (VIEWER.replace("__TITLE__", esc(title)).replace("__DESC__", esc(desc)).replace("__WARN__", warn)
             .replace("__POS__", base64.b64encode(v.astype("<f4").tobytes()).decode())
             .replace("__IDX__", base64.b64encode(f.astype("<u4").tobytes()).decode())
@@ -220,6 +230,7 @@ def main() -> int:
         f"mesh.obj         the same mesh for Blender / MeshLab / Preview.\n\n"
         f"{desc}\n"
         + (f"\nWARNING: {' '.join(tc['warnings'])}\n" if tc and not tc['trustworthy'] else "")
+        + (f"\nNote: {' '.join(tc['notes'])}\n" if tc and tc.get('notes') else "")
         + "\nPhotos may show people. Check before sharing: the Space Apps submission must not show minors.\n"
         "Exported by Field Station tools/export_scan.py (written with AI assistance, Claude by Anthropic).\n")
     print(json.dumps({"out": str(out), "photos": n_ph, "vertices": int(len(v)), "triangles": int(len(f)),

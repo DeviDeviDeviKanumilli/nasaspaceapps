@@ -60,6 +60,7 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
     private var prevT: TimeInterval = 0
     private var armedAt = Date.distantPast          // when tracking was last reset (session.run with .resetTracking)
     private var driftSince: TimeInterval = -1      // "normal" tracking but an impossible camera speed, since t
+    private var ignoreBefore: TimeInterval = 0     // frames older than this (ARFrame.timestamp) predate a tracking reset
     private var angSpeed: Float = 0
     private var lastStatusT: TimeInterval = 0
     private var lastDepthStats: [String: Any] = [:]
@@ -274,6 +275,8 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
             session.run(cfg, options: [.resetTracking, .removeExistingAnchors])
             armedAt = Date()
             prevPose = nil
+            // frames already in flight still carry the old coordinates (15 Nov: the first keyframe sat 3-15 m away)
+            ignoreBefore = ProcessInfo.processInfo.systemUptime + 0.3
         }
         driftSince = -1
         dir = d
@@ -417,7 +420,7 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
             tracking = tr
         }
 
-        if recording && !paused && stopReason == nil {
+        if recording && !paused && stopReason == nil && t >= ignoreBefore {
             if startedT < 0 { startedT = t }
             let pos = ScanMath.translation(pose)
             if tr == "normal" {
