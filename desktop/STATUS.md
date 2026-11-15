@@ -14,7 +14,7 @@ exercised. **PLANNED** = not built.
 | Check | State | Evidence |
 |---|---|---|
 | librealsense on this Mac | `pyrealsense2-macosx` 2.56.5 imports (arm64, Python 3.13) | `service/requirements.lock.txt` |
-| D435 enumerated / real depth frame | **ON USB, NOT YET STREAMING** (2026-11-15 08:20 ET): macOS lists "Intel(R) RealSense(TM) Depth Camera 435" (8086:0b07) at **USB 2 (480 Mb/s)**; as a normal user librealsense lists 1 device but opening it fails with `failed to set power state` (`tools/d435_smoke.py` exit 3). Needs the sudo run of `desktop/d435.sh` (password; not yet done) | log in `~/Library/Application Support/FieldStation/hardware_smoke/` |
+| D435 enumerated / real depth frame | **PASS WITH SUDO** (2026-11-15 08:26 ET): Intel RealSense D435, serial 832112072809, firmware 5.11.1.100, **USB 2.1** link. `desktop/d435.sh`: as the normal user exit 3 (`failed to set power state`); with sudo exit 0, `usb2_fallback` 640x480, 30 frames at 14.97 fps measured, mean valid depth 0.327, median 1.08–1.83 m, fx 384.9 px, depth scale 1 mm. Field Station must run its service as root on this Mac (`desktop/d435.sh run`). Full-resolution profiles: UNTESTED (need a USB 3 link) | `hardware_smoke_20261115T132628Z.json` + depth/colour PNG (SHA-256 in the log) in `~/Library/Application Support/FieldStation/hardware_smoke/`; the colour PNG may show people: do not publish it |
 
 Until the smoke test returns exit 0 with the real camera, **no live D435 capture may be claimed**. The
 fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC scene for rehearsal only
@@ -131,4 +131,7 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
   the discovery child keep the SDK objects alive and leave with `os._exit` (smoke now exits 3 with the error text;
   discovery returns "needs root: run desktop/d435.sh"); d435.sh also retries with sudo on any crash; on a USB 2 link
   discovery recommends `usb2_fallback` and the app opens with it, the smoke test picks it by default. Real depth: not yet.
+- 08:26: **hardware gate passed with sudo** (user ran desktop/d435.sh, typed the password): real depth, 30 frames,
+  14.97 fps, valid fraction 0.33 (lower half of the frame empty: nearer than the ~0.2 m minimum range, e.g. the desk).
+  Live capture in the app through `desktop/d435.sh run`: next.
 
