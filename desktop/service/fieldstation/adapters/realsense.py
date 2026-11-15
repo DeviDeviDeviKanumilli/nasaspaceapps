@@ -33,6 +33,7 @@ except Exception as exc:  # pragma: no cover - depends on the machine
 _KEEP: list = []
 
 _LIBUSB_HOLD = None
+FIRST_FRAME_MS = 8000  # open() waits this long for the first frame set
 
 
 def _hold_libusb() -> None:
@@ -58,6 +59,25 @@ def _hold_libusb() -> None:
         _LIBUSB_HOLD = (lib, ctx) if lib.libusb_init(ctypes.byref(ctx)) == 0 else False
     except OSError:
         _LIBUSB_HOLD = False
+
+
+def quiet_native_crashes() -> None:
+    """In a short-lived camera process only: if librealsense/libusb segfaults (they can while releasing the camera on
+    macOS, see _hold_libusb), end the process at once with exit code 11 instead of a macOS "Python quit unexpectedly"
+    dialog. The handler is libc's _exit itself, so no Python runs on the crashed thread. The parent still sees exit
+    code 11 and reports it. Never call this in the service's main process."""
+    if sys.platform != "darwin":
+        return
+    import ctypes
+    import signal as _signal
+    try:
+        libc = ctypes.CDLL(None)
+        libc.signal.restype, libc.signal.argtypes = ctypes.c_void_p, [ctypes.c_int, ctypes.c_void_p]
+        addr = ctypes.cast(libc._exit, ctypes.c_void_p).value
+        for sig in (_signal.SIGSEGV, _signal.SIGBUS):
+            libc.signal(sig, addr)
+    except Exception:
+        pass
 
 
 _MODEL_NAMES = {}
@@ -242,6 +262,19 @@ class RealSenseAdapter:
             sensor_options=opts, source="sdk",
         )
         self._i = 0
+        # Only call it open once frames really flow. After a reset on USB the D435 sometimes accepts the stream request
+        # and then sends nothing; a hardware reset (the camera reboots, ~5 s) is the remedy, then the caller retries.
+        ok, first = self.pipe.try_wait_for_frames(FIRST_FRAME_MS)
+        if not ok:
+            try:
+                dev.hardware_reset()
+                what = "the camera was reset and is restarting (about 5 s)"
+            except Exception as exc:  # noqa: BLE001
+                what = f"resetting the camera failed too ({exc}); unplug it for 10 s"
+            self.pipe = None  # do not stop/release a camera that is rebooting
+            raise AdapterError(f"streams started but no frames arrived within {FIRST_FRAME_MS // 1000} s: {what}. "
+                               "Open again.")
+        self._first = first
 
     def get_calibration(self) -> Calibration:
         if self.calib is None:
@@ -251,10 +284,9 @@ class RealSenseAdapter:
     def read_frame(self, timeout_ms: int) -> Frame:
         if self.pipe is None:
             raise AdapterError("not open")
-        if self._i == 0:
-            timeout_ms = max(timeout_ms, 10000)  # the first frames after start can take seconds (auto-exposure, USB 2)
+        first, self._first = getattr(self, "_first", None), None
         try:
-            ok, frames = self.pipe.try_wait_for_frames(timeout_ms)
+            ok, frames = (True, first) if first is not None else self.pipe.try_wait_for_frames(timeout_ms)
         except RuntimeError as exc:
             raise DeviceLost(str(exc)) from exc
         if not ok:

@@ -156,4 +156,13 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
   102,944 points; title "D435 setup test (desk)", not a field observation); 5 close/reopen cycles: 3 streamed,
   1 crash on release (b), 1 "already opened" right after it. The retry/wait logic (service side) needs a service
   restart to load: re-test after `d435.sh run` again.
+- 08:55–09:08 (still the 08:38 service; only camera-process code reloads): crash dialogs fixed: camera processes
+  (worker, discovery probe, smoke test) install libc `_exit` as their SIGSEGV/SIGBUS handler, so a libusb crash while
+  releasing the camera ends the process with exit 11, no macOS dialog (verified: synthetic segfault on a non-Python
+  thread → exit 11, no crash report; 12 live close/reopen cycles → 0 crash reports). Tried and REVERTED: exiting
+  without releasing the camera (next open streamed no frames). Found: after a close, a reopen often "starts" but no
+  frames arrive, and the open after that fails "already opened" / "power state". Added: open() waits up to 8 s for
+  the first frame set and, if none, hardware-resets the camera and fails retryably (service waits 8 s, retries);
+  open attempts get 30 s each. **Not yet verified live**: the camera is now wedged at USB level ("UVC device is already
+  opened" with no process holding it) and needs a physical replug; then restart d435.sh run and re-test.
 

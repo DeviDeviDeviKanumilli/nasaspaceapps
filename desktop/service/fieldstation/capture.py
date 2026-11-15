@@ -26,7 +26,14 @@ from .bundle import BundleError, ScanStore, depth_colormap
 
 
 # ----------------------------------------------------------------------------- worker side
+def _quiet(adapter_id: str) -> None:
+    if adapter_id == "realsense":
+        from .adapters.realsense import quiet_native_crashes
+        quiet_native_crashes()
+
+
 def _worker_loop(adapter_id: str, store_root: str | None, device_id: str, config: dict, cmd_q, out_q) -> None:
+    _quiet(adapter_id)
     try:
         adapter = make_adapter(adapter_id, Path(store_root) if store_root else None)
         adapter.open(device_id, config)
@@ -75,6 +82,7 @@ def _worker_loop(adapter_id: str, store_root: str | None, device_id: str, config
 
 
 def _discover_worker(adapter_id: str, store_root: str | None, out_q) -> None:
+    _quiet(adapter_id)
     try:
         a = make_adapter(adapter_id, Path(store_root) if store_root else None)
         out_q.put(("ok", a.discover()))
@@ -92,7 +100,9 @@ def _discover_worker(adapter_id: str, store_root: str | None, out_q) -> None:
 # ----------------------------------------------------------------------------- service side
 REENUM_S = 3.0        # how long a RealSense camera takes to come back on USB after being released (macOS, root)
 OPEN_ATTEMPTS = 3
-_RETRYABLE = ("power state", "already opened", "no device connected", "resolve the request", "crashed", "did not open")
+RESET_S = 8.0         # a D435 hardware reset (adapter.open does one when no frames arrive) takes ~5 s to come back
+_RETRYABLE = ("power state", "already opened", "no device connected", "resolve the request", "crashed", "did not open",
+              "no frames arrived")
 
 
 def _retryable(error: dict | None, exc: Exception) -> bool:
@@ -181,7 +191,7 @@ class CaptureController:
         return {"adapter_id": adapter_id, "devices": payload if kind == "ok" else [], "error": None if kind == "ok" else payload}
 
     # -- open / close
-    def open(self, adapter_id: str, device_id: str, profile: str = "field_static", timeout_s: float = 20.0) -> dict:
+    def open(self, adapter_id: str, device_id: str, profile: str = "field_static", timeout_s: float = 30.0) -> dict:
         if adapter_id == "synthetic" and not self.fixtures:
             raise AdapterError("synthetic fixtures are disabled (start the service with --fixtures)")
         if profile not in PROFILES:
@@ -203,7 +213,7 @@ class CaptureController:
                 if attempt == OPEN_ATTEMPTS or not _retryable(self.error, exc):
                     raise
                 self.emit("device_retry", attempt=attempt, of=OPEN_ATTEMPTS, reason=str(exc)[:300])
-                time.sleep(REENUM_S)
+                time.sleep(RESET_S if "was reset" in str(exc) else REENUM_S)
         raise AdapterError("unreachable")
 
     def _open_once(self, adapter_id: str, device_id: str, profile: str, timeout_s: float) -> dict:

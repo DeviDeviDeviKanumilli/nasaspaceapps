@@ -59,8 +59,9 @@ def main() -> int:
 
     try:
         import pyrealsense2 as rs
-        from fieldstation.adapters.realsense import _hold_libusb
+        from fieldstation.adapters.realsense import _hold_libusb, quiet_native_crashes
         _hold_libusb()  # same libusb race workaround as Field Station itself
+        quiet_native_crashes()  # a libusb crash at the very end (releasing the camera) exits 11, no crash dialog
         log["sdk"] = {"package": "pyrealsense2-macosx", "module": rs.__file__}
     except Exception as exc:
         return done(2, f"pyrealsense2 not importable: {exc}")

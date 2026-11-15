@@ -94,7 +94,7 @@ check() {
     ok "Real depth acquired as your normal user. Start Field Station with: desktop/d435.sh run   (or desktop/run.sh)"
     return 0
   fi
-  if (( code == 3 || code == 4 || code >= 128 )); then
+  if (( code == 3 || code == 4 || code == 11 || code >= 128 )); then
     warn "The camera is on USB but librealsense could not use it as your user (exit $code)."
     print "  On recent macOS the system holds the camera's USB interface; librealsense then needs root."
     print "  Retrying once with sudo (your Mac password; it is not stored)…"
