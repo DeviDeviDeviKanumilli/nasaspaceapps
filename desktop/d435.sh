@@ -131,29 +131,46 @@ run_app() {
   bold "This Mac needs root for the D435 (found by desktop/d435.sh on $(cat "$marker"))."
   print "Starting the Field Station service with sudo; the app runs as you and connects to it."
   sudo -v -p "Password for sudo: " || exit 1
-  if [[ ! -d "$app" || -n "$(find "$here/app/lib" "$here/app/macos/Runner" -newer "$app" -print -quit)" ]]; then
+  # keep the sudo ticket fresh while the app runs, so the clean-up below never needs the password again
+  ( while kill -0 $$ 2>/dev/null; do sudo -n -v 2>/dev/null; sleep 60; done ) &
+  typeset -g keepalive=$!
+  sudo chown -R "$USER" "$data" 2>/dev/null   # anything an earlier root run left behind
+  if [[ ! -d "$app" || -n "$(find "$here/app/lib" "$here/app/macos/Runner" -newer "$app/Contents/MacOS/field_station" -print -quit)" ]]; then
     (cd "$here/app" && "$flutter" build macos --debug) || exit 1
   fi
-  local token port
+  typeset -g token port   # globals: the EXIT trap runs after this function has returned
   token="$(openssl rand -hex 24)"
   port="$(/usr/bin/python3 -c 'import socket; s=socket.socket(); s.bind(("127.0.0.1",0)); print(s.getsockname()[1])')"
   local fixtures=()
   [[ "${1:-}" == "--fixtures" ]] && fixtures=(--fixtures)
-  # token via the environment (not argv, which other local users could read with ps)
+  # The token reaches the root service through its environment, and the service's "ready" line that repeats it goes
+  # to a log only you can read. (`open --env` below does show it in the command line of the `open` process; it only
+  # opens 127.0.0.1 on this Mac while Field Station runs, and changes every run.)
+  typeset -g log="$data/service-root.log"
+  : >"$log"; chmod 600 "$log"
   ( cd "$svc" && sudo FIELDSTATION_TOKEN="$token" "$py" -m fieldstation.server --port "$port" --home "$data" \
-      --parent-pid $$ "${fixtures[@]}" ) &
-  local svc_pid=$!
+      --parent-pid $$ "${fixtures[@]}" >"$log" 2>&1 ) &
+  typeset -g svc_pid=$!
   cleanup() {
-    sudo pkill -f "fieldstation.server --port $port" 2>/dev/null
+    sudo -n pkill -f "fieldstation.server --port $port" 2>/dev/null
     wait $svc_pid 2>/dev/null
-    sudo chown -R "$USER" "$data" 2>/dev/null   # files the root service wrote stay yours
+    sudo -n chown -R "$USER" "$data" 2>/dev/null   # files the root service wrote stay yours
+    chmod 600 "$log" 2>/dev/null
+    kill $keepalive 2>/dev/null
   }
   trap cleanup EXIT INT TERM
+  local up=0
   for i in {1..60}; do
-    curl -s -m 1 -H "Authorization: Bearer $token" "http://127.0.0.1:$port/api/health" | grep -q '"ok": *true' && break
+    curl -s -m 1 -H "Authorization: Bearer $token" "http://127.0.0.1:$port/api/health" | grep -q '"ok": *true' && { up=1; break; }
     sleep 0.5
   done
-  FIELDSTATION_URL="http://127.0.0.1:$port" FIELDSTATION_TOKEN="$token" "$app/Contents/MacOS/field_station"
+  if (( ! up )); then
+    bad "The service did not start within 30 s. Its log:"; tail -20 "$log"; exit 1
+  fi
+  ok "Service running as root on 127.0.0.1:$port. Opening Field Station (quit it to stop everything)."
+  # open (not the binary directly) so macOS asks for Bluetooth for Field Station itself, not for Terminal;
+  # -W waits until the app quits, -n starts a fresh copy with these settings even if another is open
+  open -n -W --env FIELDSTATION_URL="http://127.0.0.1:$port" --env FIELDSTATION_TOKEN="$token" "$app"
 }
 
 case "${1:-check}" in

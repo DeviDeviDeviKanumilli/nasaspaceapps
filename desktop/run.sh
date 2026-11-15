@@ -9,7 +9,7 @@ flutter="${FLUTTER:-$HOME/development/flutter/bin/flutter}"
 [[ -x "$here/service/.venv/bin/python" ]] || { echo "service venv missing: see desktop/README.md › Setup"; exit 1; }
 [[ "$1" == "--fixtures" ]] && export FIELDSTATION_FIXTURES=1
 app="$here/app/build/macos/Build/Products/Debug/field_station.app"
-if [[ ! -d "$app" || -n "$(find "$here/app/lib" "$here/app/macos/Runner" -newer "$app" -print -quit)" ]]; then
+if [[ ! -d "$app" || -n "$(find "$here/app/lib" "$here/app/macos/Runner" -newer "$app/Contents/MacOS/field_station" -print -quit)" ]]; then
   (cd "$here/app" && "$flutter" build macos --debug)
 fi
 export FIELDSTATION_SERVICE_DIR="$here/service"

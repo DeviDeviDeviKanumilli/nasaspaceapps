@@ -134,4 +134,11 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
 - 08:26: **hardware gate passed with sudo** (user ran desktop/d435.sh, typed the password): real depth, 30 frames,
   14.97 fps, valid fraction 0.33 (lower half of the frame empty: nearer than the ~0.2 m minimum range, e.g. the desk).
   Live capture in the app through `desktop/d435.sh run`: next.
+- 08:35: `d435.sh run` (the root launcher) dry-run end to end with a stand-in sudo that runs as the user: service up,
+  health OK, app opened and connected, quit → service stopped, ownership handed back. Found and fixed: the clean-up ran
+  after `run_app` returned, lost its `local` variables under `set -u` and skipped pkill/chown (a real root run would have
+  left root-owned scans); sudo could expire before clean-up (now kept alive); the app was started as a bare binary, so
+  Bluetooth permission would be asked for Terminal (now `open -n -W`); every run rebuilt the app (the .app folder's
+  timestamp never changes; now compared with its binary, also in run.sh). Camera link still USB 2 with a second cable
+  and the other port (480 Mb/s both). Root service with the real camera: not yet run.
 

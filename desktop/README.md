@@ -118,6 +118,13 @@ auto-import then runs `devicectl` as you. On a MacBook Air both USB-C ports are 
 from MagSafe. Field Station's Devices screen also says when the camera is on USB but cannot be opened, or is in firmware
 recovery mode.
 
+On a USB 2 link (480 Mb/s) the gate and the app use the `usb2_fallback` profile (640x480 @ 15 fps) automatically.
+`d435.sh run` keeps sudo alive while the app is open (so quitting never asks for the password again), logs the root
+service to `~/Library/Application Support/FieldStation/service-root.log` (readable by you only), and opens the app with
+`open` so macOS asks for Bluetooth for Field Station itself. Quit Field Station to stop everything. Tested 15 Nov 2026 on
+a MacBook Air M4 / macOS 26: the gate with sudo on a real D435 (USB 2.1); the `run` launcher end to end with a stand-in
+for sudo (service up, app connected, clean-up on quit); the root service itself with the camera: not yet.
+
 The gate on its own:
 
 ```bash
