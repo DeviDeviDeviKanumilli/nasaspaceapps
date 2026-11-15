@@ -30,6 +30,8 @@ export interface CameraInfo {
 
 export interface GlobeStatus {
   imagery: "satellite" | "bluemarble" | "offline" | "loading";
+  /** what is being drawn, for the layers panel */
+  stack: string;
   imageryNote: string | null;
   relief: "on" | "off" | "unavailable" | "loading";
 }
@@ -71,12 +73,14 @@ interface Props {
   onFatal(message: string): void;
 }
 
-const MOON = "#A7CBE5";
-const MARS = "#D49A80";
+const MOON = "#567C94";
+const MARS = "#B66F54";
+const MOON_LINE = "#A9C4D6"; // lighter tints for thin lines over imagery
+const MARS_LINE = "#E3A88F";
+const GIBS_GEO = "https://gibs.earthdata.nasa.gov/wmts/epsg4326/best/BlueMarble_ShadedRelief_Bathymetry/default/2004-08/500m/{gz}/{y}/{x}.jpeg";
 const ESRI_IMAGERY = "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
 const ESRI_LABELS = "https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}";
 const ESRI_TERRAIN = "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer";
-const GIBS = "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default/2004-08/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg";
 
 let cesiumPromise: Promise<typeof CesiumNS> | null = null;
 function loadCesium(): Promise<typeof CesiumNS> {
@@ -116,23 +120,20 @@ function markerIcon(kind: AtlasRecord["kind"], body: string): HTMLCanvasElement 
   const key = `${kind}-${body}`;
   const hit = iconCache.get(key);
   if (hit) return hit;
-  const s = 28;
+  const s = 40; // 2x canvas for a 20 px sprite
   const c = document.createElement("canvas");
   c.width = c.height = s;
   const g = c.getContext("2d")!;
-  const col = body === "Moon" ? MOON : MARS;
-  const halo = "rgba(255,255,255,0.7)";
-  const dark = "rgba(5,10,16,0.95)";
-  g.fillStyle = col;
-  const shape = (grow: number) => {
+  const m = s / 2;
+  const shape = (r: number) => {
     g.beginPath();
-    if (kind === "terrain") g.arc(s / 2, s / 2, 6 + grow, 0, Math.PI * 2);
-    else if (kind === "rock") g.rect(s / 2 - 5.5 - grow, s / 2 - 5.5 - grow, 11 + 2 * grow, 11 + 2 * grow);
-    else { const r = 8 + grow * 1.4; g.moveTo(s / 2, s / 2 - r); g.lineTo(s / 2 + r, s / 2); g.lineTo(s / 2, s / 2 + r); g.lineTo(s / 2 - r, s / 2); g.closePath(); }
+    if (kind === "terrain") g.arc(m, m, r, 0, Math.PI * 2);
+    else if (kind === "rock") g.rect(m - r * 0.9, m - r * 0.9, r * 1.8, r * 1.8);
+    else { const d = r * 1.25; g.moveTo(m, m - d); g.lineTo(m + d, m); g.lineTo(m, m + d); g.lineTo(m - d, m); g.closePath(); }
   };
-  shape(2.2); g.lineWidth = 1.2; g.strokeStyle = halo; g.stroke();   // thin light halo so markers read on pale ground
-  shape(0); g.fill(); g.lineWidth = 2.2; g.strokeStyle = dark; g.stroke();
-  if (kind === "geo2") { g.fillStyle = dark; g.beginPath(); g.arc(s / 2, s / 2, 2, 0, Math.PI * 2); g.fill(); }
+  shape(11.5); g.fillStyle = "rgba(5,9,11,0.55)"; g.fill();      // hairline dark edge
+  shape(10); g.fillStyle = "#FFFFFF"; g.fill();                    // 1.5 px light outline
+  shape(7); g.fillStyle = body === "Moon" ? MOON : MARS; g.fill(); // 9-10 px centre
   iconCache.set(key, c);
   return c;
 }
@@ -141,51 +142,50 @@ function clusterIcon(n: number, moonShare: number): HTMLCanvasElement {
   const key = `c-${n}-${bucket}`;
   const hit = iconCache.get(key);
   if (hit) return hit;
-  const r = n < 10 ? 15 : n < 50 ? 18 : n < 150 ? 21 : 24;
-  const s = r * 2 + 8;
+  const d = n < 10 ? 26 : n < 100 ? 28 : 30; // on-screen diameter in px
+  const s = (d + 4) * 2;
   const c = document.createElement("canvas");
   c.width = c.height = s;
   const g = c.getContext("2d")!;
-  const cx = s / 2;
-  g.beginPath(); g.arc(cx, cx, r, 0, Math.PI * 2); g.fillStyle = "rgba(8,14,22,0.88)"; g.fill();
-  // ring split by body share (Moon vs Mars) so the cluster keeps its category mix
+  const cx = s / 2, r = d - 2;
+  g.beginPath(); g.arc(cx, cx, r, 0, Math.PI * 2); g.fillStyle = "rgba(17,27,32,0.92)"; g.fill();
   const a0 = -Math.PI / 2;
   const a1 = a0 + Math.PI * 2 * (bucket / 8);
-  g.lineWidth = 3;
-  if (bucket > 0) { g.beginPath(); g.arc(cx, cx, r, a0, a1); g.strokeStyle = MOON; g.stroke(); }
-  if (bucket < 8) { g.beginPath(); g.arc(cx, cx, r, a1, a0 + Math.PI * 2); g.strokeStyle = MARS; g.stroke(); }
-  g.fillStyle = "#F3F5F4";
-  g.font = `600 ${n < 100 ? 13 : 12}px Inter, system-ui, sans-serif`;
+  g.lineWidth = 3; // 1.5 px rim on screen, split by the Moon/Mars share of the records inside
+  if (bucket > 0) { g.beginPath(); g.arc(cx, cx, r, a0, a1); g.strokeStyle = MOON_LINE; g.stroke(); }
+  if (bucket < 8) { g.beginPath(); g.arc(cx, cx, r, a1, a0 + Math.PI * 2); g.strokeStyle = MARS_LINE; g.stroke(); }
+  g.fillStyle = "#F5F7F7";
+  g.font = `600 ${n < 100 ? 22 : 20}px ui-monospace, "SF Mono", Menlo, Consolas, monospace`;
   g.textAlign = "center"; g.textBaseline = "middle";
-  g.fillText(String(n), cx, cx + 0.5);
+  g.fillText(String(n), cx, cx + 1);
   iconCache.set(key, c);
   return c;
 }
 function ringIcon(): HTMLCanvasElement {
   const hit = iconCache.get("ring");
   if (hit) return hit;
-  const s = 44;
+  const s = 56;
   const c = document.createElement("canvas");
   c.width = c.height = s;
   const g = c.getContext("2d")!;
-  g.beginPath(); g.arc(s / 2, s / 2, 16, 0, Math.PI * 2); g.lineWidth = 5; g.strokeStyle = "rgba(5,10,16,0.75)"; g.stroke();
-  g.beginPath(); g.arc(s / 2, s / 2, 16, 0, Math.PI * 2); g.lineWidth = 2.5; g.strokeStyle = "#FFFFFF"; g.stroke();
+  g.beginPath(); g.arc(s / 2, s / 2, 20, 0, Math.PI * 2); g.lineWidth = 7; g.strokeStyle = "rgba(5,9,11,0.6)"; g.stroke();
+  g.beginPath(); g.arc(s / 2, s / 2, 20, 0, Math.PI * 2); g.lineWidth = 3.5; g.strokeStyle = "#F7F8F5"; g.stroke();
   iconCache.set("ring", c);
   return c;
 }
 function pinIcon(): HTMLCanvasElement {
   const hit = iconCache.get("pin");
   if (hit) return hit;
-  const s = 36;
+  const s = 56;
   const c = document.createElement("canvas");
   c.width = c.height = s;
   const g = c.getContext("2d")!;
   const m = s / 2;
-  for (const [w, col] of [[5, "rgba(5,10,16,0.8)"], [2, "#FFFFFF"]] as [number, string][]) {
+  for (const [w, col] of [[7, "rgba(5,9,11,0.7)"], [3, "#F7F8F5"]] as [number, string][]) {
     g.lineWidth = w; g.strokeStyle = col;
-    g.beginPath(); g.moveTo(m, 3); g.lineTo(m, m - 5); g.moveTo(m, m + 5); g.lineTo(m, s - 3); g.moveTo(3, m); g.lineTo(m - 5, m); g.moveTo(m + 5, m); g.lineTo(s - 3, m); g.stroke();
+    g.beginPath(); g.moveTo(m, 6); g.lineTo(m, m - 8); g.moveTo(m, m + 8); g.lineTo(m, s - 6); g.moveTo(6, m); g.lineTo(m - 8, m); g.moveTo(m + 8, m); g.lineTo(s - 6, m); g.stroke();
   }
-  g.fillStyle = "#FFFFFF"; g.beginPath(); g.arc(m, m, 1.8, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "#F7F8F5"; g.beginPath(); g.arc(m, m, 2.6, 0, Math.PI * 2); g.fill();
   iconCache.set("pin", c);
   return c;
 }
@@ -193,10 +193,10 @@ function smallSquare(): HTMLCanvasElement {
   const hit = iconCache.get("sq");
   if (hit) return hit;
   const c = document.createElement("canvas");
-  c.width = c.height = 16;
+  c.width = c.height = 24;
   const g = c.getContext("2d")!;
-  g.fillStyle = "#F3F5F4"; g.strokeStyle = "rgba(5,10,16,0.9)"; g.lineWidth = 2;
-  g.beginPath(); g.rect(4, 4, 8, 8); g.fill(); g.stroke();
+  g.fillStyle = "rgba(5,9,11,0.6)"; g.fillRect(4, 4, 16, 16);
+  g.fillStyle = "#F7F8F5"; g.fillRect(6, 6, 12, 12);
   iconCache.set("sq", c);
   return c;
 }
@@ -246,6 +246,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
     foot: Map<string, CesiumNS.Entity>;
     base?: CesiumNS.ImageryLayer;
     underlay?: CesiumNS.ImageryLayer;
+    offline?: boolean;
     labels?: CesiumNS.ImageryLayer;
     coverage?: CesiumNS.ImageryLayer;
     terrain?: CesiumNS.TerrainProvider;
@@ -291,15 +292,19 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
         const renderer = ext && gl ? String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)) : "";
         if (/swiftshader|llvmpipe|software/i.test(renderer)) {
           scene.msaaSamples = 1;
-          viewer.resolutionScale = 0.8;
           scene.globe.maximumScreenSpaceError = 3;
+        } else {
+          // Real GPUs: render at the display's native pixel density (capped at 2x) so imagery and markers are sharp.
+          viewer.useBrowserRecommendedResolution = false;
+          viewer.resolutionScale = Math.min(window.devicePixelRatio || 1, 2) / (window.devicePixelRatio || 1);
         }
       } catch { /* keep defaults */ }
-      scene.backgroundColor = C.Color.fromCssColorString("#02050A");
+      scene.backgroundColor = C.Color.fromCssColorString("#05090B");
       scene.globe.baseColor = C.Color.fromCssColorString("#0d1b29");
       scene.globe.enableLighting = false;
       scene.globe.showGroundAtmosphere = true;
       scene.globe.depthTestAgainstTerrain = true;
+      scene.globe.tileCacheSize = 400; // keep ancestor tiles so imagery does not drop back to coarse levels while panning
       if (scene.sun) scene.sun.show = false;
       if (scene.moon) scene.moon.show = false;
       if (scene.skyAtmosphere) scene.skyAtmosphere.show = true;
@@ -318,6 +323,9 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
       viewer.cesiumWidget.screenSpaceEventHandler.removeInputAction(C.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
       viewer.camera.setView({ destination: C.Cartesian3.fromDegrees(HOME.lon, HOME.lat, HOME.height) });
 
+      // More parallel tile requests per imagery host than Cesium's default of 6, so a new view fills in quickly.
+      C.RequestScheduler.requestsByServer["services.arcgisonline.com:443"] = 16;
+      C.RequestScheduler.requestsByServer["gibs.earthdata.nasa.gov:443"] = 12;
       const recordsDS = new C.CustomDataSource("records");
       const footDS = new C.CustomDataSource("footprints");
       const overlayDS = new C.CustomDataSource("overlay");
@@ -325,7 +333,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
       await viewer.dataSources.add(recordsDS);
       await viewer.dataSources.add(overlayDS);
 
-      const status: GlobeStatus = { imagery: "loading", imageryNote: null, relief: "loading" };
+      const status: GlobeStatus = { imagery: "loading", stack: "checking imagery services", imageryNote: null, relief: "loading" };
       const st = {
         C, viewer, recordsDS, footDS, overlayDS,
         entities: new Map<string, CesiumNS.Entity>(), foot: new Map<string, CesiumNS.Entity>(),
@@ -344,6 +352,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
           position: C.Cartesian3.fromDegrees(r.lon, r.lat),
           billboard: {
             image: markerIcon(r.kind, r.body),
+            scale: 0.5,
             verticalOrigin: C.VerticalOrigin.CENTER,
             heightReference: C.HeightReference.CLAMP_TO_GROUND,
             disableDepthTestDistance: Number.POSITIVE_INFINITY,
@@ -355,9 +364,9 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
             id: `fp:${r.id}`,
             polyline: {
               positions: C.Cartesian3.fromDegreesArray(r.ring.flat()),
-              width: 1.5,
+              width: 1,
               clampToGround: true,
-              material: C.Color.fromCssColorString(r.body === "Moon" ? MOON : MARS).withAlpha(0.85),
+              material: C.Color.fromCssColorString(r.body === "Moon" ? MOON_LINE : MARS_LINE).withAlpha(0.8),
               distanceDisplayCondition: new C.DistanceDisplayCondition(0, 900_000),
             },
           });
@@ -366,7 +375,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
       }
       const cl = recordsDS.clustering;
       cl.enabled = true;
-      cl.pixelRange = 58;
+      cl.pixelRange = 46;
       cl.minimumClusterSize = 2;
       cl.clusterBillboards = true;
       cl.clusterLabels = false;
@@ -378,6 +387,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
         cluster.billboard.show = true;
         cluster.billboard.id = cluster.label.id;
         cluster.billboard.image = clusterIcon(ents.length, moon / ents.length) as unknown as string;
+        cluster.billboard.scale = 0.5;
         cluster.billboard.verticalOrigin = C.VerticalOrigin.CENTER;
         cluster.billboard.disableDepthTestDistance = Number.POSITIVE_INFINITY;
       });
@@ -503,7 +513,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
           ring = [...d.pts, ...(d.cursor ? [d.cursor] : []), d.pts[0]];
         }
         if (ring.length >= 2) {
-          overlayDS.entities.add({ id, polyline: { positions: C.Cartesian3.fromDegreesArray(ring.flat()), width: 2, clampToGround: true, material: new C.PolylineDashMaterialProperty({ color: C.Color.WHITE, dashLength: 12 }) } });
+          overlayDS.entities.add({ id, polyline: { positions: C.Cartesian3.fromDegreesArray(ring.flat()), width: 1.5, clampToGround: true, material: new C.PolylineDashMaterialProperty({ color: C.Color.fromCssColorString("#F7F8F5"), dashLength: 12 }) } });
         }
         scene.requestRender();
       };
@@ -522,6 +532,17 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
         P.current.onCamera({ heading: C.Math.toDegrees(cam.heading), pitch: C.Math.toDegrees(cam.pitch), height: cam.positionCartographic.height, metersPerPixel: mpp });
       };
       viewer.camera.moveStart.addEventListener(() => P.current.onHover(null));
+      let lastActivity = performance.now();
+      const touch = () => { lastActivity = performance.now(); };
+      viewer.camera.changed.addEventListener(touch);
+      viewer.camera.moveEnd.addEventListener(touch);
+      viewer.imageryLayers.layerAdded.addEventListener(touch);
+      scene.globe.tileLoadProgressEvent.addEventListener(touch); // progress counts as activity
+      scene.postRender.addEventListener(() => {
+        // In request-render mode Cesium stops drawing when the camera stops, which can strand half-loaded tiles.
+        // Keep drawing while tiles are still arriving; give up after 20 s with no progress so an unreachable tile cannot spin forever.
+        if (!scene.globe.tilesLoaded && performance.now() - lastActivity < 20_000) scene.requestRender();
+      });
       viewer.camera.percentageChanged = 0.005;
       viewer.camera.changed.addEventListener(report);
       viewer.camera.moveEnd.addEventListener(report);
@@ -544,7 +565,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
       // ---- imagery and terrain, with fallbacks ----
       const [okSat, okBM] = await Promise.all([
         probeImage(ESRI_IMAGERY.replace("{z}", "2").replace("{y}", "1").replace("{x}", "1")),
-        probeImage(GIBS.replace("{z}", "2").replace("{y}", "1").replace("{x}", "1")),
+        probeImage(GIBS_GEO.replace("{gz}", "3").replace("{y}", "1").replace("{x}", "2")),
       ]);
       if (destroyed) return;
       st.available = { satellite: okSat, bluemarble: okBM };
@@ -574,27 +595,45 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
     const s = S.current; if (!s) return;
     const { C, viewer } = s;
     const want = P.current.layers.imagery;
-    if (s.base) { viewer.imageryLayers.remove(s.base, true); s.base = undefined; }
-    let kind: GlobeStatus["imagery"];
-    let provider: CesiumNS.ImageryProvider | null = null;
-    const sat = () => new C.UrlTemplateImageryProvider({ url: ESRI_IMAGERY, maximumLevel: 19, credit: new C.Credit("Imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community", true) });
-    const bm = () => new C.UrlTemplateImageryProvider({ url: GIBS, maximumLevel: 8, credit: new C.Credit("Imagery: NASA GIBS Blue Marble (NASA ESDIS)", true) });
-    if (want === "satellite" && s.available.satellite) { provider = sat(); kind = "satellite"; s.status.imageryNote = null; }
-    else if (s.available.bluemarble) { provider = bm(); kind = "bluemarble"; s.status.imageryNote = want === "satellite" ? "High-resolution imagery could not be reached; showing NASA Blue Marble (500 m)." : null; }
-    else if (s.available.satellite) { provider = sat(); kind = "satellite"; s.status.imageryNote = "NASA Blue Marble could not be reached; showing satellite imagery."; }
-    else { kind = "offline"; s.status.imageryNote = "Online imagery could not be reached. Showing the built-in low-resolution Natural Earth map; zooming in will look coarse."; }
-    if (provider) {
-      s.base = viewer.imageryLayers.addImageryProvider(provider, s.underlay ? 1 : 0);
+    // Stack, bottom to top: [Natural Earth, only when nothing online is reachable] [NASA Blue Marble, whole globe incl. poles] [Esri World Imagery].
+    // Blue Marble stays underneath the satellite layer, so areas whose high-resolution tiles are still streaming (and the
+    // polar caps that web-mercator imagery cannot cover) show real, credited imagery instead of an empty or flat surface.
+    if (s.available.bluemarble && !s.underlay) {
+      s.underlay = viewer.imageryLayers.addImageryProvider(new C.UrlTemplateImageryProvider({
+        url: GIBS_GEO,
+        tilingScheme: new C.GeographicTilingScheme({ numberOfLevelZeroTilesX: 10, numberOfLevelZeroTilesY: 5 }),
+        tileWidth: 512, tileHeight: 512, maximumLevel: 4,
+        customTags: { gz: (_p: unknown, _x: number, _y: number, level: number) => String(level + 3) },
+        credit: new C.Credit("NASA Blue Marble: NASA GIBS / ESDIS", true),
+      }), 0);
     }
-    if (!s.underlay) {
-      // Bundled Natural Earth II: fills the polar caps that web-mercator imagery cannot cover, and is the offline fallback.
+    if (!s.available.bluemarble && !s.offline) {
+      s.offline = true;
       C.TileMapServiceImageryProvider.fromUrl(C.buildModuleUrl("Assets/Textures/NaturalEarthII")).then((p) => {
-        if (!S.current || S.current.underlay) return;
-        S.current.underlay = viewer.imageryLayers.addImageryProvider(p, 0);
+        if (!S.current) return;
+        viewer.imageryLayers.addImageryProvider(p, 0);
         viewer.scene.requestRender();
       }).catch(() => undefined);
     }
-    s.status.imagery = kind;
+    const showSat = want === "satellite" && s.available.satellite;
+    if (showSat && !s.base) {
+      s.base = viewer.imageryLayers.addImageryProvider(new C.UrlTemplateImageryProvider({ url: ESRI_IMAGERY, maximumLevel: 19, credit: new C.Credit("Imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community", true) }), s.underlay ? 1 : 0);
+    } else if (!showSat && s.base) {
+      viewer.imageryLayers.remove(s.base, true); s.base = undefined;
+    }
+    if (showSat) {
+      s.status.imagery = "satellite";
+      s.status.stack = s.available.bluemarble ? "Esri World Imagery, over NASA Blue Marble while tiles load and at the poles" : "Esri World Imagery";
+      s.status.imageryNote = s.available.bluemarble ? null : "NASA Blue Marble could not be reached; areas still loading and the polar caps may look blank.";
+    } else if (s.available.bluemarble) {
+      s.status.imagery = "bluemarble";
+      s.status.stack = "NASA Blue Marble (500 m)";
+      s.status.imageryNote = want === "satellite" ? "High-resolution satellite imagery could not be reached. Showing NASA Blue Marble (500 m); close-up views will look soft." : null;
+    } else {
+      s.status.imagery = "offline";
+      s.status.stack = "Natural Earth II (built-in, low resolution)";
+      s.status.imageryNote = "Online imagery could not be reached. Showing the built-in low-resolution Natural Earth map; zooming in will look coarse.";
+    }
     applyLabels();
     pushStatus();
     viewer.scene.requestRender();
@@ -658,7 +697,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
     for (const r of atlas.bundle.geology_v2?.regions ?? []) {
       overlayDS.entities.add({
         id: `region:${r.id}`,
-        polyline: { positions: C.Cartesian3.fromDegreesArray(circleRing(r.centre[0], r.centre[1], r.radius_km).flat()), width: 2, clampToGround: true, material: new C.PolylineDashMaterialProperty({ color: C.Color.fromCssColorString(MARS), dashLength: 10 }) },
+        polyline: { positions: C.Cartesian3.fromDegreesArray(circleRing(r.centre[0], r.centre[1], r.radius_km).flat()), width: 2, clampToGround: true, material: new C.PolylineDashMaterialProperty({ color: C.Color.fromCssColorString(MARS_LINE), dashLength: 10 }) },
       });
     }
     viewer.scene.requestRender();
@@ -681,22 +720,24 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
   const applySelection = () => {
     const s = S.current; if (!s) return;
     const { C, overlayDS, viewer } = s;
-    for (const id of ["sel:ring", "sel:foot", "sel:look0", "sel:look1", "sel:look2"]) overlayDS.entities.removeById(id);
+    for (const id of ["sel:ring", "sel:foot", "sel:fill", "sel:look0", "sel:look1", "sel:look2"]) overlayDS.entities.removeById(id);
     const r = P.current.selected;
     if (r) {
       overlayDS.entities.add({
         id: "sel:ring", position: C.Cartesian3.fromDegrees(r.lon, r.lat),
-        billboard: { image: ringIcon(), verticalOrigin: C.VerticalOrigin.CENTER, heightReference: C.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: 4_000_000 },
+        billboard: { image: ringIcon(), scale: 0.5, verticalOrigin: C.VerticalOrigin.CENTER, heightReference: C.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: 4_000_000 },
       });
       if (r.ring) {
-        overlayDS.entities.add({ id: "sel:foot", polyline: { positions: C.Cartesian3.fromDegreesArray(r.ring.flat()), width: 3.5, clampToGround: true, material: C.Color.WHITE } });
+        const pos = C.Cartesian3.fromDegreesArray(r.ring.flat());
+        overlayDS.entities.add({ id: "sel:fill", polygon: { hierarchy: new C.PolygonHierarchy(pos), material: C.Color.fromCssColorString("#F7F8F5").withAlpha(0.06), classificationType: C.ClassificationType.TERRAIN } });
+        overlayDS.entities.add({ id: "sel:foot", polyline: { positions: pos, width: 2, clampToGround: true, material: C.Color.fromCssColorString("#F7F8F5") } });
       }
       if (r.kind === "geo2") {
         const look = (r.raw as { look_here?: { lat: number; lon: number }[] }).look_here ?? [];
         look.slice(0, 3).forEach((p, i) => {
           overlayDS.entities.add({
             id: `sel:look${i}`, position: C.Cartesian3.fromDegrees(p.lon, p.lat),
-            billboard: { image: smallSquare(), verticalOrigin: C.VerticalOrigin.CENTER, heightReference: C.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: 4_000_000 },
+            billboard: { image: smallSquare(), scale: 0.5, verticalOrigin: C.VerticalOrigin.CENTER, heightReference: C.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: 4_000_000 },
           });
         });
       }
@@ -708,9 +749,12 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
     const s = S.current; if (!s) return;
     const { C, overlayDS, viewer } = s;
     overlayDS.entities.removeById("area");
+    overlayDS.entities.removeById("area:fill");
     const a = P.current.area;
     if (a) {
-      overlayDS.entities.add({ id: "area", polyline: { positions: C.Cartesian3.fromDegreesArray(areaRing(a).flat()), width: 2.5, clampToGround: true, material: C.Color.fromCssColorString("#F3F5F4") } });
+      const pos = C.Cartesian3.fromDegreesArray(areaRing(a).flat());
+      overlayDS.entities.add({ id: "area:fill", polygon: { hierarchy: new C.PolygonHierarchy(pos), material: C.Color.fromCssColorString("#F7F8F5").withAlpha(0.07), classificationType: C.ClassificationType.TERRAIN } });
+      overlayDS.entities.add({ id: "area", polyline: { positions: pos, width: 1.5, clampToGround: true, material: C.Color.fromCssColorString("#F7F8F5") } });
     }
     viewer.scene.requestRender();
   };
@@ -721,7 +765,7 @@ const Globe = forwardRef<GlobeHandle, Props>(function Globe(props, ref) {
     overlayDS.entities.removeById("loc");
     const l = P.current.location;
     if (l) {
-      overlayDS.entities.add({ id: "loc", position: C.Cartesian3.fromDegrees(l.lon, l.lat), billboard: { image: pinIcon(), verticalOrigin: C.VerticalOrigin.CENTER, heightReference: C.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: 4_000_000 } });
+      overlayDS.entities.add({ id: "loc", position: C.Cartesian3.fromDegrees(l.lon, l.lat), billboard: { image: pinIcon(), scale: 0.5, verticalOrigin: C.VerticalOrigin.CENTER, heightReference: C.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: 4_000_000 } });
     }
     viewer.scene.requestRender();
   };
