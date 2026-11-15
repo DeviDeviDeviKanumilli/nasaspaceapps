@@ -27,7 +27,8 @@ class PointCloudController extends ChangeNotifier {
   ColorMode colorMode = ColorMode.rgb;
   double pointSize = 2.5;
   V3 centroid = const V3(0, 0, 0);
-  double extent = 1;
+  double extent = 1; // 95th-percentile radius around the median: what the view frames
+  double fullExtent = 1; // farthest point from the median
   double zMin = 0, zMax = 1, upMin = 0, upMax = 1;
 
   // ROI (in the scan's own frame)
@@ -47,7 +48,6 @@ class PointCloudController extends ChangeNotifier {
     mapping = FrameMapping.forFrame(c.frame);
     final n = c.count;
     _disp = Float32List(n * 3);
-    double cx = 0, cy = 0, cz = 0;
     double zlo = double.infinity, zhi = -double.infinity, ulo = double.infinity, uhi = -double.infinity;
     for (int i = 0; i < n; i++) {
       final x = c.xyz[i * 3], y = c.xyz[i * 3 + 1], z = c.xyz[i * 3 + 2];
@@ -55,9 +55,6 @@ class PointCloudController extends ChangeNotifier {
       _disp[i * 3] = d.x;
       _disp[i * 3 + 1] = d.y;
       _disp[i * 3 + 2] = d.z;
-      cx += d.x;
-      cy += d.y;
-      cz += d.z;
       final range = math.sqrt(x * x + y * y + z * z);
       if (range < zlo) zlo = range;
       if (range > zhi) zhi = range;
@@ -65,13 +62,27 @@ class PointCloudController extends ChangeNotifier {
       if (d.y > uhi) uhi = d.y;
     }
     if (n > 0) {
-      centroid = V3(cx / n, cy / n, cz / n);
-      double ext = 0;
-      for (int i = 0; i < n; i += math.max(1, n ~/ 5000)) {
-        final dx = _disp[i * 3] - centroid.x, dy = _disp[i * 3 + 1] - centroid.y, dz = _disp[i * 3 + 2] - centroid.z;
-        ext = math.max(ext, math.sqrt(dx * dx + dy * dy + dz * dz));
+      // Frame on where most points are: median centre and the 95th-percentile distance from it. A few far-off
+      // points (or a phone scan whose tracking drifted) must not shrink the real scene to specks. fullExtent keeps
+      // the true maximum, which the viewer still states.
+      final step = math.max(1, n ~/ 5000);
+      final xs = <double>[], ys = <double>[], zs = <double>[];
+      for (int i = 0; i < n; i += step) {
+        xs.add(_disp[i * 3]);
+        ys.add(_disp[i * 3 + 1]);
+        zs.add(_disp[i * 3 + 2]);
       }
-      extent = ext == 0 ? 1 : ext;
+      double median(List<double> v) => (v..sort())[v.length ~/ 2];
+      centroid = V3(median(List.of(xs)), median(List.of(ys)), median(List.of(zs)));
+      final dist = <double>[];
+      for (int k = 0; k < xs.length; k++) {
+        final dx = xs[k] - centroid.x, dy = ys[k] - centroid.y, dz = zs[k] - centroid.z;
+        dist.add(math.sqrt(dx * dx + dy * dy + dz * dz));
+      }
+      dist.sort();
+      final p95 = dist[math.min(dist.length - 1, (dist.length * 0.95).floor())];
+      fullExtent = dist.last == 0 ? 1 : dist.last;
+      extent = p95 == 0 ? fullExtent : p95;
       zMin = zlo;
       zMax = zhi;
       upMin = ulo;
@@ -85,6 +96,20 @@ class PointCloudController extends ChangeNotifier {
     roiCenter = null;
     roiCount = 0;
     resetView();
+  }
+
+  /// Drop the cloud (e.g. the next scan failed to load) so nothing stale is drawn.
+  void clear() {
+    cloud = null;
+    _disp = Float32List(0);
+    order = Int32List(0);
+    sx = Float32List(0);
+    sy = Float32List(0);
+    sz = Float32List(0);
+    roiMask = Uint8List(0);
+    roiCenter = null;
+    roiCount = 0;
+    notifyListeners();
   }
 
   void resetView() {

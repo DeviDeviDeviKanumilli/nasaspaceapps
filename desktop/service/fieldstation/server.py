@@ -217,7 +217,9 @@ def create_app(svc: Service) -> FastAPI:
         if (d / "depth_filtered.png").exists():
             cal = json.loads((d / "calibration.json").read_text())
             depth_image = {"width": cal["depth_intrinsics"]["width"], "height": cal["depth_intrinsics"]["height"]}
-        return {"manifest": man, "metrics": metrics, "log": log, "clouds": clouds, "catalog_draft": draft, "depth_image": depth_image}
+        from .tracking_check import check as tracking_check
+        return {"manifest": man, "metrics": metrics, "log": log, "clouds": clouds, "catalog_draft": draft, "depth_image": depth_image,
+                "tracking_check": tracking_check(d)}
 
     @app.patch("/api/scans/{scan_id}")
     def scan_update(scan_id: str, body: dict = Body(...)):
@@ -622,7 +624,8 @@ def main(argv=None) -> int:
     sock.bind(("127.0.0.1", args.port))
     port = sock.getsockname()[1]
     print(json.dumps({"event": "ready", "port": port, "token": token, "home": str(home), "fixtures": args.fixtures}), flush=True)
-    config = uvicorn.Config(app, log_level="warning", log_config=None, ws_ping_interval=20, timeout_graceful_shutdown=3)
+    config = uvicorn.Config(app, log_level="warning", log_config=None, ws_ping_interval=20, timeout_graceful_shutdown=3,
+                            timeout_keep_alive=30)  # > the app's 3 s idle timeout (app/lib/service/api.dart)
     server = uvicorn.Server(config)
     if args.parent_pid:
         # Stop when the app that started us is gone (quit, crash or force-kill) instead of lingering as an

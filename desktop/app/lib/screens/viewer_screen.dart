@@ -38,6 +38,15 @@ class _ViewerScreenState extends State<ViewerScreen> {
     super.dispose();
   }
 
+  int _loadTicket = 0;
+  String? _loadingId;
+
+  /// Warnings from the service's check of an iPhone scan's camera track (fieldstation/tracking_check.py).
+  List<String> get _trackingWarnings {
+    final tc = asMap(_detail['tracking_check']);
+    return tc['trustworthy'] == false ? asList(tc['warnings']).map((w) => asStr(w)).toList() : const [];
+  }
+
   Future<void> _load(String scanId) async {
     final s = AppScope.read(context);
     setState(() {
@@ -47,18 +56,26 @@ class _ViewerScreenState extends State<ViewerScreen> {
       _results = [];
       _resultError = null;
     });
+    final ticket = ++_loadTicket;
+    _loadingId = scanId;
+    _detail = {};
     try {
-      _detail = asMap(await s.api!.getJson('/api/scans/$scanId'));
+      final detail = asMap(await s.api!.getJson('/api/scans/$scanId'));
+      if (ticket != _loadTicket) return; // another scan was picked meanwhile
+      _detail = detail;
       final clouds = asMap(_detail['clouds']);
       if (!clouds.containsKey(_kind)) {
         _kind = clouds.containsKey('filtered') ? 'filtered' : (clouds.keys.isNotEmpty ? clouds.keys.first : 'filtered');
       }
       final r = await s.api!.getBytes('/api/scans/$scanId/cloud.bin', query: {'kind': _kind, 'max_points': '$_maxPoints'});
+      if (ticket != _loadTicket) return;
       final cloud = CloudData.parse(r.bytes, r.headers);
       _ctl.setCloud(cloud);
       _loadedFor = '$scanId/$_kind/$_maxPoints';
     } catch (e) {
+      if (ticket != _loadTicket) return;
       _error = errText(e);
+      _ctl.clear(); // never leave the previous scan's points on screen under this scan's title
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -171,7 +188,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
           _ => 'Filtered point cloud.',
         };
         final shown = cloud == null
-            ? 'Loading.'
+            ? (_error != null ? 'Not loaded.' : 'Loading.')
             : '${_n(cloud.count)} of ${_n(cloud.total ?? cloud.count)} points shown${(cloud.step ?? 1) > 1 ? ' (1 in ${cloud.step}, for display only)' : ''}. ';
         return Figure(
           background: FsPalette.plot,
@@ -208,9 +225,26 @@ class _ViewerScreenState extends State<ViewerScreen> {
                 ),
               ),
               if (_loading) const Center(child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))),
+              if (_trackingWarnings.isNotEmpty && _error == null)
+                Positioned(
+                  left: 10,
+                  top: 10,
+                  right: 130,
+                  child: ErrorBox('Unreliable positions. ${_trackingWarnings.join(' ')}'),
+                ),
               if (_error != null)
                 Center(
-                  child: Padding(padding: const EdgeInsets.all(24), child: ErrorBox(_error!)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ErrorBox(_error!),
+                        const SizedBox(height: 10),
+                        if (_loadingId != null) OutlinedButton(onPressed: () => _load(_loadingId!), child: const Text('Try again')),
+                      ],
+                    ),
+                  ),
                 ),
             ],
           ),
@@ -478,7 +512,10 @@ class _ViewerScreenState extends State<ViewerScreen> {
                   if (cloud != null) ...[
                     const Divider(height: 24, color: FsPalette.ruleLight),
                     KV('Source file', cloud.sourceFile ?? '—', labelWidth: 96),
-                    KV('Extent', 'about ${formatMetres(_ctl.extent * 2)} across', labelWidth: 96),
+                    KV('Extent', 'about ${formatMetres(_ctl.extent * 2)} across (95% of points)', labelWidth: 96),
+                    if (_ctl.fullExtent > _ctl.extent * 3)
+                      KV('Full spread', 'up to ${formatMetres(_ctl.fullExtent)} from the centre: far-off points are outside the starting view',
+                          labelWidth: 96),
                   ],
                 ],
               ),

@@ -174,4 +174,19 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
   15 frames, valid depth 0.678, 34,657 points (title "D435 setup test 2 (desk)", not a field observation).
   Still UNTESTED: USB 3 / full-resolution profiles (no USB 3 cable worked), the first open after quitting the app
   mid-stream (camera not reset then; the retries and no-frames reset are meant to cover it).
+- 09:25–09:45, **phone with the root service (real iPhone 17 Pro):** paired; phone → Mac: the phone started a real D435
+  scan (fdb34127 COMPLETE, 116,421 points); Mac → phone: start/keyframe×3/stop acked, scan d003e4af auto-imported over
+  USB in 15 s (devicectl as the user under the root service: TESTED); repeat "Rig test B": acks 0.3 s, import 1.8 s,
+  title correct; **idle 3.5 min then start/stop: PASS** (acks 0.3 s, import 4 s, no disconnect); a second start while
+  recording is refused. **But all 3 phone scans since 09:25 have unusable geometry**: ARKit tracking drifted
+  (camera "moved" 50 m / 380 m / 5 km, up to 846 m/s, while reporting "normal"; depth 85–100% closer than 0.5 m or
+  ~100% low confidence: the camera had no usable view; rig mode also kept the session armed between scans, so idle
+  drift carried into the next scan). This morning's 5 phone scans: ≤ 0.45 m camera travel, fine.
+  Fixes: phone resets tracking at scan start when armed > 10 s, and stops a scan ("tracking_drift") when "normal"
+  tracking implies > 5 m/s for > 1 s (built + installed; not yet exercised live); the service checks every iPhone
+  scan's camera track (`tracking_check.py`) and the viewer shows "Unreliable positions…" for the 3 drifted scans;
+  the viewer frames on the median / 95th-percentile radius (states the full spread) instead of the farthest point.
+  Also fixed: "Connection closed before full header was received" (app idle timeout 15 s > service keep-alive 5 s:
+  now 3 s vs 30 s, and reads retry once), and after a failed load the viewer kept the previous scan's points under
+  the new title (now cleared, stale responses ignored, Try again button).
 

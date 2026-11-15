@@ -114,7 +114,10 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
       case 'warning':
         setState(() => warnings.insert(0, '${e['message']}'));
       case 'autoStop':
-        _warn('Stopped automatically: ${e['reason']}');
+        _warn(e['reason'] == 'tracking_drift'
+            ? 'Stopped: position tracking was lost (the camera seemed to move impossibly fast). Point the camera at the '
+                'scene from 0.5 to 3 m, not at a surface right in front of it, and scan again. Positions in this scan are unreliable.'
+            : 'Stopped automatically: ${e['reason']}');
         _stop('auto:${e['reason']}');
     }
   }

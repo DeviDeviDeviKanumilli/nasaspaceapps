@@ -211,3 +211,24 @@ def test_ply_extra_vertex_props_read_by_name(tmp_path):
                                                 confidence=np.array([2, 1], np.uint8), samples=np.array([300, 7], np.uint16)), [])
     v, _ = read_ply(tmp_path / "f.ply")
     assert np.allclose(xyz_of(v), xyz) and list(v["samples"]) == [300, 7] and list(v["red"]) == [9, 6]
+
+
+def test_tracking_check_flags_a_drifting_arkit_track(tmp_path):
+    """An iPhone scan whose ARKit track drifts (here 400 m/s) is flagged; a steady one is not."""
+    import json as _json
+    from fieldstation.tracking_check import check
+
+    def kf(i, x, near):
+        m = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, 0, 0, 1]
+        hist = [near, 100 - near] + [0] * 9
+        return {"type": "keyframe", "index": i, "t_since_start_s": i * 0.5, "camera_to_world": m,
+                "depth": {"stats": {"range_hist_0_5m_bins_0p5": hist}}, "tracking": "normal"}
+
+    bad, good = tmp_path / "bad", tmp_path / "good"
+    bad.mkdir(); good.mkdir()
+    (bad / "keyframes.jsonl").write_text("\n".join(_json.dumps(kf(i, i * 200.0, 95)) for i in range(6)))
+    (good / "keyframes.jsonl").write_text("\n".join(_json.dumps(kf(i, i * 0.05, 0)) for i in range(6)))
+    b, g = check(bad), check(good)
+    assert b["trustworthy"] is False and len(b["warnings"]) == 2 and b["max_speed_m_s"] == 400.0
+    assert g["trustworthy"] is True and g["warnings"] == []
+    assert check(tmp_path) is None  # not an ARKit scan
