@@ -2,7 +2,10 @@
 
 Status: written 2026-11-15 by the mobile side. The phone side (central) is implemented in
 `mobile/lib/core/ble_protocol.dart` (message framing, pairing proofs, message MACs; unit-tested) and
-`mobile/lib/core/ble_link.dart` (CoreBluetooth via flutter_blue_plus; **not yet tested against a real desktop**).
+`mobile/lib/core/ble_link.dart` (CoreBluetooth via flutter_blue_plus). The desktop side is `desktop/service/fieldstation/protocol.py`
+behind the Swift peripheral in `desktop/app/macos/Runner/MainFlutterWindow.swift`. The phone's protocol code has been run
+against the desktop service by `mobile/test/interop_field_station_test.dart` with the radio replaced; **the two have
+not yet talked over the air.**
 
 BLE carries small control messages only. Scans move by zip export (AirDrop / Files / USB) in this build;
 `transfer_offer` is reserved for a later local Wi-Fi transfer and is not implemented.
@@ -19,7 +22,8 @@ Desktop = peripheral (advertises), phone = central (scans, connects). Foreground
 | `tx` (desktop → phone) | `00A3B417-650E-4ABE-8F9C-5332D2E0A07A` | notify |
 
 The desktop generates a new `nonce` and a new 6-digit pairing code each time the user presses "Pair a phone",
-shows the code on screen, and lets the window expire after 120 s or 3 wrong proofs.
+shows the code on screen, and lets the window expire after 120 s or 3 wrong proofs. Because the nonce changes with
+every press, the phone re-reads `info` just before it sends `pair_request`.
 
 ## Framing
 

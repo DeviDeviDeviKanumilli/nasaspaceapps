@@ -30,7 +30,7 @@ class BleLink extends ChangeNotifier {
   Stream<Map<String, dynamic>> get commands => _commands.stream;
 
   BluetoothDevice? _dev;
-  BluetoothCharacteristic? _rx, _tx;
+  BluetoothCharacteristic? _rx, _tx, _info;
   StreamSubscription? _notifySub, _connSub, _scanSub;
   final _framer = Framer();
   final _deframer = Deframer();
@@ -111,7 +111,7 @@ class BleLink extends ChangeNotifier {
       final services = await _dev!.discoverServices();
       final svc = services.firstWhere((s) => s.uuid == Guid(bleServiceUuid));
       BluetoothCharacteristic ch(String u) => svc.characteristics.firstWhere((c) => c.uuid == Guid(u));
-      final info = ch(bleInfoUuid);
+      final info = _info = ch(bleInfoUuid);
       _rx = ch(bleRxUuid);
       _tx = ch(bleTxUuid);
       desktopInfo = jsonDecode(utf8.decode(await info.read())) as Map<String, dynamic>;
@@ -128,6 +128,14 @@ class BleLink extends ChangeNotifier {
   Future<bool> pair(String code) async {
     if (_nd == null || _rx == null) return false;
     _code = code.trim();
+    // Re-read the nonce: the Mac makes a new one each time "Pair a phone" is pressed, which may have happened
+    // after we connected (e.g. the 120 s code window ran out). A stale nonce would look like a wrong code.
+    try {
+      desktopInfo = jsonDecode(utf8.decode(await _info!.read())) as Map<String, dynamic>;
+      _nd = desktopInfo!['nonce'] as String? ?? _nd;
+    } catch (e) {
+      _log('could not re-read desktop info: $e');
+    }
     _np = Pairing.newNonce();
     _set(LinkState.pairing);
     _pairDone = Completer();

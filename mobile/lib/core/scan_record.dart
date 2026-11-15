@@ -266,6 +266,7 @@ class ScanLibrary {
       'origin': 'iphone_arkit_lidar',
       'captured_at_utc': {'start': d.statSync().modified.toUtc().toIso8601String(), 'end': null},
       'capture': {'keyframes': n},
+      'coordinate_frame': {'name': 'arkit_session_world', 'units': 'm', 'handedness': 'right', 'up': '+Y along measured gravity (ARKit worldAlignment.gravity)'},
       'observation': {'title': 'Recovered scan', 'feature_type': 'other', 'notes': '', 'claims': []},
       'quality': {'keyframes': n},
       'measurements': [],

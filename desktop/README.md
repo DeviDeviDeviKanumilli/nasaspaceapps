@@ -146,8 +146,8 @@ The service tests cover:
 
 ## Scan bundle
 
-The format is shared with the iPhone app (contract written by the mobile team:
-`~/nasaspaceapps-mobile/contracts/SCAN_BUNDLE_V1.md`, with a snapshot in [docs/contracts/](docs/contracts/)).
+The format is shared with the iPhone app. The contract, written by the mobile team, is
+[../contracts/SCAN_BUNDLE_V1.md](../contracts/SCAN_BUNDLE_V1.md) at the repository root (the only copy).
 The desktop specifics are in [docs/DESKTOP_DATA.md](docs/DESKTOP_DATA.md).
 
 ```
@@ -185,7 +185,7 @@ descriptors.
 
 ## Phone link
 
-Bluetooth LE carries **control only**. Per the mobile contract (`BLE_PROTOCOL_V1.md`):
+Bluetooth LE carries **control only**. Per the mobile contract ([../contracts/BLE_PROTOCOL_V1.md](../contracts/BLE_PROTOCOL_V1.md)):
 - The desktop is the GATT peripheral and advertises service `2ED62242-…`.
 - Pairing uses a 6-digit code shown on the desktop, proven with HMAC (the code is never sent).
 - Messages are HMAC-signed with `seq` and `id` de-duplication.
@@ -193,6 +193,13 @@ Bluetooth LE carries **control only**. Per the mobile contract (`BLE_PROTOCOL_V1
 
 Scans move by zip (AirDrop / Files / USB): *Library › Import*. Imports verify every SHA-256, reject
 duplicates, tampering and path traversal, and keep the phone's provenance.
+
+**Phone ↔ desktop interop test.** `mobile/test/interop_field_station_test.dart` starts this service (with the
+synthetic camera) and drives it with the phone's own Dart code: pairing at the minimum BLE MTU, commands and acks
+both ways, duplicate and forged messages, and zips made exactly as the phone's Export button makes them
+(LiDAR-shaped, synthetic and crash-recovered scans). Run it with `cd mobile && flutter test test/interop_field_station_test.dart`
+(it skips itself if `desktop/service/.venv` is missing). The radio is not part of it: CoreBluetooth on both
+sides is replaced by the same entry points the radios use.
 
 ## 60-second offline demo
 

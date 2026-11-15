@@ -110,7 +110,10 @@ def new_manifest(*, origin: str, is_real_sensor: bool, device: dict, profile: st
     }
 
 
-REQUIRED_KEYS = ["schema_version", "scan_id", "origin", "coordinate_frame", "files", "publication", "limitations"]
+REQUIRED_KEYS = ["schema_version", "scan_id", "origin", "files", "publication", "limitations"]
+# coordinate_frame is expected (contracts/SCAN_BUNDLE_V1.md) but not required: the phone's envelope for a scan it
+# recovered after a crash had none. Imports without one get an explicit "unknown" frame (see bundle.import_zip),
+# so nothing downstream assumes a frame, e.g. no tilt from horizontal is reported.
 
 
 def validate_manifest(m: dict) -> list[str]:
