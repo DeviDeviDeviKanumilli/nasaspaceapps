@@ -1,4 +1,4 @@
-# TERRA — website
+# TERRALYTX — website
 
 Interactive 3D globe of Earth-analog records for lunar and Martian reference sites, from the global terrain run.
 Team Vancomycin, NASA Space Apps Challenge 2026. Drafted with AI assistance (Claude, Anthropic); disclosed in the

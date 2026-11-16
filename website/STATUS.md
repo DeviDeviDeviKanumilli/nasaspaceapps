@@ -1,4 +1,4 @@
-# TERRA website — status, 15 Nov 2026
+# TERRALYTX website — status, 15 Nov 2026
 
 Live: https://devidevidevikanumilli.github.io/nasaspaceapps/ (GitHub Pages, `gh-pages` branch; no login).
 Source: `website/` on the `website` branch. Local run: `cd website && npm install && npm run dev`.
