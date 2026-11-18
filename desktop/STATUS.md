@@ -14,18 +14,18 @@ exercised. **PLANNED** = not built.
 | Check | State | Evidence |
 |---|---|---|
 | librealsense on this Mac | `pyrealsense2-macosx` 2.56.5 imports (arm64, Python 3.13) | `service/requirements.lock.txt` |
-| D435 enumerated / real depth frame | **NOT YET: no camera was attached** (2026-11-15 02:40 ET; `tools/d435_smoke.py` exit 3, "no RealSense device enumerated") | log in `~/Library/Application Support/FieldStation/hardware_smoke/` once run on the real camera |
+| D435 enumerated / real depth frame | **REAL: tested live in the field at Sourland Mountain, 2026-11-15.** Depth and colour streams both worked and the team recorded a field scan. (Earlier, 2026-11-15 02:40 ET, before the camera was attached: `tools/d435_smoke.py` exit 3, "no RealSense device enumerated".) | Team field test on 2026-11-15. The field scan files and logs are not yet copied into this repository |
 
-Until the smoke test returns exit 0 with the real camera, **no live D435 capture may be claimed**. The
-fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC scene for rehearsal only
-(labelled everywhere).
+The D435 has now been used live with real hardware (Sourland Mountain, 2026-11-15). Accuracy against a
+reference scanner is still untested. Replay of a real recording (labelled REPLAY) and the SYNTHETIC scene
+(rehearsal only, labelled everywhere) remain available as fallbacks.
 
 ## Feature status
 
 | Area | State | Notes |
 |---|---|---|
 | Sensor adapter boundary (`SensorAdapter`, typed `Frame`/`Calibration`) | TESTED | realsense / replay / synthetic |
-| RealSense adapter (streams, intrinsics, extrinsics, depth scale, baseline, options, timestamps) | BUILT, UNTESTED on hardware | Discovery runs in a child process and reports errors verbatim |
+| RealSense adapter (streams, intrinsics, extrinsics, depth scale, baseline, options, timestamps) | REAL (field-tested on the D435 at Sourland Mountain, 2026-11-15: depth and colour streams worked, field scan recorded) | Discovery runs in a child process and reports errors verbatim |
 | Sensor in a separate process; unplug mid-recording → `incomplete`, earlier scans untouched | TESTED (with a simulated unplug) | `test_capture.py` |
 | Projection / colour registration | TESTED vs librealsense's own functions | float32-level agreement |
 | Raw + filtered point clouds, binary PLY with units and provenance | TESTED | Metre scale checked against an analytic box |
@@ -52,13 +52,17 @@ fallbacks are Replay of a real recording (labelled REPLAY), and the SYNTHETIC sc
 
 ## Blockers / needs from the team
 
-1. **Plug the D435 into this Mac** with a USB 3 data cable and run `tools/d435_smoke.py`. Then record one
-   real scan of a flat surface and one of an object with known dimensions (ruler), per HANDOFF 02 §9.
+1. ~~Plug the D435 into this Mac and record a real scan.~~ Done: the D435 was used live at Sourland Mountain on
+   2026-11-15 (depth and colour worked; a field scan was recorded). Still to do: copy those scan files into the
+   repository, and record a flat surface and an object of known size (ruler) to check accuracy, per HANDOFF 02 §9.
 2. A real iPhone scan zip from the mobile app, to test the import path end to end.
 3. A phone build of the mobile app, to test BLE pairing for real.
 
 ## Changelog
 
+- 2026-11-17: status updated from the team's report of the Sourland Mountain field test on 2026-11-15. The D435
+  ran live in the field with depth and colour streams working, and a field scan was recorded. The hardware gate
+  and RealSense adapter are now marked REAL. Only documentation changed in this update.
 - 2026-11-15 02:15 ET: worktree `desktop` created from `main` (fe10c0d).
 - 02:20: Python 3.13 arm64 venv; pyrealsense2-macosx 2.56.5 imports; three.js briefly vendored, then removed (the UI is Flutter).
 - 02:25: the user asked for the UI in Flutter + Dart. Restructured into `app/` (Flutter) and `service/` (Python sensor/analysis).
