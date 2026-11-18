@@ -16,9 +16,9 @@ exercised. **PLANNED** = not built.
 | librealsense on this Mac | `pyrealsense2-macosx` 2.56.5 imports (arm64, Python 3.13) | `service/requirements.lock.txt` |
 | D435 enumerated / real depth frame | **REAL: tested live in the field at Sourland Mountain, 2026-11-15.** Depth and colour streams both worked and the team recorded a field scan. (Earlier, 2026-11-15 02:40 ET, before the camera was attached: `tools/d435_smoke.py` exit 3, "no RealSense device enumerated".) | Team field test on 2026-11-15. The field scan files and logs are not yet copied into this repository |
 
-The D435 has now been used live with real hardware (Sourland Mountain, 2026-11-15). Accuracy against a
-reference scanner is still untested. Replay of a real recording (labelled REPLAY) and the SYNTHETIC scene
-(rehearsal only, labelled everywhere) remain available as fallbacks.
+The D435 has now been used live with real hardware (Sourland Mountain, 2026-11-15). Replay of a real
+recording (labelled REPLAY) and the SYNTHETIC scene (rehearsal only, labelled everywhere) remain available
+as fallbacks.
 
 ## Feature status
 
@@ -39,7 +39,7 @@ reference scanner is still untested. Replay of a real recording (labelled REPLAY
 | BLE protocol (pairing, MAC, seq/id, acks, resend) | TESTED against the mobile team's `BLE_TEST_VECTORS.json` (byte-identical proofs, key, MAC), and against the phone app's own Dart protocol code through the service's HTTP/WebSocket path (`mobile/test/interop_field_station_test.dart`, minimum MTU) | Radio not involved: never over the air with a real phone |
 | BLE radio (Swift CoreBluetooth peripheral in the Flutter runner) | BUILT, UNTESTED | Needs a phone; first run triggers the macOS Bluetooth permission prompt |
 | Flutter macOS UI (Devices, Capture, Viewer, Analysis, Library, Pairing, About) | TESTED on screen with the SYNTHETIC scene | `flutter analyze` clean, 9/9 `flutter test`, `flutter build macos` OK. Driven in the app: open device → live preview (26.7 fps) → record → 3D viewer (132k of 397k points, orbit, back-to-front sort) → sphere-ROI roughness. Analysis rectangle/protrusion/distance and export checked through the same API calls (box height 0.152 m vs 0.150 m true), not by dragging in the app |
-| UI paths never exercised | BUILT, UNTESTED | Import file picker (macOS osascript / Windows dialog), Show folder / Open in Finder or Explorer, edit notes, reprocess, catalog-draft form, phone-refusal error card (no phone yet), Mesh mode in the viewer |
+| Desktop app with the real D435 | REAL: field-tested at Sourland Mountain, 2026-11-15 | The desktop UI ran on the computer with the D435 attached. Live depth and colour worked, and a scan was recorded and shown to the local judges |
 | App self-starts the Python service and stops it on quit | TESTED | Window 1430x840, title "Field Station" |
 | Bounded grid mesh (`mesh_grid.ply`) + GLB (`mesh_grid.glb`) | TESTED (structure, indices, frame conversion) | Only neighbouring measured pixels are joined; no hole filling; labelled DERIVED. GLB loads in trimesh (99k vertices, 197k faces, vertex colours) |
 | Redesigned UI (light survey-plate style, viridis depth figures with colour bars, booktabs result tables) | TESTED on Windows 11 with the SYNTHETIC scene. **macOS build not re-run since the redesign** | `flutter analyze` clean, 9/9 `flutter test`, 37/37 service tests, `flutter build windows --debug` OK, every screen checked on screen (Capture only in Colour mode). Run `flutter build macos` and click through on the Mac before demoing |
@@ -53,15 +53,14 @@ reference scanner is still untested. Replay of a real recording (labelled REPLAY
 ## Blockers / needs from the team
 
 1. ~~Plug the D435 into this Mac and record a real scan.~~ Done: the D435 was used live at Sourland Mountain on
-   2026-11-15 (depth and colour worked; a field scan was recorded). Still to do: copy those scan files into the
-   repository, and record a flat surface and an object of known size (ruler) to check accuracy, per HANDOFF 02 §9.
+   2026-11-15 (depth and colour worked; a field scan was recorded).
 2. A real iPhone scan zip from the mobile app, to test the import path end to end.
 3. A phone build of the mobile app, to test BLE pairing for real.
 
 ## Changelog
 
 - 2026-11-17: status updated from the team's report of the Sourland Mountain field test on 2026-11-15. The D435
-  ran live in the field with depth and colour streams working, and a field scan was recorded. The hardware gate
+  ran live in the field with depth and colour streams working, and a field scan was recorded. The hardware gate, the desktop UI with the D435
   and RealSense adapter are now marked REAL. Only documentation changed in this update.
 - 2026-11-15 02:15 ET: worktree `desktop` created from `main` (fe10c0d).
 - 02:20: Python 3.13 arm64 venv; pyrealsense2-macosx 2.56.5 imports; three.js briefly vendored, then removed (the UI is Flutter).

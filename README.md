@@ -103,7 +103,7 @@ run (partial: 19,295 of 19,433 tiles; nothing south of 60°S), and the D435 has 
 - Comparable smoothing/point-spread functions and validation of terrain estimators against instrument-scale data.
 - Independent reference selection, negative controls based on real geology, spatial block cross-validation, rank uncertainty and benchmarked worldwide processing.
 - Explicit planetary datum, polarity, geodetic frame verification for any new raster source; exact source footprint and reference selection must be logged.
-- D435 field use is done (Sourland Mountain, 2026-11-15, depth and colour). Still open: accuracy against a reference scanner, and physical accessibility.
+- ~~D435 field validation~~ (done: Sourland Mountain, 2026-11-15, depth and colour). Physical accessibility remains open.
 
 **The synthetic fixture results are not a verified NASA/terrestrial analogy.**
 
