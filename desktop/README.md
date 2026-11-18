@@ -38,7 +38,7 @@ Current state, with what is real versus simulated: **[STATUS.md](STATUS.md)**. R
 
 Why there is a Python service behind the Flutter app: the only RealSense driver that installs on this
 Apple Silicon Mac is the `pyrealsense2-macosx` wheel (librealsense 2.56.5). Running it in a separate
-process is also what HANDOFF 02 asks for, so that a USB fault can't take the UI down. The UI imports no
+process is also a deliberate design choice, so that a USB fault can't take the UI down. The UI imports no
 vendor SDK; new sensors plug in under `service/fieldstation/adapters/`.
 
 ## Setup (once, needs internet)
@@ -100,6 +100,32 @@ Data lives in `~/Library/Application Support/FieldStation/` (`scans/`, `exports/
 `FIELDSTATION_HOME`.
 
 ## Hardware gate: do this first with the real camera
+
+Plug the D435 straight into a USB-C port on the Mac with a USB 3 **data** cable, then:
+
+```bash
+desktop/d435.sh          # USB speed + real-depth check; retries with sudo if macOS needs it, and remembers
+desktop/d435.sh run      # start Field Station (the service runs as root only if the check needed it)
+desktop/d435.sh watch    # or: wait for the camera to be plugged in, then check
+```
+
+`d435.sh` wraps the gate below. It reads the camera's USB link from macOS (USB 3 = 5 Gb/s; 480 Mb/s means USB 2:
+flip the USB-C plug at the camera, change cable or port, avoid hubs), runs `tools/d435_smoke.py`, and if the camera is on
+USB but librealsense cannot open it as your user (common on recent macOS) retries once with `sudo`. In that case
+`d435.sh run` starts the service with sudo (token passed in the environment, data kept in your own
+`~/Library/Application Support/FieldStation`, ownership handed back when it quits) and the app as you; iPhone USB
+auto-import then runs `devicectl` as you. On a MacBook Air both USB-C ports are used by the D435 and the iPhone: power
+from MagSafe. Field Station's Devices screen also says when the camera is on USB but cannot be opened, or is in firmware
+recovery mode.
+
+On a USB 2 link (480 Mb/s) the gate and the app use the `usb2_fallback` profile (640x480 @ 15 fps) automatically.
+`d435.sh run` keeps sudo alive while the app is open (so quitting never asks for the password again), logs the root
+service to `~/Library/Application Support/FieldStation/service-root.log` (readable by you only), and opens the app with
+`open` so macOS asks for Bluetooth for Field Station itself. Quit Field Station to stop everything. Tested 15 Nov 2026 on
+a MacBook Air M4 / macOS 26: the gate with sudo on a real D435 (USB 2.1); the `run` launcher end to end with a stand-in
+for sudo (service up, app connected, clean-up on quit); the root service itself with the camera: not yet.
+
+The gate on its own:
 
 ```bash
 cd desktop/service && .venv/bin/python tools/d435_smoke.py

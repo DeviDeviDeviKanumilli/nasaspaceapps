@@ -165,3 +165,44 @@ String statusExplanation(String status) {
       return '';
   }
 }
+
+/// A triangle mesh for the viewer (GET /api/scans/{id}/mesh.bin), in the scan's own frame.
+class MeshData {
+  MeshData({required this.xyz, required this.tris, this.total, this.cellM, this.frame, this.sourceFile});
+  final Float32List xyz;
+  final Uint32List tris;
+  final int? total;
+  final double? cellM; // > 0 when simplified for display
+  final String? frame;
+  final String? sourceFile;
+
+  int get vertexCount => xyz.length ~/ 3;
+  int get triangleCount => tris.length ~/ 3;
+
+  static MeshData parse(Uint8List bytes, [Map<String, String> headers = const {}]) {
+    if (bytes.length < 8) throw const FormatException('mesh.bin too short');
+    final bd = ByteData.sublistView(bytes);
+    final nv = bd.getUint32(0, Endian.little), nt = bd.getUint32(4, Endian.little);
+    final need = 8 + nv * 12 + nt * 12;
+    if (bytes.length < need) throw FormatException('mesh.bin truncated: need $need bytes, have ${bytes.length}');
+    final xyz = Float32List(nv * 3);
+    for (int i = 0; i < nv * 3; i++) {
+      xyz[i] = bd.getFloat32(8 + i * 4, Endian.little);
+    }
+    final tris = Uint32List(nt * 3);
+    final o = 8 + nv * 12;
+    for (int i = 0; i < nt * 3; i++) {
+      final k = bd.getUint32(o + i * 4, Endian.little);
+      if (k >= nv) throw const FormatException('mesh.bin has an index out of range');
+      tris[i] = k;
+    }
+    return MeshData(
+      xyz: xyz,
+      tris: tris,
+      total: int.tryParse(headers['x-triangles-total'] ?? ''),
+      cellM: double.tryParse(headers['x-cell-m'] ?? ''),
+      frame: headers['x-frame'],
+      sourceFile: headers['x-source-file'],
+    );
+  }
+}

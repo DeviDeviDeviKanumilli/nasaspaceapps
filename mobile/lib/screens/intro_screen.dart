@@ -82,7 +82,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 _Page(
                   art: _PrivateArt(),
                   title: 'Private by default',
-                  body: 'Your scans are yours. Nothing leaves the phone unless you export it.',
+                  body: 'Your scans are yours. Nothing leaves the phone unless you export it, or plug it into a Mac running Field Station, which then copies your finished scans to that Mac.',
                   points: [
                     (Icons.location_off_outlined, 'Location is off unless you turn it on, and GPS is never written into photos.'),
                     (Icons.lock_outline_rounded, 'Sharing makes a private draft first. Photos with people in them are left out.'),

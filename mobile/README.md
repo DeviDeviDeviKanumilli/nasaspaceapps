@@ -8,24 +8,24 @@ contributions. It does **not** find or rank planetary analog sites; that is the 
 Shared formats with the desktop app (Field Station): `../contracts/SCAN_BUNDLE_V1.md`, `../contracts/BLE_PROTOCOL_V1.md`,
 `../contracts/BLE_TEST_VECTORS.json`.
 
-## Status (2026-11-15)
+## Status (updated 2026-11-17)
 
 | Part | State |
 |---|---|
-| Native ARKit capture (depth, confidence, poses, mesh, full-res photos, auto triggers, fusion, PLY export) | **Builds for device; never run on a phone.** No LiDAR iPhone has been connected to this Mac yet |
+| Native ARKit capture (depth, confidence, poses, mesh, full-res photos, auto triggers, fusion, PLY export) | **REAL.** Run on the team's iPhone 17 Pro on 2026-11-15, then in the field at Sourland Mountain the same day as part of the FieldKit (6 scans and 364 photos across the kit); one 90-second scan produced a 160,656-triangle mesh with a passed drift check |
 | Geometry in Swift (back-projection, pose transform, EXIF orientation, voxel grid) | Tested on the Mac: `tools/test_scanmath.sh`, 16 checks pass |
 | Dart: PLY, plane fit / roughness / tilt / extents, scan.json, library, crash recovery, BLE framing + pairing + MACs | 17 unit tests pass (`flutter test`), BLE crypto checked against Python-generated vectors |
-| UI (scan setup, capture + rig mode, 3D viewer, measuring, library, repeat-scan comparison, contribution, explore, connect, settings) | End-to-end UI test passes on the iPhone 17 Pro **simulator** (`integration_test/app_test.dart`, 12 screenshots): synthetic scans, orbit, distance and surface measurements saved to scan.json, SHA-256 check, contribution draft, repeat-scan compare, crash recovery, Bluetooth-unavailable and no-ARKit error paths. The simulator has no camera, LiDAR, ARKit or Bluetooth, so live capture and pairing still need a real phone |
+| UI (scan setup, capture + rig mode, 3D viewer, measuring, library, repeat-scan comparison, contribution, explore, connect, settings) | End-to-end UI test passes on the iPhone 17 Pro **simulator** (`integration_test/app_test.dart`, 12 screenshots): synthetic scans, orbit, distance and surface measurements saved to scan.json, SHA-256 check, contribution draft, repeat-scan compare, crash recovery, Bluetooth-unavailable and no-ARKit error paths. Then used on the real iPhone 17 Pro on 2026-11-15, handheld and in rig mode |
 | Bundle verifier for the Mac (`tools/verify_scan.py`) | Self-test passes on a synthetic bundle (cube on a floor, recovered to < 1 mm) |
-| Bluetooth link to Field Station | Phone side written and unit-tested at protocol level. The desktop (`../desktop`) passes the same test vectors, and `test/interop_field_station_test.dart` runs this app's protocol and export code against the real desktop service (pairing, commands both ways, acks, duplicates, forged MACs, zip import). The radio is replaced in that test: **the two have never talked over the air** |
+| Bluetooth link to Field Station | Phone side written and unit-tested at protocol level. The desktop (`../desktop`) passes the same test vectors, and `test/interop_field_station_test.dart` runs this app's protocol and export code against the real desktop service (pairing, commands both ways, acks, duplicates, forged MACs, zip import). Over the air on 2026-11-15, iPhone 17 Pro and MacBook Air: paired, Mac → phone start/stop/keyframe acked, phone → Mac D435 scan started; scans copied to the Mac over USB with every SHA-256 verified (see `../desktop/STATUS.md`) |
 | Wi-Fi bulk transfer | Not built. Scans move by Export → AirDrop / Files (works offline) |
 | Public catalog upload / browse | Not built (no backend). Contributions are saved as local drafts only; Explore says so |
 
-No real scan has been taken with this app yet. Everything above that says "tested" was tested on synthetic data.
+Real scans: taken with this app on the iPhone 17 Pro on 2026-11-15, at the desk and in the field at Sourland Mountain. The
+tests above also run on synthetic data so they can be repeated without a phone.
 
-**Hardware note:** the iPhones paired with this Mac are an iPhone 17 (`iPhone18,3`), a 14 and a 13: **none has
-LiDAR**. On those the app records photos with ARKit poses only (no depth, no point cloud). The LiDAR features need the
-team's iPhone 17 Pro (`iPhone18,1`) or another Pro model.
+**Hardware note:** the LiDAR features need a Pro model; the team uses an iPhone 17 Pro (`iPhone18,1`). On iPhones
+without LiDAR the app records photos with ARKit poses only (no depth, no point cloud).
 
 ## Hands-free photos on the FieldKit rig
 

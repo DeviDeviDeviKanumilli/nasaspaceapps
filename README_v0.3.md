@@ -2,8 +2,7 @@
 
 **Results:** the completed run is in `results_global/` (see `manifest_global.json`: 1,464,296 windows, 19,295 of 19,433 tiles). The app data format is in `SCHEMA.md`. The commands below are the ones used to produce it.
 
-v0.2 files are unchanged. Everything new is in `engine/`. The full reasoning is in the notes doc
-"Space Apps 2026 — Decisions and Research Notes (Nov 14)".
+v0.2 files are unchanged. Everything new is in `engine/`.
 
 AI disclosure: the `engine/` scripts were drafted with AI assistance (Claude, Anthropic) and carry a
 header comment saying so. The team reviews and runs them.
@@ -14,7 +13,7 @@ header comment saying so. The team reviews and runs them.
 
 Python 3.10+. Works on Windows, macOS and Linux. No accounts or keys are needed for any step below.
 
-## Saturday-night run (all commands from inside `engine/`)
+## The global run (all commands from inside `engine/`)
 
 1. Moon reference boxes (LOLA, NASA PGDA), ~5 min:
 
@@ -65,7 +64,7 @@ Python 3.10+. Works on Windows, macOS and Linux. No accounts or keys are needed 
 
 ## What each output number means
 
-See section 5e (terrain) and 6c (geology tiers) of the notes doc. In short: distances are in degrees
+Distances are in degrees
 (slope), decades (log10 roughness) and area fraction (connectivity); none is a percentage, none is
 summed with another, and `null` always means "not measured".
 
@@ -76,14 +75,14 @@ summed with another, and `null` always means "not measured".
 ## Known limits
 
 - Windows never cross 1° tile seams; tiles north/south of ~84.5° are too narrow for a 10 km window.
-- Antarctica has no WorldCover: included, with ice cover recorded as not assessed.
+- Antarctica has no WorldCover, and the global run's tile list stops at 60°S.
 - Mars references use only the 1600 and 3200 m baselines (the blended DEM's effective resolution is unknown).
 - EMIT (geology tier G3) is not yet evaluated; records say so.
 
 ## Test outputs from 14 Nov
 
-`results_test_2026-11-14/` holds the first global geology run and the regional runs. They are test runs,
-not the frozen submission run. See the notes doc section 2e.
+`results_test_2026-11-14/` holds the first global geology run and the regional runs. They are test runs;
+the submitted global run is in `results_global/`.
 
 ## Presentation maps (separate from the website)
 

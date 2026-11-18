@@ -10,7 +10,14 @@ Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Ap
 """
 from __future__ import annotations
 
+import os
+import plistlib
+import subprocess
 import sys
+import tempfile
+import time
+from pathlib import Path
+
 import numpy as np
 
 from ..camera_model import Extrinsics, Intrinsics
@@ -22,6 +29,58 @@ try:
 except Exception as exc:  # pragma: no cover - depends on the machine
     rs = None
     _IMPORT_ERROR = f"{type(exc).__name__}: {exc}"
+
+# librealsense objects from a discover() whose open failed. Freeing them then segfaults on macOS (2.56.5), so they
+# are never freed: discover() runs in a short-lived child process (CaptureController.discover) that exits with os._exit.
+_KEEP: list = []
+
+_LIBUSB_HOLD = None
+FIRST_FRAME_MS = 8000  # open() waits this long for the first frame set
+
+
+def _hold_libusb() -> None:
+    """Keep one libusb context open for the life of this process (macOS only).
+
+    librealsense's device watcher opens and closes a libusb context about every 100 ms on a background thread, and
+    pipeline.start opens more on the calling thread. libusb's macOS backend sets itself up when the first context opens
+    and tears down when the last one closes, and that is not thread-safe: libusb_init fails, librealsense carries on
+    with a NULL context and the process segfaults in libusb_get_device_list (seen 15 Nov 2026 on macOS 26.6.2 with a
+    D435, every open after the first). With one context held, setup/teardown never run again while the camera is used."""
+    global _LIBUSB_HOLD
+    if _LIBUSB_HOLD is not None or rs is None or sys.platform != "darwin":
+        return
+    import ctypes
+    mod = getattr(rs, "__file__", None)
+    path = os.path.join(os.path.dirname(mod), ".dylibs", "libusb-1.0.0.dylib") if mod else ""
+    if not path or not os.path.exists(path):
+        _LIBUSB_HOLD = False
+        return
+    try:
+        lib = ctypes.CDLL(path)  # the same image librealsense loaded (@loader_path), so the same libusb state
+        ctx = ctypes.c_void_p()
+        _LIBUSB_HOLD = (lib, ctx) if lib.libusb_init(ctypes.byref(ctx)) == 0 else False
+    except OSError:
+        _LIBUSB_HOLD = False
+
+
+def quiet_native_crashes() -> None:
+    """In a short-lived camera process only: if librealsense/libusb segfaults (they can while releasing the camera on
+    macOS, see _hold_libusb), end the process at once with exit code 11 instead of a macOS "Python quit unexpectedly"
+    dialog. The handler is libc's _exit itself, so no Python runs on the crashed thread. The parent still sees exit
+    code 11 and reports it. Never call this in the service's main process."""
+    if sys.platform != "darwin":
+        return
+    import ctypes
+    import signal as _signal
+    try:
+        libc = ctypes.CDLL(None)
+        libc.signal.restype, libc.signal.argtypes = ctypes.c_void_p, [ctypes.c_int, ctypes.c_void_p]
+        addr = ctypes.cast(libc._exit, ctypes.c_void_p).value
+        for sig in (_signal.SIGSEGV, _signal.SIGBUS):
+            libc.signal(sig, addr)
+    except Exception:
+        pass
+
 
 _MODEL_NAMES = {}
 if rs is not None:
@@ -45,11 +104,78 @@ def _info(dev, key):
         return None
 
 
+def usb_seen() -> list[dict]:
+    """RealSense devices macOS lists on USB (vendor 0x8086), whether or not librealsense can open them. Lets
+    discover() tell "nothing plugged in" apart from "plugged in but this user can't open it" (needs sudo)."""
+    if sys.platform != "darwin":
+        return []
+    try:
+        raw = subprocess.run(["ioreg", "-p", "IOUSB", "-l", "-a"], capture_output=True, timeout=10).stdout
+        root = plistlib.loads(raw)
+    except Exception:
+        return []
+    out: list[dict] = []
+
+    def walk(n):
+        if isinstance(n, dict):
+            if n.get("idVendor") == 0x8086:
+                out.append({"product_id": f"{int(n.get('idProduct', 0)):04x}", "link_bps": int(n.get("UsbLinkSpeed") or 0),
+                            "name": n.get("USB Product Name") or n.get("IORegistryEntryName")})
+            for c in n.get("IORegistryEntryChildren", []):
+                walk(c)
+        elif isinstance(n, list):
+            for c in n:
+                walk(c)
+
+    walk(root)
+    return out
+
+
+_RESET_MARK = Path(tempfile.gettempdir()) / f"fieldstation-realsense-reset-{os.getuid() if hasattr(os, 'getuid') else 0}"
+
+
+def _wait_on_usb(timeout_s: float) -> None:
+    """macOS: after close() hardware-reset the camera, wait for it to drop off USB and come back (read from ioreg,
+    which does not touch it), plus a moment to settle. The camera stays listed for about a second after the reset
+    command, so "listed" alone is not enough. Returns quietly after timeout_s; the open that follows reports the rest."""
+    if sys.platform != "darwin":
+        return
+    try:
+        since = time.time() - float(_RESET_MARK.read_text())
+    except (OSError, ValueError):
+        since = 1e9
+    end = time.monotonic() + timeout_s
+
+    def listed() -> bool:
+        return any(d["product_id"].startswith("0b") for d in usb_seen())
+
+    if since < 20:
+        gone_by = time.monotonic() + max(0.0, 4.0 - since)  # it drops off within a few seconds of the reset
+        while time.monotonic() < gone_by and listed():
+            time.sleep(0.2)
+    seen_at = None
+    while time.monotonic() < end:
+        if listed():
+            seen_at = seen_at or time.monotonic()
+            if time.monotonic() - seen_at >= 1.5:
+                return
+        else:
+            seen_at = None
+        time.sleep(0.25)
+
+
 def sdk_status() -> dict:
     if rs is None:
         return {"available": False, "error": _IMPORT_ERROR}
+    pkg = "pyrealsense2-macosx" if sys.platform == "darwin" else "pyrealsense2"
     ver = getattr(rs, "__version__", None)
-    return {"available": True, "package": "pyrealsense2-macosx" if sys.platform == "darwin" else "pyrealsense2", "version": ver}
+    if not ver:  # the macOS wheel does not set __version__; the installed package metadata has it
+        try:
+            from importlib.metadata import version
+            ver = version(pkg)
+        except Exception:
+            ver = None
+    return {"available": True, "package": pkg, "version": ver}
 
 
 class RealSenseAdapter:
@@ -59,6 +185,7 @@ class RealSenseAdapter:
     is_real_sensor = True
 
     def __init__(self):
+        _hold_libusb()
         self.pipe = None
         self.profile = None
         self.calib: Calibration | None = None
@@ -68,7 +195,16 @@ class RealSenseAdapter:
         if rs is None:
             raise AdapterError(f"pyrealsense2 is not importable: {_IMPORT_ERROR}")
         out = []
-        for dev in rs.context().query_devices():
+        ctx = rs.context()
+        devlist = ctx.query_devices()
+        _KEEP.extend([ctx, devlist])  # see _KEEP
+        try:
+            found = list(devlist)
+        except RuntimeError as exc:
+            # macOS: "failed to set power state" when the system owns the camera's USB interface and this user cannot
+            # claim it. (librealsense may then crash when these objects are freed: callers run this in a child process.)
+            raise AdapterError(self._cannot_open(f"librealsense: {exc}")) from exc
+        for dev in found:
             usb = _info(dev, rs.camera_info.usb_type_descriptor)
             d = {
                 "device_id": f"realsense:{_info(dev, rs.camera_info.serial_number)}",
@@ -77,10 +213,31 @@ class RealSenseAdapter:
                 "product_line": _info(dev, rs.camera_info.product_line), "is_real_sensor": True,
             }
             if usb and not str(usb).startswith("3"):
-                d["warning"] = (f"Connected over USB {usb}. Depth + colour at field profiles needs USB 3: "
-                                "use a USB 3 data cable and port, or the usb2_fallback profile.")
+                d["recommended_profile"] = "usb2_fallback"
+                d["warning"] = (f"Connected over USB {usb}, too slow for depth + colour at 848x480. Field Station opens it with "
+                                "the USB 2 fallback profile (640x480 @ 15 fps). For full resolution: flip the USB-C plug at the "
+                                "camera end, use a USB 3 data cable, plug straight into the Mac (no hub), then Scan again.")
             out.append(d)
+        if not out:
+            seen = usb_seen()
+            if any(d["product_id"] in ("0adb", "0adc", "0ab3") for d in seen):
+                raise AdapterError("A RealSense camera is on USB in firmware RECOVERY mode. Unplug it, wait 10 s and plug it in "
+                                   "again; if it stays in recovery it needs a firmware update with Intel's tools.")
+            if seen:
+                raise AdapterError(self._cannot_open(None, seen))
         return out
+
+    @staticmethod
+    def _cannot_open(detail: str | None, seen: list[dict] | None = None) -> str:
+        seen = usb_seen() if seen is None else seen
+        name = (seen[0]["name"] if seen else None) or "The RealSense camera"
+        root = hasattr(os, "geteuid") and os.geteuid() == 0
+        where = "is plugged in (macOS sees it on USB) but" if seen else ""
+        msg = (f"{name} {where} librealsense cannot open it".replace("  ", " ")
+               + (" even as root. Unplug it for 10 s, try the other port, then Scan again." if root else
+                  " as this user. On recent macOS it needs root: quit Field Station, then in Terminal run "
+                  "desktop/d435.sh (checks the camera, asks for your Mac password once) and then desktop/d435.sh run."))
+        return msg + (f" ({detail})" if detail else "")
 
     def open(self, device_id: str, config: dict) -> None:
         if rs is None:
@@ -89,6 +246,7 @@ class RealSenseAdapter:
         if prof is None:
             raise AdapterError(f"unknown profile {config.get('profile')!r}")
         serial = device_id.split(":", 1)[1] if ":" in device_id else device_id
+        _wait_on_usb(15.0)  # after a close (hardware reset) the camera is away from USB for a few seconds
         cfg = rs.config()
         cfg.enable_device(serial)
         dw, dh, dfps = prof["depth"]
@@ -96,11 +254,18 @@ class RealSenseAdapter:
         cfg.enable_stream(rs.stream.depth, dw, dh, rs.format.z16, dfps)
         cfg.enable_stream(rs.stream.color, cw, ch, rs.format.rgb8, cfps)
         self.pipe = rs.pipeline()
-        try:
-            self.profile = self.pipe.start(cfg)
-        except RuntimeError as exc:
-            self.pipe = None
-            raise AdapterError(f"could not start streams {dw}x{dh}@{dfps} depth + {cw}x{ch}@{cfps} colour: {exc}") from exc
+        # On macOS the system camera helper (UVCAssistant) sometimes still holds the D435's colour camera for a moment,
+        # and start fails with "failed to set power state"; a second attempt a moment later succeeds (seen 15 Nov 2026).
+        for attempt in range(3):
+            try:
+                self.profile = self.pipe.start(cfg)
+                break
+            except RuntimeError as exc:
+                if "power state" in str(exc) and attempt < 2:
+                    time.sleep(1.5)
+                    continue
+                self.pipe = None
+                raise AdapterError(f"could not start streams {dw}x{dh}@{dfps} depth + {cw}x{ch}@{cfps} colour: {exc}") from exc
         dev = self.profile.get_device()
         dsensor = dev.first_depth_sensor()
         dprof = self.profile.get_stream(rs.stream.depth).as_video_stream_profile()
@@ -133,6 +298,19 @@ class RealSenseAdapter:
             sensor_options=opts, source="sdk",
         )
         self._i = 0
+        # Only call it open once frames really flow. After a reset on USB the D435 sometimes accepts the stream request
+        # and then sends nothing; a hardware reset (the camera reboots, ~5 s) is the remedy, then the caller retries.
+        ok, first = self.pipe.try_wait_for_frames(FIRST_FRAME_MS)
+        if not ok:
+            try:
+                dev.hardware_reset()
+                what = "the camera was reset and is restarting (about 5 s)"
+            except Exception as exc:  # noqa: BLE001
+                what = f"resetting the camera failed too ({exc}); unplug it for 10 s"
+            self.pipe = None  # do not stop/release a camera that is rebooting
+            raise AdapterError(f"streams started but no frames arrived within {FIRST_FRAME_MS // 1000} s: {what}. "
+                               "Open again.")
+        self._first = first
 
     def get_calibration(self) -> Calibration:
         if self.calib is None:
@@ -142,8 +320,9 @@ class RealSenseAdapter:
     def read_frame(self, timeout_ms: int) -> Frame:
         if self.pipe is None:
             raise AdapterError("not open")
+        first, self._first = getattr(self, "_first", None), None
         try:
-            ok, frames = self.pipe.try_wait_for_frames(timeout_ms)
+            ok, frames = (True, first) if first is not None else self.pipe.try_wait_for_frames(timeout_ms)
         except RuntimeError as exc:
             raise DeviceLost(str(exc)) from exc
         if not ok:
@@ -169,6 +348,20 @@ class RealSenseAdapter:
         return {}
 
     def close(self) -> None:
+        if self.pipe is not None and sys.platform == "darwin" and self.profile is not None:
+            # macOS (root): releasing the camera leaves it half-claimed (the next open streams no frames, or fails with
+            # "already opened"). A hardware reset instead reboots it (~5 s) into the same state as a fresh plug-in,
+            # where opening works. open() waits for it to come back. The process must then exit without stopping.
+            try:
+                self.profile.get_device().hardware_reset()
+                try:
+                    _RESET_MARK.write_text(str(time.time()))
+                except OSError:
+                    pass
+                self.pipe = None
+                return
+            except Exception:
+                pass
         if self.pipe is not None:
             try:
                 self.pipe.stop()

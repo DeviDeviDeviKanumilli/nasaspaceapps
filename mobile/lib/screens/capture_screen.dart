@@ -13,9 +13,29 @@ import '../ui/rocks.dart';
 import '../ui/style.dart';
 import 'scan_detail_screen.dart';
 
+/// Setup for scans started from the Mac on a mounted phone. The Mac can send a title and feature type with
+/// each start; otherwise the title says when it was taken.
+ScanSetup rigSetup() {
+  final now = DateTime.now();
+  return ScanSetup(
+    title: 'Rig scan ${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}',
+    featureType: 'other',
+    preset: 'rig',
+    rigMode: true,
+    collectLocation: AppState.I.defaultLocation,
+  );
+}
+
 class CaptureScreen extends StatefulWidget {
   final ScanSetup setup;
-  const CaptureScreen({super.key, required this.setup});
+
+  /// Rig use, driven from the Mac: after each scan is saved the screen stays open and goes back to ready (no
+  /// scan-detail page), so the next start command works without anyone touching the phone.
+  final bool remoteRig;
+
+  /// A start command from the Mac that opened this screen; carried out as soon as the camera is ready.
+  final Map<String, dynamic>? pending;
+  const CaptureScreen({super.key, required this.setup, this.remoteRig = false, this.pending});
   @override
   State<CaptureScreen> createState() => _CaptureScreenState();
 }
@@ -36,6 +56,12 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
   double? _savedBrightness;
   String? _scanId;
   Directory? _dir;
+  bool _startedRemotely = false;
+  String? _lastSaved;
+
+  /// Rig mode between scans shows a "waiting for the Mac" panel; a tap shows the camera for 30 s to aim.
+  bool _peek = false;
+  Timer? _peekTimer;
 
   CapturePreset get preset => presetById(widget.setup.preset);
   bool get rig => widget.setup.rigMode;
@@ -51,10 +77,13 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
 
   Future<void> _prepare() async {
     try {
+      AppState.I.captureScreenOpen(true);
       await Scanner.prepare(mesh: AppState.I.caps['mesh'] == true, hiRes: true);
-      await Scanner.keepAwake(true);
       if (mounted) setState(() => phase = _Phase.ready);
+      if (mounted && widget.pending != null) unawaited(_onRemote(widget.pending!));
     } catch (e) {
+      if (widget.pending != null) AppState.I.ble.ack(widget.pending!, false, 'camera could not start on the phone: $e');
+      if (!mounted) return;
       setState(() {
         phase = _Phase.failed;
         error = 'Camera could not start: $e';
@@ -71,7 +100,8 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
     _unlockTimer?.cancel();
     _holdTimer?.cancel();
     if (_savedBrightness != null) Scanner.setBrightness(_savedBrightness!);
-    Scanner.keepAwake(false);
+    AppState.I.captureScreenOpen(false);
+    _peekTimer?.cancel();
     Scanner.stopSession();
     super.dispose();
   }
@@ -84,7 +114,10 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
       case 'warning':
         setState(() => warnings.insert(0, '${e['message']}'));
       case 'autoStop':
-        _warn('Stopped automatically: ${e['reason']}');
+        _warn(e['reason'] == 'tracking_drift'
+            ? 'Stopped: position tracking was lost (the camera seemed to move impossibly fast). Point the camera at the '
+                'scene from 0.5 to 3 m, not at a surface right in front of it, and scan again. Positions in this scan are unreliable.'
+            : 'Stopped automatically: ${e['reason']}');
         _stop('auto:${e['reason']}');
     }
   }
@@ -100,9 +133,18 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
     }
     final type = m['type'];
     if (type == 'start_capture') {
+      // The camera may still be starting (screen just opened, or re-arming after the last scan): wait briefly.
+      for (var i = 0; i < 40 && phase == _Phase.preparing && mounted; i++) {
+        await Future<void>.delayed(const Duration(milliseconds: 100));
+      }
       if (phase == _Phase.ready) {
-        await link.ack(m, true);
-        _start(remote: true);
+        // A title/feature type sent with this start applies to this scan only (see the reset after saving).
+        final t = '${m['title'] ?? ''}'.trim();
+        if (t.isNotEmpty) widget.setup.title = t;
+        if (featureTypes.containsKey(m['feature_type'])) widget.setup.featureType = '${m['feature_type']}';
+        // Start first, then answer: the Mac is told "started" only if recording really began.
+        final err = await _start(remote: true);
+        await link.ack(m, err == null, err);
       } else {
         await link.ack(m, false, 'phone not ready (${phase.name})');
       }
@@ -138,8 +180,9 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
   }
 
   // ---- start / stop
-  Future<void> _start({bool remote = false}) async {
-    if (phase != _Phase.ready) return;
+  /// Starts recording. Returns null on success, or why it did not start.
+  Future<String?> _start({bool remote = false}) async {
+    if (phase != _Phase.ready) return 'phone not ready (${phase.name})';
     if (rig && !remote) {
       setState(() {
         phase = _Phase.countdown;
@@ -148,10 +191,12 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
       if (AppState.I.rigSpeech) Scanner.speak('Mount the phone. Starting in 5 seconds.');
       while (countdown > 0 && mounted && phase == _Phase.countdown) {
         await Future.delayed(const Duration(seconds: 1));
-        if (!mounted || phase != _Phase.countdown) return;
+        if (!mounted || phase != _Phase.countdown) return 'countdown cancelled';
         setState(() => countdown--);
       }
     }
+    // default rig titles name the time the scan starts, not when the scanner opened
+    if (widget.remoteRig && widget.setup.title.startsWith('Rig scan ')) widget.setup.title = rigSetup().title;
     _scanId = newId();
     _dir = AppState.I.library.newScanDir(_scanId!);
     try {
@@ -168,8 +213,9 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
         phase = _Phase.ready;
         warnings.insert(0, 'Could not start: ${e.message}');
       });
-      return;
+      return 'could not start: ${e.message}';
     }
+    _startedRemotely = remote;
     setState(() {
       phase = _Phase.recording;
       paused = false;
@@ -180,6 +226,7 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
       await Scanner.setBrightness(0.05);
       setState(() => rigLocked = true);
     }
+    return null;
   }
 
   Future<void> _stop(String reason) async {
@@ -204,7 +251,40 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
         link.send({'type': 'capture_complete', 'target': 'phone', 'scan_id': _scanId, 'keyframes': s['keyframes'], 'points': s['points'] ?? 0, 'bytes': 0});
       }
       await AppState.I.refresh();
+      AppState.I.updateAwake(force: true);
       if (!mounted) return;
+      if (widget.remoteRig || _startedRemotely) {
+        // Driven from the Mac: stay here and re-arm (fresh tracking for the next scan) instead of leaving.
+        _lastSaved = '${rec.title} · ${s['keyframes'] ?? 0} keyframes · saved ${DateTime.now().toIso8601String().substring(11, 19)}';
+        setState(() => phase = _Phase.preparing);
+        if (widget.remoteRig) {
+          // the next scan must not inherit this one's title (it would be filed under the wrong name)
+          final fresh = rigSetup();
+          widget.setup.title = fresh.title;
+          widget.setup.featureType = fresh.featureType;
+        }
+        _startedRemotely = false;
+        try {
+          await Scanner.stopSession();
+          await Scanner.prepare(mesh: AppState.I.caps['mesh'] == true, hiRes: true);
+        } catch (e) {
+          if (mounted) {
+            setState(() {
+              phase = _Phase.failed;
+              error = 'Camera could not restart after saving: $e. The scan was saved.';
+            });
+          }
+          return;
+        }
+        if (mounted) {
+          setState(() {
+            phase = _Phase.ready;
+            _peek = false;
+          });
+        }
+        _sendState();
+        return;
+      }
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => ScanDetailScreen(record: rec, justCaptured: true)));
     } catch (e) {
       setState(() {
@@ -275,6 +355,7 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
               creationParamsCodec: const StandardMessageCodec(),
             ),
           SafeArea(child: _hud(context)),
+          if (widget.remoteRig && phase == _Phase.ready && !_peek) _waitCover(),
           if (phase == _Phase.countdown) _countdownView(),
           if (rigLocked) _rigCover(),
           if (phase == _Phase.saving) _savingView(),
@@ -436,6 +517,27 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
     final rec = phase == _Phase.recording;
     final ready = phase == _Phase.ready;
     final label = ready ? 'Start' : (rec ? 'Stop & save' : (phase == _Phase.preparing ? 'Starting camera…' : phase.name));
+    final link = AppState.I.ble;
+    final remoteLine = !(widget.remoteRig || _lastSaved != null)
+        ? null
+        : [
+            link.paired ? 'Controlled from ${link.desktopInfo?['name'] ?? 'the Mac'}' : (link.reconnecting ? 'Reconnecting to the Mac…' : 'Not connected to the Mac'),
+            if (_lastSaved != null) 'Last: $_lastSaved',
+          ].join('\n');
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      if (remoteLine != null)
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          decoration: BoxDecoration(color: Fs.card, borderRadius: BorderRadius.circular(16)),
+          child: Text(remoteLine, style: const TextStyle(color: Fs.ink, fontSize: 13, fontWeight: FontWeight.w600)),
+        ),
+      _controlBar(ready, rec, label),
+    ]);
+  }
+
+  Widget _controlBar(bool ready, bool rec, String label) {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(color: Fs.card, borderRadius: BorderRadius.circular(24)),
@@ -533,6 +635,70 @@ class _CaptureScreenState extends State<CaptureScreen> with WidgetsBindingObserv
           ]),
         ),
       ]),
+    );
+  }
+
+  /// Rig mode between scans: the phone is mounted and run from the Mac, so say so plainly.
+  Widget _waitCover() {
+    final landscape = MediaQuery.orientationOf(context) == Orientation.landscape;
+    final t = Theme.of(context).textTheme;
+    return ListenableBuilder(
+      listenable: AppState.I.ble,
+      builder: (context, _) {
+        final link = AppState.I.ble;
+        final mac = link.desktopInfo?['name'] ?? 'the Mac';
+        final String line;
+        final Color dot;
+        if (link.paired) {
+          line = 'Connected to $mac';
+          dot = Fs.moss;
+        } else if (link.reconnecting) {
+          line = 'Reconnecting to $mac…';
+          dot = Fs.amberInk;
+        } else {
+          line = 'Not connected: pair on the Connect tab';
+          dot = Fs.record;
+        }
+        final words = Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: landscape ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          children: [
+            Text(link.paired ? 'Waiting for the Mac' : 'Mac not connected',
+                style: t.headlineSmall?.copyWith(fontWeight: FontWeight.w800, color: Fs.ink)),
+            const SizedBox(height: 6),
+            Text(link.paired ? 'Start a scan from Field Station.\nThe screen stays on; no need to touch the phone.' : 'Scans can still be started here.',
+                textAlign: landscape ? TextAlign.start : TextAlign.center, style: t.bodyMedium?.copyWith(color: Fs.ink2)),
+            if (_lastSaved != null) ...[
+              const SizedBox(height: 10),
+              Text('Last saved: $_lastSaved', textAlign: landscape ? TextAlign.start : TextAlign.center, style: t.bodySmall?.copyWith(color: Fs.ink2)),
+            ],
+          ],
+        );
+        final rock = Pebble(width: landscape ? 130 : 150, mood: link.paired ? PebbleMood.calm : PebbleMood.worried);
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            setState(() => _peek = true);
+            _peekTimer?.cancel();
+            _peekTimer = Timer(const Duration(seconds: 30), () {
+              if (mounted) setState(() => _peek = false);
+            });
+          },
+          child: _panel(
+            title: 'Rig mode',
+            subtitle: StatusLine(line, dot: dot),
+            bottom: Container(
+              height: Fs.buttonHeight,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(Fs.buttonRadius), border: Border.all(color: Fs.lineStrong, width: 1.5)),
+              child: const Text('Tap to see the camera and aim', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Fs.ink2)),
+            ),
+            child: landscape
+                ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [rock, const SizedBox(width: 28), Flexible(child: words)])
+                : Column(mainAxisSize: MainAxisSize.min, children: [rock, const SizedBox(height: 16), words]),
+          ),
+        );
+      },
     );
   }
 

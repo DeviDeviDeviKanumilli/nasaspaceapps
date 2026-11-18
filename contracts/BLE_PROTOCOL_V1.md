@@ -37,7 +37,7 @@ Inputs: desktop nonce `Nd` (from `info`), pairing code `C` (typed on the phone),
 `phone_id` (random, stable per install). HMAC = HMAC-SHA256, strings joined with `|`, nonces in base64.
 
 1. phone → `{"v":1,"type":"pair_request","phone_id":"…","phone_name":"…","nonce_phone":"<Np>","proof":"b64(HMAC(C, 'pair1|Nd|Np|phone_id'))"}`
-2. desktop checks the proof (constant-time), then → `{"v":1,"type":"pair_accept","proof":"b64(HMAC(C, 'pair2|Np|Nd'))","expires_s":3600,"capabilities":[…]}`
+2. desktop checks the proof (constant-time), then → `{"v":1,"type":"pair_accept","proof":"b64(HMAC(C, 'pair2|Np|Nd'))","expires_s":43200,"capabilities":[…]}`
    or `{"v":1,"type":"pair_reject","reason":"bad_code|expired|locked"}`.
 3. The phone checks the desktop's proof. Both derive the session key `K = HMAC(C, 'key|Nd|Np')`.
 
@@ -55,6 +55,13 @@ proofs and MACs are standard base64 with padding; `K` is the raw 32-byte HMAC ou
 session; the desktop advertises the local name `Field Station <host>` (the phone filters by service UUID). Test vectors:
 `BLE_TEST_VECTORS.json` (made with Python's `hmac` by `mobile/tools/make_ble_vectors.py`).
 
+Sessions last 12 h (`expires_s`: a field day, so a phone mounted on a rig never needs its code typed again mid-session).
+If the link drops, the phone keeps `K`, reconnects and sends a wrapped `hello`. iOS may reconnect with a new Bluetooth
+identity, so the desktop finds the session whose `K` verifies the message MAC and moves it to the new central
+(event `phone_reconnected`); a message whose MAC no live session verifies gets `error` `not_paired`, and the phone then
+asks the user to pair again. When the same `phone_id` pairs again, the desktop drops its older session. Tested over the
+air 2026-11-15 (iPhone 17 Pro + MacBook Air M4).
+
 Known weakness: someone who records the pairing exchange over the air can try all 10^6 codes offline and recover
 `K`. Fine for a park demo; a QR code with a 128-bit secret would fix it and fits the same formulas.
 
@@ -63,7 +70,7 @@ Known weakness: someone who records the pairing exchange over the air can try al
 | type | direction | fields |
 |---|---|---|
 | `hello` | both | `role`, `capabilities` (`arkit_lidar`, `arkit_camera`, `d435_capture`, `scan_import`) |
-| `start_capture` | both | `target` (`phone` or `desktop`), `sensor_id` (`iphone:arkit`, `realsense:d435`), `profile` |
+| `start_capture` | both | `target` (`phone` or `desktop`), `sensor_id` (`iphone:arkit`, `realsense:d435`), `profile`; optional `title` (≤ 120 chars) and `feature_type` (as in SCAN_BUNDLE_V1) for that one scan; receivers that don't use them ignore them |
 | `stop_capture` | both | `target` |
 | `capture_now` | desktop → phone | one keyframe/photo now |
 | `capture_state` | both (about every 1 s while recording) | `state` (`idle`, `recording`, `paused`, `saving`, `error`), `elapsed_ms`, `frames_recorded`, `tracking`, `scan_id` |
@@ -74,4 +81,8 @@ Known weakness: someone who records the pairing exchange over the air can try al
 
 Every command gets an `ack` within 5 s or is re-sent once with the same `id`, then reported as failed.
 The phone obeys `start_capture` / `stop_capture` / `capture_now` only when the user has turned on
-"Let the paired Mac control capture" (on by default in rig mode).
+"Let the paired Mac control capture" (on by default). A `start_capture` that arrives while the scanner is closed opens
+it in rig mode; the phone acks `start_capture` only after recording has really started (or with `ok: false` and the
+reason), so the ack can take a few seconds while the camera starts. Scans started from the desktop do not leave the
+scanner when saved: it re-arms for the next `start_capture`. `stop_capture` / `capture_now` with the scanner closed get
+`ok: false`, `not recording`.

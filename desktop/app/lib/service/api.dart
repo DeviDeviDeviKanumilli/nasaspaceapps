@@ -25,7 +25,9 @@ class ApiBytes {
 class ApiClient {
   ApiClient(this.base, this.token) {
     _http.connectionTimeout = const Duration(seconds: 5);
-    _http.idleTimeout = const Duration(seconds: 15);
+    // Shorter than the service's keep-alive (uvicorn: 30 s, set in server.py) so we never reuse a connection the
+    // service has just closed ("Connection closed before full header was received").
+    _http.idleTimeout = const Duration(seconds: 3);
   }
 
   final Uri base;
@@ -84,6 +86,18 @@ class ApiClient {
   }
 
   Future<ApiBytes> _send(String method, String path, {Map<String, String>? query, Object? body, required Duration timeout}) async {
+    try {
+      return await _sendOnce(method, path, query: query, body: body, timeout: timeout);
+    } on ApiException catch (e) {
+      // A reused keep-alive connection the service had already closed: harmless to repeat a read, never a command.
+      if (method == 'GET' && e.message.contains('Connection closed before full header')) {
+        return _sendOnce(method, path, query: query, body: body, timeout: timeout);
+      }
+      rethrow;
+    }
+  }
+
+  Future<ApiBytes> _sendOnce(String method, String path, {Map<String, String>? query, Object? body, required Duration timeout}) async {
     final uri = base.replace(path: path, queryParameters: query);
     try {
       final req = await _http.openUrl(method, uri).timeout(timeout);

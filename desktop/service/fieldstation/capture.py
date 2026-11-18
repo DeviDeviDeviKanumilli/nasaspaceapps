@@ -10,7 +10,9 @@ from __future__ import annotations
 
 import io
 import multiprocessing as mp
+import os
 import queue
+import sys
 import threading
 import time
 import traceback
@@ -25,7 +27,14 @@ from .bundle import BundleError, ScanStore, depth_colormap
 
 
 # ----------------------------------------------------------------------------- worker side
+def _quiet(adapter_id: str) -> None:
+    if adapter_id == "realsense":
+        from .adapters.realsense import quiet_native_crashes
+        quiet_native_crashes()
+
+
 def _worker_loop(adapter_id: str, store_root: str | None, device_id: str, config: dict, cmd_q, out_q) -> None:
+    _quiet(adapter_id)
     try:
         adapter = make_adapter(adapter_id, Path(store_root) if store_root else None)
         adapter.open(device_id, config)
@@ -71,17 +80,44 @@ def _worker_loop(adapter_id: str, store_root: str | None, device_id: str, config
             out_q.put(("closed", {"dropped_in_transport": dropped}))
         except Exception:
             pass
+        if adapter_id == "realsense" and sys.platform == "darwin" and mp.current_process().name != "MainProcess":
+            # the camera was hardware-reset (RealSenseAdapter.close): leave without librealsense tearing down
+            try:
+                out_q.close()
+                out_q.join_thread()
+            finally:
+                os._exit(0)
 
 
 def _discover_worker(adapter_id: str, store_root: str | None, out_q) -> None:
+    _quiet(adapter_id)
     try:
         a = make_adapter(adapter_id, Path(store_root) if store_root else None)
         out_q.put(("ok", a.discover()))
+    except AdapterError as exc:
+        out_q.put(("error", str(exc)))
     except Exception as exc:
         out_q.put(("error", f"{type(exc).__name__}: {exc}"))
+    # Deliver the answer, then leave without running destructors: after a failed open, librealsense on macOS
+    # segfaults while freeing its device objects, which used to lose the result.
+    out_q.close()
+    out_q.join_thread()
+    os._exit(0)
 
 
 # ----------------------------------------------------------------------------- service side
+REENUM_S = 3.0        # how long a RealSense camera takes to come back on USB after being released (macOS, root)
+OPEN_ATTEMPTS = 3
+RESET_S = 8.0         # a D435 hardware reset (adapter.open does one when no frames arrive) takes ~5 s to come back
+_RETRYABLE = ("power state", "already opened", "no device connected", "resolve the request", "crashed", "did not open",
+              "no frames arrived")
+
+
+def _retryable(error: dict | None, exc: Exception) -> bool:
+    text = f"{(error or {}).get('message', '')} {exc}".lower()
+    return any(k in text for k in _RETRYABLE)
+
+
 class CaptureController:
     def __init__(self, store: ScanStore, use_process: bool = True, fixtures: bool = False):
         self.store = store
@@ -101,6 +137,7 @@ class CaptureController:
         self._cmd_q = None
         self._out_q = None
         self._consumer = None
+        self._real_released = -1e9  # time.monotonic() when a RealSense camera was last released (see open)
         self._lock = threading.RLock()
         self.latest = None
         self.frame_times: list[float] = []
@@ -134,6 +171,16 @@ class CaptureController:
     def discover(self, adapter_id: str, timeout_s: float = 15.0) -> dict:
         if adapter_id == "synthetic" and not self.fixtures:
             return {"adapter_id": adapter_id, "devices": [], "error": "fixtures are disabled"}
+        if adapter_id == "realsense" and self.adapter_id == "realsense" and self._proc is not None and self.state != "error":
+            # Probing from a second process makes librealsense claim and release the camera, which on macOS resets it
+            # on USB and stops the open stream ("no frames within 3000 ms"). Report the open camera instead.
+            dev = dict((self.calib.device if self.calib else None) or {})
+            usb = dev.get("usb_type")
+            return {"adapter_id": adapter_id, "error": None, "devices": [{
+                "device_id": self.device_id, "name": dev.get("name"), "serial": dev.get("serial"),
+                "firmware": dev.get("firmware"), "usb_type": usb, "product_line": dev.get("product_line"),
+                "is_real_sensor": True, "note": "Open now (not re-probed: that would interrupt the stream).",
+                **({"recommended_profile": "usb2_fallback"} if usb and not str(usb).startswith("3") else {})}]}
         if not self.use_process or adapter_id != "realsense":
             try:
                 return {"adapter_id": adapter_id, "devices": make_adapter(adapter_id, self.store.root).discover(), "error": None}
@@ -149,17 +196,35 @@ class CaptureController:
             return {"adapter_id": adapter_id, "devices": [], "error": f"device enumeration did not finish within {timeout_s:.0f} s"}
         finally:
             p.join(timeout=2)
-        if p.exitcode not in (0, None):
-            return {"adapter_id": adapter_id, "devices": [], "error": f"enumeration process exited with code {p.exitcode}"}
         return {"adapter_id": adapter_id, "devices": payload if kind == "ok" else [], "error": None if kind == "ok" else payload}
 
     # -- open / close
-    def open(self, adapter_id: str, device_id: str, profile: str = "field_static", timeout_s: float = 20.0) -> dict:
+    def open(self, adapter_id: str, device_id: str, profile: str = "field_static", timeout_s: float = 30.0) -> dict:
         if adapter_id == "synthetic" and not self.fixtures:
             raise AdapterError("synthetic fixtures are disabled (start the service with --fixtures)")
         if profile not in PROFILES:
             raise AdapterError(f"unknown profile {profile}")
+        was_real = self._proc is not None and self.adapter_id == "realsense"
         self.close()
+        if adapter_id != "realsense":
+            return self._open_once(adapter_id, device_id, profile, timeout_s)
+        # RealSense on macOS as root: libusb hands the camera back to the system by re-enumerating it on USB whenever
+        # librealsense releases it, so for a few seconds after a close (or a crashed worker) an open can fail with
+        # "failed to set power state" / "UVC device is already opened" / a driver crash. Wait, then retry.
+        if was_real or time.monotonic() - self._real_released < REENUM_S:
+            time.sleep(max(0.0, REENUM_S - (time.monotonic() - self._real_released)))
+        for attempt in range(1, OPEN_ATTEMPTS + 1):
+            try:
+                return self._open_once(adapter_id, device_id, profile, timeout_s)
+            except AdapterError as exc:
+                self._real_released = time.monotonic()
+                if attempt == OPEN_ATTEMPTS or not _retryable(self.error, exc):
+                    raise
+                self.emit("device_retry", attempt=attempt, of=OPEN_ATTEMPTS, reason=str(exc)[:300])
+                time.sleep(RESET_S if "was reset" in str(exc) else REENUM_S)
+        raise AdapterError("unreachable")
+
+    def _open_once(self, adapter_id: str, device_id: str, profile: str, timeout_s: float) -> dict:
         with self._lock:
             self.state = "opening"
             self.error = None
@@ -173,14 +238,24 @@ class CaptureController:
             self._cmd_q, self._out_q = queue.Queue(), queue.Queue(maxsize=6)
             self._proc = threading.Thread(target=_worker_loop, args=(adapter_id, str(self.store.root), device_id, cfg, self._cmd_q, self._out_q), daemon=True)
             self._proc.start()
-        try:
-            kind, payload = self._out_q.get(timeout=timeout_s)
-        except queue.Empty:
-            self._kill_worker()
-            self.state = "error"
-            self.error = {"kind": "open_timeout", "message": f"sensor did not open within {timeout_s:.0f} s"}
-            self.emit("device_error", **self.error)
-            raise AdapterError(self.error["message"])
+        kind = payload = None
+        deadline = time.monotonic() + timeout_s
+        while kind is None:
+            try:
+                kind, payload = self._out_q.get(timeout=0.5)
+            except queue.Empty:
+                code = getattr(self._proc, "exitcode", None)  # a worker process that died without answering
+                if code is not None or time.monotonic() > deadline:
+                    self._kill_worker()
+                    self.state = "error"
+                    if code is not None:
+                        self.error = {"kind": "worker_crashed", "message":
+                                      f"the camera driver crashed while opening the sensor (worker exit code {code}). "
+                                      "Select Open again; if it keeps happening, unplug the camera for 10 s."}
+                    else:
+                        self.error = {"kind": "open_timeout", "message": f"sensor did not open within {timeout_s:.0f} s"}
+                    self.emit("device_error", **self.error)
+                    raise AdapterError(self.error["message"])
         if kind != "opened":
             self._kill_worker()
             self.state = "error"
@@ -225,6 +300,8 @@ class CaptureController:
             except Exception:
                 pass
             self._kill_worker()
+            if self.adapter_id == "realsense":
+                self._real_released = time.monotonic()
             if self._consumer is not None:
                 self._consumer.join(timeout=3)
         with self._lock:
@@ -291,6 +368,8 @@ class CaptureController:
                 self._stop_recording_locked("device_lost: " + str(info.get("message")), ok=False)
             self.state = "error"
             self.latest = None
+            if self.adapter_id == "realsense":
+                self._real_released = time.monotonic()
         self.emit("device_lost", **self.error)
 
     # -- recording

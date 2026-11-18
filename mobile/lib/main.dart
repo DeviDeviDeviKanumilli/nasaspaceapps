@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'core/app_state.dart';
 import 'core/fixture.dart';
+import 'screens/capture_screen.dart';
 import 'screens/scan_detail_screen.dart';
 import 'screens/connect_screen.dart';
 import 'screens/explore_screen.dart';
@@ -52,6 +53,17 @@ class _HomeTabsState extends State<HomeTabs> {
   @override
   void initState() {
     super.initState();
+    // A start command from the paired Mac while the scanner is closed: open it in rig mode and let it carry the
+    // command out (it acks once recording has really started). Nobody has to touch a phone mounted on the rig.
+    AppState.I.ble.openForRemote = (cmd) {
+      if (!AppState.I.allowRemoteControl) return 'remote control is off on the phone';
+      if (!AppState.I.hasArkit) return 'this phone cannot scan (no ARKit)';
+      if (!mounted) return 'phone app is not ready';
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => CaptureScreen(setup: rigSetup(), remoteRig: true, pending: cmd),
+      ));
+      return null;
+    };
     if (kDebugMode && _start.isNotEmpty) {
       _i = const {'library': 1, 'explore': 2, 'connect': 3, 'settings': 4}[_start] ?? 0;
       if (_start == 'detail') {

@@ -58,6 +58,9 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
     private var tracking = "not_started"
     private var prevPose: simd_float4x4?
     private var prevT: TimeInterval = 0
+    private var armedAt = Date.distantPast          // when tracking was last reset (session.run with .resetTracking)
+    private var driftSince: TimeInterval = -1      // "normal" tracking but an impossible camera speed, since t
+    private var ignoreBefore: TimeInterval = 0     // frames older than this (ARFrame.timestamp) predate a tracking reset
     private var angSpeed: Float = 0
     private var lastStatusT: TimeInterval = 0
     private var lastDepthStats: [String: Any] = [:]
@@ -218,6 +221,7 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
             c.videoFormat = f; hiResAvailable = true
         }
         UIDevice.current.isBatteryMonitoringEnabled = true
+        if !running { armedAt = Date() }
         session.run(c, options: running ? [] : [.resetTracking, .removeExistingAnchors])
         arQueue.async { self.running = true }
     }
@@ -264,6 +268,17 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
         cues = (a["sound"] as? Bool ?? false, a["speech"] as? Bool ?? false)
         if cues.speech { try? AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers, .mixWithOthers]) }
 
+        // In rig mode the camera stays armed between scans; drift built up while idle must not carry into this
+        // scan. Start from fresh tracking when the session has been running a while (keyframes and fusion wait for
+        // "normal" tracking, so the moments after the reset are skipped, not recorded).
+        if Date().timeIntervalSince(armedAt) > 10, let cfg = session.configuration {
+            session.run(cfg, options: [.resetTracking, .removeExistingAnchors])
+            armedAt = Date()
+            prevPose = nil
+            // frames already in flight still carry the old coordinates (15 Nov: the first keyframe sat 3-15 m away)
+            ignoreBefore = ProcessInfo.processInfo.systemUptime + 0.3
+        }
+        driftSince = -1
         dir = d
         scanId = a["scanId"] as? String ?? UUID().uuidString.lowercased()
         startedUTC = Date()
@@ -377,10 +392,9 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
                                      "vertical_accuracy_m": f.verticalAccuracy, "fix_utc": self.iso(f.timestamp)]
                 }
                 s["files"] = self.files
-                DispatchQueue.main.async {
-                    UIApplication.shared.isIdleTimerDisabled = false
-                    result(s)
-                }
+                // Keep-awake is owned by the Dart side (AppState.updateAwake): a phone on the rig must stay awake
+                // between scans, so stopping a recording does not touch it.
+                DispatchQueue.main.async { result(s) }
             }
         }
     }
@@ -389,8 +403,10 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         let t = frame.timestamp
         let pose = frame.camera.transform
+        var linSpeed: Float = 0
         if let p = prevPose, t > prevT {
             angSpeed = ScanMath.rotationAngle(p, pose) / Float(t - prevT)
+            linSpeed = simd_distance(ScanMath.translation(p), ScanMath.translation(pose)) / Float(t - prevT)
         }
         prevPose = pose; prevT = t
 
@@ -404,13 +420,23 @@ final class FieldScanner: NSObject, ARSessionDelegate, FlutterStreamHandler, CLL
             tracking = tr
         }
 
-        if recording && !paused && stopReason == nil {
+        if recording && !paused && stopReason == nil && t >= ignoreBefore {
             if startedT < 0 { startedT = t }
             let pos = ScanMath.translation(pose)
             if tr == "normal" {
                 if let lp = lastTravelPos { travelled += simd_distance(lp, pos) }
                 lastTravelPos = pos
             } else { lastTravelPos = nil }
+            // ARKit can lose its visual reference (lens blocked, dark, a blank surface right in front) and keep
+            // integrating motion while still saying "normal": the camera then "moves" metres per second and every
+            // later frame lands in the wrong place (seen 15 Nov 2026, up to 800 m/s). A phone being scanned with
+            // does not move faster than 5 m/s; if it seems to for over a second, stop and say why.
+            if tr == "normal" && linSpeed > 5 {
+                if driftSince < 0 { driftSince = t; log("tracking_drift", ["speed_m_s": Double(linSpeed)]) }
+                if t - driftSince > 1.0 {
+                    autoStop("tracking_drift", "Tracking lost. Stopping. Point the camera at the scene.")
+                }
+            } else { driftSince = -1 }
             evaluateTrigger(frame, t: t, pose: pose, normal: tr == "normal")
             if fuse.enabled, depthEnabled, tr == "normal", !fuseBusy, t - lastFuseT >= 1.0 / max(0.2, fuse.hz),
                let dd = frame.sceneDepth {

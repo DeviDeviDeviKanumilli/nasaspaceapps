@@ -42,7 +42,9 @@ class Desk {
 
   Future<void> start(Directory home) async {
     proc = await Process.start(_python, ['-m', 'fieldstation.server', '--port', '0', '--token', token, '--fixtures', '--home', home.path],
-        workingDirectory: _serviceDir.path);
+        workingDirectory: _serviceDir.path,
+        // never copy scans off a real iPhone that happens to be plugged into this Mac
+        environment: {'FIELDSTATION_USB_AUTO': '0'});
     proc.stderr.transform(utf8.decoder).transform(const LineSplitter()).listen(stderrLines.add);
     final ready = Completer<int>();
     proc.stdout.transform(utf8.decoder).transform(const LineSplitter()).listen((l) {
