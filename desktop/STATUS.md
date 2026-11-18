@@ -14,7 +14,7 @@ exercised. **PLANNED** = not built.
 | Check | State | Evidence |
 |---|---|---|
 | librealsense on this Mac | `pyrealsense2-macosx` 2.56.5 imports (arm64, Python 3.13) | `service/requirements.lock.txt` |
-| D435 enumerated / real depth frame | **REAL: tested live in the field at Sourland Mountain, 2026-11-15.** Depth and colour streams both worked and the team recorded a field scan. (Earlier, 2026-11-15 02:40 ET, before the camera was attached: `tools/d435_smoke.py` exit 3, "no RealSense device enumerated".) | Team field test on 2026-11-15. The field scan files and logs are not yet copied into this repository |
+| D435 enumerated / real depth frame | **REAL: tested live in the field at Sourland Mountain, 2026-11-15.** Depth and colour streams both worked and the team recorded a field scan. (Earlier, 2026-11-15 02:40 ET, before the camera was attached: `tools/d435_smoke.py` exit 3, "no RealSense device enumerated".) | Team field test on 2026-11-15 |
 
 The D435 has now been used live with real hardware (Sourland Mountain, 2026-11-15). Replay of a real
 recording (labelled REPLAY) and the SYNTHETIC scene (rehearsal only, labelled everywhere) remain available
