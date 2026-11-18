@@ -8,7 +8,7 @@ fixed outcome vocabulary below — never generated prose.
 schema_version            "1.0"
 outcome_vocabulary        ["inside middle half", "inside 10-90% range", "outside range", "not measured", "not comparable"]
 run                       provenance of the terrain run
-  manifest_describe_as    exact coverage statement to show (e.g. "partial: 19,433 of 26,475 tiles ...")
+  manifest_describe_as    exact coverage statement to show (e.g. "partial: 19295 of 19433 tiles ...")
   created_utc, tiles (by status), windows (evaluated / excluded), software, parameters, datasets,
   known_coverage_limits   list of strings (show on the coverage screen)
 geology_run               thresholds {G1_min_mapped, G2_min_exposed, G4_min_partner, min_mapped_land}, emit status, source

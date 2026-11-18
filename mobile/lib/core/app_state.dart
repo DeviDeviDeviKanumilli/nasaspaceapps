@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -33,7 +34,29 @@ class AppState extends ChangeNotifier {
   String phoneId = '';
   bool introSeen = false;
 
+  // Keep the screen awake while a capture screen is open, or while paired with remote control on (a phone on the
+  // rig must not auto-lock: a locked phone suspends the app, which drops Bluetooth and stops ARKit).
+  int _captureScreens = 0;
+  bool? _awake;
+  Timer? _awakeTimer;
+  void captureScreenOpen(bool open) {
+    _captureScreens = (_captureScreens + (open ? 1 : -1)).clamp(0, 99);
+    updateAwake(force: true);
+  }
+
+  /// Re-applies the keep-awake state. [force] after the native side may have changed it (it clears it when a
+  /// recording stops).
+  void updateAwake({bool force = false}) {
+    final on = _captureScreens > 0 || ((ble.paired || ble.reconnecting) && allowRemoteControl);
+    if (!force && on == _awake) return;
+    _awake = on;
+    Scanner.keepAwake(on).catchError((_) {});
+  }
+
   Future<void> init() async {
+    ble.addListener(updateAwake);
+    // Re-assert every 10 s: cheap, and nothing else (a plugin, the system) can quietly turn it off for long.
+    _awakeTimer ??= Timer.periodic(const Duration(seconds: 10), (_) => updateAwake(force: true));
     docs = await getApplicationDocumentsDirectory();
     library = ScanLibrary(Directory('${docs.path}/scans'));
     await _loadSettings();
@@ -77,6 +100,7 @@ class AppState extends ChangeNotifier {
       'phoneId': phoneId,
       'introSeen': introSeen,
     }));
+    updateAwake();
     notifyListeners();
   }
 

@@ -1,6 +1,6 @@
 """Scan envelope (manifest.json) shared with the iPhone app and the catalog.
 
-Field names follow HANDOFF 03 section 5 ("common versioned scan envelope");
+Field names follow the common versioned scan envelope shared with the iPhone app (see /contracts);
 desktop-only additions are listed in schema/scan_envelope.v1.schema.json.
 
 Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.

@@ -115,9 +115,9 @@ The frozen Hartford result is kept unchanged in `geology_v2_hartford_frozen_run.
 
 ## 5. What remains unimplemented
 - **No spectra.** CRISM/OMEGA ↔ ASTER/EMIT comparison is not built. Mineral evidence is map text only.
-- **No outcrop-scale evidence.** Grain size, bed thickness and structures at a site are not measured. The D435 field transect is the plan for that.
+- **No outcrop-scale evidence.** Grain size, bed thickness and structures at a site are not measured. The FieldKit (D435 and iPhone LiDAR) recorded its first field scans at Sourland Mountain on 2026-11-15; outcrop-scale measurements from scans are the next step.
 - **Global generalization is partial.** geo-2.0 needs SGMC-style structured unit descriptions, which exist for the USA only. Outside the USA the engine is still GLiM classes (unchanged). Macrostrat map units could carry it further, but that is not done.
 - MARS-SERP controls do not discriminate (old and new rules both score 1.0). A gabbro/pyroxenite negative set exists only as unit tests.
 - **Thresholds are not tuned:** ≥2 lake indicators, 10 km basin radius, 500 m contact distance and 25° steepness are fixed by judgement. Sensitivity has not been run for geo-2.0.
-- **Nottingham** (the field site) lies on the Pennsylvania State Line ultramafic unit (PAPZu;0), which qualifies as MARS-SERP. The access layer, however, found no ≥25° ground on the ~20 m DEM inside Nottingham County Park. For that polygon it lists Goat Hill Serpentine Barrens and Octorara Creek Acquisition instead. Small outcrops below 20 m resolution would not show up; that is unverified. No field observation has been made yet.
+- **Nottingham** (a candidate field site considered before the trip; the team went to Sourland Mountain) lies on the Pennsylvania State Line ultramafic unit (PAPZu;0), which qualifies as MARS-SERP. The access layer, however, found no ≥25° ground on the ~20 m DEM inside Nottingham County Park. For that polygon it lists Goat Hill Serpentine Barrens and Octorara Creek Acquisition instead. Small outcrops below 20 m resolution would not show up; that is unverified. No field observation has been made yet.
 - The Flutter widgets have not been compiled or placed in the team app. The data model is tested with Dart 3.14.

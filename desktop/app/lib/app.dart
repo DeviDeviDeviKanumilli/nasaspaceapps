@@ -54,7 +54,7 @@ class Shell extends StatelessWidget {
     _Dest(Section.library, 'Library', 'Saved scans, import and export'),
   ];
   static const _sys = [
-    _Dest(Section.pairing, 'Pairing', 'Phone link over Bluetooth'),
+    _Dest(Section.pairing, 'Phone', 'Run the iPhone on the rig'),
     _Dest(Section.about, 'About', 'Versions, test sources, diagnostics'),
   ];
   static final _all = [..._work, ..._sys];

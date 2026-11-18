@@ -61,9 +61,13 @@ class _DevicesScreenState extends State<DevicesScreen> {
 
   Future<void> _open(String adapterId, String deviceId) async {
     final s = AppScope.read(context);
+    // A camera on a USB 2 link cannot carry depth + colour at the field profiles; the service says which profile fits.
+    final dev = asList(asMap(_found[adapterId])['devices']).map(asMap).where((d) => d['device_id'] == deviceId).firstOrNull;
+    final rec = dev == null ? null : dev['recommended_profile'] as String?;
     setState(() {
       _busy = deviceId;
       _openError = null;
+      if (rec != null && asMap(s.adapters['profiles']).containsKey(rec)) _profile = rec;
     });
     try {
       s.status = asMap(await s.api!.postJson('/api/device/open', {'adapter_id': adapterId, 'device_id': deviceId, 'profile': _profile}));
@@ -222,8 +226,9 @@ class _DevicesScreenState extends State<DevicesScreen> {
                           Text(scanning ? 'Looking for a camera' : 'No camera found', style: t.textTheme.titleSmall),
                           const SizedBox(height: 2),
                           Text(
-                            'Plug the D435 into a USB 3 port on this computer with a data cable (not charge-only), then select Scan again. '
-                            'A USB 2 link works only with the fallback profile.',
+                            'Plug the D435 straight into a USB-C port on this computer with a USB 3 data cable (not charge-only), then '
+                            'select Scan again. A USB 2 link works only with the fallback profile.'
+                            '${Platform.isMacOS ? ' Not sure it is working? In Terminal run desktop/d435.sh: it checks the link speed and that real depth comes out.' : ''}',
                             style: t.textTheme.bodyMedium?.copyWith(color: FsPalette.inkMuted),
                           ),
                         ],

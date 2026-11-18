@@ -126,3 +126,102 @@ def test_shutdown_releases_the_sensor(tmp_path):
         assert c.post("/api/device/open", json={"adapter_id": "synthetic", "device_id": "synthetic:scene-v1"}).json()["state"] == "streaming"
     assert svc.ctl.state == "idle"
     svc._stop.set()
+
+
+def test_usb_phone_import_with_stubbed_devicectl(client, tmp_path, monkeypatch):
+    """The USB path end to end, with Apple's devicectl replaced: list -> pull -> verified import -> duplicate refused."""
+    import shutil
+    from test_bundle import _iphone_bundle
+    from fieldstation import usb_phone
+
+    c, svc = client
+    sid, _zip = _iphone_bundle(tmp_path)
+    phone_folder = tmp_path / f"scan-{sid}"
+    monkeypatch.setattr(usb_phone, "availability", lambda: {"available": True, "reason": None})
+    monkeypatch.setattr(usb_phone, "devices", lambda: [{"device_id": "DEV1", "name": "Test iPhone", "model": "iPhone 17 Pro",
+                                                       "transport": "wired", "os_version": "27.2"}])
+    monkeypatch.setattr(usb_phone, "list_scans", lambda dev: [{"scan_id": sid, "title": "fixture patch"}])
+
+    def pull(dev, scan_id, work):
+        dest = Path(work) / f"scan-{scan_id}"
+        shutil.copytree(phone_folder, dest)
+        return dest
+    monkeypatch.setattr(usb_phone, "pull_scan", pull)
+
+    assert c.get("/api/usb/phone").json()["devices"][0]["device_id"] == "DEV1"
+    rows = c.get("/api/usb/phone/DEV1/scans").json()["scans"]
+    assert rows[0]["scan_id"] == sid and rows[0]["already_imported"] is False
+    r = c.post("/api/usb/phone/DEV1/import", json={"scan_ids": [sid]}).json()["results"][0]
+    assert r["ok"] and r["origin"] == "iphone_arkit_lidar"
+    man = c.get(f"/api/scans/{sid}").json()["manifest"]
+    assert man["desktop_import"]["source"].startswith("iPhone over USB") and man["desktop_import"]["verified_sha256_files"] == 1
+    assert c.get("/api/usb/phone/DEV1/scans").json()["scans"][0]["already_imported"] is True
+    again = c.post("/api/usb/phone/DEV1/import", json={"scan_ids": [sid]}).json()["results"][0]
+    assert again["ok"] is False and again["duplicate"] is True
+    # tampered copy on the phone side is refused
+    (phone_folder / "point_cloud_fused.ply").write_bytes(b"tampered")
+    import json as _json
+    m = _json.loads((phone_folder / "scan.json").read_text())
+    import uuid as _uuid
+    m["scan_id"] = str(_uuid.uuid4())
+    (phone_folder / "scan.json").write_text(_json.dumps(m))
+    bad = c.post("/api/usb/phone/DEV1/import", json={"scan_ids": [m["scan_id"]]}).json()["results"][0]
+    assert bad["ok"] is False and "checksum mismatch" in bad["error"]
+    assert not any((svc.home / "usb_import_tmp").iterdir())     # temporary copies cleaned up
+
+
+def test_import_scan_folder_over_http(client, tmp_path):
+    from test_bundle import _iphone_bundle
+    c, _ = client
+    sid, _zip = _iphone_bundle(tmp_path)
+    r = c.post("/api/import", json={"path": str(tmp_path / f"scan-{sid}")})
+    assert r.status_code == 200 and r.json()["scan_id"] == sid
+
+
+def test_usb_unavailable_is_reported_not_raised(client, monkeypatch):
+    from fieldstation import usb_phone
+    c, _ = client
+    monkeypatch.setattr(usb_phone, "availability", lambda: {"available": False, "reason": "needs Xcode"})
+    assert c.get("/api/usb/phone").json() == {"available": False, "reason": "needs Xcode", "devices": []}
+
+
+def test_usb_auto_sync_imports_finished_scans_and_skips_recording_ones(tmp_path, monkeypatch):
+    import shutil
+    from test_bundle import _iphone_bundle
+    from fieldstation import usb_phone
+    from fieldstation.bundle import ScanStore
+    from fieldstation.usb_sync import UsbAutoSync
+
+    store = ScanStore(tmp_path / "home" / "scans")
+    sid, _ = _iphone_bundle(tmp_path)
+    recording = "11111111-2222-4333-8444-555555555555"      # folder exists on the phone, no scan.json yet
+    events = []
+    monkeypatch.setattr(usb_phone, "devices", lambda: [{"device_id": "DEV1", "name": "Test iPhone", "transport": "wired"},
+                                                       {"device_id": "NET", "name": "Wi-Fi iPhone", "transport": "localNetwork"}])
+    listed = []
+    monkeypatch.setattr(usb_phone, "list_scan_ids", lambda dev: listed.append(dev) or [sid, recording])
+    monkeypatch.setattr(usb_phone, "read_scan_json", lambda dev, s: None if s == recording else {"scan_id": s})
+    monkeypatch.setattr(usb_phone, "pull_scan", lambda dev, s, work: Path(shutil.copytree(tmp_path / f"scan-{s}", Path(work) / f"scan-{s}")))
+    sync = UsbAutoSync(store, tmp_path / "home", lambda t, **kw: events.append({"type": t, **kw}), enabled=True)
+
+    first = sync.sync_once()
+    assert [r["scan_id"] for r in first] == [sid] and first[0]["ok"]
+    assert listed == ["DEV1"]                                  # cable only
+    assert store.manifest(sid)["desktop_import"]["source"] == "Test iPhone over USB (automatic)"
+    assert any(e["type"] == "scan_imported" and e.get("via") == "usb_auto" for e in events)
+    assert sync.sync_once() == []                              # already imported, recording one still skipped
+    sync.set_enabled(False)
+    assert sync.status()["enabled"] is False
+
+
+def test_ble_send_passes_title_and_feature_to_the_phone(client, monkeypatch):
+    c, svc = client
+    sent = {}
+    monkeypatch.setattr(svc.link, "send", lambda central, t, **kw: sent.update(central=central, type=t, **kw) or {"type": t, **kw})
+    r = c.post("/api/ble/send", json={"central": "C1", "type": "start_capture", "title": "  Boulder A  ", "feature_type": "boulder"})
+    assert r.status_code == 200
+    assert sent == {"central": "C1", "type": "start_capture", "target": "phone", "sensor_id": "iphone:arkit", "profile": "default",
+                    "title": "Boulder A", "feature_type": "boulder"}
+    sent.clear()
+    c.post("/api/ble/send", json={"central": "C1", "type": "start_capture", "feature_type": "not-a-type"})
+    assert "feature_type" not in sent and "title" not in sent

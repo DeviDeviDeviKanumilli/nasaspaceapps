@@ -149,3 +149,46 @@ def test_desktop_accepts_mobile_vector_pairing():
     for ch in chunk_message(req, 0, 182):
         link.on_rx(phone.central, ch, 182)
     assert phone.inbox[-1]["type"] == "pair_accept" and phone.inbox[-1]["proof"] == v["desktop_proof"]
+
+
+def test_reconnect_with_new_central_keeps_the_session():
+    """A mounted phone whose link dropped comes back with a new Bluetooth identity: its MAC proves the session,
+    no code is typed again, and seq/id rules still hold."""
+    link, phone, events = make()
+    code = link.open_pairing()["code"]
+    phone.pair(code)
+    phone.send("hello", role="phone", capabilities=["arkit_lidar"])
+    link.on_disconnect(phone.central)
+    phone.central = "11111111-2222-3333-4444-555555555555"       # new identity after reconnecting
+    phone.send("hello", role="phone", capabilities=["arkit_lidar"])
+    assert phone.inbox[-1]["type"] == "hello"                      # answered on the new central
+    assert list(link.sessions) == [phone.central]
+    assert any(e["type"] == "phone_reconnected" for e in events)
+    # desktop -> phone commands go to the new central
+    link.send(phone.central, "start_capture", target="phone")
+    assert phone.inbox[-1]["type"] == "start_capture"
+
+
+def test_reconnect_is_refused_without_the_key():
+    link, phone, events = make()
+    phone.pair(link.open_pairing()["code"])
+    stranger = PhoneSim(link, central="99999999-0000-0000-0000-000000000000")
+    link.send_cb = lambda c, b: (phone if c == phone.central else stranger).deliver(c, b)
+    stranger.key = b"\x07" * 32
+    stranger.send("start_capture", target="desktop")
+    assert stranger.central not in link.sessions and phone.central in link.sessions
+    assert any(m.get("code") == "not_paired" for m in stranger.inbox)
+
+
+def test_pairing_again_replaces_the_old_session_of_the_same_phone():
+    link, phone, _ = make()
+    phone.pair(link.open_pairing()["code"])
+    old = phone.central
+    phone.central = "22222222-0000-0000-0000-000000000000"
+    phone.pair(link.open_pairing()["code"])
+    assert list(link.sessions) == [phone.central] and old not in link.sessions
+
+
+def test_session_lasts_a_field_day():
+    from fieldstation.protocol import SESSION_S
+    assert SESSION_S >= 8 * 3600

@@ -96,3 +96,54 @@ def test_realsense_discovery_reports_honestly(store):
     assert isinstance(r["devices"], list)
     for d in r["devices"]:
         assert d["is_real_sensor"] is True and d["serial"]
+
+
+def test_worker_that_crashes_while_opening_is_reported_quickly(store, monkeypatch):
+    """librealsense on macOS can segfault inside pipeline.start: the worker process dies without answering. The
+    controller must say so within a second or two, not wait out the 20 s open timeout."""
+    import queue as _q
+    import time as _t
+
+    class DeadProcess:
+        exitcode = None
+
+        def __init__(self, **kw):
+            pass
+
+        def start(self):
+            self.exitcode = -11  # SIGSEGV, as in the macOS crash reports
+
+        def is_alive(self):
+            return False
+
+        def kill(self):
+            pass
+
+        def join(self, timeout=None):
+            pass
+
+    monkeypatch.setattr(capture_mod, "REENUM_S", 0.05)
+    spawned = []
+    ctl = CaptureController(store, use_process=True)
+    ctl.ctx = type("Ctx", (), {"Queue": staticmethod(_q.Queue),
+                               "Process": staticmethod(lambda **kw: spawned.append(1) or DeadProcess(**kw))})()
+    t0 = _t.monotonic()
+    with pytest.raises(AdapterError, match="crashed"):
+        ctl.open("realsense", "realsense:123", "usb2_fallback", timeout_s=20)
+    assert _t.monotonic() - t0 < 6
+    assert ctl.state == "error" and ctl.error["kind"] == "worker_crashed"
+    # retried (the camera re-enumerates on USB after a crash), then gave up
+    assert len(spawned) == capture_mod.OPEN_ATTEMPTS
+    assert [e["attempt"] for e in ctl.events if e.get("type") == "device_retry"] == list(range(1, capture_mod.OPEN_ATTEMPTS))
+
+
+def test_discovery_does_not_probe_an_open_realsense(store, monkeypatch):
+    from fieldstation.adapters.base import Calibration as _C  # noqa: F401
+    ctl = CaptureController(store, use_process=True)
+    ctl.adapter_id, ctl.device_id, ctl.state, ctl._proc = "realsense", "realsense:832112072809", "streaming", object()
+    ctl.calib = type("Cal", (), {"device": {"name": "Intel RealSense D435", "serial": "832112072809", "usb_type": "2.1"}})()
+    monkeypatch.setattr(ctl.ctx, "Process", lambda **kw: pytest.fail("must not start a probe process"))
+    r = ctl.discover("realsense")
+    (d,) = r["devices"]
+    assert d["device_id"] == "realsense:832112072809" and d["recommended_profile"] == "usb2_fallback" and "Open now" in d["note"]
+    ctl._proc = None  # nothing to clean up

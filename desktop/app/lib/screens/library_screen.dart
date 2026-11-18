@@ -1,5 +1,7 @@
 // Draft written with AI assistance (Claude, Anthropic); disclosed per the Space Apps AI policy.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../service/app_state.dart';
@@ -201,6 +203,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             OutlinedButton(onPressed: _busy ? null : () => _import(s), child: const Text('Import .zip or .ply…')),
           ],
         ),
+        const Padding(padding: EdgeInsets.fromLTRB(24, 0, 24, 12), child: UsbSyncBar()),
         if (_error != null) Padding(padding: const EdgeInsets.fromLTRB(24, 0, 24, 12), child: ErrorBox(_error!)),
         Expanded(
           child: _scans.isEmpty && !_loading
@@ -895,5 +898,93 @@ class _LibraryScreenState extends State<LibraryScreen> {
         if (mounted) showSnack(context, errText(e), error: true);
       }
     }
+  }
+}
+
+/// iPhone on the USB cable: its finished scans import automatically (on by default).
+class UsbSyncBar extends StatefulWidget {
+  const UsbSyncBar({super.key});
+  @override
+  State<UsbSyncBar> createState() => _UsbSyncBarState();
+}
+
+class _UsbSyncBarState extends State<UsbSyncBar> {
+  bool _asked = false;
+
+  Future<void> _fetch(AppState s) async {
+    _asked = true;
+    try {
+      s.usbSync = asMap(await s.api!.getJson('/api/usb/sync'));
+      if (mounted) setState(() {});
+    } catch (_) {}
+  }
+
+  Future<void> _toggle(AppState s, bool on) async {
+    try {
+      s.usbSync = asMap(await s.api!.postJson('/api/usb/sync', {'enabled': on}));
+      if (mounted) setState(() {});
+    } catch (e) {
+      if (mounted) showSnack(context, errText(e), error: true);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final s = AppScope.of(context);
+    final t = Theme.of(context);
+    if (!_asked && s.api != null) unawaited(_fetch(s));
+    final u = s.usbSync;
+    if (u.isEmpty || u['available'] == false && u['reason'] == null) return const SizedBox.shrink();
+    final small = t.textTheme.bodySmall;
+    final on = u['enabled'] == true;
+    final devs = asList(u['devices']).map(asMap).toList();
+    final busy = asMap(u['busy']);
+    final last = asMap(u['last_import']);
+    final String line;
+    if (u['available'] == false) {
+      line = 'Automatic iPhone import over USB is not available here: ${asStr(u['reason'])}';
+    } else if (!on) {
+      line = 'Automatic iPhone import is off.';
+    } else if (busy.isNotEmpty) {
+      line = '${busy['stage'] == 'verifying' ? 'Checking SHA-256 of' : 'Copying'} scan ${asStr(busy['scan_id']).substring(0, 8)} from ${asStr(busy['device'], 'the iPhone')}…';
+    } else if (devs.isEmpty) {
+      line = 'Plug the iPhone in with a cable (unlocked, "Trust This Computer"): its finished scans import here automatically.';
+    } else {
+      line = '${devs.map((d) => asStr(d['name'], 'iPhone')).join(', ')} connected by USB. Finished scans import automatically.';
+    }
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 6, 6, 6),
+      decoration: BoxDecoration(
+        color: devs.isNotEmpty && on ? FsPalette.sensorTint : FsPalette.sheetAlt,
+        border: Border.all(color: devs.isNotEmpty && on ? FsPalette.sensorRule : FsPalette.rule),
+        borderRadius: BorderRadius.circular(2),
+      ),
+      child: Row(
+        children: [
+          Icon(busy.isNotEmpty ? Icons.sync : Icons.phone_iphone, size: 18, color: devs.isNotEmpty && on ? FsPalette.sensor : FsPalette.inkMuted),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(line, style: t.textTheme.bodyMedium),
+                if (last.isNotEmpty)
+                  Text(
+                    'Last imported: ${asStr(last['title']).isEmpty ? 'scan ${asStr(last['scan_id']).substring(0, 8)}' : asStr(last['title'])}'
+                    ' from ${asStr(last['device'], 'iPhone')} at ${utcText(last['utc'])} UTC (${last['seconds']} s, SHA-256 verified)',
+                    style: small,
+                  ),
+                if (u['last_error'] != null)
+                  Text('Last problem: ${asStr(u['last_error'])}', style: small?.copyWith(color: FsPalette.record)),
+              ],
+            ),
+          ),
+          if (u['available'] != false) ...[
+            Text('Auto-import', style: small),
+            Switch(value: on, onChanged: (v) => _toggle(s, v)),
+          ],
+        ],
+      ),
+    );
   }
 }

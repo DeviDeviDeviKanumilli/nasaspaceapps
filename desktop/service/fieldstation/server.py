@@ -19,10 +19,12 @@ import base64
 import json
 import os
 import secrets
+import shutil
 import socket
 import sys
 import threading
 import time
+import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -30,6 +32,8 @@ import numpy as np
 from fastapi import Body, FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse, JSONResponse, Response
 
+from . import usb_phone as usb_phone_mod
+from .usb_sync import UsbAutoSync
 from . import APP_NAME, APP_VERSION, PIPELINE_VERSION, PROTOCOL_VERSION, SCHEMA_VERSION
 from .adapters import AdapterError, PROFILES, adapter_ids
 from .adapters.base import Calibration
@@ -39,7 +43,7 @@ from .metrics import (distance_measurement, plane_fit, protrusion_analysis, repe
                       roi_points_sphere, roughness_analysis)
 from .ply import read_ply, rgb_of, xyz_of
 from .protocol import DesktopLink, b64, unb64
-from .schema import ENVELOPE
+from .schema import ENVELOPE, FEATURE_TYPES
 
 ADAPTER_LABELS = {
     "realsense": {"label": "Intel RealSense (D435)", "is_real_sensor": True},
@@ -61,6 +65,8 @@ class Service:
         self.link = DesktopLink(f"{APP_NAME} {socket.gethostname().split('.')[0]}"[:28], did_file.read_text().strip(),
                                 send_cb=self._ble_send, controller=self.ctl, on_event=lambda ev: self.ctl.emit(ev.pop("type"), **ev))
         self.ctl.add_listener(self._on_ctl_event)
+        self.usb = UsbAutoSync(self.store, self.home, self.ctl.emit)
+        self.usb.start()
         self._last_state_push = 0.0
         self._stop = threading.Event()
         threading.Thread(target=self._ticker, daemon=True).start()
@@ -73,6 +79,8 @@ class Service:
         t = ev.get("type")
         if t in ("recording_started", "recording_stopped"):
             self.link.broadcast("capture_state", **self.ctl.capture_state())
+        elif t == "phone_capture_complete":
+            self.usb.kick(retry_failed=True)      # a phone scan just finished: fetch it over USB now if plugged in
         elif t == "scan_processed":
             self.link.broadcast("capture_complete", scan_id=ev.get("scan_id"), keyframes=None, points=ev.get("points"), bytes=ev.get("bytes"))
             self.link.broadcast("capture_state", **self.ctl.capture_state())
@@ -209,7 +217,9 @@ def create_app(svc: Service) -> FastAPI:
         if (d / "depth_filtered.png").exists():
             cal = json.loads((d / "calibration.json").read_text())
             depth_image = {"width": cal["depth_intrinsics"]["width"], "height": cal["depth_intrinsics"]["height"]}
-        return {"manifest": man, "metrics": metrics, "log": log, "clouds": clouds, "catalog_draft": draft, "depth_image": depth_image}
+        from .tracking_check import check as tracking_check
+        return {"manifest": man, "metrics": metrics, "log": log, "clouds": clouds, "catalog_draft": draft, "depth_image": depth_image,
+                "tracking_check": tracking_check(d)}
 
     @app.patch("/api/scans/{scan_id}")
     def scan_update(scan_id: str, body: dict = Body(...)):
@@ -255,6 +265,65 @@ def create_app(svc: Service) -> FastAPI:
             "X-Points-Total": str(total), "X-Points-Sent": str(len(xyz)), "X-Decimation-Step": str(step),
             "X-Source-File": p.name, "X-Frame": (man.get("coordinate_frame") or {}).get("name", "unknown"),
             "X-Origin": man.get("origin", "")})
+
+    @app.get("/api/scans/{scan_id}/mesh.bin")
+    def mesh(scan_id: str, max_triangles: int = 150000):
+        """Triangle mesh for the viewer: uint32 V | uint32 T | V*3 float32 xyz | T*3 uint32 indices (little-endian).
+        Big meshes are simplified for display only (vertex clustering, X-Cell-M says the cell size); the file on disk
+        is untouched."""
+        from .mesh_io import read_mesh_ply, simplify_for_display
+        d = scan_dir(scan_id)
+        p = next((d / m for m in ("mesh_arkit.ply", "mesh_grid.ply") if (d / m).exists()), None)
+        if p is None:
+            err(404, "this scan has no mesh")
+        v, f = read_mesh_ply(p)
+        total = len(f)
+        v, f, cell = simplify_for_display(v, f, max(1000, min(int(max_triangles), 400000)))
+        man = svc.store.manifest(scan_id)
+        body = (np.uint32(len(v)).tobytes() + np.uint32(len(f)).tobytes()
+                + v.astype("<f4").tobytes() + f.astype("<u4").tobytes())
+        return Response(body, media_type="application/octet-stream", headers={
+            "X-Triangles-Total": str(total), "X-Triangles-Sent": str(len(f)), "X-Cell-M": f"{cell:.4f}",
+            "X-Source-File": p.name, "X-Frame": (man.get("coordinate_frame") or {}).get("name", "unknown")})
+
+    _PHOTO_ROLES = {"photo_full_resolution": "Phone photo (full resolution)", "raw_color": "D435 colour frame"}
+
+    @app.get("/api/scans/{scan_id}/photos")
+    def photos(scan_id: str):
+        """The scan's photos as listed in its manifest. Private, local: they may show people."""
+        d = scan_dir(scan_id)
+        man = json.loads((d / ENVELOPE).read_text())
+        out = [{"path": f["path"], "kind": _PHOTO_ROLES[f.get("role")], "bytes": f.get("bytes"), "lineage": f.get("lineage")}
+               for f in man.get("files") or [] if f.get("role") in _PHOTO_ROLES and (d / f["path"]).is_file()]
+        return {"photos": sorted(out, key=lambda r: r["path"])}
+
+    _thumb_cache: dict = {}
+
+    @app.get("/api/scans/{scan_id}/photo/{rel:path}")
+    def photo(scan_id: str, rel: str, w: int = 320):
+        """One photo, downsized to width w for display (JPEG). The original file is unchanged; GET .../file/<path>
+        returns it byte for byte."""
+        from io import BytesIO
+        from PIL import Image, ImageOps
+        d = scan_dir(scan_id).resolve()
+        p = (d / rel).resolve()
+        if d not in p.parents or not p.is_file() or p.suffix.lower() not in (".jpg", ".jpeg", ".png"):
+            err(404, "no such photo")
+        w = max(64, min(int(w), 2400))
+        key = (str(p), p.stat().st_mtime_ns, w)
+        if key not in _thumb_cache:
+            with Image.open(p) as im:
+                if im.format == "JPEG":
+                    im.draft("RGB", (w, w))  # decode a 7 MB phone photo at reduced scale: much faster
+                im = ImageOps.exif_transpose(im).convert("RGB")
+                if im.width > w:
+                    im = im.resize((w, max(1, round(im.height * w / im.width))), Image.LANCZOS)
+                buf = BytesIO()
+                im.save(buf, "JPEG", quality=85)
+            if len(_thumb_cache) > 400:
+                _thumb_cache.clear()
+            _thumb_cache[key] = buf.getvalue()
+        return Response(_thumb_cache[key], media_type="image/jpeg", headers={"Cache-Control": "private, max-age=3600"})
 
     def _depth_and_calib(scan_id: str):
         d = scan_dir(scan_id)
@@ -389,15 +458,17 @@ def create_app(svc: Service) -> FastAPI:
     @app.post("/api/import")
     def import_(body: dict = Body(...)):
         p = Path(str(body.get("path", ""))).expanduser()
-        if not p.is_file():
-            err(400, "path is not a file")
+        if not p.exists():
+            err(400, "no such file or folder")
         try:
-            if p.suffix.lower() == ".zip":
+            if p.is_dir():
+                man = svc.store.import_dir(p)
+            elif p.suffix.lower() == ".zip":
                 man = svc.store.import_zip(p)
             elif p.suffix.lower() == ".ply":
                 man = svc.store.import_ply(p, body.get("title", ""))
             else:
-                err(400, "import a scan bundle .zip or a .ply")
+                err(400, "import a scan bundle .zip, a scan folder, or a .ply")
         except DuplicateScan as exc:
             err(409, str(exc))
         except (BundleError, ValueError) as exc:
@@ -449,11 +520,75 @@ def create_app(svc: Service) -> FastAPI:
         if t not in ("start_capture", "stop_capture", "capture_now"):
             err(400, "type")
         try:
-            msg = svc.link.send(str(body["central"]), t, target="phone",
-                                **({"sensor_id": "iphone:arkit", "profile": body.get("profile", "default")} if t == "start_capture" else {}))
+            extra = {}
+            if t == "start_capture":
+                extra = {"sensor_id": "iphone:arkit", "profile": body.get("profile", "default")}
+                # optional annotation for the phone's scan.json (phones that don't know these fields ignore them)
+                if str(body.get("title") or "").strip():
+                    extra["title"] = str(body["title"]).strip()[:120]
+                if body.get("feature_type") in FEATURE_TYPES:
+                    extra["feature_type"] = body["feature_type"]
+            msg = svc.link.send(str(body["central"]), t, target="phone", **extra)
         except PermissionError as exc:
             err(409, str(exc))
         return {"sent": msg}
+
+    # ---- iPhone over USB (Apple devicectl) ------------------------------------------------
+    @app.get("/api/usb/phone")
+    def usb_phone():
+        av = usb_phone_mod.availability()
+        if not av["available"]:
+            return {**av, "devices": []}
+        try:
+            return {**av, "devices": usb_phone_mod.devices()}
+        except usb_phone_mod.UsbPhoneError as exc:
+            return {"available": True, "reason": None, "devices": [], "error": str(exc)}
+
+    @app.get("/api/usb/sync")
+    def usb_sync_status():
+        return svc.usb.status()
+
+    @app.post("/api/usb/sync")
+    def usb_sync_set(body: dict = Body(...)):
+        if "enabled" in body:
+            return svc.usb.set_enabled(bool(body["enabled"]))
+        svc.usb.kick(retry_failed=True)
+        return svc.usb.status()
+
+    @app.get("/api/usb/phone/{device_id}/scans")
+    def usb_phone_scans(device_id: str):
+        try:
+            rows = usb_phone_mod.list_scans(device_id)
+        except usb_phone_mod.UsbPhoneError as exc:
+            err(409, str(exc))
+        for r in rows:
+            r["already_imported"] = (svc.store.root / f"scan-{r['scan_id']}" / ENVELOPE).exists()
+        return {"scans": rows}
+
+    @app.post("/api/usb/phone/{device_id}/import")
+    def usb_phone_import(device_id: str, body: dict = Body(...)):
+        ids = [str(x) for x in body.get("scan_ids") or []]
+        if not ids:
+            err(400, "scan_ids")
+        results = []
+        work = svc.home / "usb_import_tmp"
+        for i, sid in enumerate(ids):
+            svc.ctl.emit("usb_import_progress", scan_id=sid, index=i, total=len(ids), stage="copying")
+            d = work / str(uuid.uuid4())
+            d.mkdir(parents=True)
+            try:
+                folder = usb_phone_mod.pull_scan(device_id, sid, d)
+                svc.ctl.emit("usb_import_progress", scan_id=sid, index=i, total=len(ids), stage="verifying")
+                man = svc.store.import_dir(folder, source_name=f"iPhone over USB ({device_id[:8]})")
+                results.append({"scan_id": sid, "ok": True, "origin": man.get("origin"), "status": man.get("status")})
+                svc.ctl.emit("scan_imported", scan_id=sid, origin=man.get("origin"), via="usb")
+            except DuplicateScan as exc:
+                results.append({"scan_id": sid, "ok": False, "duplicate": True, "error": str(exc)})
+            except (usb_phone_mod.UsbPhoneError, BundleError, ValueError, OSError) as exc:
+                results.append({"scan_id": sid, "ok": False, "error": str(exc)})
+            finally:
+                shutil.rmtree(d, ignore_errors=True)
+        return {"results": results}
 
     # ---- events --------------------------------------------------------------------------
     @app.websocket("/ws/events")
@@ -548,7 +683,8 @@ def main(argv=None) -> int:
     sock.bind(("127.0.0.1", args.port))
     port = sock.getsockname()[1]
     print(json.dumps({"event": "ready", "port": port, "token": token, "home": str(home), "fixtures": args.fixtures}), flush=True)
-    config = uvicorn.Config(app, log_level="warning", log_config=None, ws_ping_interval=20, timeout_graceful_shutdown=3)
+    config = uvicorn.Config(app, log_level="warning", log_config=None, ws_ping_interval=20, timeout_graceful_shutdown=3,
+                            timeout_keep_alive=30)  # > the app's 3 s idle timeout (app/lib/service/api.dart)
     server = uvicorn.Server(config)
     if args.parent_pid:
         # Stop when the app that started us is gone (quit, crash or force-kill) instead of lingering as an

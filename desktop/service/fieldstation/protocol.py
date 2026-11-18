@@ -32,7 +32,7 @@ from . import PROTOCOL_VERSION
 
 PAIR_WINDOW_S = 120
 MAX_BAD_PROOFS = 3
-SESSION_S = 3600
+SESSION_S = 12 * 3600   # a field day: a phone mounted on a rig must not need its code typed again mid-session
 ACK_TIMEOUT_S = 5.0
 CAPABILITIES = ["d435_capture", "scan_import"]
 FLAG_LAST = 0x01
@@ -225,6 +225,9 @@ class DesktopLink:
             npb = str(req["nonce_phone"])
             key = session_key(self.code, self.nd, npb)
             proof = pair_proof_desktop(self.code, self.nd, npb)
+            # a phone that pairs again replaces its old session (otherwise it would be listed, and messaged, twice)
+            for old in [c for c, x in self.sessions.items() if x.phone_id == str(req["phone_id"]) and c != central]:
+                del self.sessions[old]
             self.sessions[central] = PhoneSession(central, key, str(req["phone_id"]), str(req.get("phone_name") or "iPhone"))
             # one pairing per code: close the window
             self.code = None
@@ -271,9 +274,35 @@ class DesktopLink:
                     s.pending.pop(mid, None)
                     self.on_event({"type": "command_failed", "ref": mid, "command": p["msg"]["type"], "phone_name": s.phone_name})
 
+    def _rebind(self, central: str, outer: dict):
+        """A paired phone that reconnected after the link dropped can come back as a new central (iOS may use a
+        new Bluetooth address). Recognise its session by the message MAC, which only the holder of K can make, and
+        move the session to the new central. Returns the session or None."""
+        now = time.time()
+        with self._lock:
+            for old, s in list(self.sessions.items()):
+                if old == central or s.expires < now:
+                    continue
+                try:
+                    ok = hmac.compare_digest(b64(hm(s.key, str(outer["m"]))), str(outer["mac"]))
+                except Exception:
+                    ok = False
+                if ok:
+                    del self.sessions[old]
+                    self.rx.pop(old, None)
+                    s.central = central
+                    self.sessions[central] = s
+                    break
+            else:
+                return None
+        self.on_event({"type": "phone_reconnected", "phone_name": s.phone_name, "central": central, "previous_central": old})
+        return s
+
     def _on_wrapped(self, central: str, outer: dict) -> None:
         with self._lock:
             s = self.sessions.get(central)
+        if s is None or s.expires < time.time():
+            s = self._rebind(central, outer)
         if s is None or s.expires < time.time():
             self._send_plain(central, {"v": PROTOCOL_VERSION, "type": "error", "code": "not_paired", "message": "session missing or expired"})
             return
