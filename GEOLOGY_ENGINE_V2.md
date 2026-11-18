@@ -76,7 +76,7 @@ Map-unit labels were fixed before the engine was run there. The Connecticut desc
 | After the review fixes (15 Nov, section 4) | 1.0 / 0.86 | 1.0 / 1.0 |
 | Old rules, same labels | keyword: 0.86 / 0.86 (a conglomerate facies selected) | GLiM-style: 0.67 / 1.0 (Buttress, West Rock and MA diabase selected) |
 
-The two first-run misses (Mount Toby, Sugarloaf) exposed a real bug: Macrostrat's "non-marine" matched the MARINE contradiction. Fixing it is post-hoc for Hartford, so the Hartford MARS-LAKE result after the fix is no longer a clean held-out number. The frozen-rules number (0.71 recall) is the honest held-out figure.
+The two first-run misses (Mount Toby, Sugarloaf) exposed a real bug: Macrostrat's "non-marine" matched the MARINE contradiction. Fixing it is post-hoc for Hartford, so the result after the fix is no longer a strictly blind number. Both are reported: **0.71 recall is the strict frozen-rules figure; 0.86 is the current rules**, after this one disclosed fix (which raised recall to 1.0) and one stricter evidence rule from the 15 Nov review (section 4), which lowered it to 0.86. Precision stayed at 1.0 throughout, and the control labels were never edited.
 
 ### Sourland validation
 The Sourland Conservancy geology-hike guide describes Lockatong argillite with fossil mudcracks in the preserve. The check uses the PAD-US preserve polygon, not guessed points. Result: **PASS**. Lockatong polygons NJTRl;2 overlap the preserve, with supporting desiccation, cyclic, laminated and clay evidence. 24% and 100% of their area lies within 500 m of a diabase contact, which is flagged as a caution (heat-altered mudstone). Sourland is not used as an input and is not hardcoded anywhere.
