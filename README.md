@@ -1,4 +1,24 @@
-# Small-tile planetary terrain comparison experiment (v0.1)
+# TERRALYTX: planetary terrain analog discovery
+
+## Current state (updated 2026-11-17)
+
+- **Engine:** the analog discovery engine lives in [engine/](engine/); see [README_v0.3.md](README_v0.3.md).
+- **Real global results:** [results_global/](results_global/) holds a run on real data (see
+  `results_global/manifest_global.json`). The sources are Copernicus DEM GLO-90, ESA WorldCover 2021 v200,
+  NASA GSFC PGDA LOLA `LDEM_80S_20MPP_ADJ` (plus product 78 site outlines), and USGS
+  `Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2`. The run is **partial**: 19,295 of 19,433 tiles, with
+  1,464,296 windows evaluated. No tiles south of 60°S are included, so Antarctica is not covered.
+- **Website:** live at https://devidevidevikanumilli.github.io/nasaspaceapps/ (state: [website/STATUS.md](website/STATUS.md)).
+- **Field apps:** Field Station ([desktop/](desktop/README.md)) ran live with the Intel RealSense D435 at
+  Sourland Mountain on 2026-11-15. Depth and colour streams both worked, and a field scan was recorded. Field Scan ([mobile/](mobile/README.md))
+  is the iPhone LiDAR app. Full state: [desktop/STATUS.md](desktop/STATUS.md).
+
+The sections below document the v0.1 and v0.2 prototypes and are kept for history. Their "evidence
+boundary" and "missing" notes describe the package as it was then, before the real-data run above.
+
+---
+
+# Small-tile planetary terrain comparison experiment (v0.1, historical)
 
 > **Field apps.** [desktop/](desktop/README.md) is Field Station, the D435 field-instrument workstation
 > (state: [desktop/STATUS.md](desktop/STATUS.md)). [mobile/](mobile/README.md) is Field Scan, the iPhone LiDAR app.
@@ -14,7 +34,7 @@ This package contains working, tested exploratory code for comparing physical te
 
 ## Evidence boundary
 
-The included `SYNTHETIC_*.tif` elevation files are artificial test fixtures. **No NASA elevation or Copernicus Earth elevation pixels were processed in the included results.** The execution environment could browse the NASA/Copernicus source listings but could not download TIFF bytes. The synthetic images carry fake Earth coordinates purely to exercise georeferencing and are not discovered Earth sites.
+The included `SYNTHETIC_*.tif` elevation files are artificial test fixtures. **In v0.1, no NASA elevation or Copernicus Earth elevation pixels were processed in the included results.** The execution environment at that time could browse the NASA/Copernicus source listings but could not download TIFF bytes. (Real data has since been processed; see `results_global/` and "Current state" above.) The synthetic images carry fake Earth coordinates purely to exercise georeferencing and are not discovered Earth sites.
 
 ## Improvements over Claude's proposal
 
@@ -73,15 +93,19 @@ The NASA Site04 5m grid is heavily interpolated in places. For serious science, 
 
 ## What's still scientifically or computationally missing
 
-- Real NASA and Earth raster results; current package DOES NOT satisfy NASA data usage by itself.
-- Global tiling, unbiased geographically comprehensive candidate enumeration, nonuniform coverage accounting, independent geology pathway.
+*Status as of 2026-11-17: real NASA and Earth raster results now exist (`results_global/`), global tiling has
+run (partial: 19,295 of 19,433 tiles; nothing south of 60°S), and the D435 has been used live in the field
+(Sourland Mountain, 2026-11-15). The items below that remain open are still open.*
+
+- ~~Real NASA and Earth raster results~~ (done; see `results_global/`).
+- ~~Global tiling~~ (done, partial coverage). Unbiased geographically comprehensive candidate enumeration, nonuniform coverage accounting, independent geology pathway remain open.
 - Dependable observational validity flags for interpolated LOLA regions, Copernicus canopy/structure bias, stratified / spatially correlated uncertainty, cross-tile boundary handling.
 - Comparable smoothing/point-spread functions and validation of terrain estimators against instrument-scale data.
 - Independent reference selection, negative controls based on real geology, spatial block cross-validation, rank uncertainty and benchmarked worldwide processing.
 - Explicit planetary datum, polarity, geodetic frame verification for any new raster source; exact source footprint and reference selection must be logged.
-- D435 field validation and physical accessibility.
+- D435 field use is done (Sourland Mountain, 2026-11-15, depth and colour). Still open: accuracy against a reference scanner, and physical accessibility.
 
-**Do not market current synthetic results as a verified NASA/terrestrial analogy.**
+**The synthetic fixture results are not a verified NASA/terrestrial analogy.**
 
 ## v0.2: independent geological candidate pathway (November 14)
 
@@ -141,7 +165,7 @@ original feature ID/class, source link, and explicit scientific limitations.
 Map polygons should be cross-checked against higher-resolution original mapping
 before describing any location as a scientifically useful analog.
 
-**The v0.2 package still contains no processed real NASA or GLiM observation
-pixels/polygons. Its nine local tests are controlled synthetic tests, including a
+**As released, the v0.2 package contained no processed real NASA or GLiM observation
+pixels/polygons (real NASA and Earth elevation data were processed later; see `results_global/`). Its nine local tests are controlled synthetic tests, including a
 mocked ArcGIS query response.** Full-scale GLiM and planetary DEM ingestion remain
 unverified; the output is NOT an independently discovered analog.
