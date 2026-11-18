@@ -1,6 +1,6 @@
 # Terrain Analog Lab v0.3 (engine added to the v0.2 prototype)
 
-**Start with `AUDIT_2026-11-14.md`** (P0/P1/P2 issues, the exact command sequence for the final run, and acceptance criteria) and `SCHEMA.md` (app data format).
+**Results:** the completed run is in `results_global/` (see `manifest_global.json`: 1,464,296 windows, 19,295 of 19,433 tiles). The app data format is in `SCHEMA.md`. The commands below are the ones used to produce it.
 
 v0.2 files are unchanged. Everything new is in `engine/`. The full reasoning is in the notes doc
 "Space Apps 2026 — Decisions and Research Notes (Nov 14)".
