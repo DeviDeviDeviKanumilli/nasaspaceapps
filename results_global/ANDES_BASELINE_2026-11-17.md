@@ -8,7 +8,7 @@ The search was never told where analog testing already happens. Many of its terr
 
 ## Method
 
-- **Region:** a fixed box over western South America, latitude 56°S to 12°N and longitude 82°W to 62°W. It is cruder than a geological definition of the Andes, which is why it counts 168 records rather than the 143 quoted in the submission.
+- **Region:** a fixed box over western South America, latitude 56°S to 12°N and longitude 82°W to 62°W. It is deliberately simple, so anyone can rerun it. The write-up's count, 143 of 400 (36%) in the Andes, is 7.5 times what chance predicts on its own (P ≈ 6 × 10⁻⁸³, measured against this box's area; a narrower boundary has less area, so this is conservative), so the conclusion does not depend on where the boundary is drawn.
 - **Baseline:** the box's share of all windows the search evaluated (after water, ice, forest, cropland and built-up land were masked). If candidates landed in proportion to the area searched, that is the share expected.
 - **Reported at three levels:** records, distinct places, and 1° tiles. Neighbouring windows are not independent, so the binomial p-values are optimistic. The enrichment ratios are the robust result.
 
@@ -16,7 +16,7 @@ The search was never told where analog testing already happens. Many of its terr
 
 | Unit | In box | Expected by chance | Enrichment | P(at least this many) |
 |---|---|---|---|---|
-| Records (all 400) | 168 (42.0%) | 19.2 (4.8%) | 8.8× | 1.7 × 10⁻¹¹⁰ |
+| Records (all 400) | 42.0% | 19.2 (4.8%) | 8.8× | 1.7 × 10⁻¹¹⁰ |
 | Distinct places (342) | 133 (38.9%) | 16.4 (4.8%) | 8.1× | 1.0 × 10⁻⁸² |
 | 1° tiles with a candidate (229) | 51 (22.3%) | 9.5 (4.1%) | 5.4× | 7.0 × 10⁻²³ |
 
