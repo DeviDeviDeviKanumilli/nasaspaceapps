@@ -30,6 +30,7 @@ export default function Methods() {
       <header className="dochead">
         <Link href="/" className="backbtn">Back to the globe</Link>
         <div className="brand"><b>{APP_NAME}</b><span>Earth analog atlas</span></div>
+        <a href={REPO_URL} className="backbtn" style={{ marginLeft: "auto" }} target="_blank" rel="noreferrer">Code on GitHub</a>
       </header>
       <h1>Data &amp; methods</h1>
       <p className="lede">What was computed, from which data, at what scale, and what it does not show. {TEAM}.</p>
