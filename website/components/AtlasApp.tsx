@@ -9,6 +9,7 @@ import { loadAtlas } from "@/lib/adapter";
 import { applyFilters, DEFAULT_FILTERS, activeFilterCount, type Filters } from "@/lib/filter";
 import { formatLatLon, niceScale, parseCoordinates } from "@/lib/geo";
 import { APP_NAME, BASE_PATH } from "@/lib/config";
+import { REPO_URL } from "@/lib/sources";
 import type { Atlas, AtlasRecord } from "@/lib/types";
 import { IconChevron, IconGlobe, IconLayers, IconMinus, IconPlus, IconSearch, IconX } from "./Icons";
 
@@ -160,6 +161,7 @@ export default function AtlasApp() {
           <button className={mode === "profiles" ? "on" : ""} onClick={() => setMode(mode === "profiles" ? "explore" : "profiles")}>Base profiles</button>
           <button className={mode === "area" ? "on" : ""} onClick={() => setMode(mode === "area" ? "explore" : "area")}>Search area{filters.area ? <span className="dot" /> : null}</button>
           <Link href="/methods/" className="navlink">Data &amp; methods</Link>
+          <a href={REPO_URL} className="navlink" target="_blank" rel="noreferrer">Code on GitHub</a>
         </nav>
         <SearchBox atlas={atlas} onRecord={(id) => selectRecord(id)} onLocation={goToLocation} onReference={(id) => setWorkspace({ type: "reference", id })} />
       </header>
