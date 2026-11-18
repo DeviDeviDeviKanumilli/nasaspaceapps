@@ -13,6 +13,17 @@
   Sourland Mountain on 2026-11-15. Depth and colour streams both worked, and a field scan was recorded. Field Scan ([mobile/](mobile/README.md))
   is the iPhone LiDAR app. Full state: [desktop/STATUS.md](desktop/STATUS.md).
 
+## Validation: how we know it works
+
+| Check | What it tests | Result | Where |
+|---|---|---|---|
+| **Moon-to-Moon yardstick** | Is an Earth match close in absolute terms? Earth distances are judged against how much real lunar south-pole sites differ from each other. | Real Moon sites differ by 3.66° (worst-scale slope distance, 90th percentile). The closest Earth match, Volcán Aracar (24.23°S, 67.80°W), is 0.80° from the Connecting Ridge, well inside that range. The yardstick depends on how the site boxes are drawn, and the site says so. | Record `T-M-CR-001` on the website; `engine/plot_candidates.py` |
+| **Rediscovery against chance** | Without being told where analog testing happens, does the search find it? | Western South America holds 4.8% of the land searched but 42% of the 400 terrain matches (8.8× chance; 5.4× counting whole tiles). The flat InSight plains reference puts none of its 50 matches there, so the effect is specific to rugged references. Added 17 Nov, after the deadline, from the submitted results only. | [results_global/ANDES_BASELINE_2026-11-17.md](results_global/ANDES_BASELINE_2026-11-17.md), `engine/andes_baseline.py` |
+| **Held-out geology test** | Do the rock-map rules work on a basin they were not tuned on? | Hartford basin (CT/MA), labels fixed before the run. First run with frozen rules: lake rocks precision 1.0, recall 0.71; basalts 1.0 / 1.0. After a bug fix and review corrections: lake rocks 1.0 / 0.86. We report 0.71 as the clean held-out figure, because the later fixes were made after seeing Hartford. Newark figures are training-set numbers. | [GEOLOGY_ENGINE_V2.md](GEOLOGY_ENGINE_V2.md), `results_test_2026-11-14/geology_v2_hartford_frozen_run.json` |
+| **Independent site check** | Does the engine pick the rock a published field guide describes? | PASS. The Sourland Conservancy geology-hike guide (not an input) describes Lockatong mudstone with fossil mudcracks in the preserve, and the engine selects the Lockatong polygons there. | [GEOLOGY_ENGINE_V2.md](GEOLOGY_ENGINE_V2.md) ("Sourland validation"); featured case on the website |
+| **Field measurement** | Does the kit work on real ground? | The D435 rig and iPhone LiDAR ran live at Sourland Mountain on 15 Nov 2026: 6 scans, 364 photos, depth and colour both working. The scans were shown to the local judges. The scan files are not yet in this repository. | [desktop/STATUS.md](desktop/STATUS.md) |
+| **Automated tests** | Do the measurements and rules behave as designed? | `engine/tests_v03.py`: 17 checks pass. `engine/tests_geology_v2.py`: 39 checks pass. | `engine/` |
+
 The sections below document the v0.1 and v0.2 prototypes and are kept for history. Their "evidence
 boundary" and "missing" notes describe the package as it was then, before the real-data run above.
 
