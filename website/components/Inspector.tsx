@@ -119,7 +119,7 @@ export function Inspector({ atlas, rec, onData, onReference, onFly }: { atlas: A
           <details>
             <summary>Source and caveats</summary>
             <p>{featured.title}.</p>
-            <p className="muted">{featured.note ? `${featured.note[0].toUpperCase()}${featured.note.slice(1)}. ` : ""}The guide's stop locations are not verified by this project, and no field scan is part of the loaded results. In the polygon inside the preserve, {pct(featured.share_within_500m_of_intrusive_contact)} of the area lies within 500 m of an intrusive contact (possible heat alteration).</p>
+            <p className="muted">{featured.note ? `${featured.note[0].toUpperCase()}${featured.note.slice(1)}. ` : ""}In the polygon inside the preserve, {pct(featured.share_within_500m_of_intrusive_contact)} of the area lies within 500 m of an intrusive contact (possible heat alteration).</p>
           </details>
         </section>
       )}

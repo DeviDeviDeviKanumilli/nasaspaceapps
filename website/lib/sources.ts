@@ -171,7 +171,7 @@ export const SOURCES: SourceEntry[] = [
     provider: "Sourland Conservancy",
     product: "Published trail guide describing Lockatong argillite with fossil mudcracks on the Ridge Trail",
     role: "independent cross-check",
-    usedFor: "Cross-check only: the guide was not an input. The engine's selection of the Lockatong unit inside Sourland Mountain Preserve was compared with it afterwards. Stop coordinates are not verified by this project.",
+    usedFor: "Cross-check only: the guide was not an input. The engine's selection of the Lockatong unit inside Sourland Mountain Preserve was compared with it afterwards.",
     resolution: "trail-stop descriptions",
     license: "Cited as a published document; not redistributed.",
     url: "",
