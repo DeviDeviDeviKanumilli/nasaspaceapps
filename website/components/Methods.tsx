@@ -115,7 +115,7 @@ export default function Methods() {
           <tbody>{(g2?.controls ?? []).map((c, i) => (<tr key={i}><td>{c.region}</td><td>{c.reference}</td><td>{c.method}</td><td className="num">{c.precision ?? "n/a"}</td><td className="num">{c.recall ?? "n/a"}</td></tr>))}</tbody>
         </table>
         <h3>Independent cross-check</h3>
-        {(g2?.featured ?? []).map((f) => (<p key={f.id}>{f.title}. <strong>{f.outcome}.</strong> {f.note ? `Note: ${f.note}.` : ""} The guide's stop coordinates are not verified by this project and no field scan is part of the loaded results.</p>))}
+        {(g2?.featured ?? []).map((f) => (<p key={f.id}>{f.title}. <strong>{f.outcome}.</strong> {f.note ? `Note: ${f.note}.` : ""}</p>))}
       </section>
 
       <section id="datasets">
